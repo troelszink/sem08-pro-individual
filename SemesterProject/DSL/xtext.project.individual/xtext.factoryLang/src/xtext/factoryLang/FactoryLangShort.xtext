@@ -1,0 +1,9 @@
+grammar xtext.factoryLang.FactoryLangShort with org.eclipse.xtext.common.Terminals
+
+generate factoryLangShort "http://www.factoryLang.xtext/FactoryLangShort"
+
+// -------------------- INDIVIDUAL DSL - EASY TO WRITE, "HARDER" TO READ -------------------- //
+
+ModelWrite:
+	'test' name=ID // change
+;

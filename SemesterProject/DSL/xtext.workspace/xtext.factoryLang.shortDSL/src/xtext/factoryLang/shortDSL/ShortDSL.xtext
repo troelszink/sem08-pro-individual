@@ -1,0 +1,58 @@
+grammar xtext.factoryLang.shortDSL.ShortDSL with org.eclipse.xtext.common.Terminals
+
+generate shortDSL "http://www.factoryLang.xtext/shortDSL/ShortDSL"
+
+Model:
+	'use' 'dsl' type=DSL_Short;
+
+	
+
+// -------------------- INDIVIDUAL DSL - EASY TO WRITE, "HARDER" TO READ -------------------- //
+DSL_Short returns DSLType:
+	{DSLShort} configuration=Configuration_Short deviceHandlings+=DeviceHandling_Short;
+
+// ----- CONFIGURAITON ----- //
+Configuration_Short:
+	'devices' '{' BEGIN devices+=Device_Short+ END '}'
+;
+
+Device_Short:
+	Crane_Short | Disk_Short | Camera_Short
+;
+
+Crane_Short returns Device_Short:
+	{Crane} name=ID ':' BEGIN positions+=CranePosition_Short+ END
+;
+
+CranePosition_Short:
+	name=ID ':' position=INT (',')?
+;
+
+Disk_Short returns Device_Short:
+	{Disk} name=ID '(' nSlots=INT ')' ':' BEGIN zones+=DiskZone_Short+ END
+;
+
+DiskZone_Short:
+	name=ID ':' slot=INT (',')?
+;
+
+Camera_Short  returns Device_Short:
+	{Camera} name=ID ':' BEGIN colors+=CameraColor_Short+ END
+;
+
+CameraColor_Short:
+	name=ID (',')?
+;
+
+// ----- DEVICE HANDLING ----- //
+DeviceHandling_Short:
+	'test' name=ID
+;
+
+
+// ----- TERMINALS ----- //
+terminal BEGIN:
+	'synthetic:BEGIN';
+
+terminal END:
+	'synthetic:END';

@@ -1,0 +1,82 @@
+
+/*
+- still dsl-like with understanding, and not a generic programming language
+- shorter
+
+
+Syntax:
+- {} for configuration and to separate devices
+- () for defining parameters and the like
+- --> for movement
+- = and != for comparing
+- keyword in front for declaring which type
+*/
+
+
+/*
+- ',' is optional
+*/
+devices {
+    crane1:
+        pickupDisk: 0
+        outRed: 30
+        outGreen: 60
+        outBlue: 90
+    disk1(8):
+        craneZone: 1
+        cameraZone: 3
+        intakeZone: 6
+    camera1:
+        blue, green, red
+}
+
+disk1 {
+    foreach slot = complete:
+        slot --> craneZone
+        crane1 pickup --> pickupDisk // moves to pickupDisk and picks up
+        if slot = red:
+            crane1 drop --> outRed
+        if slot = green:
+            crane1 drop --> outGreen
+        if slot = blue:
+            crane1 drop --> outBlue
+        slot(free)
+    
+    if disk != full:
+        empty slot --> intakeZone
+        slot(in_progress)
+        slot --> intakeZone --> cameraZone
+        camera1 scan color
+        if color = red:
+            slot(complete, 10) // standard 0
+        if color = green:
+            slot(complete, 20)
+        if color = blue:
+            slot(complete, 30)
+}
+
+// another version
+disk1 {
+    foreach slot = complete:
+        slot --> craneZone
+        crane1 pickup --> pickupDisk // moves to pickupDisk and picks up
+        if slot = red:
+            crane1 drop --> outRed
+        if slot = green:
+            crane1 drop --> outGreen
+        if slot = blue:
+            crane1 drop --> outBlue
+        slot(free)
+    
+    if disk != full:
+        empty slot --> intakeZone
+        slot(in_progress)
+        slot --> intakeZone --> cameraZone
+        camera1 scan color
+        if color = red:
+            slot(complete, 10) // standard 0
+        if color = green:
+            slot(complete, 20)
+        if color = blue:
+            slot(complete, 30)
+}

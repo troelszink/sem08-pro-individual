@@ -1,0 +1,18 @@
+
+use dsl
+
+devices {
+    crane1:
+        pickupDisk: 0
+        outRed: 30
+        outGreen: 60
+        outBlue: 90
+    disk1(8):
+        craneZone: 1
+        cameraZone: 3
+        intakeZone: 6
+    camera1:
+        blue, green, red
+}
+
+test testing

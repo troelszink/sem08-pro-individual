@@ -1,0 +1,31 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: xtext.factoryLang.shortDSL
+Bundle-ManifestVersion: 2
+Bundle-Name: xtext.factoryLang.shortDSL
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: xtext.factoryLang.shortDSL; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.xtext,
+ org.eclipse.xtext.xbase,
+ org.eclipse.equinox.common;bundle-version="3.5.0",
+ org.eclipse.emf.ecore,
+ org.eclipse.xtext.xbase.lib;bundle-version="2.14.0",
+ org.eclipse.xtext.util,
+ org.eclipse.emf.common,
+ org.eclipse.xtend.lib;bundle-version="2.14.0",
+ org.antlr.runtime;bundle-version="[3.2.0,3.2.1)"
+Bundle-RequiredExecutionEnvironment: JavaSE-11
+Export-Package: xtext.factoryLang.shortDSL.shortDSL.util,
+ xtext.factoryLang.shortDSL.services,
+ xtext.factoryLang.shortDSL,
+ xtext.factoryLang.shortDSL.shortDSL,
+ xtext.factoryLang.shortDSL.serializer,
+ xtext.factoryLang.shortDSL.parser.antlr,
+ xtext.factoryLang.shortDSL.shortDSL.impl,
+ xtext.factoryLang.shortDSL.generator,
+ xtext.factoryLang.shortDSL.scoping,
+ xtext.factoryLang.shortDSL.parser.antlr.lexer,
+ xtext.factoryLang.shortDSL.validation,
+ xtext.factoryLang.shortDSL.parser.antlr.internal
+Import-Package: org.apache.log4j
