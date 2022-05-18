@@ -33,6 +33,15 @@ public interface ShortDSLFactory extends EFactory
   Model createModel();
 
   /**
+   * Returns a new object of class '<em>DSL Long</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>DSL Long</em>'.
+   * @generated
+   */
+  DSL_Long createDSL_Long();
+
+  /**
    * Returns a new object of class '<em>DSL Type</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -42,85 +51,94 @@ public interface ShortDSLFactory extends EFactory
   DSLType createDSLType();
 
   /**
-   * Returns a new object of class '<em>Configuration Short</em>'.
+   * Returns a new object of class '<em>Configuration S</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Configuration Short</em>'.
+   * @return a new object of class '<em>Configuration S</em>'.
    * @generated
    */
-  Configuration_Short createConfiguration_Short();
+  ConfigurationS createConfigurationS();
 
   /**
-   * Returns a new object of class '<em>Device Short</em>'.
+   * Returns a new object of class '<em>Device S</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Device Short</em>'.
+   * @return a new object of class '<em>Device S</em>'.
    * @generated
    */
-  Device_Short createDevice_Short();
+  DeviceS createDeviceS();
 
   /**
-   * Returns a new object of class '<em>Crane Short</em>'.
+   * Returns a new object of class '<em>Configuration Value S</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Crane Short</em>'.
+   * @return a new object of class '<em>Configuration Value S</em>'.
    * @generated
    */
-  Crane_Short createCrane_Short();
+  ConfigurationValueS createConfigurationValueS();
 
   /**
-   * Returns a new object of class '<em>Crane Position Short</em>'.
+   * Returns a new object of class '<em>Disk Handling S</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Crane Position Short</em>'.
+   * @return a new object of class '<em>Disk Handling S</em>'.
    * @generated
    */
-  CranePosition_Short createCranePosition_Short();
+  DiskHandlingS createDiskHandlingS();
 
   /**
-   * Returns a new object of class '<em>Disk Short</em>'.
+   * Returns a new object of class '<em>Statement S</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Disk Short</em>'.
+   * @return a new object of class '<em>Statement S</em>'.
    * @generated
    */
-  Disk_Short createDisk_Short();
+  StatementS createStatementS();
 
   /**
-   * Returns a new object of class '<em>Disk Zone Short</em>'.
+   * Returns a new object of class '<em>Action S</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Disk Zone Short</em>'.
+   * @return a new object of class '<em>Action S</em>'.
    * @generated
    */
-  DiskZone_Short createDiskZone_Short();
+  ActionS createActionS();
 
   /**
-   * Returns a new object of class '<em>Camera Short</em>'.
+   * Returns a new object of class '<em>Condition S</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Camera Short</em>'.
+   * @return a new object of class '<em>Condition S</em>'.
    * @generated
    */
-  Camera_Short createCamera_Short();
+  ConditionS createConditionS();
 
   /**
-   * Returns a new object of class '<em>Camera Color Short</em>'.
+   * Returns a new object of class '<em>Mark S</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Camera Color Short</em>'.
+   * @return a new object of class '<em>Mark S</em>'.
    * @generated
    */
-  CameraColor_Short createCameraColor_Short();
+  MarkS createMarkS();
 
   /**
-   * Returns a new object of class '<em>Device Handling Short</em>'.
+   * Returns a new object of class '<em>Variable</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Device Handling Short</em>'.
+   * @return a new object of class '<em>Variable</em>'.
    * @generated
    */
-  DeviceHandling_Short createDeviceHandling_Short();
+  Variable createVariable();
+
+  /**
+   * Returns a new object of class '<em>Value</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Value</em>'.
+   * @generated
+   */
+  Value createValue();
 
   /**
    * Returns a new object of class '<em>DSL Short</em>'.
@@ -130,6 +148,150 @@ public interface ShortDSLFactory extends EFactory
    * @generated
    */
   DSLShort createDSLShort();
+
+  /**
+   * Returns a new object of class '<em>Crane</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Crane</em>'.
+   * @generated
+   */
+  Crane createCrane();
+
+  /**
+   * Returns a new object of class '<em>Crane Zone</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Crane Zone</em>'.
+   * @generated
+   */
+  CraneZone createCraneZone();
+
+  /**
+   * Returns a new object of class '<em>Disk</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Disk</em>'.
+   * @generated
+   */
+  Disk createDisk();
+
+  /**
+   * Returns a new object of class '<em>Disk Zone</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Disk Zone</em>'.
+   * @generated
+   */
+  DiskZone createDiskZone();
+
+  /**
+   * Returns a new object of class '<em>Camera</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Camera</em>'.
+   * @generated
+   */
+  Camera createCamera();
+
+  /**
+   * Returns a new object of class '<em>Camera Color</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Camera Color</em>'.
+   * @generated
+   */
+  CameraColor createCameraColor();
+
+  /**
+   * Returns a new object of class '<em>Loop</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Loop</em>'.
+   * @generated
+   */
+  Loop createLoop();
+
+  /**
+   * Returns a new object of class '<em>Move Disk</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Move Disk</em>'.
+   * @generated
+   */
+  MoveDisk createMoveDisk();
+
+  /**
+   * Returns a new object of class '<em>Move Crane</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Move Crane</em>'.
+   * @generated
+   */
+  MoveCrane createMoveCrane();
+
+  /**
+   * Returns a new object of class '<em>Action</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Action</em>'.
+   * @generated
+   */
+  Action createAction();
+
+  /**
+   * Returns a new object of class '<em>Condition Variable</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Condition Variable</em>'.
+   * @generated
+   */
+  ConditionVariable createConditionVariable();
+
+  /**
+   * Returns a new object of class '<em>Condition Device</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Condition Device</em>'.
+   * @generated
+   */
+  ConditionDevice createConditionDevice();
+
+  /**
+   * Returns a new object of class '<em>Mark Variable</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Mark Variable</em>'.
+   * @generated
+   */
+  MarkVariable createMarkVariable();
+
+  /**
+   * Returns a new object of class '<em>Mark Value</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Mark Value</em>'.
+   * @generated
+   */
+  MarkValue createMarkValue();
+
+  /**
+   * Returns a new object of class '<em>Local Variable</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Local Variable</em>'.
+   * @generated
+   */
+  LocalVariable createLocalVariable();
+
+  /**
+   * Returns a new object of class '<em>Global Variable</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Global Variable</em>'.
+   * @generated
+   */
+  GlobalVariable createGlobalVariable();
 
   /**
    * Returns the package supported by this factory.

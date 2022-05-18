@@ -15,17 +15,28 @@ import org.eclipse.xtext.serializer.acceptor.SequenceFeeder;
 import org.eclipse.xtext.serializer.sequencer.AbstractDelegatingSemanticSequencer;
 import org.eclipse.xtext.serializer.sequencer.ITransientValueService.ValueTransient;
 import xtext.factoryLang.shortDSL.services.ShortDSLGrammarAccess;
-import xtext.factoryLang.shortDSL.shortDSL.CameraColor_Short;
-import xtext.factoryLang.shortDSL.shortDSL.Camera_Short;
-import xtext.factoryLang.shortDSL.shortDSL.Configuration_Short;
-import xtext.factoryLang.shortDSL.shortDSL.CranePosition_Short;
-import xtext.factoryLang.shortDSL.shortDSL.Crane_Short;
+import xtext.factoryLang.shortDSL.shortDSL.Camera;
+import xtext.factoryLang.shortDSL.shortDSL.CameraColor;
+import xtext.factoryLang.shortDSL.shortDSL.ConditionDevice;
+import xtext.factoryLang.shortDSL.shortDSL.ConditionVariable;
+import xtext.factoryLang.shortDSL.shortDSL.ConfigurationS;
+import xtext.factoryLang.shortDSL.shortDSL.Crane;
+import xtext.factoryLang.shortDSL.shortDSL.CraneZone;
 import xtext.factoryLang.shortDSL.shortDSL.DSLShort;
-import xtext.factoryLang.shortDSL.shortDSL.DeviceHandling_Short;
-import xtext.factoryLang.shortDSL.shortDSL.DiskZone_Short;
-import xtext.factoryLang.shortDSL.shortDSL.Disk_Short;
+import xtext.factoryLang.shortDSL.shortDSL.DSL_Long;
+import xtext.factoryLang.shortDSL.shortDSL.Disk;
+import xtext.factoryLang.shortDSL.shortDSL.DiskHandlingS;
+import xtext.factoryLang.shortDSL.shortDSL.DiskZone;
+import xtext.factoryLang.shortDSL.shortDSL.GlobalVariable;
+import xtext.factoryLang.shortDSL.shortDSL.LocalVariable;
+import xtext.factoryLang.shortDSL.shortDSL.Loop;
+import xtext.factoryLang.shortDSL.shortDSL.MarkValue;
+import xtext.factoryLang.shortDSL.shortDSL.MarkVariable;
 import xtext.factoryLang.shortDSL.shortDSL.Model;
+import xtext.factoryLang.shortDSL.shortDSL.MoveCrane;
+import xtext.factoryLang.shortDSL.shortDSL.MoveDisk;
 import xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage;
+import xtext.factoryLang.shortDSL.shortDSL.Value;
 
 @SuppressWarnings("all")
 public class ShortDSLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
@@ -41,35 +52,71 @@ public class ShortDSLSemanticSequencer extends AbstractDelegatingSemanticSequenc
 		Set<Parameter> parameters = context.getEnabledBooleanParameters();
 		if (epackage == ShortDSLPackage.eINSTANCE)
 			switch (semanticObject.eClass().getClassifierID()) {
-			case ShortDSLPackage.CAMERA_COLOR_SHORT:
-				sequence_CameraColor_Short(context, (CameraColor_Short) semanticObject); 
+			case ShortDSLPackage.ACTION:
+				sequence_ActionS(context, (xtext.factoryLang.shortDSL.shortDSL.Action) semanticObject); 
 				return; 
-			case ShortDSLPackage.CAMERA_SHORT:
-				sequence_Camera_Short(context, (Camera_Short) semanticObject); 
+			case ShortDSLPackage.CAMERA:
+				sequence_CameraS(context, (Camera) semanticObject); 
 				return; 
-			case ShortDSLPackage.CONFIGURATION_SHORT:
-				sequence_Configuration_Short(context, (Configuration_Short) semanticObject); 
+			case ShortDSLPackage.CAMERA_COLOR:
+				sequence_CameraColorS(context, (CameraColor) semanticObject); 
 				return; 
-			case ShortDSLPackage.CRANE_POSITION_SHORT:
-				sequence_CranePosition_Short(context, (CranePosition_Short) semanticObject); 
+			case ShortDSLPackage.CONDITION_DEVICE:
+				sequence_ConditionDeviceS(context, (ConditionDevice) semanticObject); 
 				return; 
-			case ShortDSLPackage.CRANE_SHORT:
-				sequence_Crane_Short(context, (Crane_Short) semanticObject); 
+			case ShortDSLPackage.CONDITION_VARIABLE:
+				sequence_ConditionVariableS(context, (ConditionVariable) semanticObject); 
+				return; 
+			case ShortDSLPackage.CONFIGURATION_S:
+				sequence_ConfigurationS(context, (ConfigurationS) semanticObject); 
+				return; 
+			case ShortDSLPackage.CRANE:
+				sequence_CraneS(context, (Crane) semanticObject); 
+				return; 
+			case ShortDSLPackage.CRANE_ZONE:
+				sequence_CraneZoneS(context, (CraneZone) semanticObject); 
 				return; 
 			case ShortDSLPackage.DSL_SHORT:
 				sequence_DSL_Short(context, (DSLShort) semanticObject); 
 				return; 
-			case ShortDSLPackage.DEVICE_HANDLING_SHORT:
-				sequence_DeviceHandling_Short(context, (DeviceHandling_Short) semanticObject); 
+			case ShortDSLPackage.DSL_LONG:
+				sequence_DSL_Long(context, (DSL_Long) semanticObject); 
 				return; 
-			case ShortDSLPackage.DISK_ZONE_SHORT:
-				sequence_DiskZone_Short(context, (DiskZone_Short) semanticObject); 
+			case ShortDSLPackage.DISK:
+				sequence_DiskS(context, (Disk) semanticObject); 
 				return; 
-			case ShortDSLPackage.DISK_SHORT:
-				sequence_Disk_Short(context, (Disk_Short) semanticObject); 
+			case ShortDSLPackage.DISK_HANDLING_S:
+				sequence_DiskHandlingS(context, (DiskHandlingS) semanticObject); 
+				return; 
+			case ShortDSLPackage.DISK_ZONE:
+				sequence_DiskZoneS(context, (DiskZone) semanticObject); 
+				return; 
+			case ShortDSLPackage.GLOBAL_VARIABLE:
+				sequence_GlobalVariableS(context, (GlobalVariable) semanticObject); 
+				return; 
+			case ShortDSLPackage.LOCAL_VARIABLE:
+				sequence_LocalVariableS(context, (LocalVariable) semanticObject); 
+				return; 
+			case ShortDSLPackage.LOOP:
+				sequence_LoopS(context, (Loop) semanticObject); 
+				return; 
+			case ShortDSLPackage.MARK_VALUE:
+				sequence_MarkValueS(context, (MarkValue) semanticObject); 
+				return; 
+			case ShortDSLPackage.MARK_VARIABLE:
+				sequence_MarkVariableS(context, (MarkVariable) semanticObject); 
 				return; 
 			case ShortDSLPackage.MODEL:
 				sequence_Model(context, (Model) semanticObject); 
+				return; 
+			case ShortDSLPackage.MOVE_CRANE:
+				sequence_MoveCraneS(context, (MoveCrane) semanticObject); 
+				return; 
+			case ShortDSLPackage.MOVE_DISK:
+				sequence_MoveDiskS(context, (MoveDisk) semanticObject); 
+				return; 
+			case ShortDSLPackage.VALUE:
+				sequence_Value(context, (Value) semanticObject); 
 				return; 
 			}
 		if (errorAcceptor != null)
@@ -78,78 +125,137 @@ public class ShortDSLSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	
 	/**
 	 * Contexts:
-	 *     CameraColor_Short returns CameraColor_Short
+	 *     StatementS returns Action
+	 *     ActionS returns Action
+	 *
+	 * Constraint:
+	 *     {Action}
+	 */
+	protected void sequence_ActionS(ISerializationContext context, xtext.factoryLang.shortDSL.shortDSL.Action semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     CameraColorS returns CameraColor
+	 *
+	 * Constraint:
+	 *     color=COLOR_S
+	 */
+	protected void sequence_CameraColorS(ISerializationContext context, CameraColor semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, ShortDSLPackage.Literals.CAMERA_COLOR__COLOR) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ShortDSLPackage.Literals.CAMERA_COLOR__COLOR));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getCameraColorSAccess().getColorCOLOR_SEnumRuleCall_1_0(), semanticObject.getColor());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     DeviceS returns Camera
+	 *     CameraS returns Camera
+	 *
+	 * Constraint:
+	 *     (name=ID colors+=CameraColorS+)
+	 */
+	protected void sequence_CameraS(ISerializationContext context, Camera semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     StatementS returns ConditionDevice
+	 *     ConditionS returns ConditionDevice
+	 *     ConditionDeviceS returns ConditionDevice
+	 *
+	 * Constraint:
+	 *     (device=[DeviceS|ID] comparisonOperator=COMPARISON_OPERATOR_S value=Value statements+=StatementS*)
+	 */
+	protected void sequence_ConditionDeviceS(ISerializationContext context, ConditionDevice semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     StatementS returns ConditionVariable
+	 *     ConditionS returns ConditionVariable
+	 *     ConditionVariableS returns ConditionVariable
+	 *
+	 * Constraint:
+	 *     (variable=[Variable|ID] comparisonOperator=COMPARISON_OPERATOR_S value=Value statements+=StatementS*)
+	 */
+	protected void sequence_ConditionVariableS(ISerializationContext context, ConditionVariable semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     ConfigurationS returns ConfigurationS
+	 *
+	 * Constraint:
+	 *     devices+=DeviceS+
+	 */
+	protected void sequence_ConfigurationS(ISerializationContext context, ConfigurationS semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     DeviceS returns Crane
+	 *     CraneS returns Crane
+	 *
+	 * Constraint:
+	 *     (name=ID positions+=CraneZoneS+)
+	 */
+	protected void sequence_CraneS(ISerializationContext context, Crane semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     CraneZoneS returns CraneZone
+	 *
+	 * Constraint:
+	 *     (name=ID zoneValue=INT)
+	 */
+	protected void sequence_CraneZoneS(ISerializationContext context, CraneZone semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, ShortDSLPackage.Literals.CRANE_ZONE__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ShortDSLPackage.Literals.CRANE_ZONE__NAME));
+			if (transientValues.isValueTransient(semanticObject, ShortDSLPackage.Literals.CRANE_ZONE__ZONE_VALUE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ShortDSLPackage.Literals.CRANE_ZONE__ZONE_VALUE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getCraneZoneSAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getCraneZoneSAccess().getZoneValueINTTerminalRuleCall_3_0(), semanticObject.getZoneValue());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     DSL_Long returns DSL_Long
 	 *
 	 * Constraint:
 	 *     name=ID
 	 */
-	protected void sequence_CameraColor_Short(ISerializationContext context, CameraColor_Short semanticObject) {
+	protected void sequence_DSL_Long(ISerializationContext context, DSL_Long semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, ShortDSLPackage.Literals.CAMERA_COLOR_SHORT__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ShortDSLPackage.Literals.CAMERA_COLOR_SHORT__NAME));
+			if (transientValues.isValueTransient(semanticObject, ShortDSLPackage.Literals.DSL_LONG__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ShortDSLPackage.Literals.DSL_LONG__NAME));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getCameraColor_ShortAccess().getNameIDTerminalRuleCall_0_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getDSL_LongAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
 		feeder.finish();
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     Device_Short returns Camera_Short
-	 *     Camera_Short returns Camera_Short
-	 *
-	 * Constraint:
-	 *     (name=ID colors+=CameraColor_Short+)
-	 */
-	protected void sequence_Camera_Short(ISerializationContext context, Camera_Short semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     Configuration_Short returns Configuration_Short
-	 *
-	 * Constraint:
-	 *     devices+=Device_Short+
-	 */
-	protected void sequence_Configuration_Short(ISerializationContext context, Configuration_Short semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     CranePosition_Short returns CranePosition_Short
-	 *
-	 * Constraint:
-	 *     (name=ID position=INT)
-	 */
-	protected void sequence_CranePosition_Short(ISerializationContext context, CranePosition_Short semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, ShortDSLPackage.Literals.CRANE_POSITION_SHORT__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ShortDSLPackage.Literals.CRANE_POSITION_SHORT__NAME));
-			if (transientValues.isValueTransient(semanticObject, ShortDSLPackage.Literals.CRANE_POSITION_SHORT__POSITION) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ShortDSLPackage.Literals.CRANE_POSITION_SHORT__POSITION));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getCranePosition_ShortAccess().getNameIDTerminalRuleCall_0_0(), semanticObject.getName());
-		feeder.accept(grammarAccess.getCranePosition_ShortAccess().getPositionINTTerminalRuleCall_2_0(), semanticObject.getPosition());
-		feeder.finish();
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     Device_Short returns Crane_Short
-	 *     Crane_Short returns Crane_Short
-	 *
-	 * Constraint:
-	 *     (name=ID positions+=CranePosition_Short+)
-	 */
-	protected void sequence_Crane_Short(ISerializationContext context, Crane_Short semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -158,7 +264,7 @@ public class ShortDSLSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 *     DSL_Short returns DSLShort
 	 *
 	 * Constraint:
-	 *     (configuration=Configuration_Short deviceHandlings+=DeviceHandling_Short)
+	 *     (configuration=ConfigurationS diskHandlings+=DiskHandlingS*)
 	 */
 	protected void sequence_DSL_Short(ISerializationContext context, DSLShort semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -167,52 +273,123 @@ public class ShortDSLSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	
 	/**
 	 * Contexts:
-	 *     DeviceHandling_Short returns DeviceHandling_Short
+	 *     DiskHandlingS returns DiskHandlingS
 	 *
 	 * Constraint:
-	 *     name=ID
+	 *     (disk=[Disk|ID] statements+=StatementS+)
 	 */
-	protected void sequence_DeviceHandling_Short(ISerializationContext context, DeviceHandling_Short semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, ShortDSLPackage.Literals.DEVICE_HANDLING_SHORT__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ShortDSLPackage.Literals.DEVICE_HANDLING_SHORT__NAME));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getDeviceHandling_ShortAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
-		feeder.finish();
+	protected void sequence_DiskHandlingS(ISerializationContext context, DiskHandlingS semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
 	 * Contexts:
-	 *     DiskZone_Short returns DiskZone_Short
+	 *     DeviceS returns Disk
+	 *     DiskS returns Disk
+	 *
+	 * Constraint:
+	 *     (name=ID nSlots=INT zones+=DiskZoneS+)
+	 */
+	protected void sequence_DiskS(ISerializationContext context, Disk semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     DiskZoneS returns DiskZone
 	 *
 	 * Constraint:
 	 *     (name=ID slot=INT)
 	 */
-	protected void sequence_DiskZone_Short(ISerializationContext context, DiskZone_Short semanticObject) {
+	protected void sequence_DiskZoneS(ISerializationContext context, DiskZone semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, ShortDSLPackage.Literals.DISK_ZONE_SHORT__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ShortDSLPackage.Literals.DISK_ZONE_SHORT__NAME));
-			if (transientValues.isValueTransient(semanticObject, ShortDSLPackage.Literals.DISK_ZONE_SHORT__SLOT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ShortDSLPackage.Literals.DISK_ZONE_SHORT__SLOT));
+			if (transientValues.isValueTransient(semanticObject, ShortDSLPackage.Literals.DISK_ZONE__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ShortDSLPackage.Literals.DISK_ZONE__NAME));
+			if (transientValues.isValueTransient(semanticObject, ShortDSLPackage.Literals.DISK_ZONE__SLOT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ShortDSLPackage.Literals.DISK_ZONE__SLOT));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getDiskZone_ShortAccess().getNameIDTerminalRuleCall_0_0(), semanticObject.getName());
-		feeder.accept(grammarAccess.getDiskZone_ShortAccess().getSlotINTTerminalRuleCall_2_0(), semanticObject.getSlot());
+		feeder.accept(grammarAccess.getDiskZoneSAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getDiskZoneSAccess().getSlotINTTerminalRuleCall_3_0(), semanticObject.getSlot());
 		feeder.finish();
 	}
 	
 	
 	/**
 	 * Contexts:
-	 *     Device_Short returns Disk_Short
-	 *     Disk_Short returns Disk_Short
+	 *     GlobalVariableS returns GlobalVariable
 	 *
 	 * Constraint:
-	 *     (name=ID nSlots=INT zones+=DiskZone_Short+)
+	 *     name=ID
 	 */
-	protected void sequence_Disk_Short(ISerializationContext context, Disk_Short semanticObject) {
+	protected void sequence_GlobalVariableS(ISerializationContext context, GlobalVariable semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, ShortDSLPackage.Literals.VARIABLE__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ShortDSLPackage.Literals.VARIABLE__NAME));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getGlobalVariableSAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     LocalVariableS returns LocalVariable
+	 *
+	 * Constraint:
+	 *     name=ID
+	 */
+	protected void sequence_LocalVariableS(ISerializationContext context, LocalVariable semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, ShortDSLPackage.Literals.VARIABLE__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ShortDSLPackage.Literals.VARIABLE__NAME));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getLocalVariableSAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     StatementS returns Loop
+	 *     LoopS returns Loop
+	 *
+	 * Constraint:
+	 *     (variable=LocalVariableS comparisonOperator=COMPARISON_OPERATOR_S slotState=DISK_SLOT_STATES_S statements+=StatementS*)
+	 */
+	protected void sequence_LoopS(ISerializationContext context, Loop semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     StatementS returns MarkValue
+	 *     MarkS returns MarkValue
+	 *     MarkValueS returns MarkValue
+	 *
+	 * Constraint:
+	 *     (variable=[LocalVariable|ID] value=Value time=INT?)
+	 */
+	protected void sequence_MarkValueS(ISerializationContext context, MarkValue semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     StatementS returns MarkVariable
+	 *     MarkS returns MarkVariable
+	 *     MarkVariableS returns MarkVariable
+	 *
+	 * Constraint:
+	 *     (device=[DeviceS|ID] variable=GlobalVariableS time=INT?)
+	 */
+	protected void sequence_MarkVariableS(ISerializationContext context, MarkVariable semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -222,16 +399,71 @@ public class ShortDSLSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 *     Model returns Model
 	 *
 	 * Constraint:
-	 *     type=DSL_Short
+	 *     (type=DSL_Long | type=DSL_Short)
 	 */
 	protected void sequence_Model(ISerializationContext context, Model semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     StatementS returns MoveCrane
+	 *     MoveS returns MoveCrane
+	 *     MoveCraneS returns MoveCrane
+	 *
+	 * Constraint:
+	 *     (crane=[Crane|ID] action=ActionS zone=[CraneZone|ID])
+	 */
+	protected void sequence_MoveCraneS(ISerializationContext context, MoveCrane semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, ShortDSLPackage.Literals.MODEL__TYPE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ShortDSLPackage.Literals.MODEL__TYPE));
+			if (transientValues.isValueTransient(semanticObject, ShortDSLPackage.Literals.MOVE_CRANE__CRANE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ShortDSLPackage.Literals.MOVE_CRANE__CRANE));
+			if (transientValues.isValueTransient(semanticObject, ShortDSLPackage.Literals.MOVE_CRANE__ACTION) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ShortDSLPackage.Literals.MOVE_CRANE__ACTION));
+			if (transientValues.isValueTransient(semanticObject, ShortDSLPackage.Literals.MOVE_CRANE__ZONE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ShortDSLPackage.Literals.MOVE_CRANE__ZONE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getModelAccess().getTypeDSL_ShortParserRuleCall_2_0(), semanticObject.getType());
+		feeder.accept(grammarAccess.getMoveCraneSAccess().getCraneCraneIDTerminalRuleCall_1_0_1(), semanticObject.eGet(ShortDSLPackage.Literals.MOVE_CRANE__CRANE, false));
+		feeder.accept(grammarAccess.getMoveCraneSAccess().getActionActionSParserRuleCall_2_0(), semanticObject.getAction());
+		feeder.accept(grammarAccess.getMoveCraneSAccess().getZoneCraneZoneIDTerminalRuleCall_4_0_1(), semanticObject.eGet(ShortDSLPackage.Literals.MOVE_CRANE__ZONE, false));
 		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     StatementS returns MoveDisk
+	 *     MoveS returns MoveDisk
+	 *     MoveDiskS returns MoveDisk
+	 *
+	 * Constraint:
+	 *     (slot=[Variable|ID] zone=[DiskZone|ID])
+	 */
+	protected void sequence_MoveDiskS(ISerializationContext context, MoveDisk semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, ShortDSLPackage.Literals.MOVE_DISK__SLOT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ShortDSLPackage.Literals.MOVE_DISK__SLOT));
+			if (transientValues.isValueTransient(semanticObject, ShortDSLPackage.Literals.MOVE_DISK__ZONE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ShortDSLPackage.Literals.MOVE_DISK__ZONE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getMoveDiskSAccess().getSlotVariableIDTerminalRuleCall_1_0_1(), semanticObject.eGet(ShortDSLPackage.Literals.MOVE_DISK__SLOT, false));
+		feeder.accept(grammarAccess.getMoveDiskSAccess().getZoneDiskZoneIDTerminalRuleCall_3_0_1(), semanticObject.eGet(ShortDSLPackage.Literals.MOVE_DISK__ZONE, false));
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Value returns Value
+	 *
+	 * Constraint:
+	 *     (valueDiskSlotState=DISK_SLOT_STATES_S | valueDiskState=DISK_STATES_S | valueColor=COLOR_S | valueInt=INT | variable=[Variable|ID])
+	 */
+	protected void sequence_Value(ISerializationContext context, Value semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	

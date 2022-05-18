@@ -3,54 +3,124 @@ grammar xtext.factoryLang.shortDSL.ShortDSL with org.eclipse.xtext.common.Termin
 generate shortDSL "http://www.factoryLang.xtext/shortDSL/ShortDSL"
 
 Model:
-	'use' 'dsl' type=DSL_Short;
+	'use' ('long' 'dsl' type=DSL_Long | 'short' 'dsl' type=DSL_Short);
 
-	
+DSL_Long:
+	'test' name=ID;
 
 // -------------------- INDIVIDUAL DSL - EASY TO WRITE, "HARDER" TO READ -------------------- //
 DSL_Short returns DSLType:
-	{DSLShort} configuration=Configuration_Short deviceHandlings+=DeviceHandling_Short;
+	{DSLShort} configuration=ConfigurationS diskHandlings+=DiskHandlingS*;
 
 // ----- CONFIGURAITON ----- //
-Configuration_Short:
-	'devices' '{' BEGIN devices+=Device_Short+ END '}'
-;
+ConfigurationS:
+	'devices' '{' BEGIN devices+=DeviceS+ END '}';
 
-Device_Short:
-	Crane_Short | Disk_Short | Camera_Short
-;
+DeviceS:
+	CraneS | DiskS | CameraS;
 
-Crane_Short returns Device_Short:
-	{Crane} name=ID ':' BEGIN positions+=CranePosition_Short+ END
-;
+CraneS returns DeviceS:
+	{Crane} name=ID ':' BEGIN positions+=CraneZoneS+ END;
 
-CranePosition_Short:
-	name=ID ':' position=INT (',')?
-;
+CraneZoneS returns ConfigurationValueS:
+	{CraneZone} name=ID ':' zoneValue=INT (',')?;
 
-Disk_Short returns Device_Short:
-	{Disk} name=ID '(' nSlots=INT ')' ':' BEGIN zones+=DiskZone_Short+ END
-;
+DiskS returns DeviceS:
+	{Disk} name=ID '(' nSlots=INT ')' ':' BEGIN zones+=DiskZoneS+ END;
 
-DiskZone_Short:
-	name=ID ':' slot=INT (',')?
-;
+DiskZoneS returns ConfigurationValueS:
+	{DiskZone} name=ID ':' slot=INT (',')?;
 
-Camera_Short  returns Device_Short:
-	{Camera} name=ID ':' BEGIN colors+=CameraColor_Short+ END
-;
+CameraS returns DeviceS:
+	{Camera} name=ID ':' BEGIN colors+=CameraColorS+ END;
 
-CameraColor_Short:
-	name=ID (',')?
-;
+CameraColorS returns ConfigurationValueS:
+	{CameraColor} color=COLOR_S (',')?;
 
 // ----- DEVICE HANDLING ----- //
-DeviceHandling_Short:
-	'test' name=ID
-;
+DiskHandlingS:
+	disk=[Disk] '{' BEGIN statements+=StatementS+ END '}';
 
+StatementS:
+	LoopS | MoveS | ActionS | ConditionS | MarkS;
+
+LoopS returns StatementS:
+	{Loop} 'foreach' variable=LocalVariableS comparisonOperator=COMPARISON_OPERATOR_S slotState=DISK_SLOT_STATES_S ':' BEGIN statements+=StatementS* END;
+
+MoveS returns StatementS:
+	MoveDiskS | MoveCraneS;
+
+MoveDiskS returns StatementS:
+	{MoveDisk} slot=[Variable] ('->' | '-->') zone=[DiskZone];
+
+MoveCraneS returns StatementS:
+	{MoveCrane} crane=[Crane] action=ActionS ('->' | '-->') zone=[CraneZone];
+
+ActionS:
+	{Action} ('pickup' | 'drop');
+
+/*ConditionS returns StatementS:
+	ConditionVariableS | ConditionDeviceS;*/
+
+ConditionS returns StatementS:
+	{Condition} 'if' variable=[Variable] comparisonOperator=COMPARISON_OPERATOR_S value=Value ':' BEGIN statements+=StatementS* END;
+
+/*ConditionDeviceS returns ConditionS:
+	{ConditionDevice} 'if' device=[DeviceS] comparisonOperator=COMPARISON_OPERATOR_S value=Value ':' BEGIN statements+=StatementS* END;*/
+
+MarkS returns StatementS:
+	MarkVariableS | MarkValueS;
+
+MarkVariableS returns MarkS:
+	{MarkVariable} device=[DeviceS] '(' variable=GlobalVariableS (',' time=INT)? ')';
+
+MarkValueS returns MarkS:
+	{MarkValue} variable=[LocalVariable] '(' value=Value (',' time=INT)? ')';
+	
+	
+
+// ----- VALUE TYPES ----- //
+/*DeviceValue:
+	value=DiskStateValue | value=ColorValue | ref=[ConfigurationValueS];*/
+
+/*DiskSlotValue:
+	value=DiskSlotStateValue | value=ColorValue | ref=[Variable];*/
+
+LocalVariableS returns Variable:
+	{LocalVariable} name=ID;
+
+GlobalVariableS returns Variable:
+	{GlobalVariable} name=ID;
+
+Value:
+	valueDiskSlotState=DISK_SLOT_STATES_S | valueDiskState=DISK_STATES_S | valueColor=COLOR_S | valueInt=INT | variable=[Variable]; //| configurationValue=[ConfigurationValueS];
+
+// ----- VALUE TYPES:ACTUAL VALUES ----- //
+/*DiskStateValueS:
+	value=DISK_STATES_S;
+
+DiskSlotStateValueS:
+	value=DISK_SLOT_STATES_S;
+
+ColorValueS:
+	value=COLOR_S;
+
+NumberS:
+	value=INT;*/
 
 // ----- TERMINALS ----- //
+enum COMPARISON_OPERATOR_S:
+	EQUAL='=' | LESS_THAN='<' | GREATER_THAN='>' | NOT='!=';
+
+enum COLOR_S:
+	RED='red' | GREEN='green' | BLUE='blue';
+
+enum DISK_SLOT_STATES_S:
+	FREE='free' | IN_PROGRESS='in_progress' | COMPLETE='complete';
+
+enum DISK_STATES_S:
+	FULL='full' | EMPTY='empty';
+
 terminal BEGIN:
 	'synthetic:BEGIN';
 

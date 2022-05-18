@@ -18,9 +18,9 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import xtext.factoryLang.shortDSL.shortDSL.Configuration_Short;
+import xtext.factoryLang.shortDSL.shortDSL.ConfigurationS;
 import xtext.factoryLang.shortDSL.shortDSL.DSLShort;
-import xtext.factoryLang.shortDSL.shortDSL.DeviceHandling_Short;
+import xtext.factoryLang.shortDSL.shortDSL.DiskHandlingS;
 import xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage;
 
 /**
@@ -32,7 +32,7 @@ import xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage;
  * </p>
  * <ul>
  *   <li>{@link xtext.factoryLang.shortDSL.shortDSL.impl.DSLShortImpl#getConfiguration <em>Configuration</em>}</li>
- *   <li>{@link xtext.factoryLang.shortDSL.shortDSL.impl.DSLShortImpl#getDeviceHandlings <em>Device Handlings</em>}</li>
+ *   <li>{@link xtext.factoryLang.shortDSL.shortDSL.impl.DSLShortImpl#getDiskHandlings <em>Disk Handlings</em>}</li>
  * </ul>
  *
  * @generated
@@ -47,17 +47,17 @@ public class DSLShortImpl extends DSLTypeImpl implements DSLShort
    * @generated
    * @ordered
    */
-  protected Configuration_Short configuration;
+  protected ConfigurationS configuration;
 
   /**
-   * The cached value of the '{@link #getDeviceHandlings() <em>Device Handlings</em>}' containment reference list.
+   * The cached value of the '{@link #getDiskHandlings() <em>Disk Handlings</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getDeviceHandlings()
+   * @see #getDiskHandlings()
    * @generated
    * @ordered
    */
-  protected EList<DeviceHandling_Short> deviceHandlings;
+  protected EList<DiskHandlingS> diskHandlings;
 
   /**
    * <!-- begin-user-doc -->
@@ -86,7 +86,7 @@ public class DSLShortImpl extends DSLTypeImpl implements DSLShort
    * @generated
    */
   @Override
-  public Configuration_Short getConfiguration()
+  public ConfigurationS getConfiguration()
   {
     return configuration;
   }
@@ -96,9 +96,9 @@ public class DSLShortImpl extends DSLTypeImpl implements DSLShort
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetConfiguration(Configuration_Short newConfiguration, NotificationChain msgs)
+  public NotificationChain basicSetConfiguration(ConfigurationS newConfiguration, NotificationChain msgs)
   {
-    Configuration_Short oldConfiguration = configuration;
+    ConfigurationS oldConfiguration = configuration;
     configuration = newConfiguration;
     if (eNotificationRequired())
     {
@@ -114,7 +114,7 @@ public class DSLShortImpl extends DSLTypeImpl implements DSLShort
    * @generated
    */
   @Override
-  public void setConfiguration(Configuration_Short newConfiguration)
+  public void setConfiguration(ConfigurationS newConfiguration)
   {
     if (newConfiguration != configuration)
     {
@@ -136,13 +136,13 @@ public class DSLShortImpl extends DSLTypeImpl implements DSLShort
    * @generated
    */
   @Override
-  public EList<DeviceHandling_Short> getDeviceHandlings()
+  public EList<DiskHandlingS> getDiskHandlings()
   {
-    if (deviceHandlings == null)
+    if (diskHandlings == null)
     {
-      deviceHandlings = new EObjectContainmentEList<DeviceHandling_Short>(DeviceHandling_Short.class, this, ShortDSLPackage.DSL_SHORT__DEVICE_HANDLINGS);
+      diskHandlings = new EObjectContainmentEList<DiskHandlingS>(DiskHandlingS.class, this, ShortDSLPackage.DSL_SHORT__DISK_HANDLINGS);
     }
-    return deviceHandlings;
+    return diskHandlings;
   }
 
   /**
@@ -157,8 +157,8 @@ public class DSLShortImpl extends DSLTypeImpl implements DSLShort
     {
       case ShortDSLPackage.DSL_SHORT__CONFIGURATION:
         return basicSetConfiguration(null, msgs);
-      case ShortDSLPackage.DSL_SHORT__DEVICE_HANDLINGS:
-        return ((InternalEList<?>)getDeviceHandlings()).basicRemove(otherEnd, msgs);
+      case ShortDSLPackage.DSL_SHORT__DISK_HANDLINGS:
+        return ((InternalEList<?>)getDiskHandlings()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -175,8 +175,8 @@ public class DSLShortImpl extends DSLTypeImpl implements DSLShort
     {
       case ShortDSLPackage.DSL_SHORT__CONFIGURATION:
         return getConfiguration();
-      case ShortDSLPackage.DSL_SHORT__DEVICE_HANDLINGS:
-        return getDeviceHandlings();
+      case ShortDSLPackage.DSL_SHORT__DISK_HANDLINGS:
+        return getDiskHandlings();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -193,11 +193,11 @@ public class DSLShortImpl extends DSLTypeImpl implements DSLShort
     switch (featureID)
     {
       case ShortDSLPackage.DSL_SHORT__CONFIGURATION:
-        setConfiguration((Configuration_Short)newValue);
+        setConfiguration((ConfigurationS)newValue);
         return;
-      case ShortDSLPackage.DSL_SHORT__DEVICE_HANDLINGS:
-        getDeviceHandlings().clear();
-        getDeviceHandlings().addAll((Collection<? extends DeviceHandling_Short>)newValue);
+      case ShortDSLPackage.DSL_SHORT__DISK_HANDLINGS:
+        getDiskHandlings().clear();
+        getDiskHandlings().addAll((Collection<? extends DiskHandlingS>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -214,10 +214,10 @@ public class DSLShortImpl extends DSLTypeImpl implements DSLShort
     switch (featureID)
     {
       case ShortDSLPackage.DSL_SHORT__CONFIGURATION:
-        setConfiguration((Configuration_Short)null);
+        setConfiguration((ConfigurationS)null);
         return;
-      case ShortDSLPackage.DSL_SHORT__DEVICE_HANDLINGS:
-        getDeviceHandlings().clear();
+      case ShortDSLPackage.DSL_SHORT__DISK_HANDLINGS:
+        getDiskHandlings().clear();
         return;
     }
     super.eUnset(featureID);
@@ -235,8 +235,8 @@ public class DSLShortImpl extends DSLTypeImpl implements DSLShort
     {
       case ShortDSLPackage.DSL_SHORT__CONFIGURATION:
         return configuration != null;
-      case ShortDSLPackage.DSL_SHORT__DEVICE_HANDLINGS:
-        return deviceHandlings != null && !deviceHandlings.isEmpty();
+      case ShortDSLPackage.DSL_SHORT__DISK_HANDLINGS:
+        return diskHandlings != null && !diskHandlings.isEmpty();
     }
     return super.eIsSet(featureID);
   }

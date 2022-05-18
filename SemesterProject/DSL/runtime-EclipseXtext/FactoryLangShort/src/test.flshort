@@ -1,5 +1,5 @@
 
-use dsl
+use short dsl
 
 devices {
     crane1:
@@ -15,4 +15,26 @@ devices {
         blue, green, red
 }
 
-test testing
+disk1 {
+	foreach slot = complete:
+		slot --> craneZone
+		if slot = red:
+	            crane1 drop --> outRed
+	        if slot = green:
+	            crane1 drop --> outGreen
+	        if slot = blue:
+	            crane1 drop --> outBlue
+	        slot(free)
+     
+     if disk1 != full:
+        empty slot --> intakeZone
+        slot(in_progress)
+        slot --> cameraZone
+        camera1(color)
+        if color = red:
+            slot(complete, 10)
+        if color = green:
+            slot(complete, 20)
+        if color = blue:
+            slot(complete, 30)
+}

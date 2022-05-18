@@ -7,12 +7,12 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import xtext.factoryLang.shortDSL.shortDSL.DSLType;
 import xtext.factoryLang.shortDSL.shortDSL.Model;
 import xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage;
 
@@ -39,7 +39,7 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
    * @generated
    * @ordered
    */
-  protected DSLType type;
+  protected EObject type;
 
   /**
    * <!-- begin-user-doc -->
@@ -68,7 +68,7 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
    * @generated
    */
   @Override
-  public DSLType getType()
+  public EObject getType()
   {
     return type;
   }
@@ -78,9 +78,9 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetType(DSLType newType, NotificationChain msgs)
+  public NotificationChain basicSetType(EObject newType, NotificationChain msgs)
   {
-    DSLType oldType = type;
+    EObject oldType = type;
     type = newType;
     if (eNotificationRequired())
     {
@@ -96,7 +96,7 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
    * @generated
    */
   @Override
-  public void setType(DSLType newType)
+  public void setType(EObject newType)
   {
     if (newType != type)
     {
@@ -155,7 +155,7 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
     switch (featureID)
     {
       case ShortDSLPackage.MODEL__TYPE:
-        setType((DSLType)newValue);
+        setType((EObject)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -172,7 +172,7 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
     switch (featureID)
     {
       case ShortDSLPackage.MODEL__TYPE:
-        setType((DSLType)null);
+        setType((EObject)null);
         return;
     }
     super.eUnset(featureID);

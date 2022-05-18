@@ -15,7 +15,7 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  * <ul>
  *   <li>{@link xtext.factoryLang.shortDSL.shortDSL.DSLShort#getConfiguration <em>Configuration</em>}</li>
- *   <li>{@link xtext.factoryLang.shortDSL.shortDSL.DSLShort#getDeviceHandlings <em>Device Handlings</em>}</li>
+ *   <li>{@link xtext.factoryLang.shortDSL.shortDSL.DSLShort#getDiskHandlings <em>Disk Handlings</em>}</li>
  * </ul>
  *
  * @see xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage#getDSLShort()
@@ -29,12 +29,12 @@ public interface DSLShort extends DSLType
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Configuration</em>' containment reference.
-   * @see #setConfiguration(Configuration_Short)
+   * @see #setConfiguration(ConfigurationS)
    * @see xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage#getDSLShort_Configuration()
    * @model containment="true"
    * @generated
    */
-  Configuration_Short getConfiguration();
+  ConfigurationS getConfiguration();
 
   /**
    * Sets the value of the '{@link xtext.factoryLang.shortDSL.shortDSL.DSLShort#getConfiguration <em>Configuration</em>}' containment reference.
@@ -44,18 +44,18 @@ public interface DSLShort extends DSLType
    * @see #getConfiguration()
    * @generated
    */
-  void setConfiguration(Configuration_Short value);
+  void setConfiguration(ConfigurationS value);
 
   /**
-   * Returns the value of the '<em><b>Device Handlings</b></em>' containment reference list.
-   * The list contents are of type {@link xtext.factoryLang.shortDSL.shortDSL.DeviceHandling_Short}.
+   * Returns the value of the '<em><b>Disk Handlings</b></em>' containment reference list.
+   * The list contents are of type {@link xtext.factoryLang.shortDSL.shortDSL.DiskHandlingS}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Device Handlings</em>' containment reference list.
-   * @see xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage#getDSLShort_DeviceHandlings()
+   * @return the value of the '<em>Disk Handlings</em>' containment reference list.
+   * @see xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage#getDSLShort_DiskHandlings()
    * @model containment="true"
    * @generated
    */
-  EList<DeviceHandling_Short> getDeviceHandlings();
+  EList<DiskHandlingS> getDiskHandlings();
 
 } // DSLShort

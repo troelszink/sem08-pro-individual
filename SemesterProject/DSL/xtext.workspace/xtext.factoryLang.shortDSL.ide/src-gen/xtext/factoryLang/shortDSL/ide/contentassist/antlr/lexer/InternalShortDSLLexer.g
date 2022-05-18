@@ -11,13 +11,47 @@ package xtext.factoryLang.shortDSL.ide.contentassist.antlr.lexer;
 import org.eclipse.xtext.ide.editor.contentassist.antlr.internal.Lexer;
 }
 
+In_progress : 'in_progress';
+
+Complete : 'complete';
+
 Devices : 'devices';
+
+Foreach : 'foreach';
+
+Pickup : 'pickup';
+
+Empty : 'empty';
+
+Green : 'green';
+
+Short : 'short';
+
+Blue : 'blue';
+
+Drop : 'drop';
+
+Free : 'free';
+
+Full : 'full';
+
+Long : 'long';
 
 Test : 'test';
 
+HyphenMinusHyphenMinusGreaterThanSign : '-->';
+
 Dsl : 'dsl';
 
+Red : 'red';
+
 Use : 'use';
+
+ExclamationMarkEqualsSign : '!=';
+
+HyphenMinusGreaterThanSign : '->';
+
+If : 'if';
 
 LeftParenthesis : '(';
 
@@ -26,6 +60,12 @@ RightParenthesis : ')';
 Comma : ',';
 
 Colon : ':';
+
+LessThanSign : '<';
+
+EqualsSign : '=';
+
+GreaterThanSign : '>';
 
 LeftCurlyBracket : '{';
 

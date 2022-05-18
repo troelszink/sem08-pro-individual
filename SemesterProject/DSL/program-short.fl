@@ -42,11 +42,11 @@ disk1 {
             crane1 drop --> outBlue
         slot(free)
     
-    if disk != full:
+    if disk != full: // or: if disk1 ...
         empty slot --> intakeZone
         slot(in_progress)
-        slot --> intakeZone --> cameraZone
-        camera1 scan color
+        slot --> cameraZone
+        camera1(color) // also marks slot as color
         if color = red:
             slot(complete, 10) // standard 0
         if color = green:
@@ -55,28 +55,6 @@ disk1 {
             slot(complete, 30)
 }
 
+// disk2 { ... }
+
 // another version
-disk1 {
-    foreach slot = complete:
-        slot --> craneZone
-        crane1 pickup --> pickupDisk // moves to pickupDisk and picks up
-        if slot = red:
-            crane1 drop --> outRed
-        if slot = green:
-            crane1 drop --> outGreen
-        if slot = blue:
-            crane1 drop --> outBlue
-        slot(free)
-    
-    if disk != full:
-        empty slot --> intakeZone
-        slot(in_progress)
-        slot --> intakeZone --> cameraZone
-        camera1 scan color
-        if color = red:
-            slot(complete, 10) // standard 0
-        if color = green:
-            slot(complete, 20)
-        if color = blue:
-            slot(complete, 30)
-}

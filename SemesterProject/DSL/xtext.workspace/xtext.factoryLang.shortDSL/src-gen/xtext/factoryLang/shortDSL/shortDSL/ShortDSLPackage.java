@@ -5,6 +5,7 @@ package xtext.factoryLang.shortDSL.shortDSL;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -86,6 +87,34 @@ public interface ShortDSLPackage extends EPackage
   int MODEL_FEATURE_COUNT = 1;
 
   /**
+   * The meta object id for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.DSL_LongImpl <em>DSL Long</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see xtext.factoryLang.shortDSL.shortDSL.impl.DSL_LongImpl
+   * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getDSL_Long()
+   * @generated
+   */
+  int DSL_LONG = 1;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DSL_LONG__NAME = 0;
+
+  /**
+   * The number of structural features of the '<em>DSL Long</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DSL_LONG_FEATURE_COUNT = 1;
+
+  /**
    * The meta object id for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.DSLTypeImpl <em>DSL Type</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -93,7 +122,7 @@ public interface ShortDSLPackage extends EPackage
    * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getDSLType()
    * @generated
    */
-  int DSL_TYPE = 1;
+  int DSL_TYPE = 2;
 
   /**
    * The number of structural features of the '<em>DSL Type</em>' class.
@@ -105,14 +134,14 @@ public interface ShortDSLPackage extends EPackage
   int DSL_TYPE_FEATURE_COUNT = 0;
 
   /**
-   * The meta object id for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.Configuration_ShortImpl <em>Configuration Short</em>}' class.
+   * The meta object id for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.ConfigurationSImpl <em>Configuration S</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see xtext.factoryLang.shortDSL.shortDSL.impl.Configuration_ShortImpl
-   * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getConfiguration_Short()
+   * @see xtext.factoryLang.shortDSL.shortDSL.impl.ConfigurationSImpl
+   * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getConfigurationS()
    * @generated
    */
-  int CONFIGURATION_SHORT = 2;
+  int CONFIGURATION_S = 3;
 
   /**
    * The feature id for the '<em><b>Devices</b></em>' containment reference list.
@@ -121,26 +150,26 @@ public interface ShortDSLPackage extends EPackage
    * @generated
    * @ordered
    */
-  int CONFIGURATION_SHORT__DEVICES = 0;
+  int CONFIGURATION_S__DEVICES = 0;
 
   /**
-   * The number of structural features of the '<em>Configuration Short</em>' class.
+   * The number of structural features of the '<em>Configuration S</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CONFIGURATION_SHORT_FEATURE_COUNT = 1;
+  int CONFIGURATION_S_FEATURE_COUNT = 1;
 
   /**
-   * The meta object id for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.Device_ShortImpl <em>Device Short</em>}' class.
+   * The meta object id for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.DeviceSImpl <em>Device S</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see xtext.factoryLang.shortDSL.shortDSL.impl.Device_ShortImpl
-   * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getDevice_Short()
+   * @see xtext.factoryLang.shortDSL.shortDSL.impl.DeviceSImpl
+   * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getDeviceS()
    * @generated
    */
-  int DEVICE_SHORT = 3;
+  int DEVICE_S = 4;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -149,26 +178,194 @@ public interface ShortDSLPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DEVICE_SHORT__NAME = 0;
+  int DEVICE_S__NAME = 0;
 
   /**
-   * The number of structural features of the '<em>Device Short</em>' class.
+   * The number of structural features of the '<em>Device S</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DEVICE_SHORT_FEATURE_COUNT = 1;
+  int DEVICE_S_FEATURE_COUNT = 1;
 
   /**
-   * The meta object id for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.Crane_ShortImpl <em>Crane Short</em>}' class.
+   * The meta object id for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.ConfigurationValueSImpl <em>Configuration Value S</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see xtext.factoryLang.shortDSL.shortDSL.impl.Crane_ShortImpl
-   * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getCrane_Short()
+   * @see xtext.factoryLang.shortDSL.shortDSL.impl.ConfigurationValueSImpl
+   * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getConfigurationValueS()
    * @generated
    */
-  int CRANE_SHORT = 4;
+  int CONFIGURATION_VALUE_S = 5;
+
+  /**
+   * The number of structural features of the '<em>Configuration Value S</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONFIGURATION_VALUE_S_FEATURE_COUNT = 0;
+
+  /**
+   * The meta object id for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.DiskHandlingSImpl <em>Disk Handling S</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see xtext.factoryLang.shortDSL.shortDSL.impl.DiskHandlingSImpl
+   * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getDiskHandlingS()
+   * @generated
+   */
+  int DISK_HANDLING_S = 6;
+
+  /**
+   * The feature id for the '<em><b>Disk</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DISK_HANDLING_S__DISK = 0;
+
+  /**
+   * The feature id for the '<em><b>Statements</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DISK_HANDLING_S__STATEMENTS = 1;
+
+  /**
+   * The number of structural features of the '<em>Disk Handling S</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DISK_HANDLING_S_FEATURE_COUNT = 2;
+
+  /**
+   * The meta object id for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.StatementSImpl <em>Statement S</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see xtext.factoryLang.shortDSL.shortDSL.impl.StatementSImpl
+   * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getStatementS()
+   * @generated
+   */
+  int STATEMENT_S = 7;
+
+  /**
+   * The number of structural features of the '<em>Statement S</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int STATEMENT_S_FEATURE_COUNT = 0;
+
+  /**
+   * The meta object id for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.ActionSImpl <em>Action S</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see xtext.factoryLang.shortDSL.shortDSL.impl.ActionSImpl
+   * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getActionS()
+   * @generated
+   */
+  int ACTION_S = 8;
+
+  /**
+   * The number of structural features of the '<em>Action S</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ACTION_S_FEATURE_COUNT = STATEMENT_S_FEATURE_COUNT + 0;
+
+  /**
+   * The meta object id for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.ConditionSImpl <em>Condition S</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see xtext.factoryLang.shortDSL.shortDSL.impl.ConditionSImpl
+   * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getConditionS()
+   * @generated
+   */
+  int CONDITION_S = 9;
+
+  /**
+   * The feature id for the '<em><b>Comparison Operator</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONDITION_S__COMPARISON_OPERATOR = STATEMENT_S_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONDITION_S__VALUE = STATEMENT_S_FEATURE_COUNT + 1;
+
+  /**
+   * The feature id for the '<em><b>Statements</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONDITION_S__STATEMENTS = STATEMENT_S_FEATURE_COUNT + 2;
+
+  /**
+   * The number of structural features of the '<em>Condition S</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONDITION_S_FEATURE_COUNT = STATEMENT_S_FEATURE_COUNT + 3;
+
+  /**
+   * The meta object id for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.MarkSImpl <em>Mark S</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see xtext.factoryLang.shortDSL.shortDSL.impl.MarkSImpl
+   * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getMarkS()
+   * @generated
+   */
+  int MARK_S = 10;
+
+  /**
+   * The feature id for the '<em><b>Time</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MARK_S__TIME = STATEMENT_S_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Mark S</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MARK_S_FEATURE_COUNT = STATEMENT_S_FEATURE_COUNT + 1;
+
+  /**
+   * The meta object id for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.VariableImpl <em>Variable</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see xtext.factoryLang.shortDSL.shortDSL.impl.VariableImpl
+   * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getVariable()
+   * @generated
+   */
+  int VARIABLE = 11;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -177,238 +374,80 @@ public interface ShortDSLPackage extends EPackage
    * @generated
    * @ordered
    */
-  int CRANE_SHORT__NAME = DEVICE_SHORT__NAME;
+  int VARIABLE__NAME = 0;
 
   /**
-   * The feature id for the '<em><b>Positions</b></em>' containment reference list.
+   * The number of structural features of the '<em>Variable</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CRANE_SHORT__POSITIONS = DEVICE_SHORT_FEATURE_COUNT + 0;
+  int VARIABLE_FEATURE_COUNT = 1;
 
   /**
-   * The number of structural features of the '<em>Crane Short</em>' class.
+   * The meta object id for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.ValueImpl <em>Value</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see xtext.factoryLang.shortDSL.shortDSL.impl.ValueImpl
+   * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getValue()
+   * @generated
+   */
+  int VALUE = 12;
+
+  /**
+   * The feature id for the '<em><b>Value Disk Slot State</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CRANE_SHORT_FEATURE_COUNT = DEVICE_SHORT_FEATURE_COUNT + 1;
+  int VALUE__VALUE_DISK_SLOT_STATE = 0;
 
   /**
-   * The meta object id for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.CranePosition_ShortImpl <em>Crane Position Short</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see xtext.factoryLang.shortDSL.shortDSL.impl.CranePosition_ShortImpl
-   * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getCranePosition_Short()
-   * @generated
-   */
-  int CRANE_POSITION_SHORT = 5;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * The feature id for the '<em><b>Value Disk State</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CRANE_POSITION_SHORT__NAME = 0;
+  int VALUE__VALUE_DISK_STATE = 1;
 
   /**
-   * The feature id for the '<em><b>Position</b></em>' attribute.
+   * The feature id for the '<em><b>Value Color</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CRANE_POSITION_SHORT__POSITION = 1;
+  int VALUE__VALUE_COLOR = 2;
 
   /**
-   * The number of structural features of the '<em>Crane Position Short</em>' class.
+   * The feature id for the '<em><b>Value Int</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CRANE_POSITION_SHORT_FEATURE_COUNT = 2;
+  int VALUE__VALUE_INT = 3;
 
   /**
-   * The meta object id for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.Disk_ShortImpl <em>Disk Short</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see xtext.factoryLang.shortDSL.shortDSL.impl.Disk_ShortImpl
-   * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getDisk_Short()
-   * @generated
-   */
-  int DISK_SHORT = 6;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * The feature id for the '<em><b>Variable</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DISK_SHORT__NAME = DEVICE_SHORT__NAME;
+  int VALUE__VARIABLE = 4;
 
   /**
-   * The feature id for the '<em><b>NSlots</b></em>' attribute.
+   * The number of structural features of the '<em>Value</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DISK_SHORT__NSLOTS = DEVICE_SHORT_FEATURE_COUNT + 0;
-
-  /**
-   * The feature id for the '<em><b>Zones</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DISK_SHORT__ZONES = DEVICE_SHORT_FEATURE_COUNT + 1;
-
-  /**
-   * The number of structural features of the '<em>Disk Short</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DISK_SHORT_FEATURE_COUNT = DEVICE_SHORT_FEATURE_COUNT + 2;
-
-  /**
-   * The meta object id for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.DiskZone_ShortImpl <em>Disk Zone Short</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see xtext.factoryLang.shortDSL.shortDSL.impl.DiskZone_ShortImpl
-   * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getDiskZone_Short()
-   * @generated
-   */
-  int DISK_ZONE_SHORT = 7;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DISK_ZONE_SHORT__NAME = 0;
-
-  /**
-   * The feature id for the '<em><b>Slot</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DISK_ZONE_SHORT__SLOT = 1;
-
-  /**
-   * The number of structural features of the '<em>Disk Zone Short</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DISK_ZONE_SHORT_FEATURE_COUNT = 2;
-
-  /**
-   * The meta object id for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.Camera_ShortImpl <em>Camera Short</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see xtext.factoryLang.shortDSL.shortDSL.impl.Camera_ShortImpl
-   * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getCamera_Short()
-   * @generated
-   */
-  int CAMERA_SHORT = 8;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CAMERA_SHORT__NAME = DEVICE_SHORT__NAME;
-
-  /**
-   * The feature id for the '<em><b>Colors</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CAMERA_SHORT__COLORS = DEVICE_SHORT_FEATURE_COUNT + 0;
-
-  /**
-   * The number of structural features of the '<em>Camera Short</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CAMERA_SHORT_FEATURE_COUNT = DEVICE_SHORT_FEATURE_COUNT + 1;
-
-  /**
-   * The meta object id for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.CameraColor_ShortImpl <em>Camera Color Short</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see xtext.factoryLang.shortDSL.shortDSL.impl.CameraColor_ShortImpl
-   * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getCameraColor_Short()
-   * @generated
-   */
-  int CAMERA_COLOR_SHORT = 9;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CAMERA_COLOR_SHORT__NAME = 0;
-
-  /**
-   * The number of structural features of the '<em>Camera Color Short</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CAMERA_COLOR_SHORT_FEATURE_COUNT = 1;
-
-  /**
-   * The meta object id for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.DeviceHandling_ShortImpl <em>Device Handling Short</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see xtext.factoryLang.shortDSL.shortDSL.impl.DeviceHandling_ShortImpl
-   * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getDeviceHandling_Short()
-   * @generated
-   */
-  int DEVICE_HANDLING_SHORT = 10;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DEVICE_HANDLING_SHORT__NAME = 0;
-
-  /**
-   * The number of structural features of the '<em>Device Handling Short</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DEVICE_HANDLING_SHORT_FEATURE_COUNT = 1;
+  int VALUE_FEATURE_COUNT = 5;
 
   /**
    * The meta object id for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.DSLShortImpl <em>DSL Short</em>}' class.
@@ -418,7 +457,7 @@ public interface ShortDSLPackage extends EPackage
    * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getDSLShort()
    * @generated
    */
-  int DSL_SHORT = 11;
+  int DSL_SHORT = 13;
 
   /**
    * The feature id for the '<em><b>Configuration</b></em>' containment reference.
@@ -430,13 +469,13 @@ public interface ShortDSLPackage extends EPackage
   int DSL_SHORT__CONFIGURATION = DSL_TYPE_FEATURE_COUNT + 0;
 
   /**
-   * The feature id for the '<em><b>Device Handlings</b></em>' containment reference list.
+   * The feature id for the '<em><b>Disk Handlings</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DSL_SHORT__DEVICE_HANDLINGS = DSL_TYPE_FEATURE_COUNT + 1;
+  int DSL_SHORT__DISK_HANDLINGS = DSL_TYPE_FEATURE_COUNT + 1;
 
   /**
    * The number of structural features of the '<em>DSL Short</em>' class.
@@ -446,6 +485,683 @@ public interface ShortDSLPackage extends EPackage
    * @ordered
    */
   int DSL_SHORT_FEATURE_COUNT = DSL_TYPE_FEATURE_COUNT + 2;
+
+  /**
+   * The meta object id for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.CraneImpl <em>Crane</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see xtext.factoryLang.shortDSL.shortDSL.impl.CraneImpl
+   * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getCrane()
+   * @generated
+   */
+  int CRANE = 14;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CRANE__NAME = DEVICE_S__NAME;
+
+  /**
+   * The feature id for the '<em><b>Positions</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CRANE__POSITIONS = DEVICE_S_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Crane</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CRANE_FEATURE_COUNT = DEVICE_S_FEATURE_COUNT + 1;
+
+  /**
+   * The meta object id for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.CraneZoneImpl <em>Crane Zone</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see xtext.factoryLang.shortDSL.shortDSL.impl.CraneZoneImpl
+   * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getCraneZone()
+   * @generated
+   */
+  int CRANE_ZONE = 15;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CRANE_ZONE__NAME = CONFIGURATION_VALUE_S_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Zone Value</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CRANE_ZONE__ZONE_VALUE = CONFIGURATION_VALUE_S_FEATURE_COUNT + 1;
+
+  /**
+   * The number of structural features of the '<em>Crane Zone</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CRANE_ZONE_FEATURE_COUNT = CONFIGURATION_VALUE_S_FEATURE_COUNT + 2;
+
+  /**
+   * The meta object id for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.DiskImpl <em>Disk</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see xtext.factoryLang.shortDSL.shortDSL.impl.DiskImpl
+   * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getDisk()
+   * @generated
+   */
+  int DISK = 16;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DISK__NAME = DEVICE_S__NAME;
+
+  /**
+   * The feature id for the '<em><b>NSlots</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DISK__NSLOTS = DEVICE_S_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Zones</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DISK__ZONES = DEVICE_S_FEATURE_COUNT + 1;
+
+  /**
+   * The number of structural features of the '<em>Disk</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DISK_FEATURE_COUNT = DEVICE_S_FEATURE_COUNT + 2;
+
+  /**
+   * The meta object id for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.DiskZoneImpl <em>Disk Zone</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see xtext.factoryLang.shortDSL.shortDSL.impl.DiskZoneImpl
+   * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getDiskZone()
+   * @generated
+   */
+  int DISK_ZONE = 17;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DISK_ZONE__NAME = CONFIGURATION_VALUE_S_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Slot</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DISK_ZONE__SLOT = CONFIGURATION_VALUE_S_FEATURE_COUNT + 1;
+
+  /**
+   * The number of structural features of the '<em>Disk Zone</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DISK_ZONE_FEATURE_COUNT = CONFIGURATION_VALUE_S_FEATURE_COUNT + 2;
+
+  /**
+   * The meta object id for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.CameraImpl <em>Camera</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see xtext.factoryLang.shortDSL.shortDSL.impl.CameraImpl
+   * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getCamera()
+   * @generated
+   */
+  int CAMERA = 18;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CAMERA__NAME = DEVICE_S__NAME;
+
+  /**
+   * The feature id for the '<em><b>Colors</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CAMERA__COLORS = DEVICE_S_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Camera</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CAMERA_FEATURE_COUNT = DEVICE_S_FEATURE_COUNT + 1;
+
+  /**
+   * The meta object id for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.CameraColorImpl <em>Camera Color</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see xtext.factoryLang.shortDSL.shortDSL.impl.CameraColorImpl
+   * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getCameraColor()
+   * @generated
+   */
+  int CAMERA_COLOR = 19;
+
+  /**
+   * The feature id for the '<em><b>Color</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CAMERA_COLOR__COLOR = CONFIGURATION_VALUE_S_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Camera Color</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CAMERA_COLOR_FEATURE_COUNT = CONFIGURATION_VALUE_S_FEATURE_COUNT + 1;
+
+  /**
+   * The meta object id for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.LoopImpl <em>Loop</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see xtext.factoryLang.shortDSL.shortDSL.impl.LoopImpl
+   * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getLoop()
+   * @generated
+   */
+  int LOOP = 20;
+
+  /**
+   * The feature id for the '<em><b>Variable</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LOOP__VARIABLE = STATEMENT_S_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Comparison Operator</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LOOP__COMPARISON_OPERATOR = STATEMENT_S_FEATURE_COUNT + 1;
+
+  /**
+   * The feature id for the '<em><b>Slot State</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LOOP__SLOT_STATE = STATEMENT_S_FEATURE_COUNT + 2;
+
+  /**
+   * The feature id for the '<em><b>Statements</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LOOP__STATEMENTS = STATEMENT_S_FEATURE_COUNT + 3;
+
+  /**
+   * The number of structural features of the '<em>Loop</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LOOP_FEATURE_COUNT = STATEMENT_S_FEATURE_COUNT + 4;
+
+  /**
+   * The meta object id for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.MoveDiskImpl <em>Move Disk</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see xtext.factoryLang.shortDSL.shortDSL.impl.MoveDiskImpl
+   * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getMoveDisk()
+   * @generated
+   */
+  int MOVE_DISK = 21;
+
+  /**
+   * The feature id for the '<em><b>Slot</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MOVE_DISK__SLOT = STATEMENT_S_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Zone</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MOVE_DISK__ZONE = STATEMENT_S_FEATURE_COUNT + 1;
+
+  /**
+   * The number of structural features of the '<em>Move Disk</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MOVE_DISK_FEATURE_COUNT = STATEMENT_S_FEATURE_COUNT + 2;
+
+  /**
+   * The meta object id for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.MoveCraneImpl <em>Move Crane</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see xtext.factoryLang.shortDSL.shortDSL.impl.MoveCraneImpl
+   * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getMoveCrane()
+   * @generated
+   */
+  int MOVE_CRANE = 22;
+
+  /**
+   * The feature id for the '<em><b>Crane</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MOVE_CRANE__CRANE = STATEMENT_S_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Action</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MOVE_CRANE__ACTION = STATEMENT_S_FEATURE_COUNT + 1;
+
+  /**
+   * The feature id for the '<em><b>Zone</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MOVE_CRANE__ZONE = STATEMENT_S_FEATURE_COUNT + 2;
+
+  /**
+   * The number of structural features of the '<em>Move Crane</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MOVE_CRANE_FEATURE_COUNT = STATEMENT_S_FEATURE_COUNT + 3;
+
+  /**
+   * The meta object id for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.ActionImpl <em>Action</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see xtext.factoryLang.shortDSL.shortDSL.impl.ActionImpl
+   * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getAction()
+   * @generated
+   */
+  int ACTION = 23;
+
+  /**
+   * The number of structural features of the '<em>Action</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ACTION_FEATURE_COUNT = ACTION_S_FEATURE_COUNT + 0;
+
+  /**
+   * The meta object id for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.ConditionVariableImpl <em>Condition Variable</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see xtext.factoryLang.shortDSL.shortDSL.impl.ConditionVariableImpl
+   * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getConditionVariable()
+   * @generated
+   */
+  int CONDITION_VARIABLE = 24;
+
+  /**
+   * The feature id for the '<em><b>Comparison Operator</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONDITION_VARIABLE__COMPARISON_OPERATOR = CONDITION_S__COMPARISON_OPERATOR;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONDITION_VARIABLE__VALUE = CONDITION_S__VALUE;
+
+  /**
+   * The feature id for the '<em><b>Statements</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONDITION_VARIABLE__STATEMENTS = CONDITION_S__STATEMENTS;
+
+  /**
+   * The feature id for the '<em><b>Variable</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONDITION_VARIABLE__VARIABLE = CONDITION_S_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Condition Variable</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONDITION_VARIABLE_FEATURE_COUNT = CONDITION_S_FEATURE_COUNT + 1;
+
+  /**
+   * The meta object id for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.ConditionDeviceImpl <em>Condition Device</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see xtext.factoryLang.shortDSL.shortDSL.impl.ConditionDeviceImpl
+   * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getConditionDevice()
+   * @generated
+   */
+  int CONDITION_DEVICE = 25;
+
+  /**
+   * The feature id for the '<em><b>Comparison Operator</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONDITION_DEVICE__COMPARISON_OPERATOR = CONDITION_S__COMPARISON_OPERATOR;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONDITION_DEVICE__VALUE = CONDITION_S__VALUE;
+
+  /**
+   * The feature id for the '<em><b>Statements</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONDITION_DEVICE__STATEMENTS = CONDITION_S__STATEMENTS;
+
+  /**
+   * The feature id for the '<em><b>Device</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONDITION_DEVICE__DEVICE = CONDITION_S_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Condition Device</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONDITION_DEVICE_FEATURE_COUNT = CONDITION_S_FEATURE_COUNT + 1;
+
+  /**
+   * The meta object id for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.MarkVariableImpl <em>Mark Variable</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see xtext.factoryLang.shortDSL.shortDSL.impl.MarkVariableImpl
+   * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getMarkVariable()
+   * @generated
+   */
+  int MARK_VARIABLE = 26;
+
+  /**
+   * The feature id for the '<em><b>Time</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MARK_VARIABLE__TIME = MARK_S__TIME;
+
+  /**
+   * The feature id for the '<em><b>Device</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MARK_VARIABLE__DEVICE = MARK_S_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Variable</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MARK_VARIABLE__VARIABLE = MARK_S_FEATURE_COUNT + 1;
+
+  /**
+   * The number of structural features of the '<em>Mark Variable</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MARK_VARIABLE_FEATURE_COUNT = MARK_S_FEATURE_COUNT + 2;
+
+  /**
+   * The meta object id for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.MarkValueImpl <em>Mark Value</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see xtext.factoryLang.shortDSL.shortDSL.impl.MarkValueImpl
+   * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getMarkValue()
+   * @generated
+   */
+  int MARK_VALUE = 27;
+
+  /**
+   * The feature id for the '<em><b>Time</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MARK_VALUE__TIME = MARK_S__TIME;
+
+  /**
+   * The feature id for the '<em><b>Variable</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MARK_VALUE__VARIABLE = MARK_S_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MARK_VALUE__VALUE = MARK_S_FEATURE_COUNT + 1;
+
+  /**
+   * The number of structural features of the '<em>Mark Value</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MARK_VALUE_FEATURE_COUNT = MARK_S_FEATURE_COUNT + 2;
+
+  /**
+   * The meta object id for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.LocalVariableImpl <em>Local Variable</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see xtext.factoryLang.shortDSL.shortDSL.impl.LocalVariableImpl
+   * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getLocalVariable()
+   * @generated
+   */
+  int LOCAL_VARIABLE = 28;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LOCAL_VARIABLE__NAME = VARIABLE__NAME;
+
+  /**
+   * The number of structural features of the '<em>Local Variable</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LOCAL_VARIABLE_FEATURE_COUNT = VARIABLE_FEATURE_COUNT + 0;
+
+  /**
+   * The meta object id for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.GlobalVariableImpl <em>Global Variable</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see xtext.factoryLang.shortDSL.shortDSL.impl.GlobalVariableImpl
+   * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getGlobalVariable()
+   * @generated
+   */
+  int GLOBAL_VARIABLE = 29;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int GLOBAL_VARIABLE__NAME = VARIABLE__NAME;
+
+  /**
+   * The number of structural features of the '<em>Global Variable</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int GLOBAL_VARIABLE_FEATURE_COUNT = VARIABLE_FEATURE_COUNT + 0;
+
+  /**
+   * The meta object id for the '{@link xtext.factoryLang.shortDSL.shortDSL.COMPARISON_OPERATOR_S <em>COMPARISON OPERATOR S</em>}' enum.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see xtext.factoryLang.shortDSL.shortDSL.COMPARISON_OPERATOR_S
+   * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getCOMPARISON_OPERATOR_S()
+   * @generated
+   */
+  int COMPARISON_OPERATOR_S = 30;
+
+  /**
+   * The meta object id for the '{@link xtext.factoryLang.shortDSL.shortDSL.COLOR_S <em>COLOR S</em>}' enum.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see xtext.factoryLang.shortDSL.shortDSL.COLOR_S
+   * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getCOLOR_S()
+   * @generated
+   */
+  int COLOR_S = 31;
+
+  /**
+   * The meta object id for the '{@link xtext.factoryLang.shortDSL.shortDSL.DISK_SLOT_STATES_S <em>DISK SLOT STATES S</em>}' enum.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see xtext.factoryLang.shortDSL.shortDSL.DISK_SLOT_STATES_S
+   * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getDISK_SLOT_STATES_S()
+   * @generated
+   */
+  int DISK_SLOT_STATES_S = 32;
+
+  /**
+   * The meta object id for the '{@link xtext.factoryLang.shortDSL.shortDSL.DISK_STATES_S <em>DISK STATES S</em>}' enum.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see xtext.factoryLang.shortDSL.shortDSL.DISK_STATES_S
+   * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getDISK_STATES_S()
+   * @generated
+   */
+  int DISK_STATES_S = 33;
 
 
   /**
@@ -470,6 +1186,27 @@ public interface ShortDSLPackage extends EPackage
   EReference getModel_Type();
 
   /**
+   * Returns the meta object for class '{@link xtext.factoryLang.shortDSL.shortDSL.DSL_Long <em>DSL Long</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>DSL Long</em>'.
+   * @see xtext.factoryLang.shortDSL.shortDSL.DSL_Long
+   * @generated
+   */
+  EClass getDSL_Long();
+
+  /**
+   * Returns the meta object for the attribute '{@link xtext.factoryLang.shortDSL.shortDSL.DSL_Long#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see xtext.factoryLang.shortDSL.shortDSL.DSL_Long#getName()
+   * @see #getDSL_Long()
+   * @generated
+   */
+  EAttribute getDSL_Long_Name();
+
+  /**
    * Returns the meta object for class '{@link xtext.factoryLang.shortDSL.shortDSL.DSLType <em>DSL Type</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -480,226 +1217,258 @@ public interface ShortDSLPackage extends EPackage
   EClass getDSLType();
 
   /**
-   * Returns the meta object for class '{@link xtext.factoryLang.shortDSL.shortDSL.Configuration_Short <em>Configuration Short</em>}'.
+   * Returns the meta object for class '{@link xtext.factoryLang.shortDSL.shortDSL.ConfigurationS <em>Configuration S</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Configuration Short</em>'.
-   * @see xtext.factoryLang.shortDSL.shortDSL.Configuration_Short
+   * @return the meta object for class '<em>Configuration S</em>'.
+   * @see xtext.factoryLang.shortDSL.shortDSL.ConfigurationS
    * @generated
    */
-  EClass getConfiguration_Short();
+  EClass getConfigurationS();
 
   /**
-   * Returns the meta object for the containment reference list '{@link xtext.factoryLang.shortDSL.shortDSL.Configuration_Short#getDevices <em>Devices</em>}'.
+   * Returns the meta object for the containment reference list '{@link xtext.factoryLang.shortDSL.shortDSL.ConfigurationS#getDevices <em>Devices</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the containment reference list '<em>Devices</em>'.
-   * @see xtext.factoryLang.shortDSL.shortDSL.Configuration_Short#getDevices()
-   * @see #getConfiguration_Short()
+   * @see xtext.factoryLang.shortDSL.shortDSL.ConfigurationS#getDevices()
+   * @see #getConfigurationS()
    * @generated
    */
-  EReference getConfiguration_Short_Devices();
+  EReference getConfigurationS_Devices();
 
   /**
-   * Returns the meta object for class '{@link xtext.factoryLang.shortDSL.shortDSL.Device_Short <em>Device Short</em>}'.
+   * Returns the meta object for class '{@link xtext.factoryLang.shortDSL.shortDSL.DeviceS <em>Device S</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Device Short</em>'.
-   * @see xtext.factoryLang.shortDSL.shortDSL.Device_Short
+   * @return the meta object for class '<em>Device S</em>'.
+   * @see xtext.factoryLang.shortDSL.shortDSL.DeviceS
    * @generated
    */
-  EClass getDevice_Short();
+  EClass getDeviceS();
 
   /**
-   * Returns the meta object for the attribute '{@link xtext.factoryLang.shortDSL.shortDSL.Device_Short#getName <em>Name</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Name</em>'.
-   * @see xtext.factoryLang.shortDSL.shortDSL.Device_Short#getName()
-   * @see #getDevice_Short()
-   * @generated
-   */
-  EAttribute getDevice_Short_Name();
-
-  /**
-   * Returns the meta object for class '{@link xtext.factoryLang.shortDSL.shortDSL.Crane_Short <em>Crane Short</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Crane Short</em>'.
-   * @see xtext.factoryLang.shortDSL.shortDSL.Crane_Short
-   * @generated
-   */
-  EClass getCrane_Short();
-
-  /**
-   * Returns the meta object for the containment reference list '{@link xtext.factoryLang.shortDSL.shortDSL.Crane_Short#getPositions <em>Positions</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Positions</em>'.
-   * @see xtext.factoryLang.shortDSL.shortDSL.Crane_Short#getPositions()
-   * @see #getCrane_Short()
-   * @generated
-   */
-  EReference getCrane_Short_Positions();
-
-  /**
-   * Returns the meta object for class '{@link xtext.factoryLang.shortDSL.shortDSL.CranePosition_Short <em>Crane Position Short</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Crane Position Short</em>'.
-   * @see xtext.factoryLang.shortDSL.shortDSL.CranePosition_Short
-   * @generated
-   */
-  EClass getCranePosition_Short();
-
-  /**
-   * Returns the meta object for the attribute '{@link xtext.factoryLang.shortDSL.shortDSL.CranePosition_Short#getName <em>Name</em>}'.
+   * Returns the meta object for the attribute '{@link xtext.factoryLang.shortDSL.shortDSL.DeviceS#getName <em>Name</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Name</em>'.
-   * @see xtext.factoryLang.shortDSL.shortDSL.CranePosition_Short#getName()
-   * @see #getCranePosition_Short()
+   * @see xtext.factoryLang.shortDSL.shortDSL.DeviceS#getName()
+   * @see #getDeviceS()
    * @generated
    */
-  EAttribute getCranePosition_Short_Name();
+  EAttribute getDeviceS_Name();
 
   /**
-   * Returns the meta object for the attribute '{@link xtext.factoryLang.shortDSL.shortDSL.CranePosition_Short#getPosition <em>Position</em>}'.
+   * Returns the meta object for class '{@link xtext.factoryLang.shortDSL.shortDSL.ConfigurationValueS <em>Configuration Value S</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Position</em>'.
-   * @see xtext.factoryLang.shortDSL.shortDSL.CranePosition_Short#getPosition()
-   * @see #getCranePosition_Short()
+   * @return the meta object for class '<em>Configuration Value S</em>'.
+   * @see xtext.factoryLang.shortDSL.shortDSL.ConfigurationValueS
    * @generated
    */
-  EAttribute getCranePosition_Short_Position();
+  EClass getConfigurationValueS();
 
   /**
-   * Returns the meta object for class '{@link xtext.factoryLang.shortDSL.shortDSL.Disk_Short <em>Disk Short</em>}'.
+   * Returns the meta object for class '{@link xtext.factoryLang.shortDSL.shortDSL.DiskHandlingS <em>Disk Handling S</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Disk Short</em>'.
-   * @see xtext.factoryLang.shortDSL.shortDSL.Disk_Short
+   * @return the meta object for class '<em>Disk Handling S</em>'.
+   * @see xtext.factoryLang.shortDSL.shortDSL.DiskHandlingS
    * @generated
    */
-  EClass getDisk_Short();
+  EClass getDiskHandlingS();
 
   /**
-   * Returns the meta object for the attribute '{@link xtext.factoryLang.shortDSL.shortDSL.Disk_Short#getNSlots <em>NSlots</em>}'.
+   * Returns the meta object for the reference '{@link xtext.factoryLang.shortDSL.shortDSL.DiskHandlingS#getDisk <em>Disk</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>NSlots</em>'.
-   * @see xtext.factoryLang.shortDSL.shortDSL.Disk_Short#getNSlots()
-   * @see #getDisk_Short()
+   * @return the meta object for the reference '<em>Disk</em>'.
+   * @see xtext.factoryLang.shortDSL.shortDSL.DiskHandlingS#getDisk()
+   * @see #getDiskHandlingS()
    * @generated
    */
-  EAttribute getDisk_Short_NSlots();
+  EReference getDiskHandlingS_Disk();
 
   /**
-   * Returns the meta object for the containment reference list '{@link xtext.factoryLang.shortDSL.shortDSL.Disk_Short#getZones <em>Zones</em>}'.
+   * Returns the meta object for the containment reference list '{@link xtext.factoryLang.shortDSL.shortDSL.DiskHandlingS#getStatements <em>Statements</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Zones</em>'.
-   * @see xtext.factoryLang.shortDSL.shortDSL.Disk_Short#getZones()
-   * @see #getDisk_Short()
+   * @return the meta object for the containment reference list '<em>Statements</em>'.
+   * @see xtext.factoryLang.shortDSL.shortDSL.DiskHandlingS#getStatements()
+   * @see #getDiskHandlingS()
    * @generated
    */
-  EReference getDisk_Short_Zones();
+  EReference getDiskHandlingS_Statements();
 
   /**
-   * Returns the meta object for class '{@link xtext.factoryLang.shortDSL.shortDSL.DiskZone_Short <em>Disk Zone Short</em>}'.
+   * Returns the meta object for class '{@link xtext.factoryLang.shortDSL.shortDSL.StatementS <em>Statement S</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Disk Zone Short</em>'.
-   * @see xtext.factoryLang.shortDSL.shortDSL.DiskZone_Short
+   * @return the meta object for class '<em>Statement S</em>'.
+   * @see xtext.factoryLang.shortDSL.shortDSL.StatementS
    * @generated
    */
-  EClass getDiskZone_Short();
+  EClass getStatementS();
 
   /**
-   * Returns the meta object for the attribute '{@link xtext.factoryLang.shortDSL.shortDSL.DiskZone_Short#getName <em>Name</em>}'.
+   * Returns the meta object for class '{@link xtext.factoryLang.shortDSL.shortDSL.ActionS <em>Action S</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Action S</em>'.
+   * @see xtext.factoryLang.shortDSL.shortDSL.ActionS
+   * @generated
+   */
+  EClass getActionS();
+
+  /**
+   * Returns the meta object for class '{@link xtext.factoryLang.shortDSL.shortDSL.ConditionS <em>Condition S</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Condition S</em>'.
+   * @see xtext.factoryLang.shortDSL.shortDSL.ConditionS
+   * @generated
+   */
+  EClass getConditionS();
+
+  /**
+   * Returns the meta object for the attribute '{@link xtext.factoryLang.shortDSL.shortDSL.ConditionS#getComparisonOperator <em>Comparison Operator</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Comparison Operator</em>'.
+   * @see xtext.factoryLang.shortDSL.shortDSL.ConditionS#getComparisonOperator()
+   * @see #getConditionS()
+   * @generated
+   */
+  EAttribute getConditionS_ComparisonOperator();
+
+  /**
+   * Returns the meta object for the containment reference '{@link xtext.factoryLang.shortDSL.shortDSL.ConditionS#getValue <em>Value</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Value</em>'.
+   * @see xtext.factoryLang.shortDSL.shortDSL.ConditionS#getValue()
+   * @see #getConditionS()
+   * @generated
+   */
+  EReference getConditionS_Value();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link xtext.factoryLang.shortDSL.shortDSL.ConditionS#getStatements <em>Statements</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Statements</em>'.
+   * @see xtext.factoryLang.shortDSL.shortDSL.ConditionS#getStatements()
+   * @see #getConditionS()
+   * @generated
+   */
+  EReference getConditionS_Statements();
+
+  /**
+   * Returns the meta object for class '{@link xtext.factoryLang.shortDSL.shortDSL.MarkS <em>Mark S</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Mark S</em>'.
+   * @see xtext.factoryLang.shortDSL.shortDSL.MarkS
+   * @generated
+   */
+  EClass getMarkS();
+
+  /**
+   * Returns the meta object for the attribute '{@link xtext.factoryLang.shortDSL.shortDSL.MarkS#getTime <em>Time</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Time</em>'.
+   * @see xtext.factoryLang.shortDSL.shortDSL.MarkS#getTime()
+   * @see #getMarkS()
+   * @generated
+   */
+  EAttribute getMarkS_Time();
+
+  /**
+   * Returns the meta object for class '{@link xtext.factoryLang.shortDSL.shortDSL.Variable <em>Variable</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Variable</em>'.
+   * @see xtext.factoryLang.shortDSL.shortDSL.Variable
+   * @generated
+   */
+  EClass getVariable();
+
+  /**
+   * Returns the meta object for the attribute '{@link xtext.factoryLang.shortDSL.shortDSL.Variable#getName <em>Name</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Name</em>'.
-   * @see xtext.factoryLang.shortDSL.shortDSL.DiskZone_Short#getName()
-   * @see #getDiskZone_Short()
+   * @see xtext.factoryLang.shortDSL.shortDSL.Variable#getName()
+   * @see #getVariable()
    * @generated
    */
-  EAttribute getDiskZone_Short_Name();
+  EAttribute getVariable_Name();
 
   /**
-   * Returns the meta object for the attribute '{@link xtext.factoryLang.shortDSL.shortDSL.DiskZone_Short#getSlot <em>Slot</em>}'.
+   * Returns the meta object for class '{@link xtext.factoryLang.shortDSL.shortDSL.Value <em>Value</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Slot</em>'.
-   * @see xtext.factoryLang.shortDSL.shortDSL.DiskZone_Short#getSlot()
-   * @see #getDiskZone_Short()
+   * @return the meta object for class '<em>Value</em>'.
+   * @see xtext.factoryLang.shortDSL.shortDSL.Value
    * @generated
    */
-  EAttribute getDiskZone_Short_Slot();
+  EClass getValue();
 
   /**
-   * Returns the meta object for class '{@link xtext.factoryLang.shortDSL.shortDSL.Camera_Short <em>Camera Short</em>}'.
+   * Returns the meta object for the attribute '{@link xtext.factoryLang.shortDSL.shortDSL.Value#getValueDiskSlotState <em>Value Disk Slot State</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Camera Short</em>'.
-   * @see xtext.factoryLang.shortDSL.shortDSL.Camera_Short
+   * @return the meta object for the attribute '<em>Value Disk Slot State</em>'.
+   * @see xtext.factoryLang.shortDSL.shortDSL.Value#getValueDiskSlotState()
+   * @see #getValue()
    * @generated
    */
-  EClass getCamera_Short();
+  EAttribute getValue_ValueDiskSlotState();
 
   /**
-   * Returns the meta object for the containment reference list '{@link xtext.factoryLang.shortDSL.shortDSL.Camera_Short#getColors <em>Colors</em>}'.
+   * Returns the meta object for the attribute '{@link xtext.factoryLang.shortDSL.shortDSL.Value#getValueDiskState <em>Value Disk State</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Colors</em>'.
-   * @see xtext.factoryLang.shortDSL.shortDSL.Camera_Short#getColors()
-   * @see #getCamera_Short()
+   * @return the meta object for the attribute '<em>Value Disk State</em>'.
+   * @see xtext.factoryLang.shortDSL.shortDSL.Value#getValueDiskState()
+   * @see #getValue()
    * @generated
    */
-  EReference getCamera_Short_Colors();
+  EAttribute getValue_ValueDiskState();
 
   /**
-   * Returns the meta object for class '{@link xtext.factoryLang.shortDSL.shortDSL.CameraColor_Short <em>Camera Color Short</em>}'.
+   * Returns the meta object for the attribute '{@link xtext.factoryLang.shortDSL.shortDSL.Value#getValueColor <em>Value Color</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Camera Color Short</em>'.
-   * @see xtext.factoryLang.shortDSL.shortDSL.CameraColor_Short
+   * @return the meta object for the attribute '<em>Value Color</em>'.
+   * @see xtext.factoryLang.shortDSL.shortDSL.Value#getValueColor()
+   * @see #getValue()
    * @generated
    */
-  EClass getCameraColor_Short();
+  EAttribute getValue_ValueColor();
 
   /**
-   * Returns the meta object for the attribute '{@link xtext.factoryLang.shortDSL.shortDSL.CameraColor_Short#getName <em>Name</em>}'.
+   * Returns the meta object for the attribute '{@link xtext.factoryLang.shortDSL.shortDSL.Value#getValueInt <em>Value Int</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Name</em>'.
-   * @see xtext.factoryLang.shortDSL.shortDSL.CameraColor_Short#getName()
-   * @see #getCameraColor_Short()
+   * @return the meta object for the attribute '<em>Value Int</em>'.
+   * @see xtext.factoryLang.shortDSL.shortDSL.Value#getValueInt()
+   * @see #getValue()
    * @generated
    */
-  EAttribute getCameraColor_Short_Name();
+  EAttribute getValue_ValueInt();
 
   /**
-   * Returns the meta object for class '{@link xtext.factoryLang.shortDSL.shortDSL.DeviceHandling_Short <em>Device Handling Short</em>}'.
+   * Returns the meta object for the reference '{@link xtext.factoryLang.shortDSL.shortDSL.Value#getVariable <em>Variable</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Device Handling Short</em>'.
-   * @see xtext.factoryLang.shortDSL.shortDSL.DeviceHandling_Short
+   * @return the meta object for the reference '<em>Variable</em>'.
+   * @see xtext.factoryLang.shortDSL.shortDSL.Value#getVariable()
+   * @see #getValue()
    * @generated
    */
-  EClass getDeviceHandling_Short();
-
-  /**
-   * Returns the meta object for the attribute '{@link xtext.factoryLang.shortDSL.shortDSL.DeviceHandling_Short#getName <em>Name</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Name</em>'.
-   * @see xtext.factoryLang.shortDSL.shortDSL.DeviceHandling_Short#getName()
-   * @see #getDeviceHandling_Short()
-   * @generated
-   */
-  EAttribute getDeviceHandling_Short_Name();
+  EReference getValue_Variable();
 
   /**
    * Returns the meta object for class '{@link xtext.factoryLang.shortDSL.shortDSL.DSLShort <em>DSL Short</em>}'.
@@ -723,15 +1492,479 @@ public interface ShortDSLPackage extends EPackage
   EReference getDSLShort_Configuration();
 
   /**
-   * Returns the meta object for the containment reference list '{@link xtext.factoryLang.shortDSL.shortDSL.DSLShort#getDeviceHandlings <em>Device Handlings</em>}'.
+   * Returns the meta object for the containment reference list '{@link xtext.factoryLang.shortDSL.shortDSL.DSLShort#getDiskHandlings <em>Disk Handlings</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Device Handlings</em>'.
-   * @see xtext.factoryLang.shortDSL.shortDSL.DSLShort#getDeviceHandlings()
+   * @return the meta object for the containment reference list '<em>Disk Handlings</em>'.
+   * @see xtext.factoryLang.shortDSL.shortDSL.DSLShort#getDiskHandlings()
    * @see #getDSLShort()
    * @generated
    */
-  EReference getDSLShort_DeviceHandlings();
+  EReference getDSLShort_DiskHandlings();
+
+  /**
+   * Returns the meta object for class '{@link xtext.factoryLang.shortDSL.shortDSL.Crane <em>Crane</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Crane</em>'.
+   * @see xtext.factoryLang.shortDSL.shortDSL.Crane
+   * @generated
+   */
+  EClass getCrane();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link xtext.factoryLang.shortDSL.shortDSL.Crane#getPositions <em>Positions</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Positions</em>'.
+   * @see xtext.factoryLang.shortDSL.shortDSL.Crane#getPositions()
+   * @see #getCrane()
+   * @generated
+   */
+  EReference getCrane_Positions();
+
+  /**
+   * Returns the meta object for class '{@link xtext.factoryLang.shortDSL.shortDSL.CraneZone <em>Crane Zone</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Crane Zone</em>'.
+   * @see xtext.factoryLang.shortDSL.shortDSL.CraneZone
+   * @generated
+   */
+  EClass getCraneZone();
+
+  /**
+   * Returns the meta object for the attribute '{@link xtext.factoryLang.shortDSL.shortDSL.CraneZone#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see xtext.factoryLang.shortDSL.shortDSL.CraneZone#getName()
+   * @see #getCraneZone()
+   * @generated
+   */
+  EAttribute getCraneZone_Name();
+
+  /**
+   * Returns the meta object for the attribute '{@link xtext.factoryLang.shortDSL.shortDSL.CraneZone#getZoneValue <em>Zone Value</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Zone Value</em>'.
+   * @see xtext.factoryLang.shortDSL.shortDSL.CraneZone#getZoneValue()
+   * @see #getCraneZone()
+   * @generated
+   */
+  EAttribute getCraneZone_ZoneValue();
+
+  /**
+   * Returns the meta object for class '{@link xtext.factoryLang.shortDSL.shortDSL.Disk <em>Disk</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Disk</em>'.
+   * @see xtext.factoryLang.shortDSL.shortDSL.Disk
+   * @generated
+   */
+  EClass getDisk();
+
+  /**
+   * Returns the meta object for the attribute '{@link xtext.factoryLang.shortDSL.shortDSL.Disk#getNSlots <em>NSlots</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>NSlots</em>'.
+   * @see xtext.factoryLang.shortDSL.shortDSL.Disk#getNSlots()
+   * @see #getDisk()
+   * @generated
+   */
+  EAttribute getDisk_NSlots();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link xtext.factoryLang.shortDSL.shortDSL.Disk#getZones <em>Zones</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Zones</em>'.
+   * @see xtext.factoryLang.shortDSL.shortDSL.Disk#getZones()
+   * @see #getDisk()
+   * @generated
+   */
+  EReference getDisk_Zones();
+
+  /**
+   * Returns the meta object for class '{@link xtext.factoryLang.shortDSL.shortDSL.DiskZone <em>Disk Zone</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Disk Zone</em>'.
+   * @see xtext.factoryLang.shortDSL.shortDSL.DiskZone
+   * @generated
+   */
+  EClass getDiskZone();
+
+  /**
+   * Returns the meta object for the attribute '{@link xtext.factoryLang.shortDSL.shortDSL.DiskZone#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see xtext.factoryLang.shortDSL.shortDSL.DiskZone#getName()
+   * @see #getDiskZone()
+   * @generated
+   */
+  EAttribute getDiskZone_Name();
+
+  /**
+   * Returns the meta object for the attribute '{@link xtext.factoryLang.shortDSL.shortDSL.DiskZone#getSlot <em>Slot</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Slot</em>'.
+   * @see xtext.factoryLang.shortDSL.shortDSL.DiskZone#getSlot()
+   * @see #getDiskZone()
+   * @generated
+   */
+  EAttribute getDiskZone_Slot();
+
+  /**
+   * Returns the meta object for class '{@link xtext.factoryLang.shortDSL.shortDSL.Camera <em>Camera</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Camera</em>'.
+   * @see xtext.factoryLang.shortDSL.shortDSL.Camera
+   * @generated
+   */
+  EClass getCamera();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link xtext.factoryLang.shortDSL.shortDSL.Camera#getColors <em>Colors</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Colors</em>'.
+   * @see xtext.factoryLang.shortDSL.shortDSL.Camera#getColors()
+   * @see #getCamera()
+   * @generated
+   */
+  EReference getCamera_Colors();
+
+  /**
+   * Returns the meta object for class '{@link xtext.factoryLang.shortDSL.shortDSL.CameraColor <em>Camera Color</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Camera Color</em>'.
+   * @see xtext.factoryLang.shortDSL.shortDSL.CameraColor
+   * @generated
+   */
+  EClass getCameraColor();
+
+  /**
+   * Returns the meta object for the attribute '{@link xtext.factoryLang.shortDSL.shortDSL.CameraColor#getColor <em>Color</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Color</em>'.
+   * @see xtext.factoryLang.shortDSL.shortDSL.CameraColor#getColor()
+   * @see #getCameraColor()
+   * @generated
+   */
+  EAttribute getCameraColor_Color();
+
+  /**
+   * Returns the meta object for class '{@link xtext.factoryLang.shortDSL.shortDSL.Loop <em>Loop</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Loop</em>'.
+   * @see xtext.factoryLang.shortDSL.shortDSL.Loop
+   * @generated
+   */
+  EClass getLoop();
+
+  /**
+   * Returns the meta object for the containment reference '{@link xtext.factoryLang.shortDSL.shortDSL.Loop#getVariable <em>Variable</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Variable</em>'.
+   * @see xtext.factoryLang.shortDSL.shortDSL.Loop#getVariable()
+   * @see #getLoop()
+   * @generated
+   */
+  EReference getLoop_Variable();
+
+  /**
+   * Returns the meta object for the attribute '{@link xtext.factoryLang.shortDSL.shortDSL.Loop#getComparisonOperator <em>Comparison Operator</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Comparison Operator</em>'.
+   * @see xtext.factoryLang.shortDSL.shortDSL.Loop#getComparisonOperator()
+   * @see #getLoop()
+   * @generated
+   */
+  EAttribute getLoop_ComparisonOperator();
+
+  /**
+   * Returns the meta object for the attribute '{@link xtext.factoryLang.shortDSL.shortDSL.Loop#getSlotState <em>Slot State</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Slot State</em>'.
+   * @see xtext.factoryLang.shortDSL.shortDSL.Loop#getSlotState()
+   * @see #getLoop()
+   * @generated
+   */
+  EAttribute getLoop_SlotState();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link xtext.factoryLang.shortDSL.shortDSL.Loop#getStatements <em>Statements</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Statements</em>'.
+   * @see xtext.factoryLang.shortDSL.shortDSL.Loop#getStatements()
+   * @see #getLoop()
+   * @generated
+   */
+  EReference getLoop_Statements();
+
+  /**
+   * Returns the meta object for class '{@link xtext.factoryLang.shortDSL.shortDSL.MoveDisk <em>Move Disk</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Move Disk</em>'.
+   * @see xtext.factoryLang.shortDSL.shortDSL.MoveDisk
+   * @generated
+   */
+  EClass getMoveDisk();
+
+  /**
+   * Returns the meta object for the reference '{@link xtext.factoryLang.shortDSL.shortDSL.MoveDisk#getSlot <em>Slot</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Slot</em>'.
+   * @see xtext.factoryLang.shortDSL.shortDSL.MoveDisk#getSlot()
+   * @see #getMoveDisk()
+   * @generated
+   */
+  EReference getMoveDisk_Slot();
+
+  /**
+   * Returns the meta object for the reference '{@link xtext.factoryLang.shortDSL.shortDSL.MoveDisk#getZone <em>Zone</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Zone</em>'.
+   * @see xtext.factoryLang.shortDSL.shortDSL.MoveDisk#getZone()
+   * @see #getMoveDisk()
+   * @generated
+   */
+  EReference getMoveDisk_Zone();
+
+  /**
+   * Returns the meta object for class '{@link xtext.factoryLang.shortDSL.shortDSL.MoveCrane <em>Move Crane</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Move Crane</em>'.
+   * @see xtext.factoryLang.shortDSL.shortDSL.MoveCrane
+   * @generated
+   */
+  EClass getMoveCrane();
+
+  /**
+   * Returns the meta object for the reference '{@link xtext.factoryLang.shortDSL.shortDSL.MoveCrane#getCrane <em>Crane</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Crane</em>'.
+   * @see xtext.factoryLang.shortDSL.shortDSL.MoveCrane#getCrane()
+   * @see #getMoveCrane()
+   * @generated
+   */
+  EReference getMoveCrane_Crane();
+
+  /**
+   * Returns the meta object for the containment reference '{@link xtext.factoryLang.shortDSL.shortDSL.MoveCrane#getAction <em>Action</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Action</em>'.
+   * @see xtext.factoryLang.shortDSL.shortDSL.MoveCrane#getAction()
+   * @see #getMoveCrane()
+   * @generated
+   */
+  EReference getMoveCrane_Action();
+
+  /**
+   * Returns the meta object for the reference '{@link xtext.factoryLang.shortDSL.shortDSL.MoveCrane#getZone <em>Zone</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Zone</em>'.
+   * @see xtext.factoryLang.shortDSL.shortDSL.MoveCrane#getZone()
+   * @see #getMoveCrane()
+   * @generated
+   */
+  EReference getMoveCrane_Zone();
+
+  /**
+   * Returns the meta object for class '{@link xtext.factoryLang.shortDSL.shortDSL.Action <em>Action</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Action</em>'.
+   * @see xtext.factoryLang.shortDSL.shortDSL.Action
+   * @generated
+   */
+  EClass getAction();
+
+  /**
+   * Returns the meta object for class '{@link xtext.factoryLang.shortDSL.shortDSL.ConditionVariable <em>Condition Variable</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Condition Variable</em>'.
+   * @see xtext.factoryLang.shortDSL.shortDSL.ConditionVariable
+   * @generated
+   */
+  EClass getConditionVariable();
+
+  /**
+   * Returns the meta object for the reference '{@link xtext.factoryLang.shortDSL.shortDSL.ConditionVariable#getVariable <em>Variable</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Variable</em>'.
+   * @see xtext.factoryLang.shortDSL.shortDSL.ConditionVariable#getVariable()
+   * @see #getConditionVariable()
+   * @generated
+   */
+  EReference getConditionVariable_Variable();
+
+  /**
+   * Returns the meta object for class '{@link xtext.factoryLang.shortDSL.shortDSL.ConditionDevice <em>Condition Device</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Condition Device</em>'.
+   * @see xtext.factoryLang.shortDSL.shortDSL.ConditionDevice
+   * @generated
+   */
+  EClass getConditionDevice();
+
+  /**
+   * Returns the meta object for the reference '{@link xtext.factoryLang.shortDSL.shortDSL.ConditionDevice#getDevice <em>Device</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Device</em>'.
+   * @see xtext.factoryLang.shortDSL.shortDSL.ConditionDevice#getDevice()
+   * @see #getConditionDevice()
+   * @generated
+   */
+  EReference getConditionDevice_Device();
+
+  /**
+   * Returns the meta object for class '{@link xtext.factoryLang.shortDSL.shortDSL.MarkVariable <em>Mark Variable</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Mark Variable</em>'.
+   * @see xtext.factoryLang.shortDSL.shortDSL.MarkVariable
+   * @generated
+   */
+  EClass getMarkVariable();
+
+  /**
+   * Returns the meta object for the reference '{@link xtext.factoryLang.shortDSL.shortDSL.MarkVariable#getDevice <em>Device</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Device</em>'.
+   * @see xtext.factoryLang.shortDSL.shortDSL.MarkVariable#getDevice()
+   * @see #getMarkVariable()
+   * @generated
+   */
+  EReference getMarkVariable_Device();
+
+  /**
+   * Returns the meta object for the containment reference '{@link xtext.factoryLang.shortDSL.shortDSL.MarkVariable#getVariable <em>Variable</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Variable</em>'.
+   * @see xtext.factoryLang.shortDSL.shortDSL.MarkVariable#getVariable()
+   * @see #getMarkVariable()
+   * @generated
+   */
+  EReference getMarkVariable_Variable();
+
+  /**
+   * Returns the meta object for class '{@link xtext.factoryLang.shortDSL.shortDSL.MarkValue <em>Mark Value</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Mark Value</em>'.
+   * @see xtext.factoryLang.shortDSL.shortDSL.MarkValue
+   * @generated
+   */
+  EClass getMarkValue();
+
+  /**
+   * Returns the meta object for the reference '{@link xtext.factoryLang.shortDSL.shortDSL.MarkValue#getVariable <em>Variable</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Variable</em>'.
+   * @see xtext.factoryLang.shortDSL.shortDSL.MarkValue#getVariable()
+   * @see #getMarkValue()
+   * @generated
+   */
+  EReference getMarkValue_Variable();
+
+  /**
+   * Returns the meta object for the containment reference '{@link xtext.factoryLang.shortDSL.shortDSL.MarkValue#getValue <em>Value</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Value</em>'.
+   * @see xtext.factoryLang.shortDSL.shortDSL.MarkValue#getValue()
+   * @see #getMarkValue()
+   * @generated
+   */
+  EReference getMarkValue_Value();
+
+  /**
+   * Returns the meta object for class '{@link xtext.factoryLang.shortDSL.shortDSL.LocalVariable <em>Local Variable</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Local Variable</em>'.
+   * @see xtext.factoryLang.shortDSL.shortDSL.LocalVariable
+   * @generated
+   */
+  EClass getLocalVariable();
+
+  /**
+   * Returns the meta object for class '{@link xtext.factoryLang.shortDSL.shortDSL.GlobalVariable <em>Global Variable</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Global Variable</em>'.
+   * @see xtext.factoryLang.shortDSL.shortDSL.GlobalVariable
+   * @generated
+   */
+  EClass getGlobalVariable();
+
+  /**
+   * Returns the meta object for enum '{@link xtext.factoryLang.shortDSL.shortDSL.COMPARISON_OPERATOR_S <em>COMPARISON OPERATOR S</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for enum '<em>COMPARISON OPERATOR S</em>'.
+   * @see xtext.factoryLang.shortDSL.shortDSL.COMPARISON_OPERATOR_S
+   * @generated
+   */
+  EEnum getCOMPARISON_OPERATOR_S();
+
+  /**
+   * Returns the meta object for enum '{@link xtext.factoryLang.shortDSL.shortDSL.COLOR_S <em>COLOR S</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for enum '<em>COLOR S</em>'.
+   * @see xtext.factoryLang.shortDSL.shortDSL.COLOR_S
+   * @generated
+   */
+  EEnum getCOLOR_S();
+
+  /**
+   * Returns the meta object for enum '{@link xtext.factoryLang.shortDSL.shortDSL.DISK_SLOT_STATES_S <em>DISK SLOT STATES S</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for enum '<em>DISK SLOT STATES S</em>'.
+   * @see xtext.factoryLang.shortDSL.shortDSL.DISK_SLOT_STATES_S
+   * @generated
+   */
+  EEnum getDISK_SLOT_STATES_S();
+
+  /**
+   * Returns the meta object for enum '{@link xtext.factoryLang.shortDSL.shortDSL.DISK_STATES_S <em>DISK STATES S</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for enum '<em>DISK STATES S</em>'.
+   * @see xtext.factoryLang.shortDSL.shortDSL.DISK_STATES_S
+   * @generated
+   */
+  EEnum getDISK_STATES_S();
 
   /**
    * Returns the factory that creates the instances of the model.
@@ -775,6 +2008,24 @@ public interface ShortDSLPackage extends EPackage
     EReference MODEL__TYPE = eINSTANCE.getModel_Type();
 
     /**
+     * The meta object literal for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.DSL_LongImpl <em>DSL Long</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see xtext.factoryLang.shortDSL.shortDSL.impl.DSL_LongImpl
+     * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getDSL_Long()
+     * @generated
+     */
+    EClass DSL_LONG = eINSTANCE.getDSL_Long();
+
+    /**
+     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute DSL_LONG__NAME = eINSTANCE.getDSL_Long_Name();
+
+    /**
      * The meta object literal for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.DSLTypeImpl <em>DSL Type</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -785,14 +2036,14 @@ public interface ShortDSLPackage extends EPackage
     EClass DSL_TYPE = eINSTANCE.getDSLType();
 
     /**
-     * The meta object literal for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.Configuration_ShortImpl <em>Configuration Short</em>}' class.
+     * The meta object literal for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.ConfigurationSImpl <em>Configuration S</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see xtext.factoryLang.shortDSL.shortDSL.impl.Configuration_ShortImpl
-     * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getConfiguration_Short()
+     * @see xtext.factoryLang.shortDSL.shortDSL.impl.ConfigurationSImpl
+     * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getConfigurationS()
      * @generated
      */
-    EClass CONFIGURATION_SHORT = eINSTANCE.getConfiguration_Short();
+    EClass CONFIGURATION_S = eINSTANCE.getConfigurationS();
 
     /**
      * The meta object literal for the '<em><b>Devices</b></em>' containment reference list feature.
@@ -800,53 +2051,17 @@ public interface ShortDSLPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference CONFIGURATION_SHORT__DEVICES = eINSTANCE.getConfiguration_Short_Devices();
+    EReference CONFIGURATION_S__DEVICES = eINSTANCE.getConfigurationS_Devices();
 
     /**
-     * The meta object literal for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.Device_ShortImpl <em>Device Short</em>}' class.
+     * The meta object literal for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.DeviceSImpl <em>Device S</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see xtext.factoryLang.shortDSL.shortDSL.impl.Device_ShortImpl
-     * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getDevice_Short()
+     * @see xtext.factoryLang.shortDSL.shortDSL.impl.DeviceSImpl
+     * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getDeviceS()
      * @generated
      */
-    EClass DEVICE_SHORT = eINSTANCE.getDevice_Short();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute DEVICE_SHORT__NAME = eINSTANCE.getDevice_Short_Name();
-
-    /**
-     * The meta object literal for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.Crane_ShortImpl <em>Crane Short</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see xtext.factoryLang.shortDSL.shortDSL.impl.Crane_ShortImpl
-     * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getCrane_Short()
-     * @generated
-     */
-    EClass CRANE_SHORT = eINSTANCE.getCrane_Short();
-
-    /**
-     * The meta object literal for the '<em><b>Positions</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference CRANE_SHORT__POSITIONS = eINSTANCE.getCrane_Short_Positions();
-
-    /**
-     * The meta object literal for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.CranePosition_ShortImpl <em>Crane Position Short</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see xtext.factoryLang.shortDSL.shortDSL.impl.CranePosition_ShortImpl
-     * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getCranePosition_Short()
-     * @generated
-     */
-    EClass CRANE_POSITION_SHORT = eINSTANCE.getCranePosition_Short();
+    EClass DEVICE_S = eINSTANCE.getDeviceS();
 
     /**
      * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
@@ -854,51 +2069,125 @@ public interface ShortDSLPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute CRANE_POSITION_SHORT__NAME = eINSTANCE.getCranePosition_Short_Name();
+    EAttribute DEVICE_S__NAME = eINSTANCE.getDeviceS_Name();
 
     /**
-     * The meta object literal for the '<em><b>Position</b></em>' attribute feature.
+     * The meta object literal for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.ConfigurationValueSImpl <em>Configuration Value S</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see xtext.factoryLang.shortDSL.shortDSL.impl.ConfigurationValueSImpl
+     * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getConfigurationValueS()
+     * @generated
+     */
+    EClass CONFIGURATION_VALUE_S = eINSTANCE.getConfigurationValueS();
+
+    /**
+     * The meta object literal for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.DiskHandlingSImpl <em>Disk Handling S</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see xtext.factoryLang.shortDSL.shortDSL.impl.DiskHandlingSImpl
+     * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getDiskHandlingS()
+     * @generated
+     */
+    EClass DISK_HANDLING_S = eINSTANCE.getDiskHandlingS();
+
+    /**
+     * The meta object literal for the '<em><b>Disk</b></em>' reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute CRANE_POSITION_SHORT__POSITION = eINSTANCE.getCranePosition_Short_Position();
+    EReference DISK_HANDLING_S__DISK = eINSTANCE.getDiskHandlingS_Disk();
 
     /**
-     * The meta object literal for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.Disk_ShortImpl <em>Disk Short</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see xtext.factoryLang.shortDSL.shortDSL.impl.Disk_ShortImpl
-     * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getDisk_Short()
-     * @generated
-     */
-    EClass DISK_SHORT = eINSTANCE.getDisk_Short();
-
-    /**
-     * The meta object literal for the '<em><b>NSlots</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Statements</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute DISK_SHORT__NSLOTS = eINSTANCE.getDisk_Short_NSlots();
+    EReference DISK_HANDLING_S__STATEMENTS = eINSTANCE.getDiskHandlingS_Statements();
 
     /**
-     * The meta object literal for the '<em><b>Zones</b></em>' containment reference list feature.
+     * The meta object literal for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.StatementSImpl <em>Statement S</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see xtext.factoryLang.shortDSL.shortDSL.impl.StatementSImpl
+     * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getStatementS()
+     * @generated
+     */
+    EClass STATEMENT_S = eINSTANCE.getStatementS();
+
+    /**
+     * The meta object literal for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.ActionSImpl <em>Action S</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see xtext.factoryLang.shortDSL.shortDSL.impl.ActionSImpl
+     * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getActionS()
+     * @generated
+     */
+    EClass ACTION_S = eINSTANCE.getActionS();
+
+    /**
+     * The meta object literal for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.ConditionSImpl <em>Condition S</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see xtext.factoryLang.shortDSL.shortDSL.impl.ConditionSImpl
+     * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getConditionS()
+     * @generated
+     */
+    EClass CONDITION_S = eINSTANCE.getConditionS();
+
+    /**
+     * The meta object literal for the '<em><b>Comparison Operator</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference DISK_SHORT__ZONES = eINSTANCE.getDisk_Short_Zones();
+    EAttribute CONDITION_S__COMPARISON_OPERATOR = eINSTANCE.getConditionS_ComparisonOperator();
 
     /**
-     * The meta object literal for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.DiskZone_ShortImpl <em>Disk Zone Short</em>}' class.
+     * The meta object literal for the '<em><b>Value</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see xtext.factoryLang.shortDSL.shortDSL.impl.DiskZone_ShortImpl
-     * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getDiskZone_Short()
      * @generated
      */
-    EClass DISK_ZONE_SHORT = eINSTANCE.getDiskZone_Short();
+    EReference CONDITION_S__VALUE = eINSTANCE.getConditionS_Value();
+
+    /**
+     * The meta object literal for the '<em><b>Statements</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference CONDITION_S__STATEMENTS = eINSTANCE.getConditionS_Statements();
+
+    /**
+     * The meta object literal for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.MarkSImpl <em>Mark S</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see xtext.factoryLang.shortDSL.shortDSL.impl.MarkSImpl
+     * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getMarkS()
+     * @generated
+     */
+    EClass MARK_S = eINSTANCE.getMarkS();
+
+    /**
+     * The meta object literal for the '<em><b>Time</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute MARK_S__TIME = eINSTANCE.getMarkS_Time();
+
+    /**
+     * The meta object literal for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.VariableImpl <em>Variable</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see xtext.factoryLang.shortDSL.shortDSL.impl.VariableImpl
+     * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getVariable()
+     * @generated
+     */
+    EClass VARIABLE = eINSTANCE.getVariable();
 
     /**
      * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
@@ -906,69 +2195,57 @@ public interface ShortDSLPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute DISK_ZONE_SHORT__NAME = eINSTANCE.getDiskZone_Short_Name();
+    EAttribute VARIABLE__NAME = eINSTANCE.getVariable_Name();
 
     /**
-     * The meta object literal for the '<em><b>Slot</b></em>' attribute feature.
+     * The meta object literal for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.ValueImpl <em>Value</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see xtext.factoryLang.shortDSL.shortDSL.impl.ValueImpl
+     * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getValue()
+     * @generated
+     */
+    EClass VALUE = eINSTANCE.getValue();
+
+    /**
+     * The meta object literal for the '<em><b>Value Disk Slot State</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute DISK_ZONE_SHORT__SLOT = eINSTANCE.getDiskZone_Short_Slot();
+    EAttribute VALUE__VALUE_DISK_SLOT_STATE = eINSTANCE.getValue_ValueDiskSlotState();
 
     /**
-     * The meta object literal for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.Camera_ShortImpl <em>Camera Short</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see xtext.factoryLang.shortDSL.shortDSL.impl.Camera_ShortImpl
-     * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getCamera_Short()
-     * @generated
-     */
-    EClass CAMERA_SHORT = eINSTANCE.getCamera_Short();
-
-    /**
-     * The meta object literal for the '<em><b>Colors</b></em>' containment reference list feature.
+     * The meta object literal for the '<em><b>Value Disk State</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference CAMERA_SHORT__COLORS = eINSTANCE.getCamera_Short_Colors();
+    EAttribute VALUE__VALUE_DISK_STATE = eINSTANCE.getValue_ValueDiskState();
 
     /**
-     * The meta object literal for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.CameraColor_ShortImpl <em>Camera Color Short</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see xtext.factoryLang.shortDSL.shortDSL.impl.CameraColor_ShortImpl
-     * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getCameraColor_Short()
-     * @generated
-     */
-    EClass CAMERA_COLOR_SHORT = eINSTANCE.getCameraColor_Short();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Value Color</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute CAMERA_COLOR_SHORT__NAME = eINSTANCE.getCameraColor_Short_Name();
+    EAttribute VALUE__VALUE_COLOR = eINSTANCE.getValue_ValueColor();
 
     /**
-     * The meta object literal for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.DeviceHandling_ShortImpl <em>Device Handling Short</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see xtext.factoryLang.shortDSL.shortDSL.impl.DeviceHandling_ShortImpl
-     * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getDeviceHandling_Short()
-     * @generated
-     */
-    EClass DEVICE_HANDLING_SHORT = eINSTANCE.getDeviceHandling_Short();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Value Int</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute DEVICE_HANDLING_SHORT__NAME = eINSTANCE.getDeviceHandling_Short_Name();
+    EAttribute VALUE__VALUE_INT = eINSTANCE.getValue_ValueInt();
+
+    /**
+     * The meta object literal for the '<em><b>Variable</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference VALUE__VARIABLE = eINSTANCE.getValue_Variable();
 
     /**
      * The meta object literal for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.DSLShortImpl <em>DSL Short</em>}' class.
@@ -989,12 +2266,404 @@ public interface ShortDSLPackage extends EPackage
     EReference DSL_SHORT__CONFIGURATION = eINSTANCE.getDSLShort_Configuration();
 
     /**
-     * The meta object literal for the '<em><b>Device Handlings</b></em>' containment reference list feature.
+     * The meta object literal for the '<em><b>Disk Handlings</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference DSL_SHORT__DEVICE_HANDLINGS = eINSTANCE.getDSLShort_DeviceHandlings();
+    EReference DSL_SHORT__DISK_HANDLINGS = eINSTANCE.getDSLShort_DiskHandlings();
+
+    /**
+     * The meta object literal for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.CraneImpl <em>Crane</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see xtext.factoryLang.shortDSL.shortDSL.impl.CraneImpl
+     * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getCrane()
+     * @generated
+     */
+    EClass CRANE = eINSTANCE.getCrane();
+
+    /**
+     * The meta object literal for the '<em><b>Positions</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference CRANE__POSITIONS = eINSTANCE.getCrane_Positions();
+
+    /**
+     * The meta object literal for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.CraneZoneImpl <em>Crane Zone</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see xtext.factoryLang.shortDSL.shortDSL.impl.CraneZoneImpl
+     * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getCraneZone()
+     * @generated
+     */
+    EClass CRANE_ZONE = eINSTANCE.getCraneZone();
+
+    /**
+     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute CRANE_ZONE__NAME = eINSTANCE.getCraneZone_Name();
+
+    /**
+     * The meta object literal for the '<em><b>Zone Value</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute CRANE_ZONE__ZONE_VALUE = eINSTANCE.getCraneZone_ZoneValue();
+
+    /**
+     * The meta object literal for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.DiskImpl <em>Disk</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see xtext.factoryLang.shortDSL.shortDSL.impl.DiskImpl
+     * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getDisk()
+     * @generated
+     */
+    EClass DISK = eINSTANCE.getDisk();
+
+    /**
+     * The meta object literal for the '<em><b>NSlots</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute DISK__NSLOTS = eINSTANCE.getDisk_NSlots();
+
+    /**
+     * The meta object literal for the '<em><b>Zones</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference DISK__ZONES = eINSTANCE.getDisk_Zones();
+
+    /**
+     * The meta object literal for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.DiskZoneImpl <em>Disk Zone</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see xtext.factoryLang.shortDSL.shortDSL.impl.DiskZoneImpl
+     * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getDiskZone()
+     * @generated
+     */
+    EClass DISK_ZONE = eINSTANCE.getDiskZone();
+
+    /**
+     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute DISK_ZONE__NAME = eINSTANCE.getDiskZone_Name();
+
+    /**
+     * The meta object literal for the '<em><b>Slot</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute DISK_ZONE__SLOT = eINSTANCE.getDiskZone_Slot();
+
+    /**
+     * The meta object literal for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.CameraImpl <em>Camera</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see xtext.factoryLang.shortDSL.shortDSL.impl.CameraImpl
+     * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getCamera()
+     * @generated
+     */
+    EClass CAMERA = eINSTANCE.getCamera();
+
+    /**
+     * The meta object literal for the '<em><b>Colors</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference CAMERA__COLORS = eINSTANCE.getCamera_Colors();
+
+    /**
+     * The meta object literal for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.CameraColorImpl <em>Camera Color</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see xtext.factoryLang.shortDSL.shortDSL.impl.CameraColorImpl
+     * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getCameraColor()
+     * @generated
+     */
+    EClass CAMERA_COLOR = eINSTANCE.getCameraColor();
+
+    /**
+     * The meta object literal for the '<em><b>Color</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute CAMERA_COLOR__COLOR = eINSTANCE.getCameraColor_Color();
+
+    /**
+     * The meta object literal for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.LoopImpl <em>Loop</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see xtext.factoryLang.shortDSL.shortDSL.impl.LoopImpl
+     * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getLoop()
+     * @generated
+     */
+    EClass LOOP = eINSTANCE.getLoop();
+
+    /**
+     * The meta object literal for the '<em><b>Variable</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference LOOP__VARIABLE = eINSTANCE.getLoop_Variable();
+
+    /**
+     * The meta object literal for the '<em><b>Comparison Operator</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute LOOP__COMPARISON_OPERATOR = eINSTANCE.getLoop_ComparisonOperator();
+
+    /**
+     * The meta object literal for the '<em><b>Slot State</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute LOOP__SLOT_STATE = eINSTANCE.getLoop_SlotState();
+
+    /**
+     * The meta object literal for the '<em><b>Statements</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference LOOP__STATEMENTS = eINSTANCE.getLoop_Statements();
+
+    /**
+     * The meta object literal for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.MoveDiskImpl <em>Move Disk</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see xtext.factoryLang.shortDSL.shortDSL.impl.MoveDiskImpl
+     * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getMoveDisk()
+     * @generated
+     */
+    EClass MOVE_DISK = eINSTANCE.getMoveDisk();
+
+    /**
+     * The meta object literal for the '<em><b>Slot</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference MOVE_DISK__SLOT = eINSTANCE.getMoveDisk_Slot();
+
+    /**
+     * The meta object literal for the '<em><b>Zone</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference MOVE_DISK__ZONE = eINSTANCE.getMoveDisk_Zone();
+
+    /**
+     * The meta object literal for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.MoveCraneImpl <em>Move Crane</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see xtext.factoryLang.shortDSL.shortDSL.impl.MoveCraneImpl
+     * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getMoveCrane()
+     * @generated
+     */
+    EClass MOVE_CRANE = eINSTANCE.getMoveCrane();
+
+    /**
+     * The meta object literal for the '<em><b>Crane</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference MOVE_CRANE__CRANE = eINSTANCE.getMoveCrane_Crane();
+
+    /**
+     * The meta object literal for the '<em><b>Action</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference MOVE_CRANE__ACTION = eINSTANCE.getMoveCrane_Action();
+
+    /**
+     * The meta object literal for the '<em><b>Zone</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference MOVE_CRANE__ZONE = eINSTANCE.getMoveCrane_Zone();
+
+    /**
+     * The meta object literal for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.ActionImpl <em>Action</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see xtext.factoryLang.shortDSL.shortDSL.impl.ActionImpl
+     * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getAction()
+     * @generated
+     */
+    EClass ACTION = eINSTANCE.getAction();
+
+    /**
+     * The meta object literal for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.ConditionVariableImpl <em>Condition Variable</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see xtext.factoryLang.shortDSL.shortDSL.impl.ConditionVariableImpl
+     * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getConditionVariable()
+     * @generated
+     */
+    EClass CONDITION_VARIABLE = eINSTANCE.getConditionVariable();
+
+    /**
+     * The meta object literal for the '<em><b>Variable</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference CONDITION_VARIABLE__VARIABLE = eINSTANCE.getConditionVariable_Variable();
+
+    /**
+     * The meta object literal for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.ConditionDeviceImpl <em>Condition Device</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see xtext.factoryLang.shortDSL.shortDSL.impl.ConditionDeviceImpl
+     * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getConditionDevice()
+     * @generated
+     */
+    EClass CONDITION_DEVICE = eINSTANCE.getConditionDevice();
+
+    /**
+     * The meta object literal for the '<em><b>Device</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference CONDITION_DEVICE__DEVICE = eINSTANCE.getConditionDevice_Device();
+
+    /**
+     * The meta object literal for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.MarkVariableImpl <em>Mark Variable</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see xtext.factoryLang.shortDSL.shortDSL.impl.MarkVariableImpl
+     * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getMarkVariable()
+     * @generated
+     */
+    EClass MARK_VARIABLE = eINSTANCE.getMarkVariable();
+
+    /**
+     * The meta object literal for the '<em><b>Device</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference MARK_VARIABLE__DEVICE = eINSTANCE.getMarkVariable_Device();
+
+    /**
+     * The meta object literal for the '<em><b>Variable</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference MARK_VARIABLE__VARIABLE = eINSTANCE.getMarkVariable_Variable();
+
+    /**
+     * The meta object literal for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.MarkValueImpl <em>Mark Value</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see xtext.factoryLang.shortDSL.shortDSL.impl.MarkValueImpl
+     * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getMarkValue()
+     * @generated
+     */
+    EClass MARK_VALUE = eINSTANCE.getMarkValue();
+
+    /**
+     * The meta object literal for the '<em><b>Variable</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference MARK_VALUE__VARIABLE = eINSTANCE.getMarkValue_Variable();
+
+    /**
+     * The meta object literal for the '<em><b>Value</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference MARK_VALUE__VALUE = eINSTANCE.getMarkValue_Value();
+
+    /**
+     * The meta object literal for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.LocalVariableImpl <em>Local Variable</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see xtext.factoryLang.shortDSL.shortDSL.impl.LocalVariableImpl
+     * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getLocalVariable()
+     * @generated
+     */
+    EClass LOCAL_VARIABLE = eINSTANCE.getLocalVariable();
+
+    /**
+     * The meta object literal for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.GlobalVariableImpl <em>Global Variable</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see xtext.factoryLang.shortDSL.shortDSL.impl.GlobalVariableImpl
+     * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getGlobalVariable()
+     * @generated
+     */
+    EClass GLOBAL_VARIABLE = eINSTANCE.getGlobalVariable();
+
+    /**
+     * The meta object literal for the '{@link xtext.factoryLang.shortDSL.shortDSL.COMPARISON_OPERATOR_S <em>COMPARISON OPERATOR S</em>}' enum.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see xtext.factoryLang.shortDSL.shortDSL.COMPARISON_OPERATOR_S
+     * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getCOMPARISON_OPERATOR_S()
+     * @generated
+     */
+    EEnum COMPARISON_OPERATOR_S = eINSTANCE.getCOMPARISON_OPERATOR_S();
+
+    /**
+     * The meta object literal for the '{@link xtext.factoryLang.shortDSL.shortDSL.COLOR_S <em>COLOR S</em>}' enum.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see xtext.factoryLang.shortDSL.shortDSL.COLOR_S
+     * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getCOLOR_S()
+     * @generated
+     */
+    EEnum COLOR_S = eINSTANCE.getCOLOR_S();
+
+    /**
+     * The meta object literal for the '{@link xtext.factoryLang.shortDSL.shortDSL.DISK_SLOT_STATES_S <em>DISK SLOT STATES S</em>}' enum.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see xtext.factoryLang.shortDSL.shortDSL.DISK_SLOT_STATES_S
+     * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getDISK_SLOT_STATES_S()
+     * @generated
+     */
+    EEnum DISK_SLOT_STATES_S = eINSTANCE.getDISK_SLOT_STATES_S();
+
+    /**
+     * The meta object literal for the '{@link xtext.factoryLang.shortDSL.shortDSL.DISK_STATES_S <em>DISK STATES S</em>}' enum.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see xtext.factoryLang.shortDSL.shortDSL.DISK_STATES_S
+     * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getDISK_STATES_S()
+     * @generated
+     */
+    EEnum DISK_STATES_S = eINSTANCE.getDISK_STATES_S();
 
   }
 

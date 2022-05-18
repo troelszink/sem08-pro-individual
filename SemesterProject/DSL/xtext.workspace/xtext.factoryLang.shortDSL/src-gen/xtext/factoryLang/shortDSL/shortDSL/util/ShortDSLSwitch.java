@@ -80,6 +80,13 @@ public class ShortDSLSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case ShortDSLPackage.DSL_LONG:
+      {
+        DSL_Long dsL_Long = (DSL_Long)theEObject;
+        T result = caseDSL_Long(dsL_Long);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case ShortDSLPackage.DSL_TYPE:
       {
         DSLType dslType = (DSLType)theEObject;
@@ -87,69 +94,76 @@ public class ShortDSLSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case ShortDSLPackage.CONFIGURATION_SHORT:
+      case ShortDSLPackage.CONFIGURATION_S:
       {
-        Configuration_Short configuration_Short = (Configuration_Short)theEObject;
-        T result = caseConfiguration_Short(configuration_Short);
+        ConfigurationS configurationS = (ConfigurationS)theEObject;
+        T result = caseConfigurationS(configurationS);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case ShortDSLPackage.DEVICE_SHORT:
+      case ShortDSLPackage.DEVICE_S:
       {
-        Device_Short device_Short = (Device_Short)theEObject;
-        T result = caseDevice_Short(device_Short);
+        DeviceS deviceS = (DeviceS)theEObject;
+        T result = caseDeviceS(deviceS);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case ShortDSLPackage.CRANE_SHORT:
+      case ShortDSLPackage.CONFIGURATION_VALUE_S:
       {
-        Crane_Short crane_Short = (Crane_Short)theEObject;
-        T result = caseCrane_Short(crane_Short);
-        if (result == null) result = caseDevice_Short(crane_Short);
+        ConfigurationValueS configurationValueS = (ConfigurationValueS)theEObject;
+        T result = caseConfigurationValueS(configurationValueS);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case ShortDSLPackage.CRANE_POSITION_SHORT:
+      case ShortDSLPackage.DISK_HANDLING_S:
       {
-        CranePosition_Short cranePosition_Short = (CranePosition_Short)theEObject;
-        T result = caseCranePosition_Short(cranePosition_Short);
+        DiskHandlingS diskHandlingS = (DiskHandlingS)theEObject;
+        T result = caseDiskHandlingS(diskHandlingS);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case ShortDSLPackage.DISK_SHORT:
+      case ShortDSLPackage.STATEMENT_S:
       {
-        Disk_Short disk_Short = (Disk_Short)theEObject;
-        T result = caseDisk_Short(disk_Short);
-        if (result == null) result = caseDevice_Short(disk_Short);
+        StatementS statementS = (StatementS)theEObject;
+        T result = caseStatementS(statementS);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case ShortDSLPackage.DISK_ZONE_SHORT:
+      case ShortDSLPackage.ACTION_S:
       {
-        DiskZone_Short diskZone_Short = (DiskZone_Short)theEObject;
-        T result = caseDiskZone_Short(diskZone_Short);
+        ActionS actionS = (ActionS)theEObject;
+        T result = caseActionS(actionS);
+        if (result == null) result = caseStatementS(actionS);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case ShortDSLPackage.CAMERA_SHORT:
+      case ShortDSLPackage.CONDITION_S:
       {
-        Camera_Short camera_Short = (Camera_Short)theEObject;
-        T result = caseCamera_Short(camera_Short);
-        if (result == null) result = caseDevice_Short(camera_Short);
+        ConditionS conditionS = (ConditionS)theEObject;
+        T result = caseConditionS(conditionS);
+        if (result == null) result = caseStatementS(conditionS);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case ShortDSLPackage.CAMERA_COLOR_SHORT:
+      case ShortDSLPackage.MARK_S:
       {
-        CameraColor_Short cameraColor_Short = (CameraColor_Short)theEObject;
-        T result = caseCameraColor_Short(cameraColor_Short);
+        MarkS markS = (MarkS)theEObject;
+        T result = caseMarkS(markS);
+        if (result == null) result = caseStatementS(markS);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case ShortDSLPackage.DEVICE_HANDLING_SHORT:
+      case ShortDSLPackage.VARIABLE:
       {
-        DeviceHandling_Short deviceHandling_Short = (DeviceHandling_Short)theEObject;
-        T result = caseDeviceHandling_Short(deviceHandling_Short);
+        Variable variable = (Variable)theEObject;
+        T result = caseVariable(variable);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ShortDSLPackage.VALUE:
+      {
+        Value value = (Value)theEObject;
+        T result = caseValue(value);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -158,6 +172,139 @@ public class ShortDSLSwitch<T> extends Switch<T>
         DSLShort dslShort = (DSLShort)theEObject;
         T result = caseDSLShort(dslShort);
         if (result == null) result = caseDSLType(dslShort);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ShortDSLPackage.CRANE:
+      {
+        Crane crane = (Crane)theEObject;
+        T result = caseCrane(crane);
+        if (result == null) result = caseDeviceS(crane);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ShortDSLPackage.CRANE_ZONE:
+      {
+        CraneZone craneZone = (CraneZone)theEObject;
+        T result = caseCraneZone(craneZone);
+        if (result == null) result = caseConfigurationValueS(craneZone);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ShortDSLPackage.DISK:
+      {
+        Disk disk = (Disk)theEObject;
+        T result = caseDisk(disk);
+        if (result == null) result = caseDeviceS(disk);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ShortDSLPackage.DISK_ZONE:
+      {
+        DiskZone diskZone = (DiskZone)theEObject;
+        T result = caseDiskZone(diskZone);
+        if (result == null) result = caseConfigurationValueS(diskZone);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ShortDSLPackage.CAMERA:
+      {
+        Camera camera = (Camera)theEObject;
+        T result = caseCamera(camera);
+        if (result == null) result = caseDeviceS(camera);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ShortDSLPackage.CAMERA_COLOR:
+      {
+        CameraColor cameraColor = (CameraColor)theEObject;
+        T result = caseCameraColor(cameraColor);
+        if (result == null) result = caseConfigurationValueS(cameraColor);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ShortDSLPackage.LOOP:
+      {
+        Loop loop = (Loop)theEObject;
+        T result = caseLoop(loop);
+        if (result == null) result = caseStatementS(loop);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ShortDSLPackage.MOVE_DISK:
+      {
+        MoveDisk moveDisk = (MoveDisk)theEObject;
+        T result = caseMoveDisk(moveDisk);
+        if (result == null) result = caseStatementS(moveDisk);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ShortDSLPackage.MOVE_CRANE:
+      {
+        MoveCrane moveCrane = (MoveCrane)theEObject;
+        T result = caseMoveCrane(moveCrane);
+        if (result == null) result = caseStatementS(moveCrane);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ShortDSLPackage.ACTION:
+      {
+        Action action = (Action)theEObject;
+        T result = caseAction(action);
+        if (result == null) result = caseActionS(action);
+        if (result == null) result = caseStatementS(action);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ShortDSLPackage.CONDITION_VARIABLE:
+      {
+        ConditionVariable conditionVariable = (ConditionVariable)theEObject;
+        T result = caseConditionVariable(conditionVariable);
+        if (result == null) result = caseConditionS(conditionVariable);
+        if (result == null) result = caseStatementS(conditionVariable);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ShortDSLPackage.CONDITION_DEVICE:
+      {
+        ConditionDevice conditionDevice = (ConditionDevice)theEObject;
+        T result = caseConditionDevice(conditionDevice);
+        if (result == null) result = caseConditionS(conditionDevice);
+        if (result == null) result = caseStatementS(conditionDevice);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ShortDSLPackage.MARK_VARIABLE:
+      {
+        MarkVariable markVariable = (MarkVariable)theEObject;
+        T result = caseMarkVariable(markVariable);
+        if (result == null) result = caseMarkS(markVariable);
+        if (result == null) result = caseStatementS(markVariable);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ShortDSLPackage.MARK_VALUE:
+      {
+        MarkValue markValue = (MarkValue)theEObject;
+        T result = caseMarkValue(markValue);
+        if (result == null) result = caseMarkS(markValue);
+        if (result == null) result = caseStatementS(markValue);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ShortDSLPackage.LOCAL_VARIABLE:
+      {
+        LocalVariable localVariable = (LocalVariable)theEObject;
+        T result = caseLocalVariable(localVariable);
+        if (result == null) result = caseVariable(localVariable);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ShortDSLPackage.GLOBAL_VARIABLE:
+      {
+        GlobalVariable globalVariable = (GlobalVariable)theEObject;
+        T result = caseGlobalVariable(globalVariable);
+        if (result == null) result = caseVariable(globalVariable);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -182,6 +329,22 @@ public class ShortDSLSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>DSL Long</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>DSL Long</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseDSL_Long(DSL_Long object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>DSL Type</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -198,145 +361,161 @@ public class ShortDSLSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Configuration Short</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Configuration S</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Configuration Short</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Configuration S</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseConfiguration_Short(Configuration_Short object)
+  public T caseConfigurationS(ConfigurationS object)
   {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Device Short</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Device S</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Device Short</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Device S</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseDevice_Short(Device_Short object)
+  public T caseDeviceS(DeviceS object)
   {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Crane Short</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Configuration Value S</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Crane Short</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Configuration Value S</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseCrane_Short(Crane_Short object)
+  public T caseConfigurationValueS(ConfigurationValueS object)
   {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Crane Position Short</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Disk Handling S</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Crane Position Short</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Disk Handling S</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseCranePosition_Short(CranePosition_Short object)
+  public T caseDiskHandlingS(DiskHandlingS object)
   {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Disk Short</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Statement S</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Disk Short</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Statement S</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseDisk_Short(Disk_Short object)
+  public T caseStatementS(StatementS object)
   {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Disk Zone Short</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Action S</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Disk Zone Short</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Action S</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseDiskZone_Short(DiskZone_Short object)
+  public T caseActionS(ActionS object)
   {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Camera Short</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Condition S</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Camera Short</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Condition S</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseCamera_Short(Camera_Short object)
+  public T caseConditionS(ConditionS object)
   {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Camera Color Short</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Mark S</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Camera Color Short</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Mark S</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseCameraColor_Short(CameraColor_Short object)
+  public T caseMarkS(MarkS object)
   {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Device Handling Short</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Variable</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Device Handling Short</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Variable</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseDeviceHandling_Short(DeviceHandling_Short object)
+  public T caseVariable(Variable object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Value</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Value</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseValue(Value object)
   {
     return null;
   }
@@ -353,6 +532,262 @@ public class ShortDSLSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseDSLShort(DSLShort object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Crane</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Crane</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseCrane(Crane object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Crane Zone</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Crane Zone</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseCraneZone(CraneZone object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Disk</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Disk</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseDisk(Disk object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Disk Zone</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Disk Zone</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseDiskZone(DiskZone object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Camera</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Camera</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseCamera(Camera object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Camera Color</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Camera Color</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseCameraColor(CameraColor object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Loop</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Loop</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseLoop(Loop object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Move Disk</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Move Disk</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseMoveDisk(MoveDisk object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Move Crane</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Move Crane</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseMoveCrane(MoveCrane object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Action</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Action</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseAction(Action object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Condition Variable</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Condition Variable</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseConditionVariable(ConditionVariable object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Condition Device</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Condition Device</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseConditionDevice(ConditionDevice object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Mark Variable</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Mark Variable</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseMarkVariable(MarkVariable object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Mark Value</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Mark Value</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseMarkValue(MarkValue object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Local Variable</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Local Variable</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseLocalVariable(LocalVariable object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Global Variable</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Global Variable</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseGlobalVariable(GlobalVariable object)
   {
     return null;
   }

@@ -9,6 +9,9 @@ import java.util.List;
 import org.eclipse.xtext.Action;
 import org.eclipse.xtext.Alternatives;
 import org.eclipse.xtext.Assignment;
+import org.eclipse.xtext.CrossReference;
+import org.eclipse.xtext.EnumLiteralDeclaration;
+import org.eclipse.xtext.EnumRule;
 import org.eclipse.xtext.Grammar;
 import org.eclipse.xtext.GrammarUtil;
 import org.eclipse.xtext.Group;
@@ -27,369 +30,70 @@ public class ShortDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "xtext.factoryLang.shortDSL.ShortDSL.Model");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cUseKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Keyword cDslKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cTypeAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cTypeDSL_ShortParserRuleCall_2_0 = (RuleCall)cTypeAssignment_2.eContents().get(0);
+		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
+		private final Group cGroup_1_0 = (Group)cAlternatives_1.eContents().get(0);
+		private final Keyword cLongKeyword_1_0_0 = (Keyword)cGroup_1_0.eContents().get(0);
+		private final Keyword cDslKeyword_1_0_1 = (Keyword)cGroup_1_0.eContents().get(1);
+		private final Assignment cTypeAssignment_1_0_2 = (Assignment)cGroup_1_0.eContents().get(2);
+		private final RuleCall cTypeDSL_LongParserRuleCall_1_0_2_0 = (RuleCall)cTypeAssignment_1_0_2.eContents().get(0);
+		private final Group cGroup_1_1 = (Group)cAlternatives_1.eContents().get(1);
+		private final Keyword cShortKeyword_1_1_0 = (Keyword)cGroup_1_1.eContents().get(0);
+		private final Keyword cDslKeyword_1_1_1 = (Keyword)cGroup_1_1.eContents().get(1);
+		private final Assignment cTypeAssignment_1_1_2 = (Assignment)cGroup_1_1.eContents().get(2);
+		private final RuleCall cTypeDSL_ShortParserRuleCall_1_1_2_0 = (RuleCall)cTypeAssignment_1_1_2.eContents().get(0);
 		
 		//Model:
-		//    'use' 'dsl' type=DSL_Short;
+		//    'use' ('long' 'dsl' type=DSL_Long | 'short' 'dsl' type=DSL_Short);
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'use' 'dsl' type=DSL_Short
+		//'use' ('long' 'dsl' type=DSL_Long | 'short' 'dsl' type=DSL_Short)
 		public Group getGroup() { return cGroup; }
 		
 		//'use'
 		public Keyword getUseKeyword_0() { return cUseKeyword_0; }
 		
+		//('long' 'dsl' type=DSL_Long | 'short' 'dsl' type=DSL_Short)
+		public Alternatives getAlternatives_1() { return cAlternatives_1; }
+		
+		//'long' 'dsl' type=DSL_Long
+		public Group getGroup_1_0() { return cGroup_1_0; }
+		
+		//'long'
+		public Keyword getLongKeyword_1_0_0() { return cLongKeyword_1_0_0; }
+		
 		//'dsl'
-		public Keyword getDslKeyword_1() { return cDslKeyword_1; }
+		public Keyword getDslKeyword_1_0_1() { return cDslKeyword_1_0_1; }
+		
+		//type=DSL_Long
+		public Assignment getTypeAssignment_1_0_2() { return cTypeAssignment_1_0_2; }
+		
+		//DSL_Long
+		public RuleCall getTypeDSL_LongParserRuleCall_1_0_2_0() { return cTypeDSL_LongParserRuleCall_1_0_2_0; }
+		
+		//'short' 'dsl' type=DSL_Short
+		public Group getGroup_1_1() { return cGroup_1_1; }
+		
+		//'short'
+		public Keyword getShortKeyword_1_1_0() { return cShortKeyword_1_1_0; }
+		
+		//'dsl'
+		public Keyword getDslKeyword_1_1_1() { return cDslKeyword_1_1_1; }
 		
 		//type=DSL_Short
-		public Assignment getTypeAssignment_2() { return cTypeAssignment_2; }
+		public Assignment getTypeAssignment_1_1_2() { return cTypeAssignment_1_1_2; }
 		
 		//DSL_Short
-		public RuleCall getTypeDSL_ShortParserRuleCall_2_0() { return cTypeDSL_ShortParserRuleCall_2_0; }
+		public RuleCall getTypeDSL_ShortParserRuleCall_1_1_2_0() { return cTypeDSL_ShortParserRuleCall_1_1_2_0; }
 	}
-	public class DSL_ShortElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "xtext.factoryLang.shortDSL.ShortDSL.DSL_Short");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Action cDSLShortAction_0 = (Action)cGroup.eContents().get(0);
-		private final Assignment cConfigurationAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cConfigurationConfiguration_ShortParserRuleCall_1_0 = (RuleCall)cConfigurationAssignment_1.eContents().get(0);
-		private final Assignment cDeviceHandlingsAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cDeviceHandlingsDeviceHandling_ShortParserRuleCall_2_0 = (RuleCall)cDeviceHandlingsAssignment_2.eContents().get(0);
-		
-		//// -------------------- INDIVIDUAL DSL - EASY TO WRITE, "HARDER" TO READ -------------------- //
-		//DSL_Short returns DSLType:
-		//    {DSLShort} configuration=Configuration_Short deviceHandlings+=DeviceHandling_Short;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//{DSLShort} configuration=Configuration_Short deviceHandlings+=DeviceHandling_Short
-		public Group getGroup() { return cGroup; }
-		
-		//{DSLShort}
-		public Action getDSLShortAction_0() { return cDSLShortAction_0; }
-		
-		//configuration=Configuration_Short
-		public Assignment getConfigurationAssignment_1() { return cConfigurationAssignment_1; }
-		
-		//Configuration_Short
-		public RuleCall getConfigurationConfiguration_ShortParserRuleCall_1_0() { return cConfigurationConfiguration_ShortParserRuleCall_1_0; }
-		
-		//deviceHandlings+=DeviceHandling_Short
-		public Assignment getDeviceHandlingsAssignment_2() { return cDeviceHandlingsAssignment_2; }
-		
-		//DeviceHandling_Short
-		public RuleCall getDeviceHandlingsDeviceHandling_ShortParserRuleCall_2_0() { return cDeviceHandlingsDeviceHandling_ShortParserRuleCall_2_0; }
-	}
-	public class Configuration_ShortElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "xtext.factoryLang.shortDSL.ShortDSL.Configuration_Short");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cDevicesKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Keyword cLeftCurlyBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final RuleCall cBEGINTerminalRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
-		private final Assignment cDevicesAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cDevicesDevice_ShortParserRuleCall_3_0 = (RuleCall)cDevicesAssignment_3.eContents().get(0);
-		private final RuleCall cENDTerminalRuleCall_4 = (RuleCall)cGroup.eContents().get(4);
-		private final Keyword cRightCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
-		
-		//// ----- CONFIGURAITON ----- //
-		//Configuration_Short:
-		//    'devices' '{' BEGIN devices+=Device_Short+ END '}'
-		//;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//'devices' '{' BEGIN devices+=Device_Short+ END '}'
-		public Group getGroup() { return cGroup; }
-		
-		//'devices'
-		public Keyword getDevicesKeyword_0() { return cDevicesKeyword_0; }
-		
-		//'{'
-		public Keyword getLeftCurlyBracketKeyword_1() { return cLeftCurlyBracketKeyword_1; }
-		
-		//BEGIN
-		public RuleCall getBEGINTerminalRuleCall_2() { return cBEGINTerminalRuleCall_2; }
-		
-		//devices+=Device_Short+
-		public Assignment getDevicesAssignment_3() { return cDevicesAssignment_3; }
-		
-		//Device_Short
-		public RuleCall getDevicesDevice_ShortParserRuleCall_3_0() { return cDevicesDevice_ShortParserRuleCall_3_0; }
-		
-		//END
-		public RuleCall getENDTerminalRuleCall_4() { return cENDTerminalRuleCall_4; }
-		
-		//'}'
-		public Keyword getRightCurlyBracketKeyword_5() { return cRightCurlyBracketKeyword_5; }
-	}
-	public class Device_ShortElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "xtext.factoryLang.shortDSL.ShortDSL.Device_Short");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cCrane_ShortParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cDisk_ShortParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
-		private final RuleCall cCamera_ShortParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
-		
-		//Device_Short:
-		//    Crane_Short | Disk_Short | Camera_Short
-		//;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//Crane_Short | Disk_Short | Camera_Short
-		public Alternatives getAlternatives() { return cAlternatives; }
-		
-		//Crane_Short
-		public RuleCall getCrane_ShortParserRuleCall_0() { return cCrane_ShortParserRuleCall_0; }
-		
-		//Disk_Short
-		public RuleCall getDisk_ShortParserRuleCall_1() { return cDisk_ShortParserRuleCall_1; }
-		
-		//Camera_Short
-		public RuleCall getCamera_ShortParserRuleCall_2() { return cCamera_ShortParserRuleCall_2; }
-	}
-	public class Crane_ShortElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "xtext.factoryLang.shortDSL.ShortDSL.Crane_Short");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cNameIDTerminalRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
-		private final Keyword cColonKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final RuleCall cBEGINTerminalRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
-		private final Assignment cPositionsAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cPositionsCranePosition_ShortParserRuleCall_3_0 = (RuleCall)cPositionsAssignment_3.eContents().get(0);
-		private final RuleCall cENDTerminalRuleCall_4 = (RuleCall)cGroup.eContents().get(4);
-		
-		//Crane_Short:
-		//    name=ID ':' BEGIN positions+=CranePosition_Short+ END
-		//;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//name=ID ':' BEGIN positions+=CranePosition_Short+ END
-		public Group getGroup() { return cGroup; }
-		
-		//name=ID
-		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
-		
-		//ID
-		public RuleCall getNameIDTerminalRuleCall_0_0() { return cNameIDTerminalRuleCall_0_0; }
-		
-		//':'
-		public Keyword getColonKeyword_1() { return cColonKeyword_1; }
-		
-		//BEGIN
-		public RuleCall getBEGINTerminalRuleCall_2() { return cBEGINTerminalRuleCall_2; }
-		
-		//positions+=CranePosition_Short+
-		public Assignment getPositionsAssignment_3() { return cPositionsAssignment_3; }
-		
-		//CranePosition_Short
-		public RuleCall getPositionsCranePosition_ShortParserRuleCall_3_0() { return cPositionsCranePosition_ShortParserRuleCall_3_0; }
-		
-		//END
-		public RuleCall getENDTerminalRuleCall_4() { return cENDTerminalRuleCall_4; }
-	}
-	public class CranePosition_ShortElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "xtext.factoryLang.shortDSL.ShortDSL.CranePosition_Short");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cNameIDTerminalRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
-		private final Keyword cColonKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cPositionAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cPositionINTTerminalRuleCall_2_0 = (RuleCall)cPositionAssignment_2.eContents().get(0);
-		private final Keyword cCommaKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		
-		//CranePosition_Short:
-		//    name=ID ':' position=INT (',')?
-		//;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//name=ID ':' position=INT (',')?
-		public Group getGroup() { return cGroup; }
-		
-		//name=ID
-		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
-		
-		//ID
-		public RuleCall getNameIDTerminalRuleCall_0_0() { return cNameIDTerminalRuleCall_0_0; }
-		
-		//':'
-		public Keyword getColonKeyword_1() { return cColonKeyword_1; }
-		
-		//position=INT
-		public Assignment getPositionAssignment_2() { return cPositionAssignment_2; }
-		
-		//INT
-		public RuleCall getPositionINTTerminalRuleCall_2_0() { return cPositionINTTerminalRuleCall_2_0; }
-		
-		//(',')?
-		public Keyword getCommaKeyword_3() { return cCommaKeyword_3; }
-	}
-	public class Disk_ShortElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "xtext.factoryLang.shortDSL.ShortDSL.Disk_Short");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cNameIDTerminalRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
-		private final Keyword cLeftParenthesisKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cNSlotsAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cNSlotsINTTerminalRuleCall_2_0 = (RuleCall)cNSlotsAssignment_2.eContents().get(0);
-		private final Keyword cRightParenthesisKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		private final Keyword cColonKeyword_4 = (Keyword)cGroup.eContents().get(4);
-		private final RuleCall cBEGINTerminalRuleCall_5 = (RuleCall)cGroup.eContents().get(5);
-		private final Assignment cZonesAssignment_6 = (Assignment)cGroup.eContents().get(6);
-		private final RuleCall cZonesDiskZone_ShortParserRuleCall_6_0 = (RuleCall)cZonesAssignment_6.eContents().get(0);
-		private final RuleCall cENDTerminalRuleCall_7 = (RuleCall)cGroup.eContents().get(7);
-		
-		//Disk_Short:
-		//    name=ID '(' nSlots=INT ')' ':' BEGIN zones+=DiskZone_Short+ END
-		//;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//name=ID '(' nSlots=INT ')' ':' BEGIN zones+=DiskZone_Short+ END
-		public Group getGroup() { return cGroup; }
-		
-		//name=ID
-		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
-		
-		//ID
-		public RuleCall getNameIDTerminalRuleCall_0_0() { return cNameIDTerminalRuleCall_0_0; }
-		
-		//'('
-		public Keyword getLeftParenthesisKeyword_1() { return cLeftParenthesisKeyword_1; }
-		
-		//nSlots=INT
-		public Assignment getNSlotsAssignment_2() { return cNSlotsAssignment_2; }
-		
-		//INT
-		public RuleCall getNSlotsINTTerminalRuleCall_2_0() { return cNSlotsINTTerminalRuleCall_2_0; }
-		
-		//')'
-		public Keyword getRightParenthesisKeyword_3() { return cRightParenthesisKeyword_3; }
-		
-		//':'
-		public Keyword getColonKeyword_4() { return cColonKeyword_4; }
-		
-		//BEGIN
-		public RuleCall getBEGINTerminalRuleCall_5() { return cBEGINTerminalRuleCall_5; }
-		
-		//zones+=DiskZone_Short+
-		public Assignment getZonesAssignment_6() { return cZonesAssignment_6; }
-		
-		//DiskZone_Short
-		public RuleCall getZonesDiskZone_ShortParserRuleCall_6_0() { return cZonesDiskZone_ShortParserRuleCall_6_0; }
-		
-		//END
-		public RuleCall getENDTerminalRuleCall_7() { return cENDTerminalRuleCall_7; }
-	}
-	public class DiskZone_ShortElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "xtext.factoryLang.shortDSL.ShortDSL.DiskZone_Short");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cNameIDTerminalRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
-		private final Keyword cColonKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cSlotAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cSlotINTTerminalRuleCall_2_0 = (RuleCall)cSlotAssignment_2.eContents().get(0);
-		private final Keyword cCommaKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		
-		//DiskZone_Short:
-		//    name=ID ':' slot=INT (',')?
-		//;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//name=ID ':' slot=INT (',')?
-		public Group getGroup() { return cGroup; }
-		
-		//name=ID
-		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
-		
-		//ID
-		public RuleCall getNameIDTerminalRuleCall_0_0() { return cNameIDTerminalRuleCall_0_0; }
-		
-		//':'
-		public Keyword getColonKeyword_1() { return cColonKeyword_1; }
-		
-		//slot=INT
-		public Assignment getSlotAssignment_2() { return cSlotAssignment_2; }
-		
-		//INT
-		public RuleCall getSlotINTTerminalRuleCall_2_0() { return cSlotINTTerminalRuleCall_2_0; }
-		
-		//(',')?
-		public Keyword getCommaKeyword_3() { return cCommaKeyword_3; }
-	}
-	public class Camera_ShortElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "xtext.factoryLang.shortDSL.ShortDSL.Camera_Short");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cNameIDTerminalRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
-		private final Keyword cColonKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final RuleCall cBEGINTerminalRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
-		private final Assignment cColorsAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cColorsCameraColor_ShortParserRuleCall_3_0 = (RuleCall)cColorsAssignment_3.eContents().get(0);
-		private final RuleCall cENDTerminalRuleCall_4 = (RuleCall)cGroup.eContents().get(4);
-		
-		//Camera_Short:
-		//    name=ID ':' BEGIN colors+=CameraColor_Short+ END
-		//;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//name=ID ':' BEGIN colors+=CameraColor_Short+ END
-		public Group getGroup() { return cGroup; }
-		
-		//name=ID
-		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
-		
-		//ID
-		public RuleCall getNameIDTerminalRuleCall_0_0() { return cNameIDTerminalRuleCall_0_0; }
-		
-		//':'
-		public Keyword getColonKeyword_1() { return cColonKeyword_1; }
-		
-		//BEGIN
-		public RuleCall getBEGINTerminalRuleCall_2() { return cBEGINTerminalRuleCall_2; }
-		
-		//colors+=CameraColor_Short+
-		public Assignment getColorsAssignment_3() { return cColorsAssignment_3; }
-		
-		//CameraColor_Short
-		public RuleCall getColorsCameraColor_ShortParserRuleCall_3_0() { return cColorsCameraColor_ShortParserRuleCall_3_0; }
-		
-		//END
-		public RuleCall getENDTerminalRuleCall_4() { return cENDTerminalRuleCall_4; }
-	}
-	public class CameraColor_ShortElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "xtext.factoryLang.shortDSL.ShortDSL.CameraColor_Short");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cNameIDTerminalRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
-		private final Keyword cCommaKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		
-		//CameraColor_Short:
-		//    name=ID (',')?
-		//;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//name=ID (',')?
-		public Group getGroup() { return cGroup; }
-		
-		//name=ID
-		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
-		
-		//ID
-		public RuleCall getNameIDTerminalRuleCall_0_0() { return cNameIDTerminalRuleCall_0_0; }
-		
-		//(',')?
-		public Keyword getCommaKeyword_1() { return cCommaKeyword_1; }
-	}
-	public class DeviceHandling_ShortElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "xtext.factoryLang.shortDSL.ShortDSL.DeviceHandling_Short");
+	public class DSL_LongElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "xtext.factoryLang.shortDSL.ShortDSL.DSL_Long");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cTestKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
 		
-		//// ----- DEVICE HANDLING ----- //
-		//DeviceHandling_Short:
-		//    'test' name=ID
-		//;
+		//DSL_Long:
+		//    'test' name=ID;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//'test' name=ID
@@ -404,19 +108,1233 @@ public class ShortDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		//ID
 		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
 	}
+	public class DSL_ShortElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "xtext.factoryLang.shortDSL.ShortDSL.DSL_Short");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cDSLShortAction_0 = (Action)cGroup.eContents().get(0);
+		private final Assignment cConfigurationAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cConfigurationConfigurationSParserRuleCall_1_0 = (RuleCall)cConfigurationAssignment_1.eContents().get(0);
+		private final Assignment cDiskHandlingsAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cDiskHandlingsDiskHandlingSParserRuleCall_2_0 = (RuleCall)cDiskHandlingsAssignment_2.eContents().get(0);
+		
+		//// -------------------- INDIVIDUAL DSL - EASY TO WRITE, "HARDER" TO READ -------------------- //
+		//DSL_Short returns DSLType:
+		//    {DSLShort} configuration=ConfigurationS diskHandlings+=DiskHandlingS*;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//{DSLShort} configuration=ConfigurationS diskHandlings+=DiskHandlingS*
+		public Group getGroup() { return cGroup; }
+		
+		//{DSLShort}
+		public Action getDSLShortAction_0() { return cDSLShortAction_0; }
+		
+		//configuration=ConfigurationS
+		public Assignment getConfigurationAssignment_1() { return cConfigurationAssignment_1; }
+		
+		//ConfigurationS
+		public RuleCall getConfigurationConfigurationSParserRuleCall_1_0() { return cConfigurationConfigurationSParserRuleCall_1_0; }
+		
+		//diskHandlings+=DiskHandlingS*
+		public Assignment getDiskHandlingsAssignment_2() { return cDiskHandlingsAssignment_2; }
+		
+		//DiskHandlingS
+		public RuleCall getDiskHandlingsDiskHandlingSParserRuleCall_2_0() { return cDiskHandlingsDiskHandlingSParserRuleCall_2_0; }
+	}
+	public class ConfigurationSElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "xtext.factoryLang.shortDSL.ShortDSL.ConfigurationS");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cDevicesKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Keyword cLeftCurlyBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final RuleCall cBEGINTerminalRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
+		private final Assignment cDevicesAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cDevicesDeviceSParserRuleCall_3_0 = (RuleCall)cDevicesAssignment_3.eContents().get(0);
+		private final RuleCall cENDTerminalRuleCall_4 = (RuleCall)cGroup.eContents().get(4);
+		private final Keyword cRightCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		
+		//// ----- CONFIGURAITON ----- //
+		//ConfigurationS:
+		//    'devices' '{' BEGIN devices+=DeviceS+ END '}';
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'devices' '{' BEGIN devices+=DeviceS+ END '}'
+		public Group getGroup() { return cGroup; }
+		
+		//'devices'
+		public Keyword getDevicesKeyword_0() { return cDevicesKeyword_0; }
+		
+		//'{'
+		public Keyword getLeftCurlyBracketKeyword_1() { return cLeftCurlyBracketKeyword_1; }
+		
+		//BEGIN
+		public RuleCall getBEGINTerminalRuleCall_2() { return cBEGINTerminalRuleCall_2; }
+		
+		//devices+=DeviceS+
+		public Assignment getDevicesAssignment_3() { return cDevicesAssignment_3; }
+		
+		//DeviceS
+		public RuleCall getDevicesDeviceSParserRuleCall_3_0() { return cDevicesDeviceSParserRuleCall_3_0; }
+		
+		//END
+		public RuleCall getENDTerminalRuleCall_4() { return cENDTerminalRuleCall_4; }
+		
+		//'}'
+		public Keyword getRightCurlyBracketKeyword_5() { return cRightCurlyBracketKeyword_5; }
+	}
+	public class DeviceSElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "xtext.factoryLang.shortDSL.ShortDSL.DeviceS");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cCraneSParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cDiskSParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cCameraSParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		
+		//DeviceS:
+		//    CraneS | DiskS | CameraS;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//CraneS | DiskS | CameraS
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//CraneS
+		public RuleCall getCraneSParserRuleCall_0() { return cCraneSParserRuleCall_0; }
+		
+		//DiskS
+		public RuleCall getDiskSParserRuleCall_1() { return cDiskSParserRuleCall_1; }
+		
+		//CameraS
+		public RuleCall getCameraSParserRuleCall_2() { return cCameraSParserRuleCall_2; }
+	}
+	public class CraneSElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "xtext.factoryLang.shortDSL.ShortDSL.CraneS");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cCraneAction_0 = (Action)cGroup.eContents().get(0);
+		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final Keyword cColonKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final RuleCall cBEGINTerminalRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
+		private final Assignment cPositionsAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cPositionsCraneZoneSParserRuleCall_4_0 = (RuleCall)cPositionsAssignment_4.eContents().get(0);
+		private final RuleCall cENDTerminalRuleCall_5 = (RuleCall)cGroup.eContents().get(5);
+		
+		//CraneS returns DeviceS:
+		//    {Crane} name=ID ':' BEGIN positions+=CraneZoneS+ END;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//{Crane} name=ID ':' BEGIN positions+=CraneZoneS+ END
+		public Group getGroup() { return cGroup; }
+		
+		//{Crane}
+		public Action getCraneAction_0() { return cCraneAction_0; }
+		
+		//name=ID
+		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+		
+		//ID
+		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
+		
+		//':'
+		public Keyword getColonKeyword_2() { return cColonKeyword_2; }
+		
+		//BEGIN
+		public RuleCall getBEGINTerminalRuleCall_3() { return cBEGINTerminalRuleCall_3; }
+		
+		//positions+=CraneZoneS+
+		public Assignment getPositionsAssignment_4() { return cPositionsAssignment_4; }
+		
+		//CraneZoneS
+		public RuleCall getPositionsCraneZoneSParserRuleCall_4_0() { return cPositionsCraneZoneSParserRuleCall_4_0; }
+		
+		//END
+		public RuleCall getENDTerminalRuleCall_5() { return cENDTerminalRuleCall_5; }
+	}
+	public class CraneZoneSElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "xtext.factoryLang.shortDSL.ShortDSL.CraneZoneS");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cCraneZoneAction_0 = (Action)cGroup.eContents().get(0);
+		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final Keyword cColonKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cZoneValueAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cZoneValueINTTerminalRuleCall_3_0 = (RuleCall)cZoneValueAssignment_3.eContents().get(0);
+		private final Keyword cCommaKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		
+		//CraneZoneS returns ConfigurationValueS:
+		//    {CraneZone} name=ID ':' zoneValue=INT (',')?;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//{CraneZone} name=ID ':' zoneValue=INT (',')?
+		public Group getGroup() { return cGroup; }
+		
+		//{CraneZone}
+		public Action getCraneZoneAction_0() { return cCraneZoneAction_0; }
+		
+		//name=ID
+		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+		
+		//ID
+		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
+		
+		//':'
+		public Keyword getColonKeyword_2() { return cColonKeyword_2; }
+		
+		//zoneValue=INT
+		public Assignment getZoneValueAssignment_3() { return cZoneValueAssignment_3; }
+		
+		//INT
+		public RuleCall getZoneValueINTTerminalRuleCall_3_0() { return cZoneValueINTTerminalRuleCall_3_0; }
+		
+		//(',')?
+		public Keyword getCommaKeyword_4() { return cCommaKeyword_4; }
+	}
+	public class DiskSElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "xtext.factoryLang.shortDSL.ShortDSL.DiskS");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cDiskAction_0 = (Action)cGroup.eContents().get(0);
+		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final Keyword cLeftParenthesisKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cNSlotsAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cNSlotsINTTerminalRuleCall_3_0 = (RuleCall)cNSlotsAssignment_3.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Keyword cColonKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final RuleCall cBEGINTerminalRuleCall_6 = (RuleCall)cGroup.eContents().get(6);
+		private final Assignment cZonesAssignment_7 = (Assignment)cGroup.eContents().get(7);
+		private final RuleCall cZonesDiskZoneSParserRuleCall_7_0 = (RuleCall)cZonesAssignment_7.eContents().get(0);
+		private final RuleCall cENDTerminalRuleCall_8 = (RuleCall)cGroup.eContents().get(8);
+		
+		//DiskS returns DeviceS:
+		//    {Disk} name=ID '(' nSlots=INT ')' ':' BEGIN zones+=DiskZoneS+ END;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//{Disk} name=ID '(' nSlots=INT ')' ':' BEGIN zones+=DiskZoneS+ END
+		public Group getGroup() { return cGroup; }
+		
+		//{Disk}
+		public Action getDiskAction_0() { return cDiskAction_0; }
+		
+		//name=ID
+		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+		
+		//ID
+		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
+		
+		//'('
+		public Keyword getLeftParenthesisKeyword_2() { return cLeftParenthesisKeyword_2; }
+		
+		//nSlots=INT
+		public Assignment getNSlotsAssignment_3() { return cNSlotsAssignment_3; }
+		
+		//INT
+		public RuleCall getNSlotsINTTerminalRuleCall_3_0() { return cNSlotsINTTerminalRuleCall_3_0; }
+		
+		//')'
+		public Keyword getRightParenthesisKeyword_4() { return cRightParenthesisKeyword_4; }
+		
+		//':'
+		public Keyword getColonKeyword_5() { return cColonKeyword_5; }
+		
+		//BEGIN
+		public RuleCall getBEGINTerminalRuleCall_6() { return cBEGINTerminalRuleCall_6; }
+		
+		//zones+=DiskZoneS+
+		public Assignment getZonesAssignment_7() { return cZonesAssignment_7; }
+		
+		//DiskZoneS
+		public RuleCall getZonesDiskZoneSParserRuleCall_7_0() { return cZonesDiskZoneSParserRuleCall_7_0; }
+		
+		//END
+		public RuleCall getENDTerminalRuleCall_8() { return cENDTerminalRuleCall_8; }
+	}
+	public class DiskZoneSElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "xtext.factoryLang.shortDSL.ShortDSL.DiskZoneS");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cDiskZoneAction_0 = (Action)cGroup.eContents().get(0);
+		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final Keyword cColonKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cSlotAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cSlotINTTerminalRuleCall_3_0 = (RuleCall)cSlotAssignment_3.eContents().get(0);
+		private final Keyword cCommaKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		
+		//DiskZoneS returns ConfigurationValueS:
+		//    {DiskZone} name=ID ':' slot=INT (',')?;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//{DiskZone} name=ID ':' slot=INT (',')?
+		public Group getGroup() { return cGroup; }
+		
+		//{DiskZone}
+		public Action getDiskZoneAction_0() { return cDiskZoneAction_0; }
+		
+		//name=ID
+		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+		
+		//ID
+		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
+		
+		//':'
+		public Keyword getColonKeyword_2() { return cColonKeyword_2; }
+		
+		//slot=INT
+		public Assignment getSlotAssignment_3() { return cSlotAssignment_3; }
+		
+		//INT
+		public RuleCall getSlotINTTerminalRuleCall_3_0() { return cSlotINTTerminalRuleCall_3_0; }
+		
+		//(',')?
+		public Keyword getCommaKeyword_4() { return cCommaKeyword_4; }
+	}
+	public class CameraSElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "xtext.factoryLang.shortDSL.ShortDSL.CameraS");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cCameraAction_0 = (Action)cGroup.eContents().get(0);
+		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final Keyword cColonKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final RuleCall cBEGINTerminalRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
+		private final Assignment cColorsAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cColorsCameraColorSParserRuleCall_4_0 = (RuleCall)cColorsAssignment_4.eContents().get(0);
+		private final RuleCall cENDTerminalRuleCall_5 = (RuleCall)cGroup.eContents().get(5);
+		
+		//CameraS returns DeviceS:
+		//    {Camera} name=ID ':' BEGIN colors+=CameraColorS+ END;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//{Camera} name=ID ':' BEGIN colors+=CameraColorS+ END
+		public Group getGroup() { return cGroup; }
+		
+		//{Camera}
+		public Action getCameraAction_0() { return cCameraAction_0; }
+		
+		//name=ID
+		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+		
+		//ID
+		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
+		
+		//':'
+		public Keyword getColonKeyword_2() { return cColonKeyword_2; }
+		
+		//BEGIN
+		public RuleCall getBEGINTerminalRuleCall_3() { return cBEGINTerminalRuleCall_3; }
+		
+		//colors+=CameraColorS+
+		public Assignment getColorsAssignment_4() { return cColorsAssignment_4; }
+		
+		//CameraColorS
+		public RuleCall getColorsCameraColorSParserRuleCall_4_0() { return cColorsCameraColorSParserRuleCall_4_0; }
+		
+		//END
+		public RuleCall getENDTerminalRuleCall_5() { return cENDTerminalRuleCall_5; }
+	}
+	public class CameraColorSElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "xtext.factoryLang.shortDSL.ShortDSL.CameraColorS");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cCameraColorAction_0 = (Action)cGroup.eContents().get(0);
+		private final Assignment cColorAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cColorCOLOR_SEnumRuleCall_1_0 = (RuleCall)cColorAssignment_1.eContents().get(0);
+		private final Keyword cCommaKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		
+		//CameraColorS returns ConfigurationValueS:
+		//    {CameraColor} color=COLOR_S (',')?;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//{CameraColor} color=COLOR_S (',')?
+		public Group getGroup() { return cGroup; }
+		
+		//{CameraColor}
+		public Action getCameraColorAction_0() { return cCameraColorAction_0; }
+		
+		//color=COLOR_S
+		public Assignment getColorAssignment_1() { return cColorAssignment_1; }
+		
+		//COLOR_S
+		public RuleCall getColorCOLOR_SEnumRuleCall_1_0() { return cColorCOLOR_SEnumRuleCall_1_0; }
+		
+		//(',')?
+		public Keyword getCommaKeyword_2() { return cCommaKeyword_2; }
+	}
+	public class DiskHandlingSElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "xtext.factoryLang.shortDSL.ShortDSL.DiskHandlingS");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cDiskAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final CrossReference cDiskDiskCrossReference_0_0 = (CrossReference)cDiskAssignment_0.eContents().get(0);
+		private final RuleCall cDiskDiskIDTerminalRuleCall_0_0_1 = (RuleCall)cDiskDiskCrossReference_0_0.eContents().get(1);
+		private final Keyword cLeftCurlyBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final RuleCall cBEGINTerminalRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
+		private final Assignment cStatementsAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cStatementsStatementSParserRuleCall_3_0 = (RuleCall)cStatementsAssignment_3.eContents().get(0);
+		private final RuleCall cENDTerminalRuleCall_4 = (RuleCall)cGroup.eContents().get(4);
+		private final Keyword cRightCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		
+		//// ----- DEVICE HANDLING ----- //
+		//DiskHandlingS:
+		//    disk=[Disk] '{' BEGIN statements+=StatementS+ END '}';
+		@Override public ParserRule getRule() { return rule; }
+		
+		//disk=[Disk] '{' BEGIN statements+=StatementS+ END '}'
+		public Group getGroup() { return cGroup; }
+		
+		//disk=[Disk]
+		public Assignment getDiskAssignment_0() { return cDiskAssignment_0; }
+		
+		//[Disk]
+		public CrossReference getDiskDiskCrossReference_0_0() { return cDiskDiskCrossReference_0_0; }
+		
+		//ID
+		public RuleCall getDiskDiskIDTerminalRuleCall_0_0_1() { return cDiskDiskIDTerminalRuleCall_0_0_1; }
+		
+		//'{'
+		public Keyword getLeftCurlyBracketKeyword_1() { return cLeftCurlyBracketKeyword_1; }
+		
+		//BEGIN
+		public RuleCall getBEGINTerminalRuleCall_2() { return cBEGINTerminalRuleCall_2; }
+		
+		//statements+=StatementS+
+		public Assignment getStatementsAssignment_3() { return cStatementsAssignment_3; }
+		
+		//StatementS
+		public RuleCall getStatementsStatementSParserRuleCall_3_0() { return cStatementsStatementSParserRuleCall_3_0; }
+		
+		//END
+		public RuleCall getENDTerminalRuleCall_4() { return cENDTerminalRuleCall_4; }
+		
+		//'}'
+		public Keyword getRightCurlyBracketKeyword_5() { return cRightCurlyBracketKeyword_5; }
+	}
+	public class StatementSElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "xtext.factoryLang.shortDSL.ShortDSL.StatementS");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cLoopSParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cMoveSParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cActionSParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		private final RuleCall cConditionSParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
+		private final RuleCall cMarkSParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
+		
+		//StatementS:
+		//    LoopS | MoveS | ActionS | ConditionS | MarkS;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//LoopS | MoveS | ActionS | ConditionS | MarkS
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//LoopS
+		public RuleCall getLoopSParserRuleCall_0() { return cLoopSParserRuleCall_0; }
+		
+		//MoveS
+		public RuleCall getMoveSParserRuleCall_1() { return cMoveSParserRuleCall_1; }
+		
+		//ActionS
+		public RuleCall getActionSParserRuleCall_2() { return cActionSParserRuleCall_2; }
+		
+		//ConditionS
+		public RuleCall getConditionSParserRuleCall_3() { return cConditionSParserRuleCall_3; }
+		
+		//MarkS
+		public RuleCall getMarkSParserRuleCall_4() { return cMarkSParserRuleCall_4; }
+	}
+	public class LoopSElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "xtext.factoryLang.shortDSL.ShortDSL.LoopS");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cLoopAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cForeachKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cVariableAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cVariableLocalVariableSParserRuleCall_2_0 = (RuleCall)cVariableAssignment_2.eContents().get(0);
+		private final Assignment cComparisonOperatorAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cComparisonOperatorCOMPARISON_OPERATOR_SEnumRuleCall_3_0 = (RuleCall)cComparisonOperatorAssignment_3.eContents().get(0);
+		private final Assignment cSlotStateAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cSlotStateDISK_SLOT_STATES_SEnumRuleCall_4_0 = (RuleCall)cSlotStateAssignment_4.eContents().get(0);
+		private final Keyword cColonKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final RuleCall cBEGINTerminalRuleCall_6 = (RuleCall)cGroup.eContents().get(6);
+		private final Assignment cStatementsAssignment_7 = (Assignment)cGroup.eContents().get(7);
+		private final RuleCall cStatementsStatementSParserRuleCall_7_0 = (RuleCall)cStatementsAssignment_7.eContents().get(0);
+		private final RuleCall cENDTerminalRuleCall_8 = (RuleCall)cGroup.eContents().get(8);
+		
+		//LoopS returns StatementS:
+		//    {Loop} 'foreach' variable=LocalVariableS comparisonOperator=COMPARISON_OPERATOR_S slotState=DISK_SLOT_STATES_S ':' BEGIN statements+=StatementS* END;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//{Loop} 'foreach' variable=LocalVariableS comparisonOperator=COMPARISON_OPERATOR_S slotState=DISK_SLOT_STATES_S ':' BEGIN statements+=StatementS* END
+		public Group getGroup() { return cGroup; }
+		
+		//{Loop}
+		public Action getLoopAction_0() { return cLoopAction_0; }
+		
+		//'foreach'
+		public Keyword getForeachKeyword_1() { return cForeachKeyword_1; }
+		
+		//variable=LocalVariableS
+		public Assignment getVariableAssignment_2() { return cVariableAssignment_2; }
+		
+		//LocalVariableS
+		public RuleCall getVariableLocalVariableSParserRuleCall_2_0() { return cVariableLocalVariableSParserRuleCall_2_0; }
+		
+		//comparisonOperator=COMPARISON_OPERATOR_S
+		public Assignment getComparisonOperatorAssignment_3() { return cComparisonOperatorAssignment_3; }
+		
+		//COMPARISON_OPERATOR_S
+		public RuleCall getComparisonOperatorCOMPARISON_OPERATOR_SEnumRuleCall_3_0() { return cComparisonOperatorCOMPARISON_OPERATOR_SEnumRuleCall_3_0; }
+		
+		//slotState=DISK_SLOT_STATES_S
+		public Assignment getSlotStateAssignment_4() { return cSlotStateAssignment_4; }
+		
+		//DISK_SLOT_STATES_S
+		public RuleCall getSlotStateDISK_SLOT_STATES_SEnumRuleCall_4_0() { return cSlotStateDISK_SLOT_STATES_SEnumRuleCall_4_0; }
+		
+		//':'
+		public Keyword getColonKeyword_5() { return cColonKeyword_5; }
+		
+		//BEGIN
+		public RuleCall getBEGINTerminalRuleCall_6() { return cBEGINTerminalRuleCall_6; }
+		
+		//statements+=StatementS*
+		public Assignment getStatementsAssignment_7() { return cStatementsAssignment_7; }
+		
+		//StatementS
+		public RuleCall getStatementsStatementSParserRuleCall_7_0() { return cStatementsStatementSParserRuleCall_7_0; }
+		
+		//END
+		public RuleCall getENDTerminalRuleCall_8() { return cENDTerminalRuleCall_8; }
+	}
+	public class MoveSElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "xtext.factoryLang.shortDSL.ShortDSL.MoveS");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cMoveDiskSParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cMoveCraneSParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		
+		//MoveS returns StatementS:
+		//    MoveDiskS | MoveCraneS;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//MoveDiskS | MoveCraneS
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//MoveDiskS
+		public RuleCall getMoveDiskSParserRuleCall_0() { return cMoveDiskSParserRuleCall_0; }
+		
+		//MoveCraneS
+		public RuleCall getMoveCraneSParserRuleCall_1() { return cMoveCraneSParserRuleCall_1; }
+	}
+	public class MoveDiskSElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "xtext.factoryLang.shortDSL.ShortDSL.MoveDiskS");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cMoveDiskAction_0 = (Action)cGroup.eContents().get(0);
+		private final Assignment cSlotAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final CrossReference cSlotVariableCrossReference_1_0 = (CrossReference)cSlotAssignment_1.eContents().get(0);
+		private final RuleCall cSlotVariableIDTerminalRuleCall_1_0_1 = (RuleCall)cSlotVariableCrossReference_1_0.eContents().get(1);
+		private final Alternatives cAlternatives_2 = (Alternatives)cGroup.eContents().get(2);
+		private final Keyword cHyphenMinusGreaterThanSignKeyword_2_0 = (Keyword)cAlternatives_2.eContents().get(0);
+		private final Keyword cHyphenMinusHyphenMinusGreaterThanSignKeyword_2_1 = (Keyword)cAlternatives_2.eContents().get(1);
+		private final Assignment cZoneAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final CrossReference cZoneDiskZoneCrossReference_3_0 = (CrossReference)cZoneAssignment_3.eContents().get(0);
+		private final RuleCall cZoneDiskZoneIDTerminalRuleCall_3_0_1 = (RuleCall)cZoneDiskZoneCrossReference_3_0.eContents().get(1);
+		
+		//MoveDiskS returns StatementS:
+		//    {MoveDisk} slot=[Variable] ('->' | '-->') zone=[DiskZone];
+		@Override public ParserRule getRule() { return rule; }
+		
+		//{MoveDisk} slot=[Variable] ('->' | '-->') zone=[DiskZone]
+		public Group getGroup() { return cGroup; }
+		
+		//{MoveDisk}
+		public Action getMoveDiskAction_0() { return cMoveDiskAction_0; }
+		
+		//slot=[Variable]
+		public Assignment getSlotAssignment_1() { return cSlotAssignment_1; }
+		
+		//[Variable]
+		public CrossReference getSlotVariableCrossReference_1_0() { return cSlotVariableCrossReference_1_0; }
+		
+		//ID
+		public RuleCall getSlotVariableIDTerminalRuleCall_1_0_1() { return cSlotVariableIDTerminalRuleCall_1_0_1; }
+		
+		//('->' | '-->')
+		public Alternatives getAlternatives_2() { return cAlternatives_2; }
+		
+		//'->'
+		public Keyword getHyphenMinusGreaterThanSignKeyword_2_0() { return cHyphenMinusGreaterThanSignKeyword_2_0; }
+		
+		//'-->'
+		public Keyword getHyphenMinusHyphenMinusGreaterThanSignKeyword_2_1() { return cHyphenMinusHyphenMinusGreaterThanSignKeyword_2_1; }
+		
+		//zone=[DiskZone]
+		public Assignment getZoneAssignment_3() { return cZoneAssignment_3; }
+		
+		//[DiskZone]
+		public CrossReference getZoneDiskZoneCrossReference_3_0() { return cZoneDiskZoneCrossReference_3_0; }
+		
+		//ID
+		public RuleCall getZoneDiskZoneIDTerminalRuleCall_3_0_1() { return cZoneDiskZoneIDTerminalRuleCall_3_0_1; }
+	}
+	public class MoveCraneSElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "xtext.factoryLang.shortDSL.ShortDSL.MoveCraneS");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cMoveCraneAction_0 = (Action)cGroup.eContents().get(0);
+		private final Assignment cCraneAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final CrossReference cCraneCraneCrossReference_1_0 = (CrossReference)cCraneAssignment_1.eContents().get(0);
+		private final RuleCall cCraneCraneIDTerminalRuleCall_1_0_1 = (RuleCall)cCraneCraneCrossReference_1_0.eContents().get(1);
+		private final Assignment cActionAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cActionActionSParserRuleCall_2_0 = (RuleCall)cActionAssignment_2.eContents().get(0);
+		private final Alternatives cAlternatives_3 = (Alternatives)cGroup.eContents().get(3);
+		private final Keyword cHyphenMinusGreaterThanSignKeyword_3_0 = (Keyword)cAlternatives_3.eContents().get(0);
+		private final Keyword cHyphenMinusHyphenMinusGreaterThanSignKeyword_3_1 = (Keyword)cAlternatives_3.eContents().get(1);
+		private final Assignment cZoneAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final CrossReference cZoneCraneZoneCrossReference_4_0 = (CrossReference)cZoneAssignment_4.eContents().get(0);
+		private final RuleCall cZoneCraneZoneIDTerminalRuleCall_4_0_1 = (RuleCall)cZoneCraneZoneCrossReference_4_0.eContents().get(1);
+		
+		//MoveCraneS returns StatementS:
+		//    {MoveCrane} crane=[Crane] action=ActionS ('->' | '-->') zone=[CraneZone];
+		@Override public ParserRule getRule() { return rule; }
+		
+		//{MoveCrane} crane=[Crane] action=ActionS ('->' | '-->') zone=[CraneZone]
+		public Group getGroup() { return cGroup; }
+		
+		//{MoveCrane}
+		public Action getMoveCraneAction_0() { return cMoveCraneAction_0; }
+		
+		//crane=[Crane]
+		public Assignment getCraneAssignment_1() { return cCraneAssignment_1; }
+		
+		//[Crane]
+		public CrossReference getCraneCraneCrossReference_1_0() { return cCraneCraneCrossReference_1_0; }
+		
+		//ID
+		public RuleCall getCraneCraneIDTerminalRuleCall_1_0_1() { return cCraneCraneIDTerminalRuleCall_1_0_1; }
+		
+		//action=ActionS
+		public Assignment getActionAssignment_2() { return cActionAssignment_2; }
+		
+		//ActionS
+		public RuleCall getActionActionSParserRuleCall_2_0() { return cActionActionSParserRuleCall_2_0; }
+		
+		//('->' | '-->')
+		public Alternatives getAlternatives_3() { return cAlternatives_3; }
+		
+		//'->'
+		public Keyword getHyphenMinusGreaterThanSignKeyword_3_0() { return cHyphenMinusGreaterThanSignKeyword_3_0; }
+		
+		//'-->'
+		public Keyword getHyphenMinusHyphenMinusGreaterThanSignKeyword_3_1() { return cHyphenMinusHyphenMinusGreaterThanSignKeyword_3_1; }
+		
+		//zone=[CraneZone]
+		public Assignment getZoneAssignment_4() { return cZoneAssignment_4; }
+		
+		//[CraneZone]
+		public CrossReference getZoneCraneZoneCrossReference_4_0() { return cZoneCraneZoneCrossReference_4_0; }
+		
+		//ID
+		public RuleCall getZoneCraneZoneIDTerminalRuleCall_4_0_1() { return cZoneCraneZoneIDTerminalRuleCall_4_0_1; }
+	}
+	public class ActionSElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "xtext.factoryLang.shortDSL.ShortDSL.ActionS");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cActionAction_0 = (Action)cGroup.eContents().get(0);
+		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
+		private final Keyword cPickupKeyword_1_0 = (Keyword)cAlternatives_1.eContents().get(0);
+		private final Keyword cDropKeyword_1_1 = (Keyword)cAlternatives_1.eContents().get(1);
+		
+		//ActionS:
+		//    {Action} ('pickup' | 'drop');
+		@Override public ParserRule getRule() { return rule; }
+		
+		//{Action} ('pickup' | 'drop')
+		public Group getGroup() { return cGroup; }
+		
+		//{Action}
+		public Action getActionAction_0() { return cActionAction_0; }
+		
+		//('pickup' | 'drop')
+		public Alternatives getAlternatives_1() { return cAlternatives_1; }
+		
+		//'pickup'
+		public Keyword getPickupKeyword_1_0() { return cPickupKeyword_1_0; }
+		
+		//'drop'
+		public Keyword getDropKeyword_1_1() { return cDropKeyword_1_1; }
+	}
+	public class ConditionSElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "xtext.factoryLang.shortDSL.ShortDSL.ConditionS");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cConditionVariableSParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cConditionDeviceSParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		
+		//ConditionS returns StatementS:
+		//    ConditionVariableS | ConditionDeviceS;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//ConditionVariableS | ConditionDeviceS
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//ConditionVariableS
+		public RuleCall getConditionVariableSParserRuleCall_0() { return cConditionVariableSParserRuleCall_0; }
+		
+		//ConditionDeviceS
+		public RuleCall getConditionDeviceSParserRuleCall_1() { return cConditionDeviceSParserRuleCall_1; }
+	}
+	public class ConditionVariableSElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "xtext.factoryLang.shortDSL.ShortDSL.ConditionVariableS");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cConditionVariableAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cIfKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Keyword cTestKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cVariableAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final CrossReference cVariableVariableCrossReference_3_0 = (CrossReference)cVariableAssignment_3.eContents().get(0);
+		private final RuleCall cVariableVariableIDTerminalRuleCall_3_0_1 = (RuleCall)cVariableVariableCrossReference_3_0.eContents().get(1);
+		private final Assignment cComparisonOperatorAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cComparisonOperatorCOMPARISON_OPERATOR_SEnumRuleCall_4_0 = (RuleCall)cComparisonOperatorAssignment_4.eContents().get(0);
+		private final Assignment cValueAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final RuleCall cValueValueParserRuleCall_5_0 = (RuleCall)cValueAssignment_5.eContents().get(0);
+		private final Keyword cColonKeyword_6 = (Keyword)cGroup.eContents().get(6);
+		private final RuleCall cBEGINTerminalRuleCall_7 = (RuleCall)cGroup.eContents().get(7);
+		private final Assignment cStatementsAssignment_8 = (Assignment)cGroup.eContents().get(8);
+		private final RuleCall cStatementsStatementSParserRuleCall_8_0 = (RuleCall)cStatementsAssignment_8.eContents().get(0);
+		private final RuleCall cENDTerminalRuleCall_9 = (RuleCall)cGroup.eContents().get(9);
+		
+		//ConditionVariableS returns ConditionS:
+		//    {ConditionVariable} 'if' 'test' variable=[Variable] comparisonOperator=COMPARISON_OPERATOR_S value=Value ':' BEGIN statements+=StatementS* END;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//{ConditionVariable} 'if' 'test' variable=[Variable] comparisonOperator=COMPARISON_OPERATOR_S value=Value ':' BEGIN statements+=StatementS* END
+		public Group getGroup() { return cGroup; }
+		
+		//{ConditionVariable}
+		public Action getConditionVariableAction_0() { return cConditionVariableAction_0; }
+		
+		//'if'
+		public Keyword getIfKeyword_1() { return cIfKeyword_1; }
+		
+		//'test'
+		public Keyword getTestKeyword_2() { return cTestKeyword_2; }
+		
+		//variable=[Variable]
+		public Assignment getVariableAssignment_3() { return cVariableAssignment_3; }
+		
+		//[Variable]
+		public CrossReference getVariableVariableCrossReference_3_0() { return cVariableVariableCrossReference_3_0; }
+		
+		//ID
+		public RuleCall getVariableVariableIDTerminalRuleCall_3_0_1() { return cVariableVariableIDTerminalRuleCall_3_0_1; }
+		
+		//comparisonOperator=COMPARISON_OPERATOR_S
+		public Assignment getComparisonOperatorAssignment_4() { return cComparisonOperatorAssignment_4; }
+		
+		//COMPARISON_OPERATOR_S
+		public RuleCall getComparisonOperatorCOMPARISON_OPERATOR_SEnumRuleCall_4_0() { return cComparisonOperatorCOMPARISON_OPERATOR_SEnumRuleCall_4_0; }
+		
+		//value=Value
+		public Assignment getValueAssignment_5() { return cValueAssignment_5; }
+		
+		//Value
+		public RuleCall getValueValueParserRuleCall_5_0() { return cValueValueParserRuleCall_5_0; }
+		
+		//':'
+		public Keyword getColonKeyword_6() { return cColonKeyword_6; }
+		
+		//BEGIN
+		public RuleCall getBEGINTerminalRuleCall_7() { return cBEGINTerminalRuleCall_7; }
+		
+		//statements+=StatementS*
+		public Assignment getStatementsAssignment_8() { return cStatementsAssignment_8; }
+		
+		//StatementS
+		public RuleCall getStatementsStatementSParserRuleCall_8_0() { return cStatementsStatementSParserRuleCall_8_0; }
+		
+		//END
+		public RuleCall getENDTerminalRuleCall_9() { return cENDTerminalRuleCall_9; }
+	}
+	public class ConditionDeviceSElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "xtext.factoryLang.shortDSL.ShortDSL.ConditionDeviceS");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cConditionDeviceAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cIfKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cDeviceAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final CrossReference cDeviceDeviceSCrossReference_2_0 = (CrossReference)cDeviceAssignment_2.eContents().get(0);
+		private final RuleCall cDeviceDeviceSIDTerminalRuleCall_2_0_1 = (RuleCall)cDeviceDeviceSCrossReference_2_0.eContents().get(1);
+		private final Assignment cComparisonOperatorAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cComparisonOperatorCOMPARISON_OPERATOR_SEnumRuleCall_3_0 = (RuleCall)cComparisonOperatorAssignment_3.eContents().get(0);
+		private final Assignment cValueAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cValueValueParserRuleCall_4_0 = (RuleCall)cValueAssignment_4.eContents().get(0);
+		private final Keyword cColonKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final RuleCall cBEGINTerminalRuleCall_6 = (RuleCall)cGroup.eContents().get(6);
+		private final Assignment cStatementsAssignment_7 = (Assignment)cGroup.eContents().get(7);
+		private final RuleCall cStatementsStatementSParserRuleCall_7_0 = (RuleCall)cStatementsAssignment_7.eContents().get(0);
+		private final RuleCall cENDTerminalRuleCall_8 = (RuleCall)cGroup.eContents().get(8);
+		
+		//ConditionDeviceS returns ConditionS:
+		//    {ConditionDevice} 'if' device=[DeviceS] comparisonOperator=COMPARISON_OPERATOR_S value=Value ':' BEGIN statements+=StatementS* END;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//{ConditionDevice} 'if' device=[DeviceS] comparisonOperator=COMPARISON_OPERATOR_S value=Value ':' BEGIN statements+=StatementS* END
+		public Group getGroup() { return cGroup; }
+		
+		//{ConditionDevice}
+		public Action getConditionDeviceAction_0() { return cConditionDeviceAction_0; }
+		
+		//'if'
+		public Keyword getIfKeyword_1() { return cIfKeyword_1; }
+		
+		//device=[DeviceS]
+		public Assignment getDeviceAssignment_2() { return cDeviceAssignment_2; }
+		
+		//[DeviceS]
+		public CrossReference getDeviceDeviceSCrossReference_2_0() { return cDeviceDeviceSCrossReference_2_0; }
+		
+		//ID
+		public RuleCall getDeviceDeviceSIDTerminalRuleCall_2_0_1() { return cDeviceDeviceSIDTerminalRuleCall_2_0_1; }
+		
+		//comparisonOperator=COMPARISON_OPERATOR_S
+		public Assignment getComparisonOperatorAssignment_3() { return cComparisonOperatorAssignment_3; }
+		
+		//COMPARISON_OPERATOR_S
+		public RuleCall getComparisonOperatorCOMPARISON_OPERATOR_SEnumRuleCall_3_0() { return cComparisonOperatorCOMPARISON_OPERATOR_SEnumRuleCall_3_0; }
+		
+		//value=Value
+		public Assignment getValueAssignment_4() { return cValueAssignment_4; }
+		
+		//Value
+		public RuleCall getValueValueParserRuleCall_4_0() { return cValueValueParserRuleCall_4_0; }
+		
+		//':'
+		public Keyword getColonKeyword_5() { return cColonKeyword_5; }
+		
+		//BEGIN
+		public RuleCall getBEGINTerminalRuleCall_6() { return cBEGINTerminalRuleCall_6; }
+		
+		//statements+=StatementS*
+		public Assignment getStatementsAssignment_7() { return cStatementsAssignment_7; }
+		
+		//StatementS
+		public RuleCall getStatementsStatementSParserRuleCall_7_0() { return cStatementsStatementSParserRuleCall_7_0; }
+		
+		//END
+		public RuleCall getENDTerminalRuleCall_8() { return cENDTerminalRuleCall_8; }
+	}
+	public class MarkSElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "xtext.factoryLang.shortDSL.ShortDSL.MarkS");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cMarkVariableSParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cMarkValueSParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		
+		//MarkS returns StatementS:
+		//    MarkVariableS | MarkValueS;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//MarkVariableS | MarkValueS
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//MarkVariableS
+		public RuleCall getMarkVariableSParserRuleCall_0() { return cMarkVariableSParserRuleCall_0; }
+		
+		//MarkValueS
+		public RuleCall getMarkValueSParserRuleCall_1() { return cMarkValueSParserRuleCall_1; }
+	}
+	public class MarkVariableSElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "xtext.factoryLang.shortDSL.ShortDSL.MarkVariableS");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cMarkVariableAction_0 = (Action)cGroup.eContents().get(0);
+		private final Assignment cDeviceAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final CrossReference cDeviceDeviceSCrossReference_1_0 = (CrossReference)cDeviceAssignment_1.eContents().get(0);
+		private final RuleCall cDeviceDeviceSIDTerminalRuleCall_1_0_1 = (RuleCall)cDeviceDeviceSCrossReference_1_0.eContents().get(1);
+		private final Keyword cLeftParenthesisKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cVariableAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cVariableGlobalVariableSParserRuleCall_3_0 = (RuleCall)cVariableAssignment_3.eContents().get(0);
+		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
+		private final Keyword cCommaKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
+		private final Assignment cTimeAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
+		private final RuleCall cTimeINTTerminalRuleCall_4_1_0 = (RuleCall)cTimeAssignment_4_1.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		
+		//MarkVariableS returns MarkS:
+		//    {MarkVariable} device=[DeviceS] '(' variable=GlobalVariableS (',' time=INT)? ')';
+		@Override public ParserRule getRule() { return rule; }
+		
+		//{MarkVariable} device=[DeviceS] '(' variable=GlobalVariableS (',' time=INT)? ')'
+		public Group getGroup() { return cGroup; }
+		
+		//{MarkVariable}
+		public Action getMarkVariableAction_0() { return cMarkVariableAction_0; }
+		
+		//device=[DeviceS]
+		public Assignment getDeviceAssignment_1() { return cDeviceAssignment_1; }
+		
+		//[DeviceS]
+		public CrossReference getDeviceDeviceSCrossReference_1_0() { return cDeviceDeviceSCrossReference_1_0; }
+		
+		//ID
+		public RuleCall getDeviceDeviceSIDTerminalRuleCall_1_0_1() { return cDeviceDeviceSIDTerminalRuleCall_1_0_1; }
+		
+		//'('
+		public Keyword getLeftParenthesisKeyword_2() { return cLeftParenthesisKeyword_2; }
+		
+		//variable=GlobalVariableS
+		public Assignment getVariableAssignment_3() { return cVariableAssignment_3; }
+		
+		//GlobalVariableS
+		public RuleCall getVariableGlobalVariableSParserRuleCall_3_0() { return cVariableGlobalVariableSParserRuleCall_3_0; }
+		
+		//(',' time=INT)?
+		public Group getGroup_4() { return cGroup_4; }
+		
+		//','
+		public Keyword getCommaKeyword_4_0() { return cCommaKeyword_4_0; }
+		
+		//time=INT
+		public Assignment getTimeAssignment_4_1() { return cTimeAssignment_4_1; }
+		
+		//INT
+		public RuleCall getTimeINTTerminalRuleCall_4_1_0() { return cTimeINTTerminalRuleCall_4_1_0; }
+		
+		//')'
+		public Keyword getRightParenthesisKeyword_5() { return cRightParenthesisKeyword_5; }
+	}
+	public class MarkValueSElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "xtext.factoryLang.shortDSL.ShortDSL.MarkValueS");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cMarkValueAction_0 = (Action)cGroup.eContents().get(0);
+		private final Assignment cVariableAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final CrossReference cVariableLocalVariableCrossReference_1_0 = (CrossReference)cVariableAssignment_1.eContents().get(0);
+		private final RuleCall cVariableLocalVariableIDTerminalRuleCall_1_0_1 = (RuleCall)cVariableLocalVariableCrossReference_1_0.eContents().get(1);
+		private final Keyword cLeftParenthesisKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cValueAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cValueValueParserRuleCall_3_0 = (RuleCall)cValueAssignment_3.eContents().get(0);
+		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
+		private final Keyword cCommaKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
+		private final Assignment cTimeAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
+		private final RuleCall cTimeINTTerminalRuleCall_4_1_0 = (RuleCall)cTimeAssignment_4_1.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		
+		//MarkValueS returns MarkS:
+		//    {MarkValue} variable=[LocalVariable] '(' value=Value (',' time=INT)? ')';
+		@Override public ParserRule getRule() { return rule; }
+		
+		//{MarkValue} variable=[LocalVariable] '(' value=Value (',' time=INT)? ')'
+		public Group getGroup() { return cGroup; }
+		
+		//{MarkValue}
+		public Action getMarkValueAction_0() { return cMarkValueAction_0; }
+		
+		//variable=[LocalVariable]
+		public Assignment getVariableAssignment_1() { return cVariableAssignment_1; }
+		
+		//[LocalVariable]
+		public CrossReference getVariableLocalVariableCrossReference_1_0() { return cVariableLocalVariableCrossReference_1_0; }
+		
+		//ID
+		public RuleCall getVariableLocalVariableIDTerminalRuleCall_1_0_1() { return cVariableLocalVariableIDTerminalRuleCall_1_0_1; }
+		
+		//'('
+		public Keyword getLeftParenthesisKeyword_2() { return cLeftParenthesisKeyword_2; }
+		
+		//value=Value
+		public Assignment getValueAssignment_3() { return cValueAssignment_3; }
+		
+		//Value
+		public RuleCall getValueValueParserRuleCall_3_0() { return cValueValueParserRuleCall_3_0; }
+		
+		//(',' time=INT)?
+		public Group getGroup_4() { return cGroup_4; }
+		
+		//','
+		public Keyword getCommaKeyword_4_0() { return cCommaKeyword_4_0; }
+		
+		//time=INT
+		public Assignment getTimeAssignment_4_1() { return cTimeAssignment_4_1; }
+		
+		//INT
+		public RuleCall getTimeINTTerminalRuleCall_4_1_0() { return cTimeINTTerminalRuleCall_4_1_0; }
+		
+		//')'
+		public Keyword getRightParenthesisKeyword_5() { return cRightParenthesisKeyword_5; }
+	}
+	public class LocalVariableSElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "xtext.factoryLang.shortDSL.ShortDSL.LocalVariableS");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cLocalVariableAction_0 = (Action)cGroup.eContents().get(0);
+		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		
+		//// ----- VALUE TYPES ----- //
+		///*DeviceValue:
+		//    value=DiskStateValue | value=ColorValue | ref=[ConfigurationValueS];*/
+		///*DiskSlotValue:
+		//    value=DiskSlotStateValue | value=ColorValue | ref=[Variable];*/
+		//LocalVariableS returns Variable:
+		//    {LocalVariable} name=ID;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//{LocalVariable} name=ID
+		public Group getGroup() { return cGroup; }
+		
+		//{LocalVariable}
+		public Action getLocalVariableAction_0() { return cLocalVariableAction_0; }
+		
+		//name=ID
+		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+		
+		//ID
+		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
+	}
+	public class GlobalVariableSElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "xtext.factoryLang.shortDSL.ShortDSL.GlobalVariableS");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cGlobalVariableAction_0 = (Action)cGroup.eContents().get(0);
+		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		
+		//GlobalVariableS returns Variable:
+		//    {GlobalVariable} name=ID;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//{GlobalVariable} name=ID
+		public Group getGroup() { return cGroup; }
+		
+		//{GlobalVariable}
+		public Action getGlobalVariableAction_0() { return cGlobalVariableAction_0; }
+		
+		//name=ID
+		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+		
+		//ID
+		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
+	}
+	public class ValueElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "xtext.factoryLang.shortDSL.ShortDSL.Value");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Assignment cValueDiskSlotStateAssignment_0 = (Assignment)cAlternatives.eContents().get(0);
+		private final RuleCall cValueDiskSlotStateDISK_SLOT_STATES_SEnumRuleCall_0_0 = (RuleCall)cValueDiskSlotStateAssignment_0.eContents().get(0);
+		private final Assignment cValueDiskStateAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
+		private final RuleCall cValueDiskStateDISK_STATES_SEnumRuleCall_1_0 = (RuleCall)cValueDiskStateAssignment_1.eContents().get(0);
+		private final Assignment cValueColorAssignment_2 = (Assignment)cAlternatives.eContents().get(2);
+		private final RuleCall cValueColorCOLOR_SEnumRuleCall_2_0 = (RuleCall)cValueColorAssignment_2.eContents().get(0);
+		private final Assignment cValueIntAssignment_3 = (Assignment)cAlternatives.eContents().get(3);
+		private final RuleCall cValueIntINTTerminalRuleCall_3_0 = (RuleCall)cValueIntAssignment_3.eContents().get(0);
+		private final Assignment cVariableAssignment_4 = (Assignment)cAlternatives.eContents().get(4);
+		private final CrossReference cVariableVariableCrossReference_4_0 = (CrossReference)cVariableAssignment_4.eContents().get(0);
+		private final RuleCall cVariableVariableIDTerminalRuleCall_4_0_1 = (RuleCall)cVariableVariableCrossReference_4_0.eContents().get(1);
+		
+		//Value:
+		//    valueDiskSlotState=DISK_SLOT_STATES_S | valueDiskState=DISK_STATES_S | valueColor=COLOR_S | valueInt=INT | variable=[Variable];
+		@Override public ParserRule getRule() { return rule; }
+		
+		//valueDiskSlotState=DISK_SLOT_STATES_S | valueDiskState=DISK_STATES_S | valueColor=COLOR_S | valueInt=INT | variable=[Variable]
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//valueDiskSlotState=DISK_SLOT_STATES_S
+		public Assignment getValueDiskSlotStateAssignment_0() { return cValueDiskSlotStateAssignment_0; }
+		
+		//DISK_SLOT_STATES_S
+		public RuleCall getValueDiskSlotStateDISK_SLOT_STATES_SEnumRuleCall_0_0() { return cValueDiskSlotStateDISK_SLOT_STATES_SEnumRuleCall_0_0; }
+		
+		//valueDiskState=DISK_STATES_S
+		public Assignment getValueDiskStateAssignment_1() { return cValueDiskStateAssignment_1; }
+		
+		//DISK_STATES_S
+		public RuleCall getValueDiskStateDISK_STATES_SEnumRuleCall_1_0() { return cValueDiskStateDISK_STATES_SEnumRuleCall_1_0; }
+		
+		//valueColor=COLOR_S
+		public Assignment getValueColorAssignment_2() { return cValueColorAssignment_2; }
+		
+		//COLOR_S
+		public RuleCall getValueColorCOLOR_SEnumRuleCall_2_0() { return cValueColorCOLOR_SEnumRuleCall_2_0; }
+		
+		//valueInt=INT
+		public Assignment getValueIntAssignment_3() { return cValueIntAssignment_3; }
+		
+		//INT
+		public RuleCall getValueIntINTTerminalRuleCall_3_0() { return cValueIntINTTerminalRuleCall_3_0; }
+		
+		//variable=[Variable]
+		public Assignment getVariableAssignment_4() { return cVariableAssignment_4; }
+		
+		//[Variable]
+		public CrossReference getVariableVariableCrossReference_4_0() { return cVariableVariableCrossReference_4_0; }
+		
+		//ID
+		public RuleCall getVariableVariableIDTerminalRuleCall_4_0_1() { return cVariableVariableIDTerminalRuleCall_4_0_1; }
+	}
 	
+	public class COMPARISON_OPERATOR_SElements extends AbstractElementFinder.AbstractEnumRuleElementFinder {
+		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "xtext.factoryLang.shortDSL.ShortDSL.COMPARISON_OPERATOR_S");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final EnumLiteralDeclaration cEQUALEnumLiteralDeclaration_0 = (EnumLiteralDeclaration)cAlternatives.eContents().get(0);
+		private final Keyword cEQUALEqualsSignKeyword_0_0 = (Keyword)cEQUALEnumLiteralDeclaration_0.eContents().get(0);
+		private final EnumLiteralDeclaration cLESS_THANEnumLiteralDeclaration_1 = (EnumLiteralDeclaration)cAlternatives.eContents().get(1);
+		private final Keyword cLESS_THANLessThanSignKeyword_1_0 = (Keyword)cLESS_THANEnumLiteralDeclaration_1.eContents().get(0);
+		private final EnumLiteralDeclaration cGREATER_THANEnumLiteralDeclaration_2 = (EnumLiteralDeclaration)cAlternatives.eContents().get(2);
+		private final Keyword cGREATER_THANGreaterThanSignKeyword_2_0 = (Keyword)cGREATER_THANEnumLiteralDeclaration_2.eContents().get(0);
+		private final EnumLiteralDeclaration cNOTEnumLiteralDeclaration_3 = (EnumLiteralDeclaration)cAlternatives.eContents().get(3);
+		private final Keyword cNOTExclamationMarkEqualsSignKeyword_3_0 = (Keyword)cNOTEnumLiteralDeclaration_3.eContents().get(0);
+		
+		// //| configurationValue=[ConfigurationValueS];
+		//// ----- VALUE TYPES:ACTUAL VALUES ----- //
+		///*DiskStateValueS:
+		//    value=DISK_STATES_S;
+		//DiskSlotStateValueS:
+		//    value=DISK_SLOT_STATES_S;
+		//ColorValueS:
+		//    value=COLOR_S;
+		//NumberS:
+		//    value=INT;*/
+		//// ----- TERMINALS ----- //
+		//enum COMPARISON_OPERATOR_S:
+		//    EQUAL='=' | LESS_THAN='<' | GREATER_THAN='>' | NOT='!=';
+		public EnumRule getRule() { return rule; }
+		
+		//EQUAL='=' | LESS_THAN='<' | GREATER_THAN='>' | NOT='!='
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//EQUAL='='
+		public EnumLiteralDeclaration getEQUALEnumLiteralDeclaration_0() { return cEQUALEnumLiteralDeclaration_0; }
+		
+		//'='
+		public Keyword getEQUALEqualsSignKeyword_0_0() { return cEQUALEqualsSignKeyword_0_0; }
+		
+		//LESS_THAN='<'
+		public EnumLiteralDeclaration getLESS_THANEnumLiteralDeclaration_1() { return cLESS_THANEnumLiteralDeclaration_1; }
+		
+		//'<'
+		public Keyword getLESS_THANLessThanSignKeyword_1_0() { return cLESS_THANLessThanSignKeyword_1_0; }
+		
+		//GREATER_THAN='>'
+		public EnumLiteralDeclaration getGREATER_THANEnumLiteralDeclaration_2() { return cGREATER_THANEnumLiteralDeclaration_2; }
+		
+		//'>'
+		public Keyword getGREATER_THANGreaterThanSignKeyword_2_0() { return cGREATER_THANGreaterThanSignKeyword_2_0; }
+		
+		//NOT='!='
+		public EnumLiteralDeclaration getNOTEnumLiteralDeclaration_3() { return cNOTEnumLiteralDeclaration_3; }
+		
+		//'!='
+		public Keyword getNOTExclamationMarkEqualsSignKeyword_3_0() { return cNOTExclamationMarkEqualsSignKeyword_3_0; }
+	}
+	public class COLOR_SElements extends AbstractElementFinder.AbstractEnumRuleElementFinder {
+		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "xtext.factoryLang.shortDSL.ShortDSL.COLOR_S");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final EnumLiteralDeclaration cREDEnumLiteralDeclaration_0 = (EnumLiteralDeclaration)cAlternatives.eContents().get(0);
+		private final Keyword cREDRedKeyword_0_0 = (Keyword)cREDEnumLiteralDeclaration_0.eContents().get(0);
+		private final EnumLiteralDeclaration cGREENEnumLiteralDeclaration_1 = (EnumLiteralDeclaration)cAlternatives.eContents().get(1);
+		private final Keyword cGREENGreenKeyword_1_0 = (Keyword)cGREENEnumLiteralDeclaration_1.eContents().get(0);
+		private final EnumLiteralDeclaration cBLUEEnumLiteralDeclaration_2 = (EnumLiteralDeclaration)cAlternatives.eContents().get(2);
+		private final Keyword cBLUEBlueKeyword_2_0 = (Keyword)cBLUEEnumLiteralDeclaration_2.eContents().get(0);
+		
+		//enum COLOR_S:
+		//    RED='red' | GREEN='green' | BLUE='blue';
+		public EnumRule getRule() { return rule; }
+		
+		//RED='red' | GREEN='green' | BLUE='blue'
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//RED='red'
+		public EnumLiteralDeclaration getREDEnumLiteralDeclaration_0() { return cREDEnumLiteralDeclaration_0; }
+		
+		//'red'
+		public Keyword getREDRedKeyword_0_0() { return cREDRedKeyword_0_0; }
+		
+		//GREEN='green'
+		public EnumLiteralDeclaration getGREENEnumLiteralDeclaration_1() { return cGREENEnumLiteralDeclaration_1; }
+		
+		//'green'
+		public Keyword getGREENGreenKeyword_1_0() { return cGREENGreenKeyword_1_0; }
+		
+		//BLUE='blue'
+		public EnumLiteralDeclaration getBLUEEnumLiteralDeclaration_2() { return cBLUEEnumLiteralDeclaration_2; }
+		
+		//'blue'
+		public Keyword getBLUEBlueKeyword_2_0() { return cBLUEBlueKeyword_2_0; }
+	}
+	public class DISK_SLOT_STATES_SElements extends AbstractElementFinder.AbstractEnumRuleElementFinder {
+		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "xtext.factoryLang.shortDSL.ShortDSL.DISK_SLOT_STATES_S");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final EnumLiteralDeclaration cFREEEnumLiteralDeclaration_0 = (EnumLiteralDeclaration)cAlternatives.eContents().get(0);
+		private final Keyword cFREEFreeKeyword_0_0 = (Keyword)cFREEEnumLiteralDeclaration_0.eContents().get(0);
+		private final EnumLiteralDeclaration cIN_PROGRESSEnumLiteralDeclaration_1 = (EnumLiteralDeclaration)cAlternatives.eContents().get(1);
+		private final Keyword cIN_PROGRESSIn_progressKeyword_1_0 = (Keyword)cIN_PROGRESSEnumLiteralDeclaration_1.eContents().get(0);
+		private final EnumLiteralDeclaration cCOMPLETEEnumLiteralDeclaration_2 = (EnumLiteralDeclaration)cAlternatives.eContents().get(2);
+		private final Keyword cCOMPLETECompleteKeyword_2_0 = (Keyword)cCOMPLETEEnumLiteralDeclaration_2.eContents().get(0);
+		
+		//enum DISK_SLOT_STATES_S:
+		//    FREE='free' | IN_PROGRESS='in_progress' | COMPLETE='complete';
+		public EnumRule getRule() { return rule; }
+		
+		//FREE='free' | IN_PROGRESS='in_progress' | COMPLETE='complete'
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//FREE='free'
+		public EnumLiteralDeclaration getFREEEnumLiteralDeclaration_0() { return cFREEEnumLiteralDeclaration_0; }
+		
+		//'free'
+		public Keyword getFREEFreeKeyword_0_0() { return cFREEFreeKeyword_0_0; }
+		
+		//IN_PROGRESS='in_progress'
+		public EnumLiteralDeclaration getIN_PROGRESSEnumLiteralDeclaration_1() { return cIN_PROGRESSEnumLiteralDeclaration_1; }
+		
+		//'in_progress'
+		public Keyword getIN_PROGRESSIn_progressKeyword_1_0() { return cIN_PROGRESSIn_progressKeyword_1_0; }
+		
+		//COMPLETE='complete'
+		public EnumLiteralDeclaration getCOMPLETEEnumLiteralDeclaration_2() { return cCOMPLETEEnumLiteralDeclaration_2; }
+		
+		//'complete'
+		public Keyword getCOMPLETECompleteKeyword_2_0() { return cCOMPLETECompleteKeyword_2_0; }
+	}
+	public class DISK_STATES_SElements extends AbstractElementFinder.AbstractEnumRuleElementFinder {
+		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "xtext.factoryLang.shortDSL.ShortDSL.DISK_STATES_S");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final EnumLiteralDeclaration cFULLEnumLiteralDeclaration_0 = (EnumLiteralDeclaration)cAlternatives.eContents().get(0);
+		private final Keyword cFULLFullKeyword_0_0 = (Keyword)cFULLEnumLiteralDeclaration_0.eContents().get(0);
+		private final EnumLiteralDeclaration cEMPTYEnumLiteralDeclaration_1 = (EnumLiteralDeclaration)cAlternatives.eContents().get(1);
+		private final Keyword cEMPTYEmptyKeyword_1_0 = (Keyword)cEMPTYEnumLiteralDeclaration_1.eContents().get(0);
+		
+		//enum DISK_STATES_S:
+		//    FULL='full' | EMPTY='empty';
+		public EnumRule getRule() { return rule; }
+		
+		//FULL='full' | EMPTY='empty'
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//FULL='full'
+		public EnumLiteralDeclaration getFULLEnumLiteralDeclaration_0() { return cFULLEnumLiteralDeclaration_0; }
+		
+		//'full'
+		public Keyword getFULLFullKeyword_0_0() { return cFULLFullKeyword_0_0; }
+		
+		//EMPTY='empty'
+		public EnumLiteralDeclaration getEMPTYEnumLiteralDeclaration_1() { return cEMPTYEnumLiteralDeclaration_1; }
+		
+		//'empty'
+		public Keyword getEMPTYEmptyKeyword_1_0() { return cEMPTYEmptyKeyword_1_0; }
+	}
 	
 	private final ModelElements pModel;
+	private final DSL_LongElements pDSL_Long;
 	private final DSL_ShortElements pDSL_Short;
-	private final Configuration_ShortElements pConfiguration_Short;
-	private final Device_ShortElements pDevice_Short;
-	private final Crane_ShortElements pCrane_Short;
-	private final CranePosition_ShortElements pCranePosition_Short;
-	private final Disk_ShortElements pDisk_Short;
-	private final DiskZone_ShortElements pDiskZone_Short;
-	private final Camera_ShortElements pCamera_Short;
-	private final CameraColor_ShortElements pCameraColor_Short;
-	private final DeviceHandling_ShortElements pDeviceHandling_Short;
+	private final ConfigurationSElements pConfigurationS;
+	private final DeviceSElements pDeviceS;
+	private final CraneSElements pCraneS;
+	private final CraneZoneSElements pCraneZoneS;
+	private final DiskSElements pDiskS;
+	private final DiskZoneSElements pDiskZoneS;
+	private final CameraSElements pCameraS;
+	private final CameraColorSElements pCameraColorS;
+	private final DiskHandlingSElements pDiskHandlingS;
+	private final StatementSElements pStatementS;
+	private final LoopSElements pLoopS;
+	private final MoveSElements pMoveS;
+	private final MoveDiskSElements pMoveDiskS;
+	private final MoveCraneSElements pMoveCraneS;
+	private final ActionSElements pActionS;
+	private final ConditionSElements pConditionS;
+	private final ConditionVariableSElements pConditionVariableS;
+	private final ConditionDeviceSElements pConditionDeviceS;
+	private final MarkSElements pMarkS;
+	private final MarkVariableSElements pMarkVariableS;
+	private final MarkValueSElements pMarkValueS;
+	private final LocalVariableSElements pLocalVariableS;
+	private final GlobalVariableSElements pGlobalVariableS;
+	private final ValueElements pValue;
+	private final COMPARISON_OPERATOR_SElements eCOMPARISON_OPERATOR_S;
+	private final COLOR_SElements eCOLOR_S;
+	private final DISK_SLOT_STATES_SElements eDISK_SLOT_STATES_S;
+	private final DISK_STATES_SElements eDISK_STATES_S;
 	private final TerminalRule tBEGIN;
 	private final TerminalRule tEND;
 	
@@ -430,16 +1348,36 @@ public class ShortDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		this.grammar = internalFindGrammar(grammarProvider);
 		this.gaTerminals = gaTerminals;
 		this.pModel = new ModelElements();
+		this.pDSL_Long = new DSL_LongElements();
 		this.pDSL_Short = new DSL_ShortElements();
-		this.pConfiguration_Short = new Configuration_ShortElements();
-		this.pDevice_Short = new Device_ShortElements();
-		this.pCrane_Short = new Crane_ShortElements();
-		this.pCranePosition_Short = new CranePosition_ShortElements();
-		this.pDisk_Short = new Disk_ShortElements();
-		this.pDiskZone_Short = new DiskZone_ShortElements();
-		this.pCamera_Short = new Camera_ShortElements();
-		this.pCameraColor_Short = new CameraColor_ShortElements();
-		this.pDeviceHandling_Short = new DeviceHandling_ShortElements();
+		this.pConfigurationS = new ConfigurationSElements();
+		this.pDeviceS = new DeviceSElements();
+		this.pCraneS = new CraneSElements();
+		this.pCraneZoneS = new CraneZoneSElements();
+		this.pDiskS = new DiskSElements();
+		this.pDiskZoneS = new DiskZoneSElements();
+		this.pCameraS = new CameraSElements();
+		this.pCameraColorS = new CameraColorSElements();
+		this.pDiskHandlingS = new DiskHandlingSElements();
+		this.pStatementS = new StatementSElements();
+		this.pLoopS = new LoopSElements();
+		this.pMoveS = new MoveSElements();
+		this.pMoveDiskS = new MoveDiskSElements();
+		this.pMoveCraneS = new MoveCraneSElements();
+		this.pActionS = new ActionSElements();
+		this.pConditionS = new ConditionSElements();
+		this.pConditionVariableS = new ConditionVariableSElements();
+		this.pConditionDeviceS = new ConditionDeviceSElements();
+		this.pMarkS = new MarkSElements();
+		this.pMarkVariableS = new MarkVariableSElements();
+		this.pMarkValueS = new MarkValueSElements();
+		this.pLocalVariableS = new LocalVariableSElements();
+		this.pGlobalVariableS = new GlobalVariableSElements();
+		this.pValue = new ValueElements();
+		this.eCOMPARISON_OPERATOR_S = new COMPARISON_OPERATOR_SElements();
+		this.eCOLOR_S = new COLOR_SElements();
+		this.eDISK_SLOT_STATES_S = new DISK_SLOT_STATES_SElements();
+		this.eDISK_STATES_S = new DISK_STATES_SElements();
 		this.tBEGIN = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "xtext.factoryLang.shortDSL.ShortDSL.BEGIN");
 		this.tEND = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "xtext.factoryLang.shortDSL.ShortDSL.END");
 	}
@@ -472,7 +1410,7 @@ public class ShortDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 
 	
 	//Model:
-	//    'use' 'dsl' type=DSL_Short;
+	//    'use' ('long' 'dsl' type=DSL_Long | 'short' 'dsl' type=DSL_Short);
 	public ModelElements getModelAccess() {
 		return pModel;
 	}
@@ -481,9 +1419,19 @@ public class ShortDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		return getModelAccess().getRule();
 	}
 	
+	//DSL_Long:
+	//    'test' name=ID;
+	public DSL_LongElements getDSL_LongAccess() {
+		return pDSL_Long;
+	}
+	
+	public ParserRule getDSL_LongRule() {
+		return getDSL_LongAccess().getRule();
+	}
+	
 	//// -------------------- INDIVIDUAL DSL - EASY TO WRITE, "HARDER" TO READ -------------------- //
 	//DSL_Short returns DSLType:
-	//    {DSLShort} configuration=Configuration_Short deviceHandlings+=DeviceHandling_Short;
+	//    {DSLShort} configuration=ConfigurationS diskHandlings+=DiskHandlingS*;
 	public DSL_ShortElements getDSL_ShortAccess() {
 		return pDSL_Short;
 	}
@@ -493,107 +1441,303 @@ public class ShortDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 	}
 	
 	//// ----- CONFIGURAITON ----- //
-	//Configuration_Short:
-	//    'devices' '{' BEGIN devices+=Device_Short+ END '}'
-	//;
-	public Configuration_ShortElements getConfiguration_ShortAccess() {
-		return pConfiguration_Short;
+	//ConfigurationS:
+	//    'devices' '{' BEGIN devices+=DeviceS+ END '}';
+	public ConfigurationSElements getConfigurationSAccess() {
+		return pConfigurationS;
 	}
 	
-	public ParserRule getConfiguration_ShortRule() {
-		return getConfiguration_ShortAccess().getRule();
+	public ParserRule getConfigurationSRule() {
+		return getConfigurationSAccess().getRule();
 	}
 	
-	//Device_Short:
-	//    Crane_Short | Disk_Short | Camera_Short
-	//;
-	public Device_ShortElements getDevice_ShortAccess() {
-		return pDevice_Short;
+	//DeviceS:
+	//    CraneS | DiskS | CameraS;
+	public DeviceSElements getDeviceSAccess() {
+		return pDeviceS;
 	}
 	
-	public ParserRule getDevice_ShortRule() {
-		return getDevice_ShortAccess().getRule();
+	public ParserRule getDeviceSRule() {
+		return getDeviceSAccess().getRule();
 	}
 	
-	//Crane_Short:
-	//    name=ID ':' BEGIN positions+=CranePosition_Short+ END
-	//;
-	public Crane_ShortElements getCrane_ShortAccess() {
-		return pCrane_Short;
+	//CraneS returns DeviceS:
+	//    {Crane} name=ID ':' BEGIN positions+=CraneZoneS+ END;
+	public CraneSElements getCraneSAccess() {
+		return pCraneS;
 	}
 	
-	public ParserRule getCrane_ShortRule() {
-		return getCrane_ShortAccess().getRule();
+	public ParserRule getCraneSRule() {
+		return getCraneSAccess().getRule();
 	}
 	
-	//CranePosition_Short:
-	//    name=ID ':' position=INT (',')?
-	//;
-	public CranePosition_ShortElements getCranePosition_ShortAccess() {
-		return pCranePosition_Short;
+	//CraneZoneS returns ConfigurationValueS:
+	//    {CraneZone} name=ID ':' zoneValue=INT (',')?;
+	public CraneZoneSElements getCraneZoneSAccess() {
+		return pCraneZoneS;
 	}
 	
-	public ParserRule getCranePosition_ShortRule() {
-		return getCranePosition_ShortAccess().getRule();
+	public ParserRule getCraneZoneSRule() {
+		return getCraneZoneSAccess().getRule();
 	}
 	
-	//Disk_Short:
-	//    name=ID '(' nSlots=INT ')' ':' BEGIN zones+=DiskZone_Short+ END
-	//;
-	public Disk_ShortElements getDisk_ShortAccess() {
-		return pDisk_Short;
+	//DiskS returns DeviceS:
+	//    {Disk} name=ID '(' nSlots=INT ')' ':' BEGIN zones+=DiskZoneS+ END;
+	public DiskSElements getDiskSAccess() {
+		return pDiskS;
 	}
 	
-	public ParserRule getDisk_ShortRule() {
-		return getDisk_ShortAccess().getRule();
+	public ParserRule getDiskSRule() {
+		return getDiskSAccess().getRule();
 	}
 	
-	//DiskZone_Short:
-	//    name=ID ':' slot=INT (',')?
-	//;
-	public DiskZone_ShortElements getDiskZone_ShortAccess() {
-		return pDiskZone_Short;
+	//DiskZoneS returns ConfigurationValueS:
+	//    {DiskZone} name=ID ':' slot=INT (',')?;
+	public DiskZoneSElements getDiskZoneSAccess() {
+		return pDiskZoneS;
 	}
 	
-	public ParserRule getDiskZone_ShortRule() {
-		return getDiskZone_ShortAccess().getRule();
+	public ParserRule getDiskZoneSRule() {
+		return getDiskZoneSAccess().getRule();
 	}
 	
-	//Camera_Short:
-	//    name=ID ':' BEGIN colors+=CameraColor_Short+ END
-	//;
-	public Camera_ShortElements getCamera_ShortAccess() {
-		return pCamera_Short;
+	//CameraS returns DeviceS:
+	//    {Camera} name=ID ':' BEGIN colors+=CameraColorS+ END;
+	public CameraSElements getCameraSAccess() {
+		return pCameraS;
 	}
 	
-	public ParserRule getCamera_ShortRule() {
-		return getCamera_ShortAccess().getRule();
+	public ParserRule getCameraSRule() {
+		return getCameraSAccess().getRule();
 	}
 	
-	//CameraColor_Short:
-	//    name=ID (',')?
-	//;
-	public CameraColor_ShortElements getCameraColor_ShortAccess() {
-		return pCameraColor_Short;
+	//CameraColorS returns ConfigurationValueS:
+	//    {CameraColor} color=COLOR_S (',')?;
+	public CameraColorSElements getCameraColorSAccess() {
+		return pCameraColorS;
 	}
 	
-	public ParserRule getCameraColor_ShortRule() {
-		return getCameraColor_ShortAccess().getRule();
+	public ParserRule getCameraColorSRule() {
+		return getCameraColorSAccess().getRule();
 	}
 	
 	//// ----- DEVICE HANDLING ----- //
-	//DeviceHandling_Short:
-	//    'test' name=ID
-	//;
-	public DeviceHandling_ShortElements getDeviceHandling_ShortAccess() {
-		return pDeviceHandling_Short;
+	//DiskHandlingS:
+	//    disk=[Disk] '{' BEGIN statements+=StatementS+ END '}';
+	public DiskHandlingSElements getDiskHandlingSAccess() {
+		return pDiskHandlingS;
 	}
 	
-	public ParserRule getDeviceHandling_ShortRule() {
-		return getDeviceHandling_ShortAccess().getRule();
+	public ParserRule getDiskHandlingSRule() {
+		return getDiskHandlingSAccess().getRule();
 	}
 	
+	//StatementS:
+	//    LoopS | MoveS | ActionS | ConditionS | MarkS;
+	public StatementSElements getStatementSAccess() {
+		return pStatementS;
+	}
+	
+	public ParserRule getStatementSRule() {
+		return getStatementSAccess().getRule();
+	}
+	
+	//LoopS returns StatementS:
+	//    {Loop} 'foreach' variable=LocalVariableS comparisonOperator=COMPARISON_OPERATOR_S slotState=DISK_SLOT_STATES_S ':' BEGIN statements+=StatementS* END;
+	public LoopSElements getLoopSAccess() {
+		return pLoopS;
+	}
+	
+	public ParserRule getLoopSRule() {
+		return getLoopSAccess().getRule();
+	}
+	
+	//MoveS returns StatementS:
+	//    MoveDiskS | MoveCraneS;
+	public MoveSElements getMoveSAccess() {
+		return pMoveS;
+	}
+	
+	public ParserRule getMoveSRule() {
+		return getMoveSAccess().getRule();
+	}
+	
+	//MoveDiskS returns StatementS:
+	//    {MoveDisk} slot=[Variable] ('->' | '-->') zone=[DiskZone];
+	public MoveDiskSElements getMoveDiskSAccess() {
+		return pMoveDiskS;
+	}
+	
+	public ParserRule getMoveDiskSRule() {
+		return getMoveDiskSAccess().getRule();
+	}
+	
+	//MoveCraneS returns StatementS:
+	//    {MoveCrane} crane=[Crane] action=ActionS ('->' | '-->') zone=[CraneZone];
+	public MoveCraneSElements getMoveCraneSAccess() {
+		return pMoveCraneS;
+	}
+	
+	public ParserRule getMoveCraneSRule() {
+		return getMoveCraneSAccess().getRule();
+	}
+	
+	//ActionS:
+	//    {Action} ('pickup' | 'drop');
+	public ActionSElements getActionSAccess() {
+		return pActionS;
+	}
+	
+	public ParserRule getActionSRule() {
+		return getActionSAccess().getRule();
+	}
+	
+	//ConditionS returns StatementS:
+	//    ConditionVariableS | ConditionDeviceS;
+	public ConditionSElements getConditionSAccess() {
+		return pConditionS;
+	}
+	
+	public ParserRule getConditionSRule() {
+		return getConditionSAccess().getRule();
+	}
+	
+	//ConditionVariableS returns ConditionS:
+	//    {ConditionVariable} 'if' 'test' variable=[Variable] comparisonOperator=COMPARISON_OPERATOR_S value=Value ':' BEGIN statements+=StatementS* END;
+	public ConditionVariableSElements getConditionVariableSAccess() {
+		return pConditionVariableS;
+	}
+	
+	public ParserRule getConditionVariableSRule() {
+		return getConditionVariableSAccess().getRule();
+	}
+	
+	//ConditionDeviceS returns ConditionS:
+	//    {ConditionDevice} 'if' device=[DeviceS] comparisonOperator=COMPARISON_OPERATOR_S value=Value ':' BEGIN statements+=StatementS* END;
+	public ConditionDeviceSElements getConditionDeviceSAccess() {
+		return pConditionDeviceS;
+	}
+	
+	public ParserRule getConditionDeviceSRule() {
+		return getConditionDeviceSAccess().getRule();
+	}
+	
+	//MarkS returns StatementS:
+	//    MarkVariableS | MarkValueS;
+	public MarkSElements getMarkSAccess() {
+		return pMarkS;
+	}
+	
+	public ParserRule getMarkSRule() {
+		return getMarkSAccess().getRule();
+	}
+	
+	//MarkVariableS returns MarkS:
+	//    {MarkVariable} device=[DeviceS] '(' variable=GlobalVariableS (',' time=INT)? ')';
+	public MarkVariableSElements getMarkVariableSAccess() {
+		return pMarkVariableS;
+	}
+	
+	public ParserRule getMarkVariableSRule() {
+		return getMarkVariableSAccess().getRule();
+	}
+	
+	//MarkValueS returns MarkS:
+	//    {MarkValue} variable=[LocalVariable] '(' value=Value (',' time=INT)? ')';
+	public MarkValueSElements getMarkValueSAccess() {
+		return pMarkValueS;
+	}
+	
+	public ParserRule getMarkValueSRule() {
+		return getMarkValueSAccess().getRule();
+	}
+	
+	//// ----- VALUE TYPES ----- //
+	///*DeviceValue:
+	//    value=DiskStateValue | value=ColorValue | ref=[ConfigurationValueS];*/
+	///*DiskSlotValue:
+	//    value=DiskSlotStateValue | value=ColorValue | ref=[Variable];*/
+	//LocalVariableS returns Variable:
+	//    {LocalVariable} name=ID;
+	public LocalVariableSElements getLocalVariableSAccess() {
+		return pLocalVariableS;
+	}
+	
+	public ParserRule getLocalVariableSRule() {
+		return getLocalVariableSAccess().getRule();
+	}
+	
+	//GlobalVariableS returns Variable:
+	//    {GlobalVariable} name=ID;
+	public GlobalVariableSElements getGlobalVariableSAccess() {
+		return pGlobalVariableS;
+	}
+	
+	public ParserRule getGlobalVariableSRule() {
+		return getGlobalVariableSAccess().getRule();
+	}
+	
+	//Value:
+	//    valueDiskSlotState=DISK_SLOT_STATES_S | valueDiskState=DISK_STATES_S | valueColor=COLOR_S | valueInt=INT | variable=[Variable];
+	public ValueElements getValueAccess() {
+		return pValue;
+	}
+	
+	public ParserRule getValueRule() {
+		return getValueAccess().getRule();
+	}
+	
+	// //| configurationValue=[ConfigurationValueS];
+	//// ----- VALUE TYPES:ACTUAL VALUES ----- //
+	///*DiskStateValueS:
+	//    value=DISK_STATES_S;
+	//DiskSlotStateValueS:
+	//    value=DISK_SLOT_STATES_S;
+	//ColorValueS:
+	//    value=COLOR_S;
+	//NumberS:
+	//    value=INT;*/
 	//// ----- TERMINALS ----- //
+	//enum COMPARISON_OPERATOR_S:
+	//    EQUAL='=' | LESS_THAN='<' | GREATER_THAN='>' | NOT='!=';
+	public COMPARISON_OPERATOR_SElements getCOMPARISON_OPERATOR_SAccess() {
+		return eCOMPARISON_OPERATOR_S;
+	}
+	
+	public EnumRule getCOMPARISON_OPERATOR_SRule() {
+		return getCOMPARISON_OPERATOR_SAccess().getRule();
+	}
+	
+	//enum COLOR_S:
+	//    RED='red' | GREEN='green' | BLUE='blue';
+	public COLOR_SElements getCOLOR_SAccess() {
+		return eCOLOR_S;
+	}
+	
+	public EnumRule getCOLOR_SRule() {
+		return getCOLOR_SAccess().getRule();
+	}
+	
+	//enum DISK_SLOT_STATES_S:
+	//    FREE='free' | IN_PROGRESS='in_progress' | COMPLETE='complete';
+	public DISK_SLOT_STATES_SElements getDISK_SLOT_STATES_SAccess() {
+		return eDISK_SLOT_STATES_S;
+	}
+	
+	public EnumRule getDISK_SLOT_STATES_SRule() {
+		return getDISK_SLOT_STATES_SAccess().getRule();
+	}
+	
+	//enum DISK_STATES_S:
+	//    FULL='full' | EMPTY='empty';
+	public DISK_STATES_SElements getDISK_STATES_SAccess() {
+		return eDISK_STATES_S;
+	}
+	
+	public EnumRule getDISK_STATES_SRule() {
+		return getDISK_STATES_SAccess().getRule();
+	}
+	
 	//terminal BEGIN:
 	//    'synthetic:BEGIN';
 	public TerminalRule getBEGINRule() {

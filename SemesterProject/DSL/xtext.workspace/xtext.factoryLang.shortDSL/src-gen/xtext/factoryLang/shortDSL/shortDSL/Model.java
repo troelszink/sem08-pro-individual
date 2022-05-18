@@ -28,12 +28,12 @@ public interface Model extends EObject
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Type</em>' containment reference.
-   * @see #setType(DSLType)
+   * @see #setType(EObject)
    * @see xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage#getModel_Type()
    * @model containment="true"
    * @generated
    */
-  DSLType getType();
+  EObject getType();
 
   /**
    * Sets the value of the '{@link xtext.factoryLang.shortDSL.shortDSL.Model#getType <em>Type</em>}' containment reference.
@@ -43,6 +43,6 @@ public interface Model extends EObject
    * @see #getType()
    * @generated
    */
-  void setType(DSLType value);
+  void setType(EObject value);
 
 } // Model

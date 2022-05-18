@@ -5,25 +5,44 @@ package xtext.factoryLang.shortDSL.shortDSL.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
-import xtext.factoryLang.shortDSL.shortDSL.CameraColor_Short;
-import xtext.factoryLang.shortDSL.shortDSL.Camera_Short;
-import xtext.factoryLang.shortDSL.shortDSL.Configuration_Short;
-import xtext.factoryLang.shortDSL.shortDSL.CranePosition_Short;
-import xtext.factoryLang.shortDSL.shortDSL.Crane_Short;
+import xtext.factoryLang.shortDSL.shortDSL.Action;
+import xtext.factoryLang.shortDSL.shortDSL.ActionS;
+import xtext.factoryLang.shortDSL.shortDSL.Camera;
+import xtext.factoryLang.shortDSL.shortDSL.CameraColor;
+import xtext.factoryLang.shortDSL.shortDSL.ConditionDevice;
+import xtext.factoryLang.shortDSL.shortDSL.ConditionS;
+import xtext.factoryLang.shortDSL.shortDSL.ConditionVariable;
+import xtext.factoryLang.shortDSL.shortDSL.ConfigurationS;
+import xtext.factoryLang.shortDSL.shortDSL.ConfigurationValueS;
+import xtext.factoryLang.shortDSL.shortDSL.Crane;
+import xtext.factoryLang.shortDSL.shortDSL.CraneZone;
 import xtext.factoryLang.shortDSL.shortDSL.DSLShort;
 import xtext.factoryLang.shortDSL.shortDSL.DSLType;
-import xtext.factoryLang.shortDSL.shortDSL.DeviceHandling_Short;
-import xtext.factoryLang.shortDSL.shortDSL.Device_Short;
-import xtext.factoryLang.shortDSL.shortDSL.DiskZone_Short;
-import xtext.factoryLang.shortDSL.shortDSL.Disk_Short;
+import xtext.factoryLang.shortDSL.shortDSL.DSL_Long;
+import xtext.factoryLang.shortDSL.shortDSL.DeviceS;
+import xtext.factoryLang.shortDSL.shortDSL.Disk;
+import xtext.factoryLang.shortDSL.shortDSL.DiskHandlingS;
+import xtext.factoryLang.shortDSL.shortDSL.DiskZone;
+import xtext.factoryLang.shortDSL.shortDSL.GlobalVariable;
+import xtext.factoryLang.shortDSL.shortDSL.LocalVariable;
+import xtext.factoryLang.shortDSL.shortDSL.Loop;
+import xtext.factoryLang.shortDSL.shortDSL.MarkS;
+import xtext.factoryLang.shortDSL.shortDSL.MarkValue;
+import xtext.factoryLang.shortDSL.shortDSL.MarkVariable;
 import xtext.factoryLang.shortDSL.shortDSL.Model;
+import xtext.factoryLang.shortDSL.shortDSL.MoveCrane;
+import xtext.factoryLang.shortDSL.shortDSL.MoveDisk;
 import xtext.factoryLang.shortDSL.shortDSL.ShortDSLFactory;
 import xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage;
+import xtext.factoryLang.shortDSL.shortDSL.StatementS;
+import xtext.factoryLang.shortDSL.shortDSL.Value;
+import xtext.factoryLang.shortDSL.shortDSL.Variable;
 
 /**
  * <!-- begin-user-doc -->
@@ -45,6 +64,13 @@ public class ShortDSLPackageImpl extends EPackageImpl implements ShortDSLPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass dsL_LongEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EClass dslTypeEClass = null;
 
   /**
@@ -52,63 +78,70 @@ public class ShortDSLPackageImpl extends EPackageImpl implements ShortDSLPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass configuration_ShortEClass = null;
+  private EClass configurationSEClass = null;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass device_ShortEClass = null;
+  private EClass deviceSEClass = null;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass crane_ShortEClass = null;
+  private EClass configurationValueSEClass = null;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass cranePosition_ShortEClass = null;
+  private EClass diskHandlingSEClass = null;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass disk_ShortEClass = null;
+  private EClass statementSEClass = null;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass diskZone_ShortEClass = null;
+  private EClass actionSEClass = null;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass camera_ShortEClass = null;
+  private EClass conditionSEClass = null;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass cameraColor_ShortEClass = null;
+  private EClass markSEClass = null;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass deviceHandling_ShortEClass = null;
+  private EClass variableEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass valueEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -116,6 +149,146 @@ public class ShortDSLPackageImpl extends EPackageImpl implements ShortDSLPackage
    * @generated
    */
   private EClass dslShortEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass craneEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass craneZoneEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass diskEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass diskZoneEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass cameraEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass cameraColorEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass loopEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass moveDiskEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass moveCraneEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass actionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass conditionVariableEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass conditionDeviceEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass markVariableEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass markValueEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass localVariableEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass globalVariableEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EEnum comparisoN_OPERATOR_SEEnum = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EEnum coloR_SEEnum = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EEnum disK_SLOT_STATES_SEEnum = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EEnum disK_STATES_SEEnum = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -208,6 +381,28 @@ public class ShortDSLPackageImpl extends EPackageImpl implements ShortDSLPackage
    * @generated
    */
   @Override
+  public EClass getDSL_Long()
+  {
+    return dsL_LongEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getDSL_Long_Name()
+  {
+    return (EAttribute)dsL_LongEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EClass getDSLType()
   {
     return dslTypeEClass;
@@ -219,9 +414,9 @@ public class ShortDSLPackageImpl extends EPackageImpl implements ShortDSLPackage
    * @generated
    */
   @Override
-  public EClass getConfiguration_Short()
+  public EClass getConfigurationS()
   {
-    return configuration_ShortEClass;
+    return configurationSEClass;
   }
 
   /**
@@ -230,9 +425,9 @@ public class ShortDSLPackageImpl extends EPackageImpl implements ShortDSLPackage
    * @generated
    */
   @Override
-  public EReference getConfiguration_Short_Devices()
+  public EReference getConfigurationS_Devices()
   {
-    return (EReference)configuration_ShortEClass.getEStructuralFeatures().get(0);
+    return (EReference)configurationSEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -241,9 +436,9 @@ public class ShortDSLPackageImpl extends EPackageImpl implements ShortDSLPackage
    * @generated
    */
   @Override
-  public EClass getDevice_Short()
+  public EClass getDeviceS()
   {
-    return device_ShortEClass;
+    return deviceSEClass;
   }
 
   /**
@@ -252,9 +447,9 @@ public class ShortDSLPackageImpl extends EPackageImpl implements ShortDSLPackage
    * @generated
    */
   @Override
-  public EAttribute getDevice_Short_Name()
+  public EAttribute getDeviceS_Name()
   {
-    return (EAttribute)device_ShortEClass.getEStructuralFeatures().get(0);
+    return (EAttribute)deviceSEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -263,9 +458,9 @@ public class ShortDSLPackageImpl extends EPackageImpl implements ShortDSLPackage
    * @generated
    */
   @Override
-  public EClass getCrane_Short()
+  public EClass getConfigurationValueS()
   {
-    return crane_ShortEClass;
+    return configurationValueSEClass;
   }
 
   /**
@@ -274,9 +469,9 @@ public class ShortDSLPackageImpl extends EPackageImpl implements ShortDSLPackage
    * @generated
    */
   @Override
-  public EReference getCrane_Short_Positions()
+  public EClass getDiskHandlingS()
   {
-    return (EReference)crane_ShortEClass.getEStructuralFeatures().get(0);
+    return diskHandlingSEClass;
   }
 
   /**
@@ -285,9 +480,9 @@ public class ShortDSLPackageImpl extends EPackageImpl implements ShortDSLPackage
    * @generated
    */
   @Override
-  public EClass getCranePosition_Short()
+  public EReference getDiskHandlingS_Disk()
   {
-    return cranePosition_ShortEClass;
+    return (EReference)diskHandlingSEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -296,9 +491,9 @@ public class ShortDSLPackageImpl extends EPackageImpl implements ShortDSLPackage
    * @generated
    */
   @Override
-  public EAttribute getCranePosition_Short_Name()
+  public EReference getDiskHandlingS_Statements()
   {
-    return (EAttribute)cranePosition_ShortEClass.getEStructuralFeatures().get(0);
+    return (EReference)diskHandlingSEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -307,9 +502,9 @@ public class ShortDSLPackageImpl extends EPackageImpl implements ShortDSLPackage
    * @generated
    */
   @Override
-  public EAttribute getCranePosition_Short_Position()
+  public EClass getStatementS()
   {
-    return (EAttribute)cranePosition_ShortEClass.getEStructuralFeatures().get(1);
+    return statementSEClass;
   }
 
   /**
@@ -318,9 +513,9 @@ public class ShortDSLPackageImpl extends EPackageImpl implements ShortDSLPackage
    * @generated
    */
   @Override
-  public EClass getDisk_Short()
+  public EClass getActionS()
   {
-    return disk_ShortEClass;
+    return actionSEClass;
   }
 
   /**
@@ -329,9 +524,9 @@ public class ShortDSLPackageImpl extends EPackageImpl implements ShortDSLPackage
    * @generated
    */
   @Override
-  public EAttribute getDisk_Short_NSlots()
+  public EClass getConditionS()
   {
-    return (EAttribute)disk_ShortEClass.getEStructuralFeatures().get(0);
+    return conditionSEClass;
   }
 
   /**
@@ -340,9 +535,9 @@ public class ShortDSLPackageImpl extends EPackageImpl implements ShortDSLPackage
    * @generated
    */
   @Override
-  public EReference getDisk_Short_Zones()
+  public EAttribute getConditionS_ComparisonOperator()
   {
-    return (EReference)disk_ShortEClass.getEStructuralFeatures().get(1);
+    return (EAttribute)conditionSEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -351,9 +546,9 @@ public class ShortDSLPackageImpl extends EPackageImpl implements ShortDSLPackage
    * @generated
    */
   @Override
-  public EClass getDiskZone_Short()
+  public EReference getConditionS_Value()
   {
-    return diskZone_ShortEClass;
+    return (EReference)conditionSEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -362,9 +557,9 @@ public class ShortDSLPackageImpl extends EPackageImpl implements ShortDSLPackage
    * @generated
    */
   @Override
-  public EAttribute getDiskZone_Short_Name()
+  public EReference getConditionS_Statements()
   {
-    return (EAttribute)diskZone_ShortEClass.getEStructuralFeatures().get(0);
+    return (EReference)conditionSEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -373,9 +568,9 @@ public class ShortDSLPackageImpl extends EPackageImpl implements ShortDSLPackage
    * @generated
    */
   @Override
-  public EAttribute getDiskZone_Short_Slot()
+  public EClass getMarkS()
   {
-    return (EAttribute)diskZone_ShortEClass.getEStructuralFeatures().get(1);
+    return markSEClass;
   }
 
   /**
@@ -384,9 +579,9 @@ public class ShortDSLPackageImpl extends EPackageImpl implements ShortDSLPackage
    * @generated
    */
   @Override
-  public EClass getCamera_Short()
+  public EAttribute getMarkS_Time()
   {
-    return camera_ShortEClass;
+    return (EAttribute)markSEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -395,9 +590,9 @@ public class ShortDSLPackageImpl extends EPackageImpl implements ShortDSLPackage
    * @generated
    */
   @Override
-  public EReference getCamera_Short_Colors()
+  public EClass getVariable()
   {
-    return (EReference)camera_ShortEClass.getEStructuralFeatures().get(0);
+    return variableEClass;
   }
 
   /**
@@ -406,9 +601,9 @@ public class ShortDSLPackageImpl extends EPackageImpl implements ShortDSLPackage
    * @generated
    */
   @Override
-  public EClass getCameraColor_Short()
+  public EAttribute getVariable_Name()
   {
-    return cameraColor_ShortEClass;
+    return (EAttribute)variableEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -417,9 +612,9 @@ public class ShortDSLPackageImpl extends EPackageImpl implements ShortDSLPackage
    * @generated
    */
   @Override
-  public EAttribute getCameraColor_Short_Name()
+  public EClass getValue()
   {
-    return (EAttribute)cameraColor_ShortEClass.getEStructuralFeatures().get(0);
+    return valueEClass;
   }
 
   /**
@@ -428,9 +623,9 @@ public class ShortDSLPackageImpl extends EPackageImpl implements ShortDSLPackage
    * @generated
    */
   @Override
-  public EClass getDeviceHandling_Short()
+  public EAttribute getValue_ValueDiskSlotState()
   {
-    return deviceHandling_ShortEClass;
+    return (EAttribute)valueEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -439,9 +634,42 @@ public class ShortDSLPackageImpl extends EPackageImpl implements ShortDSLPackage
    * @generated
    */
   @Override
-  public EAttribute getDeviceHandling_Short_Name()
+  public EAttribute getValue_ValueDiskState()
   {
-    return (EAttribute)deviceHandling_ShortEClass.getEStructuralFeatures().get(0);
+    return (EAttribute)valueEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getValue_ValueColor()
+  {
+    return (EAttribute)valueEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getValue_ValueInt()
+  {
+    return (EAttribute)valueEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getValue_Variable()
+  {
+    return (EReference)valueEClass.getEStructuralFeatures().get(4);
   }
 
   /**
@@ -472,9 +700,493 @@ public class ShortDSLPackageImpl extends EPackageImpl implements ShortDSLPackage
    * @generated
    */
   @Override
-  public EReference getDSLShort_DeviceHandlings()
+  public EReference getDSLShort_DiskHandlings()
   {
     return (EReference)dslShortEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getCrane()
+  {
+    return craneEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getCrane_Positions()
+  {
+    return (EReference)craneEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getCraneZone()
+  {
+    return craneZoneEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getCraneZone_Name()
+  {
+    return (EAttribute)craneZoneEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getCraneZone_ZoneValue()
+  {
+    return (EAttribute)craneZoneEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getDisk()
+  {
+    return diskEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getDisk_NSlots()
+  {
+    return (EAttribute)diskEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getDisk_Zones()
+  {
+    return (EReference)diskEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getDiskZone()
+  {
+    return diskZoneEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getDiskZone_Name()
+  {
+    return (EAttribute)diskZoneEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getDiskZone_Slot()
+  {
+    return (EAttribute)diskZoneEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getCamera()
+  {
+    return cameraEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getCamera_Colors()
+  {
+    return (EReference)cameraEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getCameraColor()
+  {
+    return cameraColorEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getCameraColor_Color()
+  {
+    return (EAttribute)cameraColorEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getLoop()
+  {
+    return loopEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getLoop_Variable()
+  {
+    return (EReference)loopEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getLoop_ComparisonOperator()
+  {
+    return (EAttribute)loopEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getLoop_SlotState()
+  {
+    return (EAttribute)loopEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getLoop_Statements()
+  {
+    return (EReference)loopEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getMoveDisk()
+  {
+    return moveDiskEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getMoveDisk_Slot()
+  {
+    return (EReference)moveDiskEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getMoveDisk_Zone()
+  {
+    return (EReference)moveDiskEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getMoveCrane()
+  {
+    return moveCraneEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getMoveCrane_Crane()
+  {
+    return (EReference)moveCraneEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getMoveCrane_Action()
+  {
+    return (EReference)moveCraneEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getMoveCrane_Zone()
+  {
+    return (EReference)moveCraneEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getAction()
+  {
+    return actionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getConditionVariable()
+  {
+    return conditionVariableEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getConditionVariable_Variable()
+  {
+    return (EReference)conditionVariableEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getConditionDevice()
+  {
+    return conditionDeviceEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getConditionDevice_Device()
+  {
+    return (EReference)conditionDeviceEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getMarkVariable()
+  {
+    return markVariableEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getMarkVariable_Device()
+  {
+    return (EReference)markVariableEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getMarkVariable_Variable()
+  {
+    return (EReference)markVariableEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getMarkValue()
+  {
+    return markValueEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getMarkValue_Variable()
+  {
+    return (EReference)markValueEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getMarkValue_Value()
+  {
+    return (EReference)markValueEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getLocalVariable()
+  {
+    return localVariableEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getGlobalVariable()
+  {
+    return globalVariableEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EEnum getCOMPARISON_OPERATOR_S()
+  {
+    return comparisoN_OPERATOR_SEEnum;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EEnum getCOLOR_S()
+  {
+    return coloR_SEEnum;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EEnum getDISK_SLOT_STATES_S()
+  {
+    return disK_SLOT_STATES_SEEnum;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EEnum getDISK_STATES_S()
+  {
+    return disK_STATES_SEEnum;
   }
 
   /**
@@ -511,41 +1223,110 @@ public class ShortDSLPackageImpl extends EPackageImpl implements ShortDSLPackage
     modelEClass = createEClass(MODEL);
     createEReference(modelEClass, MODEL__TYPE);
 
+    dsL_LongEClass = createEClass(DSL_LONG);
+    createEAttribute(dsL_LongEClass, DSL_LONG__NAME);
+
     dslTypeEClass = createEClass(DSL_TYPE);
 
-    configuration_ShortEClass = createEClass(CONFIGURATION_SHORT);
-    createEReference(configuration_ShortEClass, CONFIGURATION_SHORT__DEVICES);
+    configurationSEClass = createEClass(CONFIGURATION_S);
+    createEReference(configurationSEClass, CONFIGURATION_S__DEVICES);
 
-    device_ShortEClass = createEClass(DEVICE_SHORT);
-    createEAttribute(device_ShortEClass, DEVICE_SHORT__NAME);
+    deviceSEClass = createEClass(DEVICE_S);
+    createEAttribute(deviceSEClass, DEVICE_S__NAME);
 
-    crane_ShortEClass = createEClass(CRANE_SHORT);
-    createEReference(crane_ShortEClass, CRANE_SHORT__POSITIONS);
+    configurationValueSEClass = createEClass(CONFIGURATION_VALUE_S);
 
-    cranePosition_ShortEClass = createEClass(CRANE_POSITION_SHORT);
-    createEAttribute(cranePosition_ShortEClass, CRANE_POSITION_SHORT__NAME);
-    createEAttribute(cranePosition_ShortEClass, CRANE_POSITION_SHORT__POSITION);
+    diskHandlingSEClass = createEClass(DISK_HANDLING_S);
+    createEReference(diskHandlingSEClass, DISK_HANDLING_S__DISK);
+    createEReference(diskHandlingSEClass, DISK_HANDLING_S__STATEMENTS);
 
-    disk_ShortEClass = createEClass(DISK_SHORT);
-    createEAttribute(disk_ShortEClass, DISK_SHORT__NSLOTS);
-    createEReference(disk_ShortEClass, DISK_SHORT__ZONES);
+    statementSEClass = createEClass(STATEMENT_S);
 
-    diskZone_ShortEClass = createEClass(DISK_ZONE_SHORT);
-    createEAttribute(diskZone_ShortEClass, DISK_ZONE_SHORT__NAME);
-    createEAttribute(diskZone_ShortEClass, DISK_ZONE_SHORT__SLOT);
+    actionSEClass = createEClass(ACTION_S);
 
-    camera_ShortEClass = createEClass(CAMERA_SHORT);
-    createEReference(camera_ShortEClass, CAMERA_SHORT__COLORS);
+    conditionSEClass = createEClass(CONDITION_S);
+    createEAttribute(conditionSEClass, CONDITION_S__COMPARISON_OPERATOR);
+    createEReference(conditionSEClass, CONDITION_S__VALUE);
+    createEReference(conditionSEClass, CONDITION_S__STATEMENTS);
 
-    cameraColor_ShortEClass = createEClass(CAMERA_COLOR_SHORT);
-    createEAttribute(cameraColor_ShortEClass, CAMERA_COLOR_SHORT__NAME);
+    markSEClass = createEClass(MARK_S);
+    createEAttribute(markSEClass, MARK_S__TIME);
 
-    deviceHandling_ShortEClass = createEClass(DEVICE_HANDLING_SHORT);
-    createEAttribute(deviceHandling_ShortEClass, DEVICE_HANDLING_SHORT__NAME);
+    variableEClass = createEClass(VARIABLE);
+    createEAttribute(variableEClass, VARIABLE__NAME);
+
+    valueEClass = createEClass(VALUE);
+    createEAttribute(valueEClass, VALUE__VALUE_DISK_SLOT_STATE);
+    createEAttribute(valueEClass, VALUE__VALUE_DISK_STATE);
+    createEAttribute(valueEClass, VALUE__VALUE_COLOR);
+    createEAttribute(valueEClass, VALUE__VALUE_INT);
+    createEReference(valueEClass, VALUE__VARIABLE);
 
     dslShortEClass = createEClass(DSL_SHORT);
     createEReference(dslShortEClass, DSL_SHORT__CONFIGURATION);
-    createEReference(dslShortEClass, DSL_SHORT__DEVICE_HANDLINGS);
+    createEReference(dslShortEClass, DSL_SHORT__DISK_HANDLINGS);
+
+    craneEClass = createEClass(CRANE);
+    createEReference(craneEClass, CRANE__POSITIONS);
+
+    craneZoneEClass = createEClass(CRANE_ZONE);
+    createEAttribute(craneZoneEClass, CRANE_ZONE__NAME);
+    createEAttribute(craneZoneEClass, CRANE_ZONE__ZONE_VALUE);
+
+    diskEClass = createEClass(DISK);
+    createEAttribute(diskEClass, DISK__NSLOTS);
+    createEReference(diskEClass, DISK__ZONES);
+
+    diskZoneEClass = createEClass(DISK_ZONE);
+    createEAttribute(diskZoneEClass, DISK_ZONE__NAME);
+    createEAttribute(diskZoneEClass, DISK_ZONE__SLOT);
+
+    cameraEClass = createEClass(CAMERA);
+    createEReference(cameraEClass, CAMERA__COLORS);
+
+    cameraColorEClass = createEClass(CAMERA_COLOR);
+    createEAttribute(cameraColorEClass, CAMERA_COLOR__COLOR);
+
+    loopEClass = createEClass(LOOP);
+    createEReference(loopEClass, LOOP__VARIABLE);
+    createEAttribute(loopEClass, LOOP__COMPARISON_OPERATOR);
+    createEAttribute(loopEClass, LOOP__SLOT_STATE);
+    createEReference(loopEClass, LOOP__STATEMENTS);
+
+    moveDiskEClass = createEClass(MOVE_DISK);
+    createEReference(moveDiskEClass, MOVE_DISK__SLOT);
+    createEReference(moveDiskEClass, MOVE_DISK__ZONE);
+
+    moveCraneEClass = createEClass(MOVE_CRANE);
+    createEReference(moveCraneEClass, MOVE_CRANE__CRANE);
+    createEReference(moveCraneEClass, MOVE_CRANE__ACTION);
+    createEReference(moveCraneEClass, MOVE_CRANE__ZONE);
+
+    actionEClass = createEClass(ACTION);
+
+    conditionVariableEClass = createEClass(CONDITION_VARIABLE);
+    createEReference(conditionVariableEClass, CONDITION_VARIABLE__VARIABLE);
+
+    conditionDeviceEClass = createEClass(CONDITION_DEVICE);
+    createEReference(conditionDeviceEClass, CONDITION_DEVICE__DEVICE);
+
+    markVariableEClass = createEClass(MARK_VARIABLE);
+    createEReference(markVariableEClass, MARK_VARIABLE__DEVICE);
+    createEReference(markVariableEClass, MARK_VARIABLE__VARIABLE);
+
+    markValueEClass = createEClass(MARK_VALUE);
+    createEReference(markValueEClass, MARK_VALUE__VARIABLE);
+    createEReference(markValueEClass, MARK_VALUE__VALUE);
+
+    localVariableEClass = createEClass(LOCAL_VARIABLE);
+
+    globalVariableEClass = createEClass(GLOBAL_VARIABLE);
+
+    // Create enums
+    comparisoN_OPERATOR_SEEnum = createEEnum(COMPARISON_OPERATOR_S);
+    coloR_SEEnum = createEEnum(COLOR_S);
+    disK_SLOT_STATES_SEEnum = createEEnum(DISK_SLOT_STATES_S);
+    disK_STATES_SEEnum = createEEnum(DISK_STATES_S);
   }
 
   /**
@@ -577,50 +1358,150 @@ public class ShortDSLPackageImpl extends EPackageImpl implements ShortDSLPackage
     // Set bounds for type parameters
 
     // Add supertypes to classes
-    crane_ShortEClass.getESuperTypes().add(this.getDevice_Short());
-    disk_ShortEClass.getESuperTypes().add(this.getDevice_Short());
-    camera_ShortEClass.getESuperTypes().add(this.getDevice_Short());
+    actionSEClass.getESuperTypes().add(this.getStatementS());
+    conditionSEClass.getESuperTypes().add(this.getStatementS());
+    markSEClass.getESuperTypes().add(this.getStatementS());
     dslShortEClass.getESuperTypes().add(this.getDSLType());
+    craneEClass.getESuperTypes().add(this.getDeviceS());
+    craneZoneEClass.getESuperTypes().add(this.getConfigurationValueS());
+    diskEClass.getESuperTypes().add(this.getDeviceS());
+    diskZoneEClass.getESuperTypes().add(this.getConfigurationValueS());
+    cameraEClass.getESuperTypes().add(this.getDeviceS());
+    cameraColorEClass.getESuperTypes().add(this.getConfigurationValueS());
+    loopEClass.getESuperTypes().add(this.getStatementS());
+    moveDiskEClass.getESuperTypes().add(this.getStatementS());
+    moveCraneEClass.getESuperTypes().add(this.getStatementS());
+    actionEClass.getESuperTypes().add(this.getActionS());
+    conditionVariableEClass.getESuperTypes().add(this.getConditionS());
+    conditionDeviceEClass.getESuperTypes().add(this.getConditionS());
+    markVariableEClass.getESuperTypes().add(this.getMarkS());
+    markValueEClass.getESuperTypes().add(this.getMarkS());
+    localVariableEClass.getESuperTypes().add(this.getVariable());
+    globalVariableEClass.getESuperTypes().add(this.getVariable());
 
     // Initialize classes and features; add operations and parameters
     initEClass(modelEClass, Model.class, "Model", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getModel_Type(), this.getDSLType(), null, "type", null, 0, 1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getModel_Type(), ecorePackage.getEObject(), null, "type", null, 0, 1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(dsL_LongEClass, DSL_Long.class, "DSL_Long", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getDSL_Long_Name(), ecorePackage.getEString(), "name", null, 0, 1, DSL_Long.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(dslTypeEClass, DSLType.class, "DSLType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-    initEClass(configuration_ShortEClass, Configuration_Short.class, "Configuration_Short", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getConfiguration_Short_Devices(), this.getDevice_Short(), null, "devices", null, 0, -1, Configuration_Short.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(configurationSEClass, ConfigurationS.class, "ConfigurationS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getConfigurationS_Devices(), this.getDeviceS(), null, "devices", null, 0, -1, ConfigurationS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(device_ShortEClass, Device_Short.class, "Device_Short", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getDevice_Short_Name(), ecorePackage.getEString(), "name", null, 0, 1, Device_Short.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(deviceSEClass, DeviceS.class, "DeviceS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getDeviceS_Name(), ecorePackage.getEString(), "name", null, 0, 1, DeviceS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(crane_ShortEClass, Crane_Short.class, "Crane_Short", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getCrane_Short_Positions(), this.getCranePosition_Short(), null, "positions", null, 0, -1, Crane_Short.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(configurationValueSEClass, ConfigurationValueS.class, "ConfigurationValueS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-    initEClass(cranePosition_ShortEClass, CranePosition_Short.class, "CranePosition_Short", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getCranePosition_Short_Name(), ecorePackage.getEString(), "name", null, 0, 1, CranePosition_Short.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getCranePosition_Short_Position(), ecorePackage.getEInt(), "position", null, 0, 1, CranePosition_Short.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(diskHandlingSEClass, DiskHandlingS.class, "DiskHandlingS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getDiskHandlingS_Disk(), this.getDisk(), null, "disk", null, 0, 1, DiskHandlingS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getDiskHandlingS_Statements(), this.getStatementS(), null, "statements", null, 0, -1, DiskHandlingS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(disk_ShortEClass, Disk_Short.class, "Disk_Short", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getDisk_Short_NSlots(), ecorePackage.getEInt(), "nSlots", null, 0, 1, Disk_Short.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getDisk_Short_Zones(), this.getDiskZone_Short(), null, "zones", null, 0, -1, Disk_Short.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(statementSEClass, StatementS.class, "StatementS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-    initEClass(diskZone_ShortEClass, DiskZone_Short.class, "DiskZone_Short", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getDiskZone_Short_Name(), ecorePackage.getEString(), "name", null, 0, 1, DiskZone_Short.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getDiskZone_Short_Slot(), ecorePackage.getEInt(), "slot", null, 0, 1, DiskZone_Short.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(actionSEClass, ActionS.class, "ActionS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-    initEClass(camera_ShortEClass, Camera_Short.class, "Camera_Short", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getCamera_Short_Colors(), this.getCameraColor_Short(), null, "colors", null, 0, -1, Camera_Short.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(conditionSEClass, ConditionS.class, "ConditionS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getConditionS_ComparisonOperator(), this.getCOMPARISON_OPERATOR_S(), "comparisonOperator", null, 0, 1, ConditionS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getConditionS_Value(), this.getValue(), null, "value", null, 0, 1, ConditionS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getConditionS_Statements(), this.getStatementS(), null, "statements", null, 0, -1, ConditionS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(cameraColor_ShortEClass, CameraColor_Short.class, "CameraColor_Short", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getCameraColor_Short_Name(), ecorePackage.getEString(), "name", null, 0, 1, CameraColor_Short.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(markSEClass, MarkS.class, "MarkS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getMarkS_Time(), ecorePackage.getEInt(), "time", null, 0, 1, MarkS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(deviceHandling_ShortEClass, DeviceHandling_Short.class, "DeviceHandling_Short", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getDeviceHandling_Short_Name(), ecorePackage.getEString(), "name", null, 0, 1, DeviceHandling_Short.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(variableEClass, Variable.class, "Variable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getVariable_Name(), ecorePackage.getEString(), "name", null, 0, 1, Variable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(valueEClass, Value.class, "Value", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getValue_ValueDiskSlotState(), this.getDISK_SLOT_STATES_S(), "valueDiskSlotState", null, 0, 1, Value.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getValue_ValueDiskState(), this.getDISK_STATES_S(), "valueDiskState", null, 0, 1, Value.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getValue_ValueColor(), this.getCOLOR_S(), "valueColor", null, 0, 1, Value.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getValue_ValueInt(), ecorePackage.getEInt(), "valueInt", null, 0, 1, Value.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getValue_Variable(), this.getVariable(), null, "variable", null, 0, 1, Value.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(dslShortEClass, DSLShort.class, "DSLShort", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getDSLShort_Configuration(), this.getConfiguration_Short(), null, "configuration", null, 0, 1, DSLShort.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getDSLShort_DeviceHandlings(), this.getDeviceHandling_Short(), null, "deviceHandlings", null, 0, -1, DSLShort.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getDSLShort_Configuration(), this.getConfigurationS(), null, "configuration", null, 0, 1, DSLShort.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getDSLShort_DiskHandlings(), this.getDiskHandlingS(), null, "diskHandlings", null, 0, -1, DSLShort.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(craneEClass, Crane.class, "Crane", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getCrane_Positions(), this.getConfigurationValueS(), null, "positions", null, 0, -1, Crane.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(craneZoneEClass, CraneZone.class, "CraneZone", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getCraneZone_Name(), ecorePackage.getEString(), "name", null, 0, 1, CraneZone.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getCraneZone_ZoneValue(), ecorePackage.getEInt(), "zoneValue", null, 0, 1, CraneZone.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(diskEClass, Disk.class, "Disk", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getDisk_NSlots(), ecorePackage.getEInt(), "nSlots", null, 0, 1, Disk.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getDisk_Zones(), this.getConfigurationValueS(), null, "zones", null, 0, -1, Disk.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(diskZoneEClass, DiskZone.class, "DiskZone", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getDiskZone_Name(), ecorePackage.getEString(), "name", null, 0, 1, DiskZone.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getDiskZone_Slot(), ecorePackage.getEInt(), "slot", null, 0, 1, DiskZone.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(cameraEClass, Camera.class, "Camera", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getCamera_Colors(), this.getConfigurationValueS(), null, "colors", null, 0, -1, Camera.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(cameraColorEClass, CameraColor.class, "CameraColor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getCameraColor_Color(), this.getCOLOR_S(), "color", null, 0, 1, CameraColor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(loopEClass, Loop.class, "Loop", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getLoop_Variable(), this.getVariable(), null, "variable", null, 0, 1, Loop.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getLoop_ComparisonOperator(), this.getCOMPARISON_OPERATOR_S(), "comparisonOperator", null, 0, 1, Loop.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getLoop_SlotState(), this.getDISK_SLOT_STATES_S(), "slotState", null, 0, 1, Loop.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getLoop_Statements(), this.getStatementS(), null, "statements", null, 0, -1, Loop.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(moveDiskEClass, MoveDisk.class, "MoveDisk", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getMoveDisk_Slot(), this.getVariable(), null, "slot", null, 0, 1, MoveDisk.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getMoveDisk_Zone(), this.getDiskZone(), null, "zone", null, 0, 1, MoveDisk.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(moveCraneEClass, MoveCrane.class, "MoveCrane", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getMoveCrane_Crane(), this.getCrane(), null, "crane", null, 0, 1, MoveCrane.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getMoveCrane_Action(), this.getActionS(), null, "action", null, 0, 1, MoveCrane.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getMoveCrane_Zone(), this.getCraneZone(), null, "zone", null, 0, 1, MoveCrane.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(actionEClass, Action.class, "Action", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(conditionVariableEClass, ConditionVariable.class, "ConditionVariable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getConditionVariable_Variable(), this.getVariable(), null, "variable", null, 0, 1, ConditionVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(conditionDeviceEClass, ConditionDevice.class, "ConditionDevice", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getConditionDevice_Device(), this.getDeviceS(), null, "device", null, 0, 1, ConditionDevice.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(markVariableEClass, MarkVariable.class, "MarkVariable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getMarkVariable_Device(), this.getDeviceS(), null, "device", null, 0, 1, MarkVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getMarkVariable_Variable(), this.getVariable(), null, "variable", null, 0, 1, MarkVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(markValueEClass, MarkValue.class, "MarkValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getMarkValue_Variable(), this.getLocalVariable(), null, "variable", null, 0, 1, MarkValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getMarkValue_Value(), this.getValue(), null, "value", null, 0, 1, MarkValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(localVariableEClass, LocalVariable.class, "LocalVariable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(globalVariableEClass, GlobalVariable.class, "GlobalVariable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    // Initialize enums and add enum literals
+    initEEnum(comparisoN_OPERATOR_SEEnum, xtext.factoryLang.shortDSL.shortDSL.COMPARISON_OPERATOR_S.class, "COMPARISON_OPERATOR_S");
+    addEEnumLiteral(comparisoN_OPERATOR_SEEnum, xtext.factoryLang.shortDSL.shortDSL.COMPARISON_OPERATOR_S.EQUAL);
+    addEEnumLiteral(comparisoN_OPERATOR_SEEnum, xtext.factoryLang.shortDSL.shortDSL.COMPARISON_OPERATOR_S.LESS_THAN);
+    addEEnumLiteral(comparisoN_OPERATOR_SEEnum, xtext.factoryLang.shortDSL.shortDSL.COMPARISON_OPERATOR_S.GREATER_THAN);
+    addEEnumLiteral(comparisoN_OPERATOR_SEEnum, xtext.factoryLang.shortDSL.shortDSL.COMPARISON_OPERATOR_S.NOT);
+
+    initEEnum(coloR_SEEnum, xtext.factoryLang.shortDSL.shortDSL.COLOR_S.class, "COLOR_S");
+    addEEnumLiteral(coloR_SEEnum, xtext.factoryLang.shortDSL.shortDSL.COLOR_S.RED);
+    addEEnumLiteral(coloR_SEEnum, xtext.factoryLang.shortDSL.shortDSL.COLOR_S.GREEN);
+    addEEnumLiteral(coloR_SEEnum, xtext.factoryLang.shortDSL.shortDSL.COLOR_S.BLUE);
+
+    initEEnum(disK_SLOT_STATES_SEEnum, xtext.factoryLang.shortDSL.shortDSL.DISK_SLOT_STATES_S.class, "DISK_SLOT_STATES_S");
+    addEEnumLiteral(disK_SLOT_STATES_SEEnum, xtext.factoryLang.shortDSL.shortDSL.DISK_SLOT_STATES_S.FREE);
+    addEEnumLiteral(disK_SLOT_STATES_SEEnum, xtext.factoryLang.shortDSL.shortDSL.DISK_SLOT_STATES_S.IN_PROGRESS);
+    addEEnumLiteral(disK_SLOT_STATES_SEEnum, xtext.factoryLang.shortDSL.shortDSL.DISK_SLOT_STATES_S.COMPLETE);
+
+    initEEnum(disK_STATES_SEEnum, xtext.factoryLang.shortDSL.shortDSL.DISK_STATES_S.class, "DISK_STATES_S");
+    addEEnumLiteral(disK_STATES_SEEnum, xtext.factoryLang.shortDSL.shortDSL.DISK_STATES_S.FULL);
+    addEEnumLiteral(disK_STATES_SEEnum, xtext.factoryLang.shortDSL.shortDSL.DISK_STATES_S.EMPTY);
 
     // Create resource
     createResource(eNS_URI);

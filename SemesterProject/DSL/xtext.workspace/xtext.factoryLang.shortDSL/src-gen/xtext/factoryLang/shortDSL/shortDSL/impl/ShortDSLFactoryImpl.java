@@ -4,6 +4,7 @@
 package xtext.factoryLang.shortDSL.shortDSL.impl;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
@@ -66,19 +67,83 @@ public class ShortDSLFactoryImpl extends EFactoryImpl implements ShortDSLFactory
     switch (eClass.getClassifierID())
     {
       case ShortDSLPackage.MODEL: return createModel();
+      case ShortDSLPackage.DSL_LONG: return createDSL_Long();
       case ShortDSLPackage.DSL_TYPE: return createDSLType();
-      case ShortDSLPackage.CONFIGURATION_SHORT: return createConfiguration_Short();
-      case ShortDSLPackage.DEVICE_SHORT: return createDevice_Short();
-      case ShortDSLPackage.CRANE_SHORT: return createCrane_Short();
-      case ShortDSLPackage.CRANE_POSITION_SHORT: return createCranePosition_Short();
-      case ShortDSLPackage.DISK_SHORT: return createDisk_Short();
-      case ShortDSLPackage.DISK_ZONE_SHORT: return createDiskZone_Short();
-      case ShortDSLPackage.CAMERA_SHORT: return createCamera_Short();
-      case ShortDSLPackage.CAMERA_COLOR_SHORT: return createCameraColor_Short();
-      case ShortDSLPackage.DEVICE_HANDLING_SHORT: return createDeviceHandling_Short();
+      case ShortDSLPackage.CONFIGURATION_S: return createConfigurationS();
+      case ShortDSLPackage.DEVICE_S: return createDeviceS();
+      case ShortDSLPackage.CONFIGURATION_VALUE_S: return createConfigurationValueS();
+      case ShortDSLPackage.DISK_HANDLING_S: return createDiskHandlingS();
+      case ShortDSLPackage.STATEMENT_S: return createStatementS();
+      case ShortDSLPackage.ACTION_S: return createActionS();
+      case ShortDSLPackage.CONDITION_S: return createConditionS();
+      case ShortDSLPackage.MARK_S: return createMarkS();
+      case ShortDSLPackage.VARIABLE: return createVariable();
+      case ShortDSLPackage.VALUE: return createValue();
       case ShortDSLPackage.DSL_SHORT: return createDSLShort();
+      case ShortDSLPackage.CRANE: return createCrane();
+      case ShortDSLPackage.CRANE_ZONE: return createCraneZone();
+      case ShortDSLPackage.DISK: return createDisk();
+      case ShortDSLPackage.DISK_ZONE: return createDiskZone();
+      case ShortDSLPackage.CAMERA: return createCamera();
+      case ShortDSLPackage.CAMERA_COLOR: return createCameraColor();
+      case ShortDSLPackage.LOOP: return createLoop();
+      case ShortDSLPackage.MOVE_DISK: return createMoveDisk();
+      case ShortDSLPackage.MOVE_CRANE: return createMoveCrane();
+      case ShortDSLPackage.ACTION: return createAction();
+      case ShortDSLPackage.CONDITION_VARIABLE: return createConditionVariable();
+      case ShortDSLPackage.CONDITION_DEVICE: return createConditionDevice();
+      case ShortDSLPackage.MARK_VARIABLE: return createMarkVariable();
+      case ShortDSLPackage.MARK_VALUE: return createMarkValue();
+      case ShortDSLPackage.LOCAL_VARIABLE: return createLocalVariable();
+      case ShortDSLPackage.GLOBAL_VARIABLE: return createGlobalVariable();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+    }
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Object createFromString(EDataType eDataType, String initialValue)
+  {
+    switch (eDataType.getClassifierID())
+    {
+      case ShortDSLPackage.COMPARISON_OPERATOR_S:
+        return createCOMPARISON_OPERATOR_SFromString(eDataType, initialValue);
+      case ShortDSLPackage.COLOR_S:
+        return createCOLOR_SFromString(eDataType, initialValue);
+      case ShortDSLPackage.DISK_SLOT_STATES_S:
+        return createDISK_SLOT_STATES_SFromString(eDataType, initialValue);
+      case ShortDSLPackage.DISK_STATES_S:
+        return createDISK_STATES_SFromString(eDataType, initialValue);
+      default:
+        throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+    }
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String convertToString(EDataType eDataType, Object instanceValue)
+  {
+    switch (eDataType.getClassifierID())
+    {
+      case ShortDSLPackage.COMPARISON_OPERATOR_S:
+        return convertCOMPARISON_OPERATOR_SToString(eDataType, instanceValue);
+      case ShortDSLPackage.COLOR_S:
+        return convertCOLOR_SToString(eDataType, instanceValue);
+      case ShortDSLPackage.DISK_SLOT_STATES_S:
+        return convertDISK_SLOT_STATES_SToString(eDataType, instanceValue);
+      case ShortDSLPackage.DISK_STATES_S:
+        return convertDISK_STATES_SToString(eDataType, instanceValue);
+      default:
+        throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     }
   }
 
@@ -100,6 +165,18 @@ public class ShortDSLFactoryImpl extends EFactoryImpl implements ShortDSLFactory
    * @generated
    */
   @Override
+  public DSL_Long createDSL_Long()
+  {
+    DSL_LongImpl dsL_Long = new DSL_LongImpl();
+    return dsL_Long;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public DSLType createDSLType()
   {
     DSLTypeImpl dslType = new DSLTypeImpl();
@@ -112,10 +189,10 @@ public class ShortDSLFactoryImpl extends EFactoryImpl implements ShortDSLFactory
    * @generated
    */
   @Override
-  public Configuration_Short createConfiguration_Short()
+  public ConfigurationS createConfigurationS()
   {
-    Configuration_ShortImpl configuration_Short = new Configuration_ShortImpl();
-    return configuration_Short;
+    ConfigurationSImpl configurationS = new ConfigurationSImpl();
+    return configurationS;
   }
 
   /**
@@ -124,10 +201,10 @@ public class ShortDSLFactoryImpl extends EFactoryImpl implements ShortDSLFactory
    * @generated
    */
   @Override
-  public Device_Short createDevice_Short()
+  public DeviceS createDeviceS()
   {
-    Device_ShortImpl device_Short = new Device_ShortImpl();
-    return device_Short;
+    DeviceSImpl deviceS = new DeviceSImpl();
+    return deviceS;
   }
 
   /**
@@ -136,10 +213,10 @@ public class ShortDSLFactoryImpl extends EFactoryImpl implements ShortDSLFactory
    * @generated
    */
   @Override
-  public Crane_Short createCrane_Short()
+  public ConfigurationValueS createConfigurationValueS()
   {
-    Crane_ShortImpl crane_Short = new Crane_ShortImpl();
-    return crane_Short;
+    ConfigurationValueSImpl configurationValueS = new ConfigurationValueSImpl();
+    return configurationValueS;
   }
 
   /**
@@ -148,10 +225,10 @@ public class ShortDSLFactoryImpl extends EFactoryImpl implements ShortDSLFactory
    * @generated
    */
   @Override
-  public CranePosition_Short createCranePosition_Short()
+  public DiskHandlingS createDiskHandlingS()
   {
-    CranePosition_ShortImpl cranePosition_Short = new CranePosition_ShortImpl();
-    return cranePosition_Short;
+    DiskHandlingSImpl diskHandlingS = new DiskHandlingSImpl();
+    return diskHandlingS;
   }
 
   /**
@@ -160,10 +237,10 @@ public class ShortDSLFactoryImpl extends EFactoryImpl implements ShortDSLFactory
    * @generated
    */
   @Override
-  public Disk_Short createDisk_Short()
+  public StatementS createStatementS()
   {
-    Disk_ShortImpl disk_Short = new Disk_ShortImpl();
-    return disk_Short;
+    StatementSImpl statementS = new StatementSImpl();
+    return statementS;
   }
 
   /**
@@ -172,10 +249,10 @@ public class ShortDSLFactoryImpl extends EFactoryImpl implements ShortDSLFactory
    * @generated
    */
   @Override
-  public DiskZone_Short createDiskZone_Short()
+  public ActionS createActionS()
   {
-    DiskZone_ShortImpl diskZone_Short = new DiskZone_ShortImpl();
-    return diskZone_Short;
+    ActionSImpl actionS = new ActionSImpl();
+    return actionS;
   }
 
   /**
@@ -184,10 +261,10 @@ public class ShortDSLFactoryImpl extends EFactoryImpl implements ShortDSLFactory
    * @generated
    */
   @Override
-  public Camera_Short createCamera_Short()
+  public ConditionS createConditionS()
   {
-    Camera_ShortImpl camera_Short = new Camera_ShortImpl();
-    return camera_Short;
+    ConditionSImpl conditionS = new ConditionSImpl();
+    return conditionS;
   }
 
   /**
@@ -196,10 +273,10 @@ public class ShortDSLFactoryImpl extends EFactoryImpl implements ShortDSLFactory
    * @generated
    */
   @Override
-  public CameraColor_Short createCameraColor_Short()
+  public MarkS createMarkS()
   {
-    CameraColor_ShortImpl cameraColor_Short = new CameraColor_ShortImpl();
-    return cameraColor_Short;
+    MarkSImpl markS = new MarkSImpl();
+    return markS;
   }
 
   /**
@@ -208,10 +285,22 @@ public class ShortDSLFactoryImpl extends EFactoryImpl implements ShortDSLFactory
    * @generated
    */
   @Override
-  public DeviceHandling_Short createDeviceHandling_Short()
+  public Variable createVariable()
   {
-    DeviceHandling_ShortImpl deviceHandling_Short = new DeviceHandling_ShortImpl();
-    return deviceHandling_Short;
+    VariableImpl variable = new VariableImpl();
+    return variable;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Value createValue()
+  {
+    ValueImpl value = new ValueImpl();
+    return value;
   }
 
   /**
@@ -224,6 +313,286 @@ public class ShortDSLFactoryImpl extends EFactoryImpl implements ShortDSLFactory
   {
     DSLShortImpl dslShort = new DSLShortImpl();
     return dslShort;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Crane createCrane()
+  {
+    CraneImpl crane = new CraneImpl();
+    return crane;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public CraneZone createCraneZone()
+  {
+    CraneZoneImpl craneZone = new CraneZoneImpl();
+    return craneZone;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Disk createDisk()
+  {
+    DiskImpl disk = new DiskImpl();
+    return disk;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public DiskZone createDiskZone()
+  {
+    DiskZoneImpl diskZone = new DiskZoneImpl();
+    return diskZone;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Camera createCamera()
+  {
+    CameraImpl camera = new CameraImpl();
+    return camera;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public CameraColor createCameraColor()
+  {
+    CameraColorImpl cameraColor = new CameraColorImpl();
+    return cameraColor;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Loop createLoop()
+  {
+    LoopImpl loop = new LoopImpl();
+    return loop;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public MoveDisk createMoveDisk()
+  {
+    MoveDiskImpl moveDisk = new MoveDiskImpl();
+    return moveDisk;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public MoveCrane createMoveCrane()
+  {
+    MoveCraneImpl moveCrane = new MoveCraneImpl();
+    return moveCrane;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Action createAction()
+  {
+    ActionImpl action = new ActionImpl();
+    return action;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public ConditionVariable createConditionVariable()
+  {
+    ConditionVariableImpl conditionVariable = new ConditionVariableImpl();
+    return conditionVariable;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public ConditionDevice createConditionDevice()
+  {
+    ConditionDeviceImpl conditionDevice = new ConditionDeviceImpl();
+    return conditionDevice;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public MarkVariable createMarkVariable()
+  {
+    MarkVariableImpl markVariable = new MarkVariableImpl();
+    return markVariable;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public MarkValue createMarkValue()
+  {
+    MarkValueImpl markValue = new MarkValueImpl();
+    return markValue;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public LocalVariable createLocalVariable()
+  {
+    LocalVariableImpl localVariable = new LocalVariableImpl();
+    return localVariable;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public GlobalVariable createGlobalVariable()
+  {
+    GlobalVariableImpl globalVariable = new GlobalVariableImpl();
+    return globalVariable;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public COMPARISON_OPERATOR_S createCOMPARISON_OPERATOR_SFromString(EDataType eDataType, String initialValue)
+  {
+    COMPARISON_OPERATOR_S result = COMPARISON_OPERATOR_S.get(initialValue);
+    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+    return result;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String convertCOMPARISON_OPERATOR_SToString(EDataType eDataType, Object instanceValue)
+  {
+    return instanceValue == null ? null : instanceValue.toString();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public COLOR_S createCOLOR_SFromString(EDataType eDataType, String initialValue)
+  {
+    COLOR_S result = COLOR_S.get(initialValue);
+    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+    return result;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String convertCOLOR_SToString(EDataType eDataType, Object instanceValue)
+  {
+    return instanceValue == null ? null : instanceValue.toString();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public DISK_SLOT_STATES_S createDISK_SLOT_STATES_SFromString(EDataType eDataType, String initialValue)
+  {
+    DISK_SLOT_STATES_S result = DISK_SLOT_STATES_S.get(initialValue);
+    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+    return result;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String convertDISK_SLOT_STATES_SToString(EDataType eDataType, Object instanceValue)
+  {
+    return instanceValue == null ? null : instanceValue.toString();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public DISK_STATES_S createDISK_STATES_SFromString(EDataType eDataType, String initialValue)
+  {
+    DISK_STATES_S result = DISK_STATES_S.get(initialValue);
+    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+    return result;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String convertDISK_STATES_SToString(EDataType eDataType, Object instanceValue)
+  {
+    return instanceValue == null ? null : instanceValue.toString();
   }
 
   /**

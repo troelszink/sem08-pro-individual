@@ -3,6 +3,24 @@
  */
 package xtext.factoryLang.shortDSL.scoping;
 
+import com.google.common.base.Objects;
+import java.util.Collections;
+import java.util.List;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.xtext.EcoreUtil2;
+import org.eclipse.xtext.scoping.IScope;
+import org.eclipse.xtext.scoping.Scopes;
+import org.eclipse.xtext.xbase.lib.CollectionLiterals;
+import org.eclipse.xtext.xbase.lib.Functions.Function1;
+import org.eclipse.xtext.xbase.lib.IterableExtensions;
+import org.eclipse.xtext.xbase.lib.ListExtensions;
+import xtext.factoryLang.shortDSL.shortDSL.Loop;
+import xtext.factoryLang.shortDSL.shortDSL.MarkVariable;
+import xtext.factoryLang.shortDSL.shortDSL.Model;
+import xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage;
+import xtext.factoryLang.shortDSL.shortDSL.Variable;
+
 /**
  * This class contains custom scoping description.
  * 
@@ -11,4 +29,34 @@ package xtext.factoryLang.shortDSL.scoping;
  */
 @SuppressWarnings("all")
 public class ShortDSLScopeProvider extends AbstractShortDSLScopeProvider {
+  @Override
+  public IScope getScope(final EObject context, final EReference reference) {
+    boolean _matched = false;
+    if (Objects.equal(reference, ShortDSLPackage.Literals.MOVE_DISK__ZONE)) {
+      _matched=true;
+      return this.getVariableScope(context, context);
+    }
+    return super.getScope(context, reference);
+  }
+  
+  public IScope getVariableScope(final EObject currentContext, final EObject context) {
+    final EObject parent = currentContext.eContainer();
+    final Loop nextForEach = EcoreUtil2.<Loop>getContainerOfType(parent, Loop.class);
+    if ((nextForEach != null)) {
+      Variable _variable = nextForEach.getVariable();
+      return Scopes.scopeFor(Collections.<EObject>unmodifiableList(CollectionLiterals.<EObject>newArrayList(_variable)), this.getVariableScope(nextForEach, context));
+    }
+    return this.getGlobalRefValueScope(context);
+  }
+  
+  public IScope getGlobalRefValueScope(final EObject context) {
+    EObject _rootContainer = EcoreUtil2.getRootContainer(context);
+    final Model root = ((Model) _rootContainer);
+    final EObject dsl = root.getType();
+    final Function1<MarkVariable, Variable> _function = (MarkVariable it) -> {
+      return it.getVariable();
+    };
+    final List<Variable> cameraScanOperations = IterableExtensions.<Variable>toList(ListExtensions.<MarkVariable, Variable>map(EcoreUtil2.<MarkVariable>getAllContentsOfType(dsl, MarkVariable.class), _function));
+    return Scopes.scopeFor(cameraScanOperations);
+  }
 }
