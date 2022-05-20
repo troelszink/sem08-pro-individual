@@ -1,9 +1,0 @@
-grammar xtext.factoryLang.combinedDSL.CombinedDSL with org.eclipse.xtext.common.Terminals
-
-generate combinedDSL "http://www.factoryLang.xtext/combinedDSL/CombinedDSL"
-
-Model:
-	greetings+=Greeting*;
-	
-Greeting:
-	'Hello' name=ID '!';

@@ -11,113 +11,113 @@ import org.eclipse.emf.common.util.Enumerator;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the literals of the enumeration '<em><b>DISK SLOT STATES S</b></em>',
+ * A representation of the literals of the enumeration '<em><b>TIME UNIT S</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
- * @see xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage#getDISK_SLOT_STATES_S()
+ * @see xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage#getTIME_UNIT_S()
  * @model
  * @generated
  */
-public enum DISK_SLOT_STATES_S implements Enumerator
+public enum TIME_UNIT_S implements Enumerator
 {
   /**
-   * The '<em><b>FREE</b></em>' literal object.
+   * The '<em><b>SECOND</b></em>' literal object.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #FREE_VALUE
+   * @see #SECOND_VALUE
    * @generated
    * @ordered
    */
-  FREE(0, "FREE", "free"),
+  SECOND(0, "SECOND", "s"),
 
   /**
-   * The '<em><b>IN PROGRESS</b></em>' literal object.
+   * The '<em><b>MINUTE</b></em>' literal object.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #IN_PROGRESS_VALUE
+   * @see #MINUTE_VALUE
    * @generated
    * @ordered
    */
-  IN_PROGRESS(1, "IN_PROGRESS", "in_progress"),
+  MINUTE(1, "MINUTE", "m"),
 
   /**
-   * The '<em><b>COMPLETE</b></em>' literal object.
+   * The '<em><b>HOUR</b></em>' literal object.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #COMPLETE_VALUE
+   * @see #HOUR_VALUE
    * @generated
    * @ordered
    */
-  COMPLETE(2, "COMPLETE", "complete");
+  HOUR(2, "HOUR", "h");
 
   /**
-   * The '<em><b>FREE</b></em>' literal value.
+   * The '<em><b>SECOND</b></em>' literal value.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #FREE
-   * @model literal="free"
+   * @see #SECOND
+   * @model literal="s"
    * @generated
    * @ordered
    */
-  public static final int FREE_VALUE = 0;
+  public static final int SECOND_VALUE = 0;
 
   /**
-   * The '<em><b>IN PROGRESS</b></em>' literal value.
+   * The '<em><b>MINUTE</b></em>' literal value.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #IN_PROGRESS
-   * @model literal="in_progress"
+   * @see #MINUTE
+   * @model literal="m"
    * @generated
    * @ordered
    */
-  public static final int IN_PROGRESS_VALUE = 1;
+  public static final int MINUTE_VALUE = 1;
 
   /**
-   * The '<em><b>COMPLETE</b></em>' literal value.
+   * The '<em><b>HOUR</b></em>' literal value.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #COMPLETE
-   * @model literal="complete"
+   * @see #HOUR
+   * @model literal="h"
    * @generated
    * @ordered
    */
-  public static final int COMPLETE_VALUE = 2;
+  public static final int HOUR_VALUE = 2;
 
   /**
-   * An array of all the '<em><b>DISK SLOT STATES S</b></em>' enumerators.
+   * An array of all the '<em><b>TIME UNIT S</b></em>' enumerators.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  private static final DISK_SLOT_STATES_S[] VALUES_ARRAY =
-    new DISK_SLOT_STATES_S[]
+  private static final TIME_UNIT_S[] VALUES_ARRAY =
+    new TIME_UNIT_S[]
     {
-      FREE,
-      IN_PROGRESS,
-      COMPLETE,
+      SECOND,
+      MINUTE,
+      HOUR,
     };
 
   /**
-   * A public read-only list of all the '<em><b>DISK SLOT STATES S</b></em>' enumerators.
+   * A public read-only list of all the '<em><b>TIME UNIT S</b></em>' enumerators.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  public static final List<DISK_SLOT_STATES_S> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+  public static final List<TIME_UNIT_S> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
   /**
-   * Returns the '<em><b>DISK SLOT STATES S</b></em>' literal with the specified literal value.
+   * Returns the '<em><b>TIME UNIT S</b></em>' literal with the specified literal value.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param literal the literal.
    * @return the matching enumerator or <code>null</code>.
    * @generated
    */
-  public static DISK_SLOT_STATES_S get(String literal)
+  public static TIME_UNIT_S get(String literal)
   {
     for (int i = 0; i < VALUES_ARRAY.length; ++i)
     {
-      DISK_SLOT_STATES_S result = VALUES_ARRAY[i];
+      TIME_UNIT_S result = VALUES_ARRAY[i];
       if (result.toString().equals(literal))
       {
         return result;
@@ -127,18 +127,18 @@ public enum DISK_SLOT_STATES_S implements Enumerator
   }
 
   /**
-   * Returns the '<em><b>DISK SLOT STATES S</b></em>' literal with the specified name.
+   * Returns the '<em><b>TIME UNIT S</b></em>' literal with the specified name.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param name the name.
    * @return the matching enumerator or <code>null</code>.
    * @generated
    */
-  public static DISK_SLOT_STATES_S getByName(String name)
+  public static TIME_UNIT_S getByName(String name)
   {
     for (int i = 0; i < VALUES_ARRAY.length; ++i)
     {
-      DISK_SLOT_STATES_S result = VALUES_ARRAY[i];
+      TIME_UNIT_S result = VALUES_ARRAY[i];
       if (result.getName().equals(name))
       {
         return result;
@@ -148,20 +148,20 @@ public enum DISK_SLOT_STATES_S implements Enumerator
   }
 
   /**
-   * Returns the '<em><b>DISK SLOT STATES S</b></em>' literal with the specified integer value.
+   * Returns the '<em><b>TIME UNIT S</b></em>' literal with the specified integer value.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the integer value.
    * @return the matching enumerator or <code>null</code>.
    * @generated
    */
-  public static DISK_SLOT_STATES_S get(int value)
+  public static TIME_UNIT_S get(int value)
   {
     switch (value)
     {
-      case FREE_VALUE: return FREE;
-      case IN_PROGRESS_VALUE: return IN_PROGRESS;
-      case COMPLETE_VALUE: return COMPLETE;
+      case SECOND_VALUE: return SECOND;
+      case MINUTE_VALUE: return MINUTE;
+      case HOUR_VALUE: return HOUR;
     }
     return null;
   }
@@ -193,7 +193,7 @@ public enum DISK_SLOT_STATES_S implements Enumerator
    * <!-- end-user-doc -->
    * @generated
    */
-  private DISK_SLOT_STATES_S(int value, String name, String literal)
+  private TIME_UNIT_S(int value, String name, String literal)
   {
     this.value = value;
     this.name = name;
@@ -245,4 +245,4 @@ public enum DISK_SLOT_STATES_S implements Enumerator
     return literal;
   }
   
-} //DISK_SLOT_STATES_S
+} //TIME_UNIT_S

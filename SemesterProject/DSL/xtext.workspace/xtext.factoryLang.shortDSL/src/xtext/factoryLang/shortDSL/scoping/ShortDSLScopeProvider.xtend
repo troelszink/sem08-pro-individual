@@ -54,7 +54,7 @@ class ShortDSLScopeProvider extends AbstractShortDSLScopeProvider {
 	
 	def IScope getDiskTargetScope(MoveS move) {
 		val root = EcoreUtil2.getRootContainer(move) as Model
-		val dsl = root.type as DSLShort
+		val dsl = root.dslProgram as DSLShort
 		val diskHandling = EcoreUtil2.getContainerOfType(move, DiskHandlingS)
 		val diskRef = diskHandling.disk
 		val diskName = diskRef.name
@@ -67,7 +67,7 @@ class ShortDSLScopeProvider extends AbstractShortDSLScopeProvider {
 	
 	def IScope getCraneTargetScope(MoveS move) {
 		val root = EcoreUtil2.getRootContainer(move) as Model
-		val dsl = root.type as DSLShort
+		val dsl = root.dslProgram as DSLShort
 		val moveCrane = EcoreUtil2.getContainerOfType(move, MoveCrane)
 		val craneRef = moveCrane.crane
 		val craneName = craneRef.name
@@ -80,7 +80,7 @@ class ShortDSLScopeProvider extends AbstractShortDSLScopeProvider {
 	
 	def IScope getGlobalRefValueScope(EObject context) {
 		val root = EcoreUtil2.getRootContainer(context) as Model
-		val dsl = root.type
+		val dsl = root.dslProgram
 		val cameraScanOperations = EcoreUtil2.getAllContentsOfType(dsl, MarkCameraValue).map[variable].toList
 		return Scopes.scopeFor(cameraScanOperations);
 	}
@@ -91,7 +91,7 @@ class ShortDSLScopeProvider extends AbstractShortDSLScopeProvider {
 		val deviceName = deviceRef.name
 
 		val root = EcoreUtil2.getRootContainer(deviceValue) as Model
-		val dsl = root.type as DSLShort
+		val dsl = root.dslProgram as DSLShort
 		val device = dsl.configuration.devices.filter[name == deviceName].map[deviceRef].get(0)
 		var targets = device.targets
 		return Scopes.scopeFor(targets)

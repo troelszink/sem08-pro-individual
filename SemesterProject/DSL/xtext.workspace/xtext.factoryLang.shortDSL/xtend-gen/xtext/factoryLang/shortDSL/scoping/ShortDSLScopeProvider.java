@@ -20,9 +20,9 @@ import org.eclipse.xtext.xbase.lib.ListExtensions;
 import xtext.factoryLang.shortDSL.shortDSL.ConditionDevice;
 import xtext.factoryLang.shortDSL.shortDSL.ConfigurationValueS;
 import xtext.factoryLang.shortDSL.shortDSL.Crane;
+import xtext.factoryLang.shortDSL.shortDSL.DSLProgram;
 import xtext.factoryLang.shortDSL.shortDSL.DSLShort;
 import xtext.factoryLang.shortDSL.shortDSL.DeviceS;
-import xtext.factoryLang.shortDSL.shortDSL.DeviceValue;
 import xtext.factoryLang.shortDSL.shortDSL.Disk;
 import xtext.factoryLang.shortDSL.shortDSL.DiskHandlingS;
 import xtext.factoryLang.shortDSL.shortDSL.Loop;
@@ -30,7 +30,6 @@ import xtext.factoryLang.shortDSL.shortDSL.MarkCameraValue;
 import xtext.factoryLang.shortDSL.shortDSL.Model;
 import xtext.factoryLang.shortDSL.shortDSL.MoveCrane;
 import xtext.factoryLang.shortDSL.shortDSL.MoveS;
-import xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage;
 import xtext.factoryLang.shortDSL.shortDSL.VariableS;
 
 /**
@@ -43,31 +42,10 @@ import xtext.factoryLang.shortDSL.shortDSL.VariableS;
 public class ShortDSLScopeProvider extends AbstractShortDSLScopeProvider {
   @Override
   public IScope getScope(final EObject context, final EReference reference) {
-    boolean _matched = false;
-    if (Objects.equal(reference, ShortDSLPackage.Literals.MOVE_DISK__ZONE)) {
-      _matched=true;
-    }
-    if (!_matched) {
-      if (Objects.equal(reference, ShortDSLPackage.Literals.MOVE_ANY_SLOT__ZONE)) {
-        _matched=true;
-      }
-    }
-    if (_matched) {
-      return this.getDiskTargetScope(((MoveS) context));
-    }
-    if (!_matched) {
-      if (Objects.equal(reference, ShortDSLPackage.Literals.MOVE_CRANE__ZONE)) {
-        _matched=true;
-        return this.getCraneTargetScope(((MoveS) context));
-      }
-    }
-    if (!_matched) {
-      if (Objects.equal(reference, ShortDSLPackage.Literals.DEVICE_VALUE__CONFIGURATION_VALUE)) {
-        _matched=true;
-        return this.getDeviceValueRefScope(((DeviceValue) context));
-      }
-    }
-    return super.getScope(context, reference);
+    throw new Error("Unresolved compilation problems:"
+      + "\nDeviceValue cannot be resolved to a type."
+      + "\nThe method or field DEVICE_VALUE__CONFIGURATION_VALUE is undefined for the type Class<Literals>"
+      + "\nThe method getDeviceValueRefScope(DeviceValue) from the type ShortDSLScopeProvider refers to the missing type DeviceValue");
   }
   
   public IScope getVariableScope(final EObject currentContext, final EObject context) {
@@ -83,8 +61,8 @@ public class ShortDSLScopeProvider extends AbstractShortDSLScopeProvider {
   public IScope getDiskTargetScope(final MoveS move) {
     EObject _rootContainer = EcoreUtil2.getRootContainer(move);
     final Model root = ((Model) _rootContainer);
-    EObject _type = root.getType();
-    final DSLShort dsl = ((DSLShort) _type);
+    DSLProgram _dslProgram = root.getDslProgram();
+    final DSLShort dsl = ((DSLShort) _dslProgram);
     final DiskHandlingS diskHandling = EcoreUtil2.<DiskHandlingS>getContainerOfType(move, DiskHandlingS.class);
     final Disk diskRef = diskHandling.getDisk();
     final String diskName = diskRef.getName();
@@ -103,8 +81,8 @@ public class ShortDSLScopeProvider extends AbstractShortDSLScopeProvider {
   public IScope getCraneTargetScope(final MoveS move) {
     EObject _rootContainer = EcoreUtil2.getRootContainer(move);
     final Model root = ((Model) _rootContainer);
-    EObject _type = root.getType();
-    final DSLShort dsl = ((DSLShort) _type);
+    DSLProgram _dslProgram = root.getDslProgram();
+    final DSLShort dsl = ((DSLShort) _dslProgram);
     final MoveCrane moveCrane = EcoreUtil2.<MoveCrane>getContainerOfType(move, MoveCrane.class);
     final Crane craneRef = moveCrane.getCrane();
     final String craneName = craneRef.getName();
@@ -123,7 +101,7 @@ public class ShortDSLScopeProvider extends AbstractShortDSLScopeProvider {
   public IScope getGlobalRefValueScope(final EObject context) {
     EObject _rootContainer = EcoreUtil2.getRootContainer(context);
     final Model root = ((Model) _rootContainer);
-    final EObject dsl = root.getType();
+    final DSLProgram dsl = root.getDslProgram();
     final Function1<MarkCameraValue, VariableS> _function = (MarkCameraValue it) -> {
       return it.getVariable();
     };
@@ -131,14 +109,14 @@ public class ShortDSLScopeProvider extends AbstractShortDSLScopeProvider {
     return Scopes.scopeFor(cameraScanOperations);
   }
   
-  public IScope getDeviceValueRefScope(final DeviceValue deviceValue) {
+  public IScope getDeviceValueRefScope(final /* DeviceValue */Object deviceValue) {
     final ConditionDevice deviceConditional = EcoreUtil2.<ConditionDevice>getContainerOfType(deviceValue, ConditionDevice.class);
     final DeviceS deviceRef = deviceConditional.getDevice();
     final String deviceName = deviceRef.getName();
     EObject _rootContainer = EcoreUtil2.getRootContainer(deviceValue);
     final Model root = ((Model) _rootContainer);
-    EObject _type = root.getType();
-    final DSLShort dsl = ((DSLShort) _type);
+    DSLProgram _dslProgram = root.getDslProgram();
+    final DSLShort dsl = ((DSLShort) _dslProgram);
     final Function1<DeviceS, Boolean> _function = (DeviceS it) -> {
       String _name = it.getName();
       return Boolean.valueOf(Objects.equal(_name, deviceName));

@@ -14,7 +14,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import xtext.factoryLang.shortDSL.shortDSL.COMPARISON_OPERATOR_S;
 import xtext.factoryLang.shortDSL.shortDSL.ConditionDevice;
 import xtext.factoryLang.shortDSL.shortDSL.DeviceS;
-import xtext.factoryLang.shortDSL.shortDSL.DeviceValue;
+import xtext.factoryLang.shortDSL.shortDSL.DeviceValueS;
 import xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage;
 
 /**
@@ -72,7 +72,7 @@ public class ConditionDeviceImpl extends ConditionSImpl implements ConditionDevi
    * @generated
    * @ordered
    */
-  protected DeviceValue deviceValue;
+  protected DeviceValueS deviceValue;
 
   /**
    * <!-- begin-user-doc -->
@@ -171,7 +171,7 @@ public class ConditionDeviceImpl extends ConditionSImpl implements ConditionDevi
    * @generated
    */
   @Override
-  public DeviceValue getDeviceValue()
+  public DeviceValueS getDeviceValue()
   {
     return deviceValue;
   }
@@ -181,9 +181,9 @@ public class ConditionDeviceImpl extends ConditionSImpl implements ConditionDevi
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetDeviceValue(DeviceValue newDeviceValue, NotificationChain msgs)
+  public NotificationChain basicSetDeviceValue(DeviceValueS newDeviceValue, NotificationChain msgs)
   {
-    DeviceValue oldDeviceValue = deviceValue;
+    DeviceValueS oldDeviceValue = deviceValue;
     deviceValue = newDeviceValue;
     if (eNotificationRequired())
     {
@@ -199,7 +199,7 @@ public class ConditionDeviceImpl extends ConditionSImpl implements ConditionDevi
    * @generated
    */
   @Override
-  public void setDeviceValue(DeviceValue newDeviceValue)
+  public void setDeviceValue(DeviceValueS newDeviceValue)
   {
     if (newDeviceValue != deviceValue)
     {
@@ -269,7 +269,7 @@ public class ConditionDeviceImpl extends ConditionSImpl implements ConditionDevi
         setComparisonOperatorDevice((COMPARISON_OPERATOR_S)newValue);
         return;
       case ShortDSLPackage.CONDITION_DEVICE__DEVICE_VALUE:
-        setDeviceValue((DeviceValue)newValue);
+        setDeviceValue((DeviceValueS)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -292,7 +292,7 @@ public class ConditionDeviceImpl extends ConditionSImpl implements ConditionDevi
         setComparisonOperatorDevice(COMPARISON_OPERATOR_DEVICE_EDEFAULT);
         return;
       case ShortDSLPackage.CONDITION_DEVICE__DEVICE_VALUE:
-        setDeviceValue((DeviceValue)null);
+        setDeviceValue((DeviceValueS)null);
         return;
     }
     super.eUnset(featureID);

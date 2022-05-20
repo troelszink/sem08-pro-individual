@@ -76,77 +76,58 @@ ruleModel returns [EObject current=null]
 		}
 		(
 			(
-				otherlv_1=Long
 				{
-					newLeafNode(otherlv_1, grammarAccess.getModelAccess().getLongKeyword_1_0_0());
+					newCompositeNode(grammarAccess.getModelAccess().getDslTypeDSLTypeValueParserRuleCall_1_0());
 				}
-				otherlv_2=Dsl
+				lv_dslType_1_0=ruleDSLTypeValue
 				{
-					newLeafNode(otherlv_2, grammarAccess.getModelAccess().getDslKeyword_1_0_1());
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getModelRule());
+					}
+					set(
+						$current,
+						"dslType",
+						lv_dslType_1_0,
+						"xtext.factoryLang.shortDSL.ShortDSL.DSLTypeValue");
+					afterParserOrEnumRuleCall();
 				}
-				(
-					(
-						{
-							newCompositeNode(grammarAccess.getModelAccess().getTypeDSL_LongParserRuleCall_1_0_2_0());
-						}
-						lv_type_3_0=ruleDSL_Long
-						{
-							if ($current==null) {
-								$current = createModelElementForParent(grammarAccess.getModelRule());
-							}
-							set(
-								$current,
-								"type",
-								lv_type_3_0,
-								"xtext.factoryLang.shortDSL.ShortDSL.DSL_Long");
-							afterParserOrEnumRuleCall();
-						}
-					)
-				)
 			)
-			    |
+		)
+		otherlv_2=Dsl
+		{
+			newLeafNode(otherlv_2, grammarAccess.getModelAccess().getDslKeyword_2());
+		}
+		(
 			(
-				otherlv_4=Short
 				{
-					newLeafNode(otherlv_4, grammarAccess.getModelAccess().getShortKeyword_1_1_0());
+					newCompositeNode(grammarAccess.getModelAccess().getDslProgramDSLProgramParserRuleCall_3_0());
 				}
-				otherlv_5=Dsl
+				lv_dslProgram_3_0=ruleDSLProgram
 				{
-					newLeafNode(otherlv_5, grammarAccess.getModelAccess().getDslKeyword_1_1_1());
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getModelRule());
+					}
+					set(
+						$current,
+						"dslProgram",
+						lv_dslProgram_3_0,
+						"xtext.factoryLang.shortDSL.ShortDSL.DSLProgram");
+					afterParserOrEnumRuleCall();
 				}
-				(
-					(
-						{
-							newCompositeNode(grammarAccess.getModelAccess().getTypeDSL_ShortParserRuleCall_1_1_2_0());
-						}
-						lv_type_6_0=ruleDSL_Short
-						{
-							if ($current==null) {
-								$current = createModelElementForParent(grammarAccess.getModelRule());
-							}
-							set(
-								$current,
-								"type",
-								lv_type_6_0,
-								"xtext.factoryLang.shortDSL.ShortDSL.DSL_Short");
-							afterParserOrEnumRuleCall();
-						}
-					)
-				)
 			)
 		)
 	)
 ;
 
-// Entry rule entryRuleDSL_Long
-entryRuleDSL_Long returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getDSL_LongRule()); }
-	iv_ruleDSL_Long=ruleDSL_Long
-	{ $current=$iv_ruleDSL_Long.current; }
+// Entry rule entryRuleDSLProgram
+entryRuleDSLProgram returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getDSLProgramRule()); }
+	iv_ruleDSLProgram=ruleDSLProgram
+	{ $current=$iv_ruleDSLProgram.current; }
 	EOF;
 
-// Rule DSL_Long
-ruleDSL_Long returns [EObject current=null]
+// Rule DSLProgram
+ruleDSLProgram returns [EObject current=null]
 @init {
 	enterRule();
 }
@@ -154,40 +135,35 @@ ruleDSL_Long returns [EObject current=null]
 	leaveRule();
 }:
 	(
-		otherlv_0=Test
 		{
-			newLeafNode(otherlv_0, grammarAccess.getDSL_LongAccess().getTestKeyword_0());
+			newCompositeNode(grammarAccess.getDSLProgramAccess().getDSLLongParserRuleCall_0());
 		}
-		(
-			(
-				lv_name_1_0=RULE_ID
-				{
-					newLeafNode(lv_name_1_0, grammarAccess.getDSL_LongAccess().getNameIDTerminalRuleCall_1_0());
-				}
-				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getDSL_LongRule());
-					}
-					setWithLastConsumed(
-						$current,
-						"name",
-						lv_name_1_0,
-						"org.eclipse.xtext.common.Terminals.ID");
-				}
-			)
-		)
+		this_DSLLong_0=ruleDSLLong
+		{
+			$current = $this_DSLLong_0.current;
+			afterParserOrEnumRuleCall();
+		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getDSLProgramAccess().getDSLShortParserRuleCall_1());
+		}
+		this_DSLShort_1=ruleDSLShort
+		{
+			$current = $this_DSLShort_1.current;
+			afterParserOrEnumRuleCall();
+		}
 	)
 ;
 
-// Entry rule entryRuleDSL_Short
-entryRuleDSL_Short returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getDSL_ShortRule()); }
-	iv_ruleDSL_Short=ruleDSL_Short
-	{ $current=$iv_ruleDSL_Short.current; }
+// Entry rule entryRuleDSLLong
+entryRuleDSLLong returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getDSLLongRule()); }
+	iv_ruleDSLLong=ruleDSLLong
+	{ $current=$iv_ruleDSLLong.current; }
 	EOF;
 
-// Rule DSL_Short
-ruleDSL_Short returns [EObject current=null]
+// Rule DSLLong
+ruleDSLLong returns [EObject current=null]
 @init {
 	enterRule();
 }
@@ -198,19 +174,67 @@ ruleDSL_Short returns [EObject current=null]
 		(
 			{
 				$current = forceCreateModelElement(
-					grammarAccess.getDSL_ShortAccess().getDSLShortAction_0(),
+					grammarAccess.getDSLLongAccess().getDSLLongAction_0(),
+					$current);
+			}
+		)
+		otherlv_1=Test
+		{
+			newLeafNode(otherlv_1, grammarAccess.getDSLLongAccess().getTestKeyword_1());
+		}
+		(
+			(
+				lv_name_2_0=RULE_ID
+				{
+					newLeafNode(lv_name_2_0, grammarAccess.getDSLLongAccess().getNameIDTerminalRuleCall_2_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getDSLLongRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"name",
+						lv_name_2_0,
+						"org.eclipse.xtext.common.Terminals.ID");
+				}
+			)
+		)
+	)
+;
+
+// Entry rule entryRuleDSLShort
+entryRuleDSLShort returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getDSLShortRule()); }
+	iv_ruleDSLShort=ruleDSLShort
+	{ $current=$iv_ruleDSLShort.current; }
+	EOF;
+
+// Rule DSLShort
+ruleDSLShort returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			{
+				$current = forceCreateModelElement(
+					grammarAccess.getDSLShortAccess().getDSLShortAction_0(),
 					$current);
 			}
 		)
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getDSL_ShortAccess().getConfigurationConfigurationSParserRuleCall_1_0());
+					newCompositeNode(grammarAccess.getDSLShortAccess().getConfigurationConfigurationSParserRuleCall_1_0());
 				}
 				lv_configuration_1_0=ruleConfigurationS
 				{
 					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getDSL_ShortRule());
+						$current = createModelElementForParent(grammarAccess.getDSLShortRule());
 					}
 					set(
 						$current,
@@ -224,12 +248,12 @@ ruleDSL_Short returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getDSL_ShortAccess().getDiskHandlingsDiskHandlingSParserRuleCall_2_0());
+					newCompositeNode(grammarAccess.getDSLShortAccess().getDiskHandlingsDiskHandlingSParserRuleCall_2_0());
 				}
 				lv_diskHandlings_2_0=ruleDiskHandlingS
 				{
 					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getDSL_ShortRule());
+						$current = createModelElementForParent(grammarAccess.getDSLShortRule());
 					}
 					add(
 						$current,
@@ -387,20 +411,39 @@ ruleCraneS returns [EObject current=null]
 				}
 			)
 		)
-		otherlv_2=Colon
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getCraneSAccess().getLoggingLoggingSParserRuleCall_2_0());
+				}
+				lv_logging_2_0=ruleLoggingS
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getCraneSRule());
+					}
+					set(
+						$current,
+						"logging",
+						lv_logging_2_0,
+						"xtext.factoryLang.shortDSL.ShortDSL.LoggingS");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)?
+		otherlv_3=Colon
 		{
-			newLeafNode(otherlv_2, grammarAccess.getCraneSAccess().getColonKeyword_2());
+			newLeafNode(otherlv_3, grammarAccess.getCraneSAccess().getColonKeyword_3());
 		}
-		this_BEGIN_3=RULE_BEGIN
+		this_BEGIN_4=RULE_BEGIN
 		{
-			newLeafNode(this_BEGIN_3, grammarAccess.getCraneSAccess().getBEGINTerminalRuleCall_3());
+			newLeafNode(this_BEGIN_4, grammarAccess.getCraneSAccess().getBEGINTerminalRuleCall_4());
 		}
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getCraneSAccess().getTargetsCraneZoneSParserRuleCall_4_0());
+					newCompositeNode(grammarAccess.getCraneSAccess().getTargetsCraneZoneSParserRuleCall_5_0());
 				}
-				lv_targets_4_0=ruleCraneZoneS
+				lv_targets_5_0=ruleCraneZoneS
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getCraneSRule());
@@ -408,15 +451,15 @@ ruleCraneS returns [EObject current=null]
 					add(
 						$current,
 						"targets",
-						lv_targets_4_0,
+						lv_targets_5_0,
 						"xtext.factoryLang.shortDSL.ShortDSL.CraneZoneS");
 					afterParserOrEnumRuleCall();
 				}
 			)
 		)+
-		this_END_5=RULE_END
+		this_END_6=RULE_END
 		{
-			newLeafNode(this_END_5, grammarAccess.getCraneSAccess().getENDTerminalRuleCall_5());
+			newLeafNode(this_END_6, grammarAccess.getCraneSAccess().getENDTerminalRuleCall_6());
 		}
 	)
 ;
@@ -560,20 +603,39 @@ ruleDiskS returns [EObject current=null]
 		{
 			newLeafNode(otherlv_4, grammarAccess.getDiskSAccess().getRightParenthesisKeyword_4());
 		}
-		otherlv_5=Colon
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getDiskSAccess().getLoggingLoggingSParserRuleCall_5_0());
+				}
+				lv_logging_5_0=ruleLoggingS
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getDiskSRule());
+					}
+					set(
+						$current,
+						"logging",
+						lv_logging_5_0,
+						"xtext.factoryLang.shortDSL.ShortDSL.LoggingS");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)?
+		otherlv_6=Colon
 		{
-			newLeafNode(otherlv_5, grammarAccess.getDiskSAccess().getColonKeyword_5());
+			newLeafNode(otherlv_6, grammarAccess.getDiskSAccess().getColonKeyword_6());
 		}
-		this_BEGIN_6=RULE_BEGIN
+		this_BEGIN_7=RULE_BEGIN
 		{
-			newLeafNode(this_BEGIN_6, grammarAccess.getDiskSAccess().getBEGINTerminalRuleCall_6());
+			newLeafNode(this_BEGIN_7, grammarAccess.getDiskSAccess().getBEGINTerminalRuleCall_7());
 		}
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getDiskSAccess().getTargetsDiskZoneSParserRuleCall_7_0());
+					newCompositeNode(grammarAccess.getDiskSAccess().getTargetsDiskZoneSParserRuleCall_8_0());
 				}
-				lv_targets_7_0=ruleDiskZoneS
+				lv_targets_8_0=ruleDiskZoneS
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getDiskSRule());
@@ -581,15 +643,15 @@ ruleDiskS returns [EObject current=null]
 					add(
 						$current,
 						"targets",
-						lv_targets_7_0,
+						lv_targets_8_0,
 						"xtext.factoryLang.shortDSL.ShortDSL.DiskZoneS");
 					afterParserOrEnumRuleCall();
 				}
 			)
 		)+
-		this_END_8=RULE_END
+		this_END_9=RULE_END
 		{
-			newLeafNode(this_END_8, grammarAccess.getDiskSAccess().getENDTerminalRuleCall_8());
+			newLeafNode(this_END_9, grammarAccess.getDiskSAccess().getENDTerminalRuleCall_9());
 		}
 	)
 ;
@@ -707,20 +769,39 @@ ruleCameraS returns [EObject current=null]
 				}
 			)
 		)
-		otherlv_2=Colon
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getCameraSAccess().getLoggingLoggingSParserRuleCall_2_0());
+				}
+				lv_logging_2_0=ruleLoggingS
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getCameraSRule());
+					}
+					set(
+						$current,
+						"logging",
+						lv_logging_2_0,
+						"xtext.factoryLang.shortDSL.ShortDSL.LoggingS");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)?
+		otherlv_3=Colon
 		{
-			newLeafNode(otherlv_2, grammarAccess.getCameraSAccess().getColonKeyword_2());
+			newLeafNode(otherlv_3, grammarAccess.getCameraSAccess().getColonKeyword_3());
 		}
-		this_BEGIN_3=RULE_BEGIN
+		this_BEGIN_4=RULE_BEGIN
 		{
-			newLeafNode(this_BEGIN_3, grammarAccess.getCameraSAccess().getBEGINTerminalRuleCall_3());
+			newLeafNode(this_BEGIN_4, grammarAccess.getCameraSAccess().getBEGINTerminalRuleCall_4());
 		}
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getCameraSAccess().getTargetsCameraColorSParserRuleCall_4_0());
+					newCompositeNode(grammarAccess.getCameraSAccess().getTargetsCameraColorSParserRuleCall_5_0());
 				}
-				lv_targets_4_0=ruleCameraColorS
+				lv_targets_5_0=ruleCameraColorS
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getCameraSRule());
@@ -728,15 +809,15 @@ ruleCameraS returns [EObject current=null]
 					add(
 						$current,
 						"targets",
-						lv_targets_4_0,
+						lv_targets_5_0,
 						"xtext.factoryLang.shortDSL.ShortDSL.CameraColorS");
 					afterParserOrEnumRuleCall();
 				}
 			)
 		)+
-		this_END_5=RULE_END
+		this_END_6=RULE_END
 		{
-			newLeafNode(this_END_5, grammarAccess.getCameraSAccess().getENDTerminalRuleCall_5());
+			newLeafNode(this_END_6, grammarAccess.getCameraSAccess().getENDTerminalRuleCall_6());
 		}
 	)
 ;
@@ -789,6 +870,36 @@ ruleCameraColorS returns [EObject current=null]
 				newLeafNode(otherlv_2, grammarAccess.getCameraColorSAccess().getCommaKeyword_2());
 			}
 		)?
+	)
+;
+
+// Entry rule entryRuleLoggingS
+entryRuleLoggingS returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getLoggingSRule()); }
+	iv_ruleLoggingS=ruleLoggingS
+	{ $current=$iv_ruleLoggingS.current; }
+	EOF;
+
+// Rule LoggingS
+ruleLoggingS returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			{
+				$current = forceCreateModelElement(
+					grammarAccess.getLoggingSAccess().getLoggingAction_0(),
+					$current);
+			}
+		)
+		otherlv_1=Logging
+		{
+			newLeafNode(otherlv_1, grammarAccess.getLoggingSAccess().getLoggingKeyword_1());
+		}
 	)
 ;
 
@@ -1461,9 +1572,9 @@ ruleConditionVariableS returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getConditionVariableSAccess().getVariableValueVariableValueParserRuleCall_5_0());
+					newCompositeNode(grammarAccess.getConditionVariableSAccess().getVariableValueVariableValueSParserRuleCall_5_0());
 				}
-				lv_variableValue_5_0=ruleVariableValue
+				lv_variableValue_5_0=ruleVariableValueS
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getConditionVariableSRule());
@@ -1472,7 +1583,7 @@ ruleConditionVariableS returns [EObject current=null]
 						$current,
 						"variableValue",
 						lv_variableValue_5_0,
-						"xtext.factoryLang.shortDSL.ShortDSL.VariableValue");
+						"xtext.factoryLang.shortDSL.ShortDSL.VariableValueS");
 					afterParserOrEnumRuleCall();
 				}
 			)
@@ -1577,9 +1688,9 @@ ruleConditionDeviceS returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getConditionDeviceSAccess().getDeviceValueDeviceValueParserRuleCall_5_0());
+					newCompositeNode(grammarAccess.getConditionDeviceSAccess().getDeviceValueDeviceValueSParserRuleCall_5_0());
 				}
-				lv_deviceValue_5_0=ruleDeviceValue
+				lv_deviceValue_5_0=ruleDeviceValueS
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getConditionDeviceSRule());
@@ -1588,7 +1699,7 @@ ruleConditionDeviceS returns [EObject current=null]
 						$current,
 						"deviceValue",
 						lv_deviceValue_5_0,
-						"xtext.factoryLang.shortDSL.ShortDSL.DeviceValue");
+						"xtext.factoryLang.shortDSL.ShortDSL.DeviceValueS");
 					afterParserOrEnumRuleCall();
 				}
 			)
@@ -1706,9 +1817,9 @@ ruleMarkVariableValueS returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getMarkVariableValueSAccess().getValueValueSlotParserRuleCall_3_0());
+					newCompositeNode(grammarAccess.getMarkVariableValueSAccess().getValueValueSlotSParserRuleCall_3_0());
 				}
-				lv_value_3_0=ruleValueSlot
+				lv_value_3_0=ruleValueSlotS
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getMarkVariableValueSRule());
@@ -1717,7 +1828,7 @@ ruleMarkVariableValueS returns [EObject current=null]
 						$current,
 						"value",
 						lv_value_3_0,
-						"xtext.factoryLang.shortDSL.ShortDSL.ValueSlot");
+						"xtext.factoryLang.shortDSL.ShortDSL.ValueSlotS");
 					afterParserOrEnumRuleCall();
 				}
 			)
@@ -1748,9 +1859,9 @@ ruleMarkVariableValueS returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getMarkVariableValueSAccess().getUnitTIME_UNITEnumRuleCall_4_2_0());
+						newCompositeNode(grammarAccess.getMarkVariableValueSAccess().getUnitTIME_UNIT_SEnumRuleCall_4_2_0());
 					}
-					lv_unit_6_0=ruleTIME_UNIT
+					lv_unit_6_0=ruleTIME_UNIT_S
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getMarkVariableValueSRule());
@@ -1759,7 +1870,7 @@ ruleMarkVariableValueS returns [EObject current=null]
 							$current,
 							"unit",
 							lv_unit_6_0,
-							"xtext.factoryLang.shortDSL.ShortDSL.TIME_UNIT");
+							"xtext.factoryLang.shortDSL.ShortDSL.TIME_UNIT_S");
 						afterParserOrEnumRuleCall();
 					}
 				)
@@ -1922,15 +2033,15 @@ ruleGlobalVariableS returns [EObject current=null]
 	)
 ;
 
-// Entry rule entryRuleVariableValue
-entryRuleVariableValue returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getVariableValueRule()); }
-	iv_ruleVariableValue=ruleVariableValue
-	{ $current=$iv_ruleVariableValue.current; }
+// Entry rule entryRuleVariableValueS
+entryRuleVariableValueS returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getVariableValueSRule()); }
+	iv_ruleVariableValueS=ruleVariableValueS
+	{ $current=$iv_ruleVariableValueS.current; }
 	EOF;
 
-// Rule VariableValue
-ruleVariableValue returns [EObject current=null]
+// Rule VariableValueS
+ruleVariableValueS returns [EObject current=null]
 @init {
 	enterRule();
 }
@@ -1941,12 +2052,12 @@ ruleVariableValue returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getVariableValueAccess().getValueDiskSlotStateValueSParserRuleCall_0_0());
+					newCompositeNode(grammarAccess.getVariableValueSAccess().getValueDiskSlotStateValueSParserRuleCall_0_0());
 				}
 				lv_value_0_0=ruleDiskSlotStateValueS
 				{
 					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getVariableValueRule());
+						$current = createModelElementForParent(grammarAccess.getVariableValueSRule());
 					}
 					set(
 						$current,
@@ -1961,12 +2072,12 @@ ruleVariableValue returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getVariableValueAccess().getValueColorValueSParserRuleCall_1_0());
+					newCompositeNode(grammarAccess.getVariableValueSAccess().getValueColorValueSParserRuleCall_1_0());
 				}
 				lv_value_1_0=ruleColorValueS
 				{
 					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getVariableValueRule());
+						$current = createModelElementForParent(grammarAccess.getVariableValueSRule());
 					}
 					set(
 						$current,
@@ -1981,12 +2092,12 @@ ruleVariableValue returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getVariableValueAccess().getValueNumberSParserRuleCall_2_0());
+					newCompositeNode(grammarAccess.getVariableValueSAccess().getValueNumberSParserRuleCall_2_0());
 				}
 				lv_value_2_0=ruleNumberS
 				{
 					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getVariableValueRule());
+						$current = createModelElementForParent(grammarAccess.getVariableValueSRule());
 					}
 					set(
 						$current,
@@ -2001,12 +2112,12 @@ ruleVariableValue returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getVariableValueAccess().getValueDiskStateValueSParserRuleCall_3_0());
+					newCompositeNode(grammarAccess.getVariableValueSAccess().getValueDiskStateValueSParserRuleCall_3_0());
 				}
 				lv_value_3_0=ruleDiskStateValueS
 				{
 					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getVariableValueRule());
+						$current = createModelElementForParent(grammarAccess.getVariableValueSRule());
 					}
 					set(
 						$current,
@@ -2022,27 +2133,27 @@ ruleVariableValue returns [EObject current=null]
 			(
 				{
 					if ($current==null) {
-						$current = createModelElement(grammarAccess.getVariableValueRule());
+						$current = createModelElement(grammarAccess.getVariableValueSRule());
 					}
 				}
 				otherlv_4=RULE_ID
 				{
-					newLeafNode(otherlv_4, grammarAccess.getVariableValueAccess().getRefVariableSCrossReference_4_0());
+					newLeafNode(otherlv_4, grammarAccess.getVariableValueSAccess().getRefVariableSCrossReference_4_0());
 				}
 			)
 		)
 	)
 ;
 
-// Entry rule entryRuleDeviceValue
-entryRuleDeviceValue returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getDeviceValueRule()); }
-	iv_ruleDeviceValue=ruleDeviceValue
-	{ $current=$iv_ruleDeviceValue.current; }
+// Entry rule entryRuleDeviceValueS
+entryRuleDeviceValueS returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getDeviceValueSRule()); }
+	iv_ruleDeviceValueS=ruleDeviceValueS
+	{ $current=$iv_ruleDeviceValueS.current; }
 	EOF;
 
-// Rule DeviceValue
-ruleDeviceValue returns [EObject current=null]
+// Rule DeviceValueS
+ruleDeviceValueS returns [EObject current=null]
 @init {
 	enterRule();
 }
@@ -2053,12 +2164,12 @@ ruleDeviceValue returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getDeviceValueAccess().getValueDiskStateValueSParserRuleCall_0_0());
+					newCompositeNode(grammarAccess.getDeviceValueSAccess().getValueDiskStateValueSParserRuleCall_0_0());
 				}
 				lv_value_0_0=ruleDiskStateValueS
 				{
 					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getDeviceValueRule());
+						$current = createModelElementForParent(grammarAccess.getDeviceValueSRule());
 					}
 					set(
 						$current,
@@ -2073,12 +2184,12 @@ ruleDeviceValue returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getDeviceValueAccess().getValueColorValueSParserRuleCall_1_0());
+					newCompositeNode(grammarAccess.getDeviceValueSAccess().getValueColorValueSParserRuleCall_1_0());
 				}
 				lv_value_1_0=ruleColorValueS
 				{
 					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getDeviceValueRule());
+						$current = createModelElementForParent(grammarAccess.getDeviceValueSRule());
 					}
 					set(
 						$current,
@@ -2094,27 +2205,27 @@ ruleDeviceValue returns [EObject current=null]
 			(
 				{
 					if ($current==null) {
-						$current = createModelElement(grammarAccess.getDeviceValueRule());
+						$current = createModelElement(grammarAccess.getDeviceValueSRule());
 					}
 				}
 				otherlv_2=RULE_ID
 				{
-					newLeafNode(otherlv_2, grammarAccess.getDeviceValueAccess().getConfigurationValueConfigurationValueSCrossReference_2_0());
+					newLeafNode(otherlv_2, grammarAccess.getDeviceValueSAccess().getConfigurationValueConfigurationValueSCrossReference_2_0());
 				}
 			)
 		)
 	)
 ;
 
-// Entry rule entryRuleValueSlot
-entryRuleValueSlot returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getValueSlotRule()); }
-	iv_ruleValueSlot=ruleValueSlot
-	{ $current=$iv_ruleValueSlot.current; }
+// Entry rule entryRuleValueSlotS
+entryRuleValueSlotS returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getValueSlotSRule()); }
+	iv_ruleValueSlotS=ruleValueSlotS
+	{ $current=$iv_ruleValueSlotS.current; }
 	EOF;
 
-// Rule ValueSlot
-ruleValueSlot returns [EObject current=null]
+// Rule ValueSlotS
+ruleValueSlotS returns [EObject current=null]
 @init {
 	enterRule();
 }
@@ -2125,12 +2236,12 @@ ruleValueSlot returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getValueSlotAccess().getValueDiskSlotStateValueSParserRuleCall_0_0());
+					newCompositeNode(grammarAccess.getValueSlotSAccess().getValueDiskSlotStateValueSParserRuleCall_0_0());
 				}
 				lv_value_0_0=ruleDiskSlotStateValueS
 				{
 					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getValueSlotRule());
+						$current = createModelElementForParent(grammarAccess.getValueSlotSRule());
 					}
 					set(
 						$current,
@@ -2145,12 +2256,12 @@ ruleValueSlot returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getValueSlotAccess().getValueColorValueSParserRuleCall_1_0());
+					newCompositeNode(grammarAccess.getValueSlotSAccess().getValueColorValueSParserRuleCall_1_0());
 				}
 				lv_value_1_0=ruleColorValueS
 				{
 					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getValueSlotRule());
+						$current = createModelElementForParent(grammarAccess.getValueSlotSRule());
 					}
 					set(
 						$current,
@@ -2160,6 +2271,42 @@ ruleValueSlot returns [EObject current=null]
 					afterParserOrEnumRuleCall();
 				}
 			)
+		)
+	)
+;
+
+// Entry rule entryRuleDSLTypeValue
+entryRuleDSLTypeValue returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getDSLTypeValueRule()); }
+	iv_ruleDSLTypeValue=ruleDSLTypeValue
+	{ $current=$iv_ruleDSLTypeValue.current; }
+	EOF;
+
+// Rule DSLTypeValue
+ruleDSLTypeValue returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			{
+				newCompositeNode(grammarAccess.getDSLTypeValueAccess().getValueDSL_TYPE_ENUMEnumRuleCall_0());
+			}
+			lv_value_0_0=ruleDSL_TYPE_ENUM
+			{
+				if ($current==null) {
+					$current = createModelElementForParent(grammarAccess.getDSLTypeValueRule());
+				}
+				set(
+					$current,
+					"value",
+					lv_value_0_0,
+					"xtext.factoryLang.shortDSL.ShortDSL.DSL_TYPE_ENUM");
+				afterParserOrEnumRuleCall();
+			}
 		)
 	)
 ;
@@ -2307,6 +2454,33 @@ ruleNumberS returns [EObject current=null]
 	)
 ;
 
+// Rule DSL_TYPE_ENUM
+ruleDSL_TYPE_ENUM returns [Enumerator current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			enumLiteral_0=Long
+			{
+				$current = grammarAccess.getDSL_TYPE_ENUMAccess().getLONGEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_0, grammarAccess.getDSL_TYPE_ENUMAccess().getLONGEnumLiteralDeclaration_0());
+			}
+		)
+		    |
+		(
+			enumLiteral_1=Short
+			{
+				$current = grammarAccess.getDSL_TYPE_ENUMAccess().getSHORTEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_1, grammarAccess.getDSL_TYPE_ENUMAccess().getSHORTEnumLiteralDeclaration_1());
+			}
+		)
+	)
+;
+
 // Rule COMPARISON_OPERATOR_S
 ruleCOMPARISON_OPERATOR_S returns [Enumerator current=null]
 @init {
@@ -2395,7 +2569,7 @@ ruleDISK_SLOT_STATES_S returns [Enumerator current=null]
 }:
 	(
 		(
-			enumLiteral_0=Vacant
+			enumLiteral_0=Free
 			{
 				$current = grammarAccess.getDISK_SLOT_STATES_SAccess().getFREEEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
 				newLeafNode(enumLiteral_0, grammarAccess.getDISK_SLOT_STATES_SAccess().getFREEEnumLiteralDeclaration_0());
@@ -2447,8 +2621,8 @@ ruleDISK_STATES_S returns [Enumerator current=null]
 	)
 ;
 
-// Rule TIME_UNIT
-ruleTIME_UNIT returns [Enumerator current=null]
+// Rule TIME_UNIT_S
+ruleTIME_UNIT_S returns [Enumerator current=null]
 @init {
 	enterRule();
 }
@@ -2459,24 +2633,24 @@ ruleTIME_UNIT returns [Enumerator current=null]
 		(
 			enumLiteral_0=S
 			{
-				$current = grammarAccess.getTIME_UNITAccess().getSECONDEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_0, grammarAccess.getTIME_UNITAccess().getSECONDEnumLiteralDeclaration_0());
+				$current = grammarAccess.getTIME_UNIT_SAccess().getSECONDEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_0, grammarAccess.getTIME_UNIT_SAccess().getSECONDEnumLiteralDeclaration_0());
 			}
 		)
 		    |
 		(
 			enumLiteral_1=M
 			{
-				$current = grammarAccess.getTIME_UNITAccess().getMINUTEEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_1, grammarAccess.getTIME_UNITAccess().getMINUTEEnumLiteralDeclaration_1());
+				$current = grammarAccess.getTIME_UNIT_SAccess().getMINUTEEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_1, grammarAccess.getTIME_UNIT_SAccess().getMINUTEEnumLiteralDeclaration_1());
 			}
 		)
 		    |
 		(
 			enumLiteral_2=H
 			{
-				$current = grammarAccess.getTIME_UNITAccess().getHOUREnumLiteralDeclaration_2().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_2, grammarAccess.getTIME_UNITAccess().getHOUREnumLiteralDeclaration_2());
+				$current = grammarAccess.getTIME_UNIT_SAccess().getHOUREnumLiteralDeclaration_2().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_2, grammarAccess.getTIME_UNIT_SAccess().getHOUREnumLiteralDeclaration_2());
 			}
 		)
 	)

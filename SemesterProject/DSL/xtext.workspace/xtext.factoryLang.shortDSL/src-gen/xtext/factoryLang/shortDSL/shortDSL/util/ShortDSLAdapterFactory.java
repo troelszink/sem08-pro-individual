@@ -81,14 +81,9 @@ public class ShortDSLAdapterFactory extends AdapterFactoryImpl
         return createModelAdapter();
       }
       @Override
-      public Adapter caseDSL_Long(DSL_Long object)
+      public Adapter caseDSLProgram(DSLProgram object)
       {
-        return createDSL_LongAdapter();
-      }
-      @Override
-      public Adapter caseDSLType(DSLType object)
-      {
-        return createDSLTypeAdapter();
+        return createDSLProgramAdapter();
       }
       @Override
       public Adapter caseConfigurationS(ConfigurationS object)
@@ -104,6 +99,11 @@ public class ShortDSLAdapterFactory extends AdapterFactoryImpl
       public Adapter caseConfigurationValueS(ConfigurationValueS object)
       {
         return createConfigurationValueSAdapter();
+      }
+      @Override
+      public Adapter caseLoggingS(LoggingS object)
+      {
+        return createLoggingSAdapter();
       }
       @Override
       public Adapter caseDiskHandlingS(DiskHandlingS object)
@@ -141,19 +141,24 @@ public class ShortDSLAdapterFactory extends AdapterFactoryImpl
         return createVariableSAdapter();
       }
       @Override
-      public Adapter caseVariableValue(VariableValue object)
+      public Adapter caseVariableValueS(VariableValueS object)
       {
-        return createVariableValueAdapter();
+        return createVariableValueSAdapter();
       }
       @Override
-      public Adapter caseDeviceValue(DeviceValue object)
+      public Adapter caseDeviceValueS(DeviceValueS object)
       {
-        return createDeviceValueAdapter();
+        return createDeviceValueSAdapter();
       }
       @Override
-      public Adapter caseValueSlot(ValueSlot object)
+      public Adapter caseValueSlotS(ValueSlotS object)
       {
-        return createValueSlotAdapter();
+        return createValueSlotSAdapter();
+      }
+      @Override
+      public Adapter caseDSLTypeValue(DSLTypeValue object)
+      {
+        return createDSLTypeValueAdapter();
       }
       @Override
       public Adapter caseDiskStateValueS(DiskStateValueS object)
@@ -174,6 +179,11 @@ public class ShortDSLAdapterFactory extends AdapterFactoryImpl
       public Adapter caseNumberS(NumberS object)
       {
         return createNumberSAdapter();
+      }
+      @Override
+      public Adapter caseDSLLong(DSLLong object)
+      {
+        return createDSLLongAdapter();
       }
       @Override
       public Adapter caseDSLShort(DSLShort object)
@@ -209,6 +219,11 @@ public class ShortDSLAdapterFactory extends AdapterFactoryImpl
       public Adapter caseCameraColor(CameraColor object)
       {
         return createCameraColorAdapter();
+      }
+      @Override
+      public Adapter caseLogging(Logging object)
+      {
+        return createLoggingAdapter();
       }
       @Override
       public Adapter caseLoop(Loop object)
@@ -303,31 +318,16 @@ public class ShortDSLAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link xtext.factoryLang.shortDSL.shortDSL.DSL_Long <em>DSL Long</em>}'.
+   * Creates a new adapter for an object of class '{@link xtext.factoryLang.shortDSL.shortDSL.DSLProgram <em>DSL Program</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see xtext.factoryLang.shortDSL.shortDSL.DSL_Long
+   * @see xtext.factoryLang.shortDSL.shortDSL.DSLProgram
    * @generated
    */
-  public Adapter createDSL_LongAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link xtext.factoryLang.shortDSL.shortDSL.DSLType <em>DSL Type</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see xtext.factoryLang.shortDSL.shortDSL.DSLType
-   * @generated
-   */
-  public Adapter createDSLTypeAdapter()
+  public Adapter createDSLProgramAdapter()
   {
     return null;
   }
@@ -373,6 +373,21 @@ public class ShortDSLAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createConfigurationValueSAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link xtext.factoryLang.shortDSL.shortDSL.LoggingS <em>Logging S</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see xtext.factoryLang.shortDSL.shortDSL.LoggingS
+   * @generated
+   */
+  public Adapter createLoggingSAdapter()
   {
     return null;
   }
@@ -483,46 +498,61 @@ public class ShortDSLAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link xtext.factoryLang.shortDSL.shortDSL.VariableValue <em>Variable Value</em>}'.
+   * Creates a new adapter for an object of class '{@link xtext.factoryLang.shortDSL.shortDSL.VariableValueS <em>Variable Value S</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see xtext.factoryLang.shortDSL.shortDSL.VariableValue
+   * @see xtext.factoryLang.shortDSL.shortDSL.VariableValueS
    * @generated
    */
-  public Adapter createVariableValueAdapter()
+  public Adapter createVariableValueSAdapter()
   {
     return null;
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link xtext.factoryLang.shortDSL.shortDSL.DeviceValue <em>Device Value</em>}'.
+   * Creates a new adapter for an object of class '{@link xtext.factoryLang.shortDSL.shortDSL.DeviceValueS <em>Device Value S</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see xtext.factoryLang.shortDSL.shortDSL.DeviceValue
+   * @see xtext.factoryLang.shortDSL.shortDSL.DeviceValueS
    * @generated
    */
-  public Adapter createDeviceValueAdapter()
+  public Adapter createDeviceValueSAdapter()
   {
     return null;
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link xtext.factoryLang.shortDSL.shortDSL.ValueSlot <em>Value Slot</em>}'.
+   * Creates a new adapter for an object of class '{@link xtext.factoryLang.shortDSL.shortDSL.ValueSlotS <em>Value Slot S</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see xtext.factoryLang.shortDSL.shortDSL.ValueSlot
+   * @see xtext.factoryLang.shortDSL.shortDSL.ValueSlotS
    * @generated
    */
-  public Adapter createValueSlotAdapter()
+  public Adapter createValueSlotSAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link xtext.factoryLang.shortDSL.shortDSL.DSLTypeValue <em>DSL Type Value</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see xtext.factoryLang.shortDSL.shortDSL.DSLTypeValue
+   * @generated
+   */
+  public Adapter createDSLTypeValueAdapter()
   {
     return null;
   }
@@ -583,6 +613,21 @@ public class ShortDSLAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createNumberSAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link xtext.factoryLang.shortDSL.shortDSL.DSLLong <em>DSL Long</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see xtext.factoryLang.shortDSL.shortDSL.DSLLong
+   * @generated
+   */
+  public Adapter createDSLLongAdapter()
   {
     return null;
   }
@@ -688,6 +733,21 @@ public class ShortDSLAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createCameraColorAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link xtext.factoryLang.shortDSL.shortDSL.Logging <em>Logging</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see xtext.factoryLang.shortDSL.shortDSL.Logging
+   * @generated
+   */
+  public Adapter createLoggingAdapter()
   {
     return null;
   }

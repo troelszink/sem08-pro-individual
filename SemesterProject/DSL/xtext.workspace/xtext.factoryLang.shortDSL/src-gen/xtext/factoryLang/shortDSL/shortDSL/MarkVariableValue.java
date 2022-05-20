@@ -52,12 +52,12 @@ public interface MarkVariableValue extends MarkS
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Value</em>' containment reference.
-   * @see #setValue(ValueSlot)
+   * @see #setValue(ValueSlotS)
    * @see xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage#getMarkVariableValue_Value()
    * @model containment="true"
    * @generated
    */
-  ValueSlot getValue();
+  ValueSlotS getValue();
 
   /**
    * Sets the value of the '{@link xtext.factoryLang.shortDSL.shortDSL.MarkVariableValue#getValue <em>Value</em>}' containment reference.
@@ -67,7 +67,7 @@ public interface MarkVariableValue extends MarkS
    * @see #getValue()
    * @generated
    */
-  void setValue(ValueSlot value);
+  void setValue(ValueSlotS value);
 
   /**
    * Returns the value of the '<em><b>Time</b></em>' attribute.
@@ -93,27 +93,27 @@ public interface MarkVariableValue extends MarkS
 
   /**
    * Returns the value of the '<em><b>Unit</b></em>' attribute.
-   * The literals are from the enumeration {@link xtext.factoryLang.shortDSL.shortDSL.TIME_UNIT}.
+   * The literals are from the enumeration {@link xtext.factoryLang.shortDSL.shortDSL.TIME_UNIT_S}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Unit</em>' attribute.
-   * @see xtext.factoryLang.shortDSL.shortDSL.TIME_UNIT
-   * @see #setUnit(TIME_UNIT)
+   * @see xtext.factoryLang.shortDSL.shortDSL.TIME_UNIT_S
+   * @see #setUnit(TIME_UNIT_S)
    * @see xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage#getMarkVariableValue_Unit()
    * @model
    * @generated
    */
-  TIME_UNIT getUnit();
+  TIME_UNIT_S getUnit();
 
   /**
    * Sets the value of the '{@link xtext.factoryLang.shortDSL.shortDSL.MarkVariableValue#getUnit <em>Unit</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Unit</em>' attribute.
-   * @see xtext.factoryLang.shortDSL.shortDSL.TIME_UNIT
+   * @see xtext.factoryLang.shortDSL.shortDSL.TIME_UNIT_S
    * @see #getUnit()
    * @generated
    */
-  void setUnit(TIME_UNIT value);
+  void setUnit(TIME_UNIT_S value);
 
 } // MarkVariableValue

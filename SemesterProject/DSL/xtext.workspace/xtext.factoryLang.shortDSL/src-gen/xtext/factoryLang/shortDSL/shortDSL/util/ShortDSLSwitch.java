@@ -80,17 +80,10 @@ public class ShortDSLSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case ShortDSLPackage.DSL_LONG:
+      case ShortDSLPackage.DSL_PROGRAM:
       {
-        DSL_Long dsL_Long = (DSL_Long)theEObject;
-        T result = caseDSL_Long(dsL_Long);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case ShortDSLPackage.DSL_TYPE:
-      {
-        DSLType dslType = (DSLType)theEObject;
-        T result = caseDSLType(dslType);
+        DSLProgram dslProgram = (DSLProgram)theEObject;
+        T result = caseDSLProgram(dslProgram);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -112,6 +105,13 @@ public class ShortDSLSwitch<T> extends Switch<T>
       {
         ConfigurationValueS configurationValueS = (ConfigurationValueS)theEObject;
         T result = caseConfigurationValueS(configurationValueS);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ShortDSLPackage.LOGGING_S:
+      {
+        LoggingS loggingS = (LoggingS)theEObject;
+        T result = caseLoggingS(loggingS);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -168,24 +168,31 @@ public class ShortDSLSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case ShortDSLPackage.VARIABLE_VALUE:
+      case ShortDSLPackage.VARIABLE_VALUE_S:
       {
-        VariableValue variableValue = (VariableValue)theEObject;
-        T result = caseVariableValue(variableValue);
+        VariableValueS variableValueS = (VariableValueS)theEObject;
+        T result = caseVariableValueS(variableValueS);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case ShortDSLPackage.DEVICE_VALUE:
+      case ShortDSLPackage.DEVICE_VALUE_S:
       {
-        DeviceValue deviceValue = (DeviceValue)theEObject;
-        T result = caseDeviceValue(deviceValue);
+        DeviceValueS deviceValueS = (DeviceValueS)theEObject;
+        T result = caseDeviceValueS(deviceValueS);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case ShortDSLPackage.VALUE_SLOT:
+      case ShortDSLPackage.VALUE_SLOT_S:
       {
-        ValueSlot valueSlot = (ValueSlot)theEObject;
-        T result = caseValueSlot(valueSlot);
+        ValueSlotS valueSlotS = (ValueSlotS)theEObject;
+        T result = caseValueSlotS(valueSlotS);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ShortDSLPackage.DSL_TYPE_VALUE:
+      {
+        DSLTypeValue dslTypeValue = (DSLTypeValue)theEObject;
+        T result = caseDSLTypeValue(dslTypeValue);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -217,11 +224,19 @@ public class ShortDSLSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case ShortDSLPackage.DSL_LONG:
+      {
+        DSLLong dslLong = (DSLLong)theEObject;
+        T result = caseDSLLong(dslLong);
+        if (result == null) result = caseDSLProgram(dslLong);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case ShortDSLPackage.DSL_SHORT:
       {
         DSLShort dslShort = (DSLShort)theEObject;
         T result = caseDSLShort(dslShort);
-        if (result == null) result = caseDSLType(dslShort);
+        if (result == null) result = caseDSLProgram(dslShort);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -270,6 +285,14 @@ public class ShortDSLSwitch<T> extends Switch<T>
         CameraColor cameraColor = (CameraColor)theEObject;
         T result = caseCameraColor(cameraColor);
         if (result == null) result = caseConfigurationValueS(cameraColor);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ShortDSLPackage.LOGGING:
+      {
+        Logging logging = (Logging)theEObject;
+        T result = caseLogging(logging);
+        if (result == null) result = caseLoggingS(logging);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -390,33 +413,17 @@ public class ShortDSLSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>DSL Long</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>DSL Program</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>DSL Long</em>'.
+   * @return the result of interpreting the object as an instance of '<em>DSL Program</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseDSL_Long(DSL_Long object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>DSL Type</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>DSL Type</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseDSLType(DSLType object)
+  public T caseDSLProgram(DSLProgram object)
   {
     return null;
   }
@@ -465,6 +472,22 @@ public class ShortDSLSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseConfigurationValueS(ConfigurationValueS object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Logging S</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Logging S</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseLoggingS(LoggingS object)
   {
     return null;
   }
@@ -582,49 +605,65 @@ public class ShortDSLSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Variable Value</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Variable Value S</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Variable Value</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Variable Value S</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseVariableValue(VariableValue object)
+  public T caseVariableValueS(VariableValueS object)
   {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Device Value</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Device Value S</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Device Value</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Device Value S</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseDeviceValue(DeviceValue object)
+  public T caseDeviceValueS(DeviceValueS object)
   {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Value Slot</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Value Slot S</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Value Slot</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Value Slot S</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseValueSlot(ValueSlot object)
+  public T caseValueSlotS(ValueSlotS object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>DSL Type Value</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>DSL Type Value</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseDSLTypeValue(DSLTypeValue object)
   {
     return null;
   }
@@ -689,6 +728,22 @@ public class ShortDSLSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseNumberS(NumberS object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>DSL Long</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>DSL Long</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseDSLLong(DSLLong object)
   {
     return null;
   }
@@ -801,6 +856,22 @@ public class ShortDSLSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseCameraColor(CameraColor object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Logging</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Logging</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseLogging(Logging object)
   {
     return null;
   }

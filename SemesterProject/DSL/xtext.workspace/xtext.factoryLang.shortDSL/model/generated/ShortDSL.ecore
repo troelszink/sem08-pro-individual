@@ -3,23 +3,25 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="shortDSL" nsURI="http://www.factoryLang.xtext/shortDSL/ShortDSL"
     nsPrefix="shortDSL">
   <eClassifiers xsi:type="ecore:EClass" name="Model">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dslType" eType="#//DSLTypeValue"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dslProgram" eType="#//DSLProgram"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="DSL_Long">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="DSLType"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DSLProgram"/>
   <eClassifiers xsi:type="ecore:EClass" name="ConfigurationS">
     <eStructuralFeatures xsi:type="ecore:EReference" name="devices" upperBound="-1"
         eType="#//DeviceS" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DeviceS">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="logging" eType="#//LoggingS"
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="targets" upperBound="-1"
         eType="#//ConfigurationValueS" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ConfigurationValueS"/>
+  <eClassifiers xsi:type="ecore:EClass" name="LoggingS"/>
   <eClassifiers xsi:type="ecore:EClass" name="DiskHandlingS">
     <eStructuralFeatures xsi:type="ecore:EReference" name="disk" eType="#//Disk"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="statements" upperBound="-1"
@@ -36,19 +38,22 @@
   <eClassifiers xsi:type="ecore:EClass" name="VariableS">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="VariableValue">
+  <eClassifiers xsi:type="ecore:EClass" name="VariableValueS">
     <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ref" eType="#//VariableS"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="DeviceValue">
+  <eClassifiers xsi:type="ecore:EClass" name="DeviceValueS">
     <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="configurationValue" eType="#//ConfigurationValueS"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ValueSlot">
+  <eClassifiers xsi:type="ecore:EClass" name="ValueSlotS">
     <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
         containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DSLTypeValue">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="#//DSL_TYPE_ENUM"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DiskStateValueS">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="#//DISK_STATES_S"/>
@@ -62,6 +67,10 @@
   <eClassifiers xsi:type="ecore:EClass" name="NumberS">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="DSL_TYPE_ENUM">
+    <eLiterals name="LONG" literal="long"/>
+    <eLiterals name="SHORT" value="1" literal="short"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="COMPARISON_OPERATOR_S">
     <eLiterals name="EQUAL" literal="="/>
     <eLiterals name="LESS_THAN" value="1" literal="&lt;"/>
@@ -74,7 +83,7 @@
     <eLiterals name="BLUE" value="2" literal="blue"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="DISK_SLOT_STATES_S">
-    <eLiterals name="FREE" literal="vacant"/>
+    <eLiterals name="FREE" literal="free"/>
     <eLiterals name="IN_PROGRESS" value="1" literal="in_progress"/>
     <eLiterals name="COMPLETE" value="2" literal="complete"/>
   </eClassifiers>
@@ -82,12 +91,15 @@
     <eLiterals name="FULL" literal="full"/>
     <eLiterals name="EMPTY" value="1" literal="empty"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="TIME_UNIT">
+  <eClassifiers xsi:type="ecore:EEnum" name="TIME_UNIT_S">
     <eLiterals name="SECOND" literal="s"/>
     <eLiterals name="MINUTE" value="1" literal="m"/>
     <eLiterals name="HOUR" value="2" literal="h"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="DSLShort" eSuperTypes="#//DSLType">
+  <eClassifiers xsi:type="ecore:EClass" name="DSLLong" eSuperTypes="#//DSLProgram">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DSLShort" eSuperTypes="#//DSLProgram">
     <eStructuralFeatures xsi:type="ecore:EReference" name="configuration" eType="#//ConfigurationS"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="diskHandlings" upperBound="-1"
@@ -109,6 +121,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="CameraColor" eSuperTypes="#//ConfigurationValueS">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="color" eType="#//COLOR_S"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Logging" eSuperTypes="#//LoggingS"/>
   <eClassifiers xsi:type="ecore:EClass" name="Loop" eSuperTypes="#//StatementS">
     <eStructuralFeatures xsi:type="ecore:EReference" name="variable" eType="#//VariableS"
         containment="true"/>
@@ -140,22 +153,22 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="variable" eType="#//VariableS"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="comparisonOperatorVariable"
         eType="#//COMPARISON_OPERATOR_S"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="variableValue" eType="#//VariableValue"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="variableValue" eType="#//VariableValueS"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ConditionDevice" eSuperTypes="#//ConditionS">
     <eStructuralFeatures xsi:type="ecore:EReference" name="device" eType="#//DeviceS"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="comparisonOperatorDevice"
         eType="#//COMPARISON_OPERATOR_S"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="deviceValue" eType="#//DeviceValue"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="deviceValue" eType="#//DeviceValueS"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MarkVariableValue" eSuperTypes="#//MarkS">
     <eStructuralFeatures xsi:type="ecore:EReference" name="variable" eType="#//VariableS"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//ValueSlot"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//ValueSlotS"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="time" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="unit" eType="#//TIME_UNIT"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="unit" eType="#//TIME_UNIT_S"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MarkCameraValue" eSuperTypes="#//MarkS">
     <eStructuralFeatures xsi:type="ecore:EReference" name="camera" eType="#//Camera"/>

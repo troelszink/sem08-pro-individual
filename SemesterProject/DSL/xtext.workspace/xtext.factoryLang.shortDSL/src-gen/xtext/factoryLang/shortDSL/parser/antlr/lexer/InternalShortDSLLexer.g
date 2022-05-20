@@ -19,11 +19,11 @@ Devices : 'devices';
 
 Foreach : 'foreach';
 
+Logging : 'logging';
+
 Handle : 'handle';
 
 Pickup : 'pickup';
-
-Vacant : 'vacant';
 
 Empty : 'empty';
 
@@ -34,6 +34,8 @@ Short : 'short';
 Blue : 'blue';
 
 Drop : 'drop';
+
+Free : 'free';
 
 Full : 'full';
 

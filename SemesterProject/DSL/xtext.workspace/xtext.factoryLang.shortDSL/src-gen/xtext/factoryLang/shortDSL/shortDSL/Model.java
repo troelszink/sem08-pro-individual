@@ -14,7 +14,8 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link xtext.factoryLang.shortDSL.shortDSL.Model#getType <em>Type</em>}</li>
+ *   <li>{@link xtext.factoryLang.shortDSL.shortDSL.Model#getDslType <em>Dsl Type</em>}</li>
+ *   <li>{@link xtext.factoryLang.shortDSL.shortDSL.Model#getDslProgram <em>Dsl Program</em>}</li>
  * </ul>
  *
  * @see xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage#getModel()
@@ -24,25 +25,47 @@ import org.eclipse.emf.ecore.EObject;
 public interface Model extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Type</b></em>' containment reference.
+   * Returns the value of the '<em><b>Dsl Type</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Type</em>' containment reference.
-   * @see #setType(EObject)
-   * @see xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage#getModel_Type()
+   * @return the value of the '<em>Dsl Type</em>' containment reference.
+   * @see #setDslType(DSLTypeValue)
+   * @see xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage#getModel_DslType()
    * @model containment="true"
    * @generated
    */
-  EObject getType();
+  DSLTypeValue getDslType();
 
   /**
-   * Sets the value of the '{@link xtext.factoryLang.shortDSL.shortDSL.Model#getType <em>Type</em>}' containment reference.
+   * Sets the value of the '{@link xtext.factoryLang.shortDSL.shortDSL.Model#getDslType <em>Dsl Type</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Type</em>' containment reference.
-   * @see #getType()
+   * @param value the new value of the '<em>Dsl Type</em>' containment reference.
+   * @see #getDslType()
    * @generated
    */
-  void setType(EObject value);
+  void setDslType(DSLTypeValue value);
+
+  /**
+   * Returns the value of the '<em><b>Dsl Program</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Dsl Program</em>' containment reference.
+   * @see #setDslProgram(DSLProgram)
+   * @see xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage#getModel_DslProgram()
+   * @model containment="true"
+   * @generated
+   */
+  DSLProgram getDslProgram();
+
+  /**
+   * Sets the value of the '{@link xtext.factoryLang.shortDSL.shortDSL.Model#getDslProgram <em>Dsl Program</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Dsl Program</em>' containment reference.
+   * @see #getDslProgram()
+   * @generated
+   */
+  void setDslProgram(DSLProgram value);
 
 } // Model

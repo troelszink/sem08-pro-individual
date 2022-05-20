@@ -11,113 +11,91 @@ import org.eclipse.emf.common.util.Enumerator;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the literals of the enumeration '<em><b>DISK SLOT STATES S</b></em>',
+ * A representation of the literals of the enumeration '<em><b>DSL TYPE ENUM</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
- * @see xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage#getDISK_SLOT_STATES_S()
+ * @see xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage#getDSL_TYPE_ENUM()
  * @model
  * @generated
  */
-public enum DISK_SLOT_STATES_S implements Enumerator
+public enum DSL_TYPE_ENUM implements Enumerator
 {
   /**
-   * The '<em><b>FREE</b></em>' literal object.
+   * The '<em><b>LONG</b></em>' literal object.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #FREE_VALUE
+   * @see #LONG_VALUE
    * @generated
    * @ordered
    */
-  FREE(0, "FREE", "free"),
+  LONG(0, "LONG", "long"),
 
   /**
-   * The '<em><b>IN PROGRESS</b></em>' literal object.
+   * The '<em><b>SHORT</b></em>' literal object.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #IN_PROGRESS_VALUE
+   * @see #SHORT_VALUE
    * @generated
    * @ordered
    */
-  IN_PROGRESS(1, "IN_PROGRESS", "in_progress"),
+  SHORT(1, "SHORT", "short");
 
   /**
-   * The '<em><b>COMPLETE</b></em>' literal object.
+   * The '<em><b>LONG</b></em>' literal value.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #COMPLETE_VALUE
+   * @see #LONG
+   * @model literal="long"
    * @generated
    * @ordered
    */
-  COMPLETE(2, "COMPLETE", "complete");
+  public static final int LONG_VALUE = 0;
 
   /**
-   * The '<em><b>FREE</b></em>' literal value.
+   * The '<em><b>SHORT</b></em>' literal value.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #FREE
-   * @model literal="free"
+   * @see #SHORT
+   * @model literal="short"
    * @generated
    * @ordered
    */
-  public static final int FREE_VALUE = 0;
+  public static final int SHORT_VALUE = 1;
 
   /**
-   * The '<em><b>IN PROGRESS</b></em>' literal value.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #IN_PROGRESS
-   * @model literal="in_progress"
-   * @generated
-   * @ordered
-   */
-  public static final int IN_PROGRESS_VALUE = 1;
-
-  /**
-   * The '<em><b>COMPLETE</b></em>' literal value.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #COMPLETE
-   * @model literal="complete"
-   * @generated
-   * @ordered
-   */
-  public static final int COMPLETE_VALUE = 2;
-
-  /**
-   * An array of all the '<em><b>DISK SLOT STATES S</b></em>' enumerators.
+   * An array of all the '<em><b>DSL TYPE ENUM</b></em>' enumerators.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  private static final DISK_SLOT_STATES_S[] VALUES_ARRAY =
-    new DISK_SLOT_STATES_S[]
+  private static final DSL_TYPE_ENUM[] VALUES_ARRAY =
+    new DSL_TYPE_ENUM[]
     {
-      FREE,
-      IN_PROGRESS,
-      COMPLETE,
+      LONG,
+      SHORT,
     };
 
   /**
-   * A public read-only list of all the '<em><b>DISK SLOT STATES S</b></em>' enumerators.
+   * A public read-only list of all the '<em><b>DSL TYPE ENUM</b></em>' enumerators.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  public static final List<DISK_SLOT_STATES_S> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+  public static final List<DSL_TYPE_ENUM> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
   /**
-   * Returns the '<em><b>DISK SLOT STATES S</b></em>' literal with the specified literal value.
+   * Returns the '<em><b>DSL TYPE ENUM</b></em>' literal with the specified literal value.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param literal the literal.
    * @return the matching enumerator or <code>null</code>.
    * @generated
    */
-  public static DISK_SLOT_STATES_S get(String literal)
+  public static DSL_TYPE_ENUM get(String literal)
   {
     for (int i = 0; i < VALUES_ARRAY.length; ++i)
     {
-      DISK_SLOT_STATES_S result = VALUES_ARRAY[i];
+      DSL_TYPE_ENUM result = VALUES_ARRAY[i];
       if (result.toString().equals(literal))
       {
         return result;
@@ -127,18 +105,18 @@ public enum DISK_SLOT_STATES_S implements Enumerator
   }
 
   /**
-   * Returns the '<em><b>DISK SLOT STATES S</b></em>' literal with the specified name.
+   * Returns the '<em><b>DSL TYPE ENUM</b></em>' literal with the specified name.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param name the name.
    * @return the matching enumerator or <code>null</code>.
    * @generated
    */
-  public static DISK_SLOT_STATES_S getByName(String name)
+  public static DSL_TYPE_ENUM getByName(String name)
   {
     for (int i = 0; i < VALUES_ARRAY.length; ++i)
     {
-      DISK_SLOT_STATES_S result = VALUES_ARRAY[i];
+      DSL_TYPE_ENUM result = VALUES_ARRAY[i];
       if (result.getName().equals(name))
       {
         return result;
@@ -148,20 +126,19 @@ public enum DISK_SLOT_STATES_S implements Enumerator
   }
 
   /**
-   * Returns the '<em><b>DISK SLOT STATES S</b></em>' literal with the specified integer value.
+   * Returns the '<em><b>DSL TYPE ENUM</b></em>' literal with the specified integer value.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the integer value.
    * @return the matching enumerator or <code>null</code>.
    * @generated
    */
-  public static DISK_SLOT_STATES_S get(int value)
+  public static DSL_TYPE_ENUM get(int value)
   {
     switch (value)
     {
-      case FREE_VALUE: return FREE;
-      case IN_PROGRESS_VALUE: return IN_PROGRESS;
-      case COMPLETE_VALUE: return COMPLETE;
+      case LONG_VALUE: return LONG;
+      case SHORT_VALUE: return SHORT;
     }
     return null;
   }
@@ -193,7 +170,7 @@ public enum DISK_SLOT_STATES_S implements Enumerator
    * <!-- end-user-doc -->
    * @generated
    */
-  private DISK_SLOT_STATES_S(int value, String name, String literal)
+  private DSL_TYPE_ENUM(int value, String name, String literal)
   {
     this.value = value;
     this.name = name;
@@ -245,4 +222,4 @@ public enum DISK_SLOT_STATES_S implements Enumerator
     return literal;
   }
   
-} //DISK_SLOT_STATES_S
+} //DSL_TYPE_ENUM

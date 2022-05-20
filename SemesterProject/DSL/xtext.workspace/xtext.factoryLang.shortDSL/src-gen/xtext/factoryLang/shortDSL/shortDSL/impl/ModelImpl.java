@@ -7,12 +7,13 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
+import xtext.factoryLang.shortDSL.shortDSL.DSLProgram;
+import xtext.factoryLang.shortDSL.shortDSL.DSLTypeValue;
 import xtext.factoryLang.shortDSL.shortDSL.Model;
 import xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage;
 
@@ -24,7 +25,8 @@ import xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link xtext.factoryLang.shortDSL.shortDSL.impl.ModelImpl#getType <em>Type</em>}</li>
+ *   <li>{@link xtext.factoryLang.shortDSL.shortDSL.impl.ModelImpl#getDslType <em>Dsl Type</em>}</li>
+ *   <li>{@link xtext.factoryLang.shortDSL.shortDSL.impl.ModelImpl#getDslProgram <em>Dsl Program</em>}</li>
  * </ul>
  *
  * @generated
@@ -32,14 +34,24 @@ import xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage;
 public class ModelImpl extends MinimalEObjectImpl.Container implements Model
 {
   /**
-   * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.
+   * The cached value of the '{@link #getDslType() <em>Dsl Type</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getType()
+   * @see #getDslType()
    * @generated
    * @ordered
    */
-  protected EObject type;
+  protected DSLTypeValue dslType;
+
+  /**
+   * The cached value of the '{@link #getDslProgram() <em>Dsl Program</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getDslProgram()
+   * @generated
+   * @ordered
+   */
+  protected DSLProgram dslProgram;
 
   /**
    * <!-- begin-user-doc -->
@@ -68,9 +80,9 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
    * @generated
    */
   @Override
-  public EObject getType()
+  public DSLTypeValue getDslType()
   {
-    return type;
+    return dslType;
   }
 
   /**
@@ -78,13 +90,13 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetType(EObject newType, NotificationChain msgs)
+  public NotificationChain basicSetDslType(DSLTypeValue newDslType, NotificationChain msgs)
   {
-    EObject oldType = type;
-    type = newType;
+    DSLTypeValue oldDslType = dslType;
+    dslType = newDslType;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ShortDSLPackage.MODEL__TYPE, oldType, newType);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ShortDSLPackage.MODEL__DSL_TYPE, oldDslType, newDslType);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -96,20 +108,70 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
    * @generated
    */
   @Override
-  public void setType(EObject newType)
+  public void setDslType(DSLTypeValue newDslType)
   {
-    if (newType != type)
+    if (newDslType != dslType)
     {
       NotificationChain msgs = null;
-      if (type != null)
-        msgs = ((InternalEObject)type).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ShortDSLPackage.MODEL__TYPE, null, msgs);
-      if (newType != null)
-        msgs = ((InternalEObject)newType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ShortDSLPackage.MODEL__TYPE, null, msgs);
-      msgs = basicSetType(newType, msgs);
+      if (dslType != null)
+        msgs = ((InternalEObject)dslType).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ShortDSLPackage.MODEL__DSL_TYPE, null, msgs);
+      if (newDslType != null)
+        msgs = ((InternalEObject)newDslType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ShortDSLPackage.MODEL__DSL_TYPE, null, msgs);
+      msgs = basicSetDslType(newDslType, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ShortDSLPackage.MODEL__TYPE, newType, newType));
+      eNotify(new ENotificationImpl(this, Notification.SET, ShortDSLPackage.MODEL__DSL_TYPE, newDslType, newDslType));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public DSLProgram getDslProgram()
+  {
+    return dslProgram;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetDslProgram(DSLProgram newDslProgram, NotificationChain msgs)
+  {
+    DSLProgram oldDslProgram = dslProgram;
+    dslProgram = newDslProgram;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ShortDSLPackage.MODEL__DSL_PROGRAM, oldDslProgram, newDslProgram);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setDslProgram(DSLProgram newDslProgram)
+  {
+    if (newDslProgram != dslProgram)
+    {
+      NotificationChain msgs = null;
+      if (dslProgram != null)
+        msgs = ((InternalEObject)dslProgram).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ShortDSLPackage.MODEL__DSL_PROGRAM, null, msgs);
+      if (newDslProgram != null)
+        msgs = ((InternalEObject)newDslProgram).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ShortDSLPackage.MODEL__DSL_PROGRAM, null, msgs);
+      msgs = basicSetDslProgram(newDslProgram, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ShortDSLPackage.MODEL__DSL_PROGRAM, newDslProgram, newDslProgram));
   }
 
   /**
@@ -122,8 +184,10 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   {
     switch (featureID)
     {
-      case ShortDSLPackage.MODEL__TYPE:
-        return basicSetType(null, msgs);
+      case ShortDSLPackage.MODEL__DSL_TYPE:
+        return basicSetDslType(null, msgs);
+      case ShortDSLPackage.MODEL__DSL_PROGRAM:
+        return basicSetDslProgram(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -138,8 +202,10 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   {
     switch (featureID)
     {
-      case ShortDSLPackage.MODEL__TYPE:
-        return getType();
+      case ShortDSLPackage.MODEL__DSL_TYPE:
+        return getDslType();
+      case ShortDSLPackage.MODEL__DSL_PROGRAM:
+        return getDslProgram();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -154,8 +220,11 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   {
     switch (featureID)
     {
-      case ShortDSLPackage.MODEL__TYPE:
-        setType((EObject)newValue);
+      case ShortDSLPackage.MODEL__DSL_TYPE:
+        setDslType((DSLTypeValue)newValue);
+        return;
+      case ShortDSLPackage.MODEL__DSL_PROGRAM:
+        setDslProgram((DSLProgram)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -171,8 +240,11 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   {
     switch (featureID)
     {
-      case ShortDSLPackage.MODEL__TYPE:
-        setType((EObject)null);
+      case ShortDSLPackage.MODEL__DSL_TYPE:
+        setDslType((DSLTypeValue)null);
+        return;
+      case ShortDSLPackage.MODEL__DSL_PROGRAM:
+        setDslProgram((DSLProgram)null);
         return;
     }
     super.eUnset(featureID);
@@ -188,8 +260,10 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   {
     switch (featureID)
     {
-      case ShortDSLPackage.MODEL__TYPE:
-        return type != null;
+      case ShortDSLPackage.MODEL__DSL_TYPE:
+        return dslType != null;
+      case ShortDSLPackage.MODEL__DSL_PROGRAM:
+        return dslProgram != null;
     }
     return super.eIsSet(featureID);
   }

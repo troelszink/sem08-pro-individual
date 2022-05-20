@@ -22,7 +22,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface DSLShort extends DSLType
+public interface DSLShort extends DSLProgram
 {
   /**
    * Returns the value of the '<em><b>Configuration</b></em>' containment reference.

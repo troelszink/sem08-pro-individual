@@ -76,12 +76,12 @@ public interface ConditionVariable extends ConditionS
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Variable Value</em>' containment reference.
-   * @see #setVariableValue(VariableValue)
+   * @see #setVariableValue(VariableValueS)
    * @see xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage#getConditionVariable_VariableValue()
    * @model containment="true"
    * @generated
    */
-  VariableValue getVariableValue();
+  VariableValueS getVariableValue();
 
   /**
    * Sets the value of the '{@link xtext.factoryLang.shortDSL.shortDSL.ConditionVariable#getVariableValue <em>Variable Value</em>}' containment reference.
@@ -91,6 +91,6 @@ public interface ConditionVariable extends ConditionS
    * @see #getVariableValue()
    * @generated
    */
-  void setVariableValue(VariableValue value);
+  void setVariableValue(VariableValueS value);
 
 } // ConditionVariable

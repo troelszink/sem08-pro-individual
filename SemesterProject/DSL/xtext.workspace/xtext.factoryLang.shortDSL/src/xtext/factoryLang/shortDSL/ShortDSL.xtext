@@ -3,13 +3,16 @@ grammar xtext.factoryLang.shortDSL.ShortDSL with org.eclipse.xtext.common.Termin
 generate shortDSL "http://www.factoryLang.xtext/shortDSL/ShortDSL"
 
 Model:
-	'use' ('long' 'dsl' type=DSL_Long | 'short' 'dsl' type=DSL_Short);
+	'use' dslType=DSLTypeValue 'dsl' dslProgram=DSLProgram;
 
-DSL_Long:
-	'test' name=ID;
+DSLProgram:
+	DSLLong | DSLShort;
+
+DSLLong returns DSLProgram:
+	{DSLLong} 'test' name=ID;
 
 // -------------------- INDIVIDUAL DSL - EASY TO WRITE, "HARDER" TO READ -------------------- //
-DSL_Short returns DSLType:
+DSLShort returns DSLProgram:
 	{DSLShort} configuration=ConfigurationS diskHandlings+=DiskHandlingS*;
 
 // ----- CONFIGURAITON ----- //
@@ -20,24 +23,28 @@ DeviceS:
 	CraneS | DiskS | CameraS;
 
 CraneS returns DeviceS:
-	{Crane} name=ID ':' BEGIN targets+=CraneZoneS+ END;
+	{Crane} name=ID (logging=LoggingS)? ':' BEGIN targets+=CraneZoneS+ END;
 
 CraneZoneS returns ConfigurationValueS:
 	{CraneZone} name=ID ':' zoneValue=INT (',')?;
 
 DiskS returns DeviceS:
-	{Disk} name=ID '(' nSlots=INT ')' ':' BEGIN targets+=DiskZoneS+ END;
+	{Disk} name=ID '(' nSlots=INT ')' (logging=LoggingS)? ':' BEGIN targets+=DiskZoneS+ END;
 
 DiskZoneS returns ConfigurationValueS:
 	{DiskZone} name=ID ':' slot=INT (',')?;
 
 CameraS returns DeviceS:
-	{Camera} name=ID ':' BEGIN targets+=CameraColorS+ END;
+	{Camera} name=ID (logging=LoggingS)? ':' BEGIN targets+=CameraColorS+ END;
 
 CameraColorS returns ConfigurationValueS:
 	{CameraColor} color=COLOR_S (',')?;
 
-// ----- DEVICE HANDLING ----- //
+// ----- LOGGING ----- //
+LoggingS:
+	{Logging} 'logging';
+
+// ----- DISK HANDLING ----- //
 DiskHandlingS:
 	'handle' disk=[Disk] '{' BEGIN statements+=StatementS+ END '}';
 
@@ -69,19 +76,19 @@ ConditionS returns StatementS:
 
 ConditionVariableS returns ConditionS:
 	{ConditionVariable} 'if' 'var' variable=[VariableS]
-	comparisonOperatorVariable=COMPARISON_OPERATOR_S variableValue=VariableValue
+	comparisonOperatorVariable=COMPARISON_OPERATOR_S variableValue=VariableValueS
 	':' BEGIN statements+=StatementS* END;
 
 ConditionDeviceS returns ConditionS:
 	{ConditionDevice} 'if' 'dev' device=[DeviceS]
-	comparisonOperatorDevice=COMPARISON_OPERATOR_S deviceValue=DeviceValue
+	comparisonOperatorDevice=COMPARISON_OPERATOR_S deviceValue=DeviceValueS
 	':' BEGIN statements+=StatementS* END;
 
 MarkS returns StatementS:
 	MarkVariableValueS | MarkCameraValueS;
 	
 MarkVariableValueS returns MarkS:
-	{MarkVariableValue} variable=[VariableS] '(' value=ValueSlot (',' time=INT unit=TIME_UNIT)? ')';
+	{MarkVariableValue} variable=[VariableS] '(' value=ValueSlotS (',' time=INT unit=TIME_UNIT_S)? ')';
 
 MarkCameraValueS returns MarkS:
 	{MarkCameraValue} camera=[Camera] 'scan' variable=LocalVariableS;
@@ -98,17 +105,20 @@ LocalVariableS returns VariableS:
 GlobalVariableS returns VariableS:
 	{GlobalVariable} name=ID;
 
-VariableValue:
+VariableValueS:
 	value=DiskSlotStateValueS | value=ColorValueS | value=NumberS | value=DiskStateValueS | ref=[VariableS];
 
-DeviceValue:
+DeviceValueS:
 	value=DiskStateValueS | value=ColorValueS | configurationValue=[ConfigurationValueS];
 
-ValueSlot:
+ValueSlotS:
 	value=DiskSlotStateValueS | value=ColorValueS;
 
 
 // ----- VALUE TYPES:ACTUAL VALUES ----- //
+DSLTypeValue:
+	value=DSL_TYPE_ENUM;
+
 DiskStateValueS:
 	value=DISK_STATES_S;
 
@@ -122,6 +132,9 @@ NumberS:
 	value=INT;
 
 // ----- TERMINALS ----- //
+enum DSL_TYPE_ENUM:
+	LONG='long' | SHORT='short';
+
 enum COMPARISON_OPERATOR_S:
 	EQUAL='=' | LESS_THAN='<' | GREATER_THAN='>' | NOT='!=';
 
@@ -129,12 +142,12 @@ enum COLOR_S:
 	RED='red' | GREEN='green' | BLUE='blue';
 
 enum DISK_SLOT_STATES_S:
-	FREE='vacant' | IN_PROGRESS='in_progress' | COMPLETE='complete';
+	FREE='free' | IN_PROGRESS='in_progress' | COMPLETE='complete';
 
 enum DISK_STATES_S:
 	FULL='full' | EMPTY='empty';
 	
-enum TIME_UNIT:
+enum TIME_UNIT_S:
 	SECOND='s' | MINUTE='m' | HOUR='h';
 
 terminal BEGIN:

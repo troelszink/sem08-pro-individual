@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link xtext.factoryLang.shortDSL.shortDSL.DeviceS#getName <em>Name</em>}</li>
+ *   <li>{@link xtext.factoryLang.shortDSL.shortDSL.DeviceS#getLogging <em>Logging</em>}</li>
  *   <li>{@link xtext.factoryLang.shortDSL.shortDSL.DeviceS#getTargets <em>Targets</em>}</li>
  * </ul>
  *
@@ -47,6 +48,28 @@ public interface DeviceS extends EObject
    * @generated
    */
   void setName(String value);
+
+  /**
+   * Returns the value of the '<em><b>Logging</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Logging</em>' containment reference.
+   * @see #setLogging(LoggingS)
+   * @see xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage#getDeviceS_Logging()
+   * @model containment="true"
+   * @generated
+   */
+  LoggingS getLogging();
+
+  /**
+   * Sets the value of the '{@link xtext.factoryLang.shortDSL.shortDSL.DeviceS#getLogging <em>Logging</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Logging</em>' containment reference.
+   * @see #getLogging()
+   * @generated
+   */
+  void setLogging(LoggingS value);
 
   /**
    * Returns the value of the '<em><b>Targets</b></em>' containment reference list.

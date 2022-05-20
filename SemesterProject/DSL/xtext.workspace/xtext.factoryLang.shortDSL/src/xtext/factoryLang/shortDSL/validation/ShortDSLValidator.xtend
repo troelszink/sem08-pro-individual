@@ -16,6 +16,11 @@ import xtext.factoryLang.shortDSL.shortDSL.Camera
 import xtext.factoryLang.shortDSL.shortDSL.DiskStateValueS
 import xtext.factoryLang.shortDSL.shortDSL.ColorValueS
 import xtext.factoryLang.shortDSL.shortDSL.TIME_UNIT
+import xtext.factoryLang.shortDSL.shortDSL.Model
+import xtext.factoryLang.shortDSL.shortDSL.DSL_TYPE_ENUM
+import xtext.factoryLang.shortDSL.shortDSL.DSLLong
+import xtext.factoryLang.shortDSL.shortDSL.DSLShort
+import xtext.factoryLang.shortDSL.shortDSL.DSLProgram
 
 /**
  * This class contains custom validation rules. 
@@ -25,6 +30,34 @@ import xtext.factoryLang.shortDSL.shortDSL.TIME_UNIT
 class ShortDSLValidator extends AbstractShortDSLValidator {
 	
 	public static val INVALID_VALUE = 'invalidValue'
+	
+	@Check
+	def checkDSLType(Model model) {
+		if (!model.eIsSet(Literals.MODEL__DSL_TYPE)) {
+			error('Please specify dsl type: ' + DSL_TYPE_ENUM.LONG + ', ' + DSL_TYPE_ENUM.SHORT,
+				Literals.MODEL__DSL_TYPE, INVALID_VALUE)
+			return
+		}
+		
+		val dslType = model.dslType
+		val dslTypeValue = dslType.value
+		val dslProgram = model.dslProgram as DSLProgram
+		
+		if (dslTypeValue == DSL_TYPE_ENUM.LONG) {
+			println("inside long")
+			if (dslProgram instanceof DSLShort) {
+				error('Wrong dsl syntax - use syntax of long dsl or switch to short dsl',
+					Literals.MODEL__DSL_TYPE, INVALID_VALUE)
+			}
+		}
+		else {
+			println("inside short")
+			if (dslProgram instanceof DSLLong) {
+				error('Wrong dsl syntax - use syntax of short dsl or switch to long dsl',
+					Literals.MODEL__DSL_TYPE, INVALID_VALUE)
+			}
+		}
+	}
 	
 	@Check
 	def checkCraneZone(CraneZone zone) {
@@ -52,7 +85,7 @@ class ShortDSLValidator extends AbstractShortDSLValidator {
 			return
 		}
 		if (!mark.eIsSet(Literals.MARK_VARIABLE_VALUE__UNIT)) {
-			error('Remember to add unit: ' + TIME_UNIT.get(0) + ', ' + TIME_UNIT.get(1) + ', ' + TIME_UNIT.get(2),
+			error('Remember to add unit: ' + TIME_UNIT.SECOND + ', ' + TIME_UNIT.MINUTE + ', ' + TIME_UNIT.HOUR,
 				(Literals.MARK_VARIABLE_VALUE__TIME), INVALID_VALUE)
 			return
 		}

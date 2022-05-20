@@ -37,7 +37,7 @@ import xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage;
  *
  * @generated
  */
-public class DSLShortImpl extends DSLTypeImpl implements DSLShort
+public class DSLShortImpl extends DSLProgramImpl implements DSLShort
 {
   /**
    * The cached value of the '{@link #getConfiguration() <em>Configuration</em>}' containment reference.

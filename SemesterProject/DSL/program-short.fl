@@ -43,7 +43,7 @@ disk1 {
         slot(free)
     
     if disk != full: // or: if disk1 ...
-        empty slot --> intakeZone
+        free slot --> intakeZone
         slot(in_progress)
         slot --> cameraZone
         camera1(color) // also marks slot as color

@@ -15,7 +15,7 @@ import xtext.factoryLang.shortDSL.shortDSL.COMPARISON_OPERATOR_S;
 import xtext.factoryLang.shortDSL.shortDSL.ConditionVariable;
 import xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage;
 import xtext.factoryLang.shortDSL.shortDSL.VariableS;
-import xtext.factoryLang.shortDSL.shortDSL.VariableValue;
+import xtext.factoryLang.shortDSL.shortDSL.VariableValueS;
 
 /**
  * <!-- begin-user-doc -->
@@ -72,7 +72,7 @@ public class ConditionVariableImpl extends ConditionSImpl implements ConditionVa
    * @generated
    * @ordered
    */
-  protected VariableValue variableValue;
+  protected VariableValueS variableValue;
 
   /**
    * <!-- begin-user-doc -->
@@ -171,7 +171,7 @@ public class ConditionVariableImpl extends ConditionSImpl implements ConditionVa
    * @generated
    */
   @Override
-  public VariableValue getVariableValue()
+  public VariableValueS getVariableValue()
   {
     return variableValue;
   }
@@ -181,9 +181,9 @@ public class ConditionVariableImpl extends ConditionSImpl implements ConditionVa
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetVariableValue(VariableValue newVariableValue, NotificationChain msgs)
+  public NotificationChain basicSetVariableValue(VariableValueS newVariableValue, NotificationChain msgs)
   {
-    VariableValue oldVariableValue = variableValue;
+    VariableValueS oldVariableValue = variableValue;
     variableValue = newVariableValue;
     if (eNotificationRequired())
     {
@@ -199,7 +199,7 @@ public class ConditionVariableImpl extends ConditionSImpl implements ConditionVa
    * @generated
    */
   @Override
-  public void setVariableValue(VariableValue newVariableValue)
+  public void setVariableValue(VariableValueS newVariableValue)
   {
     if (newVariableValue != variableValue)
     {
@@ -269,7 +269,7 @@ public class ConditionVariableImpl extends ConditionSImpl implements ConditionVa
         setComparisonOperatorVariable((COMPARISON_OPERATOR_S)newValue);
         return;
       case ShortDSLPackage.CONDITION_VARIABLE__VARIABLE_VALUE:
-        setVariableValue((VariableValue)newValue);
+        setVariableValue((VariableValueS)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -292,7 +292,7 @@ public class ConditionVariableImpl extends ConditionSImpl implements ConditionVa
         setComparisonOperatorVariable(COMPARISON_OPERATOR_VARIABLE_EDEFAULT);
         return;
       case ShortDSLPackage.CONDITION_VARIABLE__VARIABLE_VALUE:
-        setVariableValue((VariableValue)null);
+        setVariableValue((VariableValueS)null);
         return;
     }
     super.eUnset(featureID);

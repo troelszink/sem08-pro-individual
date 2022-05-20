@@ -3,22 +3,29 @@
  */
 package xtext.factoryLang.shortDSL.validation;
 
+import com.google.common.base.Objects;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.validation.Check;
+import org.eclipse.xtext.xbase.lib.InputOutput;
 import xtext.factoryLang.shortDSL.shortDSL.Camera;
 import xtext.factoryLang.shortDSL.shortDSL.ColorValueS;
 import xtext.factoryLang.shortDSL.shortDSL.ConditionDevice;
 import xtext.factoryLang.shortDSL.shortDSL.Crane;
 import xtext.factoryLang.shortDSL.shortDSL.CraneZone;
+import xtext.factoryLang.shortDSL.shortDSL.DSLLong;
+import xtext.factoryLang.shortDSL.shortDSL.DSLProgram;
+import xtext.factoryLang.shortDSL.shortDSL.DSLShort;
+import xtext.factoryLang.shortDSL.shortDSL.DSLTypeValue;
+import xtext.factoryLang.shortDSL.shortDSL.DSL_TYPE_ENUM;
 import xtext.factoryLang.shortDSL.shortDSL.DeviceS;
 import xtext.factoryLang.shortDSL.shortDSL.Disk;
 import xtext.factoryLang.shortDSL.shortDSL.DiskStateValueS;
 import xtext.factoryLang.shortDSL.shortDSL.DiskZone;
 import xtext.factoryLang.shortDSL.shortDSL.MarkVariableValue;
+import xtext.factoryLang.shortDSL.shortDSL.Model;
 import xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage;
-import xtext.factoryLang.shortDSL.shortDSL.TIME_UNIT;
 
 /**
  * This class contains custom validation rules.
@@ -28,6 +35,35 @@ import xtext.factoryLang.shortDSL.shortDSL.TIME_UNIT;
 @SuppressWarnings("all")
 public class ShortDSLValidator extends AbstractShortDSLValidator {
   public static final String INVALID_VALUE = "invalidValue";
+  
+  @Check
+  public void checkDSLType(final Model model) {
+    boolean _eIsSet = model.eIsSet(ShortDSLPackage.Literals.MODEL__DSL_TYPE);
+    boolean _not = (!_eIsSet);
+    if (_not) {
+      this.error(((("Please specify dsl type: " + DSL_TYPE_ENUM.LONG) + ", ") + DSL_TYPE_ENUM.SHORT), 
+        ShortDSLPackage.Literals.MODEL__DSL_TYPE, ShortDSLValidator.INVALID_VALUE);
+      return;
+    }
+    final DSLTypeValue dslType = model.getDslType();
+    final DSL_TYPE_ENUM dslTypeValue = dslType.getValue();
+    DSLProgram _dslProgram = model.getDslProgram();
+    final DSLProgram dslProgram = ((DSLProgram) _dslProgram);
+    boolean _equals = Objects.equal(dslTypeValue, DSL_TYPE_ENUM.LONG);
+    if (_equals) {
+      InputOutput.<String>println("inside long");
+      if ((dslProgram instanceof DSLShort)) {
+        this.error("Wrong dsl syntax - use syntax of long dsl or switch to short dsl", 
+          ShortDSLPackage.Literals.MODEL__DSL_TYPE, ShortDSLValidator.INVALID_VALUE);
+      }
+    } else {
+      InputOutput.<String>println("inside short");
+      if ((dslProgram instanceof DSLLong)) {
+        this.error("Wrong dsl syntax - use syntax of short dsl or switch to long dsl", 
+          ShortDSLPackage.Literals.MODEL__DSL_TYPE, ShortDSLValidator.INVALID_VALUE);
+      }
+    }
+  }
   
   @Check
   public void checkCraneZone(final CraneZone zone) {
@@ -56,29 +92,13 @@ public class ShortDSLValidator extends AbstractShortDSLValidator {
   
   @Check
   public void checkDiskMarkSlotOperation(final MarkVariableValue mark) {
-    if (((!mark.eIsSet(ShortDSLPackage.Literals.MARK_VARIABLE_VALUE__TIME)) && 
-      (!mark.eIsSet(ShortDSLPackage.Literals.MARK_VARIABLE_VALUE__UNIT)))) {
-      return;
-    }
-    boolean _eIsSet = mark.eIsSet(ShortDSLPackage.Literals.MARK_VARIABLE_VALUE__UNIT);
-    boolean _not = (!_eIsSet);
-    if (_not) {
-      TIME_UNIT _get = TIME_UNIT.get(0);
-      String _plus = ("Remember to add unit: " + _get);
-      String _plus_1 = (_plus + ", ");
-      TIME_UNIT _get_1 = TIME_UNIT.get(1);
-      String _plus_2 = (_plus_1 + _get_1);
-      String _plus_3 = (_plus_2 + ", ");
-      TIME_UNIT _get_2 = TIME_UNIT.get(2);
-      String _plus_4 = (_plus_3 + _get_2);
-      this.error(_plus_4, ShortDSLPackage.Literals.MARK_VARIABLE_VALUE__TIME, ShortDSLValidator.INVALID_VALUE);
-      return;
-    }
-    final int time = mark.getTime();
-    if ((time < 1)) {
-      this.error("The time to finish should be>= 1", ShortDSLPackage.Literals.MARK_VARIABLE_VALUE__TIME, ShortDSLValidator.INVALID_VALUE);
-      return;
-    }
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method or field TIME_UNIT is undefined"
+      + "\nThe method or field TIME_UNIT is undefined"
+      + "\nThe method or field TIME_UNIT is undefined"
+      + "\nSECOND cannot be resolved"
+      + "\nMINUTE cannot be resolved"
+      + "\nHOUR cannot be resolved");
   }
   
   @Check

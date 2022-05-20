@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 import xtext.factoryLang.shortDSL.shortDSL.ConfigurationValueS;
 import xtext.factoryLang.shortDSL.shortDSL.DeviceS;
+import xtext.factoryLang.shortDSL.shortDSL.LoggingS;
 import xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage;
 
 /**
@@ -32,6 +33,7 @@ import xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage;
  * </p>
  * <ul>
  *   <li>{@link xtext.factoryLang.shortDSL.shortDSL.impl.DeviceSImpl#getName <em>Name</em>}</li>
+ *   <li>{@link xtext.factoryLang.shortDSL.shortDSL.impl.DeviceSImpl#getLogging <em>Logging</em>}</li>
  *   <li>{@link xtext.factoryLang.shortDSL.shortDSL.impl.DeviceSImpl#getTargets <em>Targets</em>}</li>
  * </ul>
  *
@@ -58,6 +60,16 @@ public class DeviceSImpl extends MinimalEObjectImpl.Container implements DeviceS
    * @ordered
    */
   protected String name = NAME_EDEFAULT;
+
+  /**
+   * The cached value of the '{@link #getLogging() <em>Logging</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getLogging()
+   * @generated
+   * @ordered
+   */
+  protected LoggingS logging;
 
   /**
    * The cached value of the '{@link #getTargets() <em>Targets</em>}' containment reference list.
@@ -121,6 +133,56 @@ public class DeviceSImpl extends MinimalEObjectImpl.Container implements DeviceS
    * @generated
    */
   @Override
+  public LoggingS getLogging()
+  {
+    return logging;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetLogging(LoggingS newLogging, NotificationChain msgs)
+  {
+    LoggingS oldLogging = logging;
+    logging = newLogging;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ShortDSLPackage.DEVICE_S__LOGGING, oldLogging, newLogging);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setLogging(LoggingS newLogging)
+  {
+    if (newLogging != logging)
+    {
+      NotificationChain msgs = null;
+      if (logging != null)
+        msgs = ((InternalEObject)logging).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ShortDSLPackage.DEVICE_S__LOGGING, null, msgs);
+      if (newLogging != null)
+        msgs = ((InternalEObject)newLogging).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ShortDSLPackage.DEVICE_S__LOGGING, null, msgs);
+      msgs = basicSetLogging(newLogging, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ShortDSLPackage.DEVICE_S__LOGGING, newLogging, newLogging));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EList<ConfigurationValueS> getTargets()
   {
     if (targets == null)
@@ -140,6 +202,8 @@ public class DeviceSImpl extends MinimalEObjectImpl.Container implements DeviceS
   {
     switch (featureID)
     {
+      case ShortDSLPackage.DEVICE_S__LOGGING:
+        return basicSetLogging(null, msgs);
       case ShortDSLPackage.DEVICE_S__TARGETS:
         return ((InternalEList<?>)getTargets()).basicRemove(otherEnd, msgs);
     }
@@ -158,6 +222,8 @@ public class DeviceSImpl extends MinimalEObjectImpl.Container implements DeviceS
     {
       case ShortDSLPackage.DEVICE_S__NAME:
         return getName();
+      case ShortDSLPackage.DEVICE_S__LOGGING:
+        return getLogging();
       case ShortDSLPackage.DEVICE_S__TARGETS:
         return getTargets();
     }
@@ -177,6 +243,9 @@ public class DeviceSImpl extends MinimalEObjectImpl.Container implements DeviceS
     {
       case ShortDSLPackage.DEVICE_S__NAME:
         setName((String)newValue);
+        return;
+      case ShortDSLPackage.DEVICE_S__LOGGING:
+        setLogging((LoggingS)newValue);
         return;
       case ShortDSLPackage.DEVICE_S__TARGETS:
         getTargets().clear();
@@ -199,6 +268,9 @@ public class DeviceSImpl extends MinimalEObjectImpl.Container implements DeviceS
       case ShortDSLPackage.DEVICE_S__NAME:
         setName(NAME_EDEFAULT);
         return;
+      case ShortDSLPackage.DEVICE_S__LOGGING:
+        setLogging((LoggingS)null);
+        return;
       case ShortDSLPackage.DEVICE_S__TARGETS:
         getTargets().clear();
         return;
@@ -218,6 +290,8 @@ public class DeviceSImpl extends MinimalEObjectImpl.Container implements DeviceS
     {
       case ShortDSLPackage.DEVICE_S__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+      case ShortDSLPackage.DEVICE_S__LOGGING:
+        return logging != null;
       case ShortDSLPackage.DEVICE_S__TARGETS:
         return targets != null && !targets.isEmpty();
     }

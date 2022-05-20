@@ -23,11 +23,12 @@ import xtext.factoryLang.shortDSL.shortDSL.Crane;
 import xtext.factoryLang.shortDSL.shortDSL.CraneAction;
 import xtext.factoryLang.shortDSL.shortDSL.CraneActionS;
 import xtext.factoryLang.shortDSL.shortDSL.CraneZone;
+import xtext.factoryLang.shortDSL.shortDSL.DSLLong;
+import xtext.factoryLang.shortDSL.shortDSL.DSLProgram;
 import xtext.factoryLang.shortDSL.shortDSL.DSLShort;
-import xtext.factoryLang.shortDSL.shortDSL.DSLType;
-import xtext.factoryLang.shortDSL.shortDSL.DSL_Long;
+import xtext.factoryLang.shortDSL.shortDSL.DSLTypeValue;
 import xtext.factoryLang.shortDSL.shortDSL.DeviceS;
-import xtext.factoryLang.shortDSL.shortDSL.DeviceValue;
+import xtext.factoryLang.shortDSL.shortDSL.DeviceValueS;
 import xtext.factoryLang.shortDSL.shortDSL.Disk;
 import xtext.factoryLang.shortDSL.shortDSL.DiskHandlingS;
 import xtext.factoryLang.shortDSL.shortDSL.DiskSlotStateValueS;
@@ -35,6 +36,8 @@ import xtext.factoryLang.shortDSL.shortDSL.DiskStateValueS;
 import xtext.factoryLang.shortDSL.shortDSL.DiskZone;
 import xtext.factoryLang.shortDSL.shortDSL.GlobalVariable;
 import xtext.factoryLang.shortDSL.shortDSL.LocalVariable;
+import xtext.factoryLang.shortDSL.shortDSL.Logging;
+import xtext.factoryLang.shortDSL.shortDSL.LoggingS;
 import xtext.factoryLang.shortDSL.shortDSL.Loop;
 import xtext.factoryLang.shortDSL.shortDSL.MarkCameraValue;
 import xtext.factoryLang.shortDSL.shortDSL.MarkS;
@@ -48,9 +51,9 @@ import xtext.factoryLang.shortDSL.shortDSL.NumberS;
 import xtext.factoryLang.shortDSL.shortDSL.ShortDSLFactory;
 import xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage;
 import xtext.factoryLang.shortDSL.shortDSL.StatementS;
-import xtext.factoryLang.shortDSL.shortDSL.ValueSlot;
+import xtext.factoryLang.shortDSL.shortDSL.ValueSlotS;
 import xtext.factoryLang.shortDSL.shortDSL.VariableS;
-import xtext.factoryLang.shortDSL.shortDSL.VariableValue;
+import xtext.factoryLang.shortDSL.shortDSL.VariableValueS;
 
 /**
  * <!-- begin-user-doc -->
@@ -72,14 +75,7 @@ public class ShortDSLPackageImpl extends EPackageImpl implements ShortDSLPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass dsL_LongEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass dslTypeEClass = null;
+  private EClass dslProgramEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -101,6 +97,13 @@ public class ShortDSLPackageImpl extends EPackageImpl implements ShortDSLPackage
    * @generated
    */
   private EClass configurationValueSEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass loggingSEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -156,21 +159,28 @@ public class ShortDSLPackageImpl extends EPackageImpl implements ShortDSLPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass variableValueEClass = null;
+  private EClass variableValueSEClass = null;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass deviceValueEClass = null;
+  private EClass deviceValueSEClass = null;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass valueSlotEClass = null;
+  private EClass valueSlotSEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass dslTypeValueEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -199,6 +209,13 @@ public class ShortDSLPackageImpl extends EPackageImpl implements ShortDSLPackage
    * @generated
    */
   private EClass numberSEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass dslLongEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -248,6 +265,13 @@ public class ShortDSLPackageImpl extends EPackageImpl implements ShortDSLPackage
    * @generated
    */
   private EClass cameraColorEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass loggingEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -331,6 +355,13 @@ public class ShortDSLPackageImpl extends EPackageImpl implements ShortDSLPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  private EEnum dsL_TYPE_ENUMEEnum = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EEnum comparisoN_OPERATOR_SEEnum = null;
 
   /**
@@ -359,7 +390,7 @@ public class ShortDSLPackageImpl extends EPackageImpl implements ShortDSLPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EEnum timE_UNITEEnum = null;
+  private EEnum timE_UNIT_SEEnum = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -441,7 +472,7 @@ public class ShortDSLPackageImpl extends EPackageImpl implements ShortDSLPackage
    * @generated
    */
   @Override
-  public EReference getModel_Type()
+  public EReference getModel_DslType()
   {
     return (EReference)modelEClass.getEStructuralFeatures().get(0);
   }
@@ -452,9 +483,9 @@ public class ShortDSLPackageImpl extends EPackageImpl implements ShortDSLPackage
    * @generated
    */
   @Override
-  public EClass getDSL_Long()
+  public EReference getModel_DslProgram()
   {
-    return dsL_LongEClass;
+    return (EReference)modelEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -463,20 +494,9 @@ public class ShortDSLPackageImpl extends EPackageImpl implements ShortDSLPackage
    * @generated
    */
   @Override
-  public EAttribute getDSL_Long_Name()
+  public EClass getDSLProgram()
   {
-    return (EAttribute)dsL_LongEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EClass getDSLType()
-  {
-    return dslTypeEClass;
+    return dslProgramEClass;
   }
 
   /**
@@ -529,9 +549,20 @@ public class ShortDSLPackageImpl extends EPackageImpl implements ShortDSLPackage
    * @generated
    */
   @Override
-  public EReference getDeviceS_Targets()
+  public EReference getDeviceS_Logging()
   {
     return (EReference)deviceSEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getDeviceS_Targets()
+  {
+    return (EReference)deviceSEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -543,6 +574,17 @@ public class ShortDSLPackageImpl extends EPackageImpl implements ShortDSLPackage
   public EClass getConfigurationValueS()
   {
     return configurationValueSEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getLoggingS()
+  {
+    return loggingSEClass;
   }
 
   /**
@@ -672,9 +714,9 @@ public class ShortDSLPackageImpl extends EPackageImpl implements ShortDSLPackage
    * @generated
    */
   @Override
-  public EClass getVariableValue()
+  public EClass getVariableValueS()
   {
-    return variableValueEClass;
+    return variableValueSEClass;
   }
 
   /**
@@ -683,9 +725,9 @@ public class ShortDSLPackageImpl extends EPackageImpl implements ShortDSLPackage
    * @generated
    */
   @Override
-  public EReference getVariableValue_Value()
+  public EReference getVariableValueS_Value()
   {
-    return (EReference)variableValueEClass.getEStructuralFeatures().get(0);
+    return (EReference)variableValueSEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -694,9 +736,9 @@ public class ShortDSLPackageImpl extends EPackageImpl implements ShortDSLPackage
    * @generated
    */
   @Override
-  public EReference getVariableValue_Ref()
+  public EReference getVariableValueS_Ref()
   {
-    return (EReference)variableValueEClass.getEStructuralFeatures().get(1);
+    return (EReference)variableValueSEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -705,9 +747,9 @@ public class ShortDSLPackageImpl extends EPackageImpl implements ShortDSLPackage
    * @generated
    */
   @Override
-  public EClass getDeviceValue()
+  public EClass getDeviceValueS()
   {
-    return deviceValueEClass;
+    return deviceValueSEClass;
   }
 
   /**
@@ -716,9 +758,9 @@ public class ShortDSLPackageImpl extends EPackageImpl implements ShortDSLPackage
    * @generated
    */
   @Override
-  public EReference getDeviceValue_Value()
+  public EReference getDeviceValueS_Value()
   {
-    return (EReference)deviceValueEClass.getEStructuralFeatures().get(0);
+    return (EReference)deviceValueSEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -727,9 +769,9 @@ public class ShortDSLPackageImpl extends EPackageImpl implements ShortDSLPackage
    * @generated
    */
   @Override
-  public EReference getDeviceValue_ConfigurationValue()
+  public EReference getDeviceValueS_ConfigurationValue()
   {
-    return (EReference)deviceValueEClass.getEStructuralFeatures().get(1);
+    return (EReference)deviceValueSEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -738,9 +780,9 @@ public class ShortDSLPackageImpl extends EPackageImpl implements ShortDSLPackage
    * @generated
    */
   @Override
-  public EClass getValueSlot()
+  public EClass getValueSlotS()
   {
-    return valueSlotEClass;
+    return valueSlotSEClass;
   }
 
   /**
@@ -749,9 +791,31 @@ public class ShortDSLPackageImpl extends EPackageImpl implements ShortDSLPackage
    * @generated
    */
   @Override
-  public EReference getValueSlot_Value()
+  public EReference getValueSlotS_Value()
   {
-    return (EReference)valueSlotEClass.getEStructuralFeatures().get(0);
+    return (EReference)valueSlotSEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getDSLTypeValue()
+  {
+    return dslTypeValueEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getDSLTypeValue_Value()
+  {
+    return (EAttribute)dslTypeValueEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -840,6 +904,28 @@ public class ShortDSLPackageImpl extends EPackageImpl implements ShortDSLPackage
   public EAttribute getNumberS_Value()
   {
     return (EAttribute)numberSEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getDSLLong()
+  {
+    return dslLongEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getDSLLong_Name()
+  {
+    return (EAttribute)dslLongEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1005,6 +1091,17 @@ public class ShortDSLPackageImpl extends EPackageImpl implements ShortDSLPackage
   public EAttribute getCameraColor_Color()
   {
     return (EAttribute)cameraColorEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getLogging()
+  {
+    return loggingEClass;
   }
 
   /**
@@ -1398,6 +1495,17 @@ public class ShortDSLPackageImpl extends EPackageImpl implements ShortDSLPackage
    * @generated
    */
   @Override
+  public EEnum getDSL_TYPE_ENUM()
+  {
+    return dsL_TYPE_ENUMEEnum;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EEnum getCOMPARISON_OPERATOR_S()
   {
     return comparisoN_OPERATOR_SEEnum;
@@ -1442,9 +1550,9 @@ public class ShortDSLPackageImpl extends EPackageImpl implements ShortDSLPackage
    * @generated
    */
   @Override
-  public EEnum getTIME_UNIT()
+  public EEnum getTIME_UNIT_S()
   {
-    return timE_UNITEEnum;
+    return timE_UNIT_SEEnum;
   }
 
   /**
@@ -1479,21 +1587,22 @@ public class ShortDSLPackageImpl extends EPackageImpl implements ShortDSLPackage
 
     // Create classes and their features
     modelEClass = createEClass(MODEL);
-    createEReference(modelEClass, MODEL__TYPE);
+    createEReference(modelEClass, MODEL__DSL_TYPE);
+    createEReference(modelEClass, MODEL__DSL_PROGRAM);
 
-    dsL_LongEClass = createEClass(DSL_LONG);
-    createEAttribute(dsL_LongEClass, DSL_LONG__NAME);
-
-    dslTypeEClass = createEClass(DSL_TYPE);
+    dslProgramEClass = createEClass(DSL_PROGRAM);
 
     configurationSEClass = createEClass(CONFIGURATION_S);
     createEReference(configurationSEClass, CONFIGURATION_S__DEVICES);
 
     deviceSEClass = createEClass(DEVICE_S);
     createEAttribute(deviceSEClass, DEVICE_S__NAME);
+    createEReference(deviceSEClass, DEVICE_S__LOGGING);
     createEReference(deviceSEClass, DEVICE_S__TARGETS);
 
     configurationValueSEClass = createEClass(CONFIGURATION_VALUE_S);
+
+    loggingSEClass = createEClass(LOGGING_S);
 
     diskHandlingSEClass = createEClass(DISK_HANDLING_S);
     createEReference(diskHandlingSEClass, DISK_HANDLING_S__DISK);
@@ -1513,16 +1622,19 @@ public class ShortDSLPackageImpl extends EPackageImpl implements ShortDSLPackage
     variableSEClass = createEClass(VARIABLE_S);
     createEAttribute(variableSEClass, VARIABLE_S__NAME);
 
-    variableValueEClass = createEClass(VARIABLE_VALUE);
-    createEReference(variableValueEClass, VARIABLE_VALUE__VALUE);
-    createEReference(variableValueEClass, VARIABLE_VALUE__REF);
+    variableValueSEClass = createEClass(VARIABLE_VALUE_S);
+    createEReference(variableValueSEClass, VARIABLE_VALUE_S__VALUE);
+    createEReference(variableValueSEClass, VARIABLE_VALUE_S__REF);
 
-    deviceValueEClass = createEClass(DEVICE_VALUE);
-    createEReference(deviceValueEClass, DEVICE_VALUE__VALUE);
-    createEReference(deviceValueEClass, DEVICE_VALUE__CONFIGURATION_VALUE);
+    deviceValueSEClass = createEClass(DEVICE_VALUE_S);
+    createEReference(deviceValueSEClass, DEVICE_VALUE_S__VALUE);
+    createEReference(deviceValueSEClass, DEVICE_VALUE_S__CONFIGURATION_VALUE);
 
-    valueSlotEClass = createEClass(VALUE_SLOT);
-    createEReference(valueSlotEClass, VALUE_SLOT__VALUE);
+    valueSlotSEClass = createEClass(VALUE_SLOT_S);
+    createEReference(valueSlotSEClass, VALUE_SLOT_S__VALUE);
+
+    dslTypeValueEClass = createEClass(DSL_TYPE_VALUE);
+    createEAttribute(dslTypeValueEClass, DSL_TYPE_VALUE__VALUE);
 
     diskStateValueSEClass = createEClass(DISK_STATE_VALUE_S);
     createEAttribute(diskStateValueSEClass, DISK_STATE_VALUE_S__VALUE);
@@ -1535,6 +1647,9 @@ public class ShortDSLPackageImpl extends EPackageImpl implements ShortDSLPackage
 
     numberSEClass = createEClass(NUMBER_S);
     createEAttribute(numberSEClass, NUMBER_S__VALUE);
+
+    dslLongEClass = createEClass(DSL_LONG);
+    createEAttribute(dslLongEClass, DSL_LONG__NAME);
 
     dslShortEClass = createEClass(DSL_SHORT);
     createEReference(dslShortEClass, DSL_SHORT__CONFIGURATION);
@@ -1557,6 +1672,8 @@ public class ShortDSLPackageImpl extends EPackageImpl implements ShortDSLPackage
 
     cameraColorEClass = createEClass(CAMERA_COLOR);
     createEAttribute(cameraColorEClass, CAMERA_COLOR__COLOR);
+
+    loggingEClass = createEClass(LOGGING);
 
     loopEClass = createEClass(LOOP);
     createEReference(loopEClass, LOOP__VARIABLE);
@@ -1605,11 +1722,12 @@ public class ShortDSLPackageImpl extends EPackageImpl implements ShortDSLPackage
     globalVariableEClass = createEClass(GLOBAL_VARIABLE);
 
     // Create enums
+    dsL_TYPE_ENUMEEnum = createEEnum(DSL_TYPE_ENUM);
     comparisoN_OPERATOR_SEEnum = createEEnum(COMPARISON_OPERATOR_S);
     coloR_SEEnum = createEEnum(COLOR_S);
     disK_SLOT_STATES_SEEnum = createEEnum(DISK_SLOT_STATES_S);
     disK_STATES_SEEnum = createEEnum(DISK_STATES_S);
-    timE_UNITEEnum = createEEnum(TIME_UNIT);
+    timE_UNIT_SEEnum = createEEnum(TIME_UNIT_S);
   }
 
   /**
@@ -1645,13 +1763,15 @@ public class ShortDSLPackageImpl extends EPackageImpl implements ShortDSLPackage
     craneActionSEClass.getESuperTypes().add(this.getStatementS());
     conditionSEClass.getESuperTypes().add(this.getStatementS());
     markSEClass.getESuperTypes().add(this.getStatementS());
-    dslShortEClass.getESuperTypes().add(this.getDSLType());
+    dslLongEClass.getESuperTypes().add(this.getDSLProgram());
+    dslShortEClass.getESuperTypes().add(this.getDSLProgram());
     craneEClass.getESuperTypes().add(this.getDeviceS());
     craneZoneEClass.getESuperTypes().add(this.getConfigurationValueS());
     diskEClass.getESuperTypes().add(this.getDeviceS());
     diskZoneEClass.getESuperTypes().add(this.getConfigurationValueS());
     cameraEClass.getESuperTypes().add(this.getDeviceS());
     cameraColorEClass.getESuperTypes().add(this.getConfigurationValueS());
+    loggingEClass.getESuperTypes().add(this.getLoggingS());
     loopEClass.getESuperTypes().add(this.getStatementS());
     moveDiskEClass.getESuperTypes().add(this.getMoveS());
     moveAnySlotEClass.getESuperTypes().add(this.getMoveS());
@@ -1666,21 +1786,22 @@ public class ShortDSLPackageImpl extends EPackageImpl implements ShortDSLPackage
 
     // Initialize classes and features; add operations and parameters
     initEClass(modelEClass, Model.class, "Model", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getModel_Type(), ecorePackage.getEObject(), null, "type", null, 0, 1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getModel_DslType(), this.getDSLTypeValue(), null, "dslType", null, 0, 1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getModel_DslProgram(), this.getDSLProgram(), null, "dslProgram", null, 0, 1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(dsL_LongEClass, DSL_Long.class, "DSL_Long", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getDSL_Long_Name(), ecorePackage.getEString(), "name", null, 0, 1, DSL_Long.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(dslTypeEClass, DSLType.class, "DSLType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEClass(dslProgramEClass, DSLProgram.class, "DSLProgram", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(configurationSEClass, ConfigurationS.class, "ConfigurationS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getConfigurationS_Devices(), this.getDeviceS(), null, "devices", null, 0, -1, ConfigurationS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(deviceSEClass, DeviceS.class, "DeviceS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getDeviceS_Name(), ecorePackage.getEString(), "name", null, 0, 1, DeviceS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getDeviceS_Logging(), this.getLoggingS(), null, "logging", null, 0, 1, DeviceS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getDeviceS_Targets(), this.getConfigurationValueS(), null, "targets", null, 0, -1, DeviceS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(configurationValueSEClass, ConfigurationValueS.class, "ConfigurationValueS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(loggingSEClass, LoggingS.class, "LoggingS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(diskHandlingSEClass, DiskHandlingS.class, "DiskHandlingS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getDiskHandlingS_Disk(), this.getDisk(), null, "disk", null, 0, 1, DiskHandlingS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1700,16 +1821,19 @@ public class ShortDSLPackageImpl extends EPackageImpl implements ShortDSLPackage
     initEClass(variableSEClass, VariableS.class, "VariableS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getVariableS_Name(), ecorePackage.getEString(), "name", null, 0, 1, VariableS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(variableValueEClass, VariableValue.class, "VariableValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getVariableValue_Value(), ecorePackage.getEObject(), null, "value", null, 0, 1, VariableValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getVariableValue_Ref(), this.getVariableS(), null, "ref", null, 0, 1, VariableValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(variableValueSEClass, VariableValueS.class, "VariableValueS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getVariableValueS_Value(), ecorePackage.getEObject(), null, "value", null, 0, 1, VariableValueS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getVariableValueS_Ref(), this.getVariableS(), null, "ref", null, 0, 1, VariableValueS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(deviceValueEClass, DeviceValue.class, "DeviceValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getDeviceValue_Value(), ecorePackage.getEObject(), null, "value", null, 0, 1, DeviceValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getDeviceValue_ConfigurationValue(), this.getConfigurationValueS(), null, "configurationValue", null, 0, 1, DeviceValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(deviceValueSEClass, DeviceValueS.class, "DeviceValueS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getDeviceValueS_Value(), ecorePackage.getEObject(), null, "value", null, 0, 1, DeviceValueS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getDeviceValueS_ConfigurationValue(), this.getConfigurationValueS(), null, "configurationValue", null, 0, 1, DeviceValueS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(valueSlotEClass, ValueSlot.class, "ValueSlot", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getValueSlot_Value(), ecorePackage.getEObject(), null, "value", null, 0, 1, ValueSlot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(valueSlotSEClass, ValueSlotS.class, "ValueSlotS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getValueSlotS_Value(), ecorePackage.getEObject(), null, "value", null, 0, 1, ValueSlotS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(dslTypeValueEClass, DSLTypeValue.class, "DSLTypeValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getDSLTypeValue_Value(), this.getDSL_TYPE_ENUM(), "value", null, 0, 1, DSLTypeValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(diskStateValueSEClass, DiskStateValueS.class, "DiskStateValueS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getDiskStateValueS_Value(), this.getDISK_STATES_S(), "value", null, 0, 1, DiskStateValueS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1722,6 +1846,9 @@ public class ShortDSLPackageImpl extends EPackageImpl implements ShortDSLPackage
 
     initEClass(numberSEClass, NumberS.class, "NumberS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getNumberS_Value(), ecorePackage.getEInt(), "value", null, 0, 1, NumberS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(dslLongEClass, DSLLong.class, "DSLLong", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getDSLLong_Name(), ecorePackage.getEString(), "name", null, 0, 1, DSLLong.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(dslShortEClass, DSLShort.class, "DSLShort", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getDSLShort_Configuration(), this.getConfigurationS(), null, "configuration", null, 0, 1, DSLShort.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1744,6 +1871,8 @@ public class ShortDSLPackageImpl extends EPackageImpl implements ShortDSLPackage
 
     initEClass(cameraColorEClass, CameraColor.class, "CameraColor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getCameraColor_Color(), this.getCOLOR_S(), "color", null, 0, 1, CameraColor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(loggingEClass, Logging.class, "Logging", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(loopEClass, Loop.class, "Loop", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getLoop_Variable(), this.getVariableS(), null, "variable", null, 0, 1, Loop.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1770,18 +1899,18 @@ public class ShortDSLPackageImpl extends EPackageImpl implements ShortDSLPackage
     initEClass(conditionVariableEClass, ConditionVariable.class, "ConditionVariable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getConditionVariable_Variable(), this.getVariableS(), null, "variable", null, 0, 1, ConditionVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getConditionVariable_ComparisonOperatorVariable(), this.getCOMPARISON_OPERATOR_S(), "comparisonOperatorVariable", null, 0, 1, ConditionVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getConditionVariable_VariableValue(), this.getVariableValue(), null, "variableValue", null, 0, 1, ConditionVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getConditionVariable_VariableValue(), this.getVariableValueS(), null, "variableValue", null, 0, 1, ConditionVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(conditionDeviceEClass, ConditionDevice.class, "ConditionDevice", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getConditionDevice_Device(), this.getDeviceS(), null, "device", null, 0, 1, ConditionDevice.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getConditionDevice_ComparisonOperatorDevice(), this.getCOMPARISON_OPERATOR_S(), "comparisonOperatorDevice", null, 0, 1, ConditionDevice.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getConditionDevice_DeviceValue(), this.getDeviceValue(), null, "deviceValue", null, 0, 1, ConditionDevice.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getConditionDevice_DeviceValue(), this.getDeviceValueS(), null, "deviceValue", null, 0, 1, ConditionDevice.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(markVariableValueEClass, MarkVariableValue.class, "MarkVariableValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getMarkVariableValue_Variable(), this.getVariableS(), null, "variable", null, 0, 1, MarkVariableValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getMarkVariableValue_Value(), this.getValueSlot(), null, "value", null, 0, 1, MarkVariableValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getMarkVariableValue_Value(), this.getValueSlotS(), null, "value", null, 0, 1, MarkVariableValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getMarkVariableValue_Time(), ecorePackage.getEInt(), "time", null, 0, 1, MarkVariableValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getMarkVariableValue_Unit(), this.getTIME_UNIT(), "unit", null, 0, 1, MarkVariableValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getMarkVariableValue_Unit(), this.getTIME_UNIT_S(), "unit", null, 0, 1, MarkVariableValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(markCameraValueEClass, MarkCameraValue.class, "MarkCameraValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getMarkCameraValue_Camera(), this.getCamera(), null, "camera", null, 0, 1, MarkCameraValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1792,6 +1921,10 @@ public class ShortDSLPackageImpl extends EPackageImpl implements ShortDSLPackage
     initEClass(globalVariableEClass, GlobalVariable.class, "GlobalVariable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     // Initialize enums and add enum literals
+    initEEnum(dsL_TYPE_ENUMEEnum, xtext.factoryLang.shortDSL.shortDSL.DSL_TYPE_ENUM.class, "DSL_TYPE_ENUM");
+    addEEnumLiteral(dsL_TYPE_ENUMEEnum, xtext.factoryLang.shortDSL.shortDSL.DSL_TYPE_ENUM.LONG);
+    addEEnumLiteral(dsL_TYPE_ENUMEEnum, xtext.factoryLang.shortDSL.shortDSL.DSL_TYPE_ENUM.SHORT);
+
     initEEnum(comparisoN_OPERATOR_SEEnum, xtext.factoryLang.shortDSL.shortDSL.COMPARISON_OPERATOR_S.class, "COMPARISON_OPERATOR_S");
     addEEnumLiteral(comparisoN_OPERATOR_SEEnum, xtext.factoryLang.shortDSL.shortDSL.COMPARISON_OPERATOR_S.EQUAL);
     addEEnumLiteral(comparisoN_OPERATOR_SEEnum, xtext.factoryLang.shortDSL.shortDSL.COMPARISON_OPERATOR_S.LESS_THAN);
@@ -1812,10 +1945,10 @@ public class ShortDSLPackageImpl extends EPackageImpl implements ShortDSLPackage
     addEEnumLiteral(disK_STATES_SEEnum, xtext.factoryLang.shortDSL.shortDSL.DISK_STATES_S.FULL);
     addEEnumLiteral(disK_STATES_SEEnum, xtext.factoryLang.shortDSL.shortDSL.DISK_STATES_S.EMPTY);
 
-    initEEnum(timE_UNITEEnum, xtext.factoryLang.shortDSL.shortDSL.TIME_UNIT.class, "TIME_UNIT");
-    addEEnumLiteral(timE_UNITEEnum, xtext.factoryLang.shortDSL.shortDSL.TIME_UNIT.SECOND);
-    addEEnumLiteral(timE_UNITEEnum, xtext.factoryLang.shortDSL.shortDSL.TIME_UNIT.MINUTE);
-    addEEnumLiteral(timE_UNITEEnum, xtext.factoryLang.shortDSL.shortDSL.TIME_UNIT.HOUR);
+    initEEnum(timE_UNIT_SEEnum, xtext.factoryLang.shortDSL.shortDSL.TIME_UNIT_S.class, "TIME_UNIT_S");
+    addEEnumLiteral(timE_UNIT_SEEnum, xtext.factoryLang.shortDSL.shortDSL.TIME_UNIT_S.SECOND);
+    addEEnumLiteral(timE_UNIT_SEEnum, xtext.factoryLang.shortDSL.shortDSL.TIME_UNIT_S.MINUTE);
+    addEEnumLiteral(timE_UNIT_SEEnum, xtext.factoryLang.shortDSL.shortDSL.TIME_UNIT_S.HOUR);
 
     // Create resource
     createResource(eNS_URI);

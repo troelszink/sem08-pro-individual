@@ -76,12 +76,12 @@ public interface ConditionDevice extends ConditionS
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Device Value</em>' containment reference.
-   * @see #setDeviceValue(DeviceValue)
+   * @see #setDeviceValue(DeviceValueS)
    * @see xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage#getConditionDevice_DeviceValue()
    * @model containment="true"
    * @generated
    */
-  DeviceValue getDeviceValue();
+  DeviceValueS getDeviceValue();
 
   /**
    * Sets the value of the '{@link xtext.factoryLang.shortDSL.shortDSL.ConditionDevice#getDeviceValue <em>Device Value</em>}' containment reference.
@@ -91,6 +91,6 @@ public interface ConditionDevice extends ConditionS
    * @see #getDeviceValue()
    * @generated
    */
-  void setDeviceValue(DeviceValue value);
+  void setDeviceValue(DeviceValueS value);
 
 } // ConditionDevice

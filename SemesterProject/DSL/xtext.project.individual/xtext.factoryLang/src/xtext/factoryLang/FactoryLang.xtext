@@ -6,62 +6,119 @@ grammar xtext.factoryLang.FactoryLang with org.eclipse.xtext.common.Terminals
 
 generate factoryLang "http://www.factoryLang.xtext/FactoryLang"
 
-/*Model:
-	'use' 'dsl' type=DSLType;
+Model:
+	'use' dslType=DSLTypeValue 'dsl' dslProgram=DSLProgram;
 
-DSLType:
-	DSL_Short | DSL_Long;
+DSLProgram:
+	DSLShort | DSLLong;
 	
 
 // -------------------- INDIVIDUAL DSL - EASY TO WRITE, "HARDER" TO READ -------------------- //
-DSL_Short returns DSLType:
-	{DSLShort} configuration=Configuration_Short deviceHandlings+=DeviceHandling_Short;
+DSLShort returns DSLProgram:
+	{DSLShort} configuration=ConfigurationS diskHandlings+=DiskHandlingS*;
 
 // ----- CONFIGURAITON ----- //
-Configuration_Short:
-	'devices' '{' device=Device_Short '}'
-;
+ConfigurationS:
+	'devices' '{' BEGIN devices+=DeviceS+ END '}';
 
-Device_Short:
-	Crane_Short | Disk_Short | Camera_Short
-;
+DeviceS:
+	CraneS | DiskS | CameraS;
 
-Crane_Short:
-	BEGIN name=ID ':' END positions+=CranePosition_Short
-;
+CraneS returns DeviceS:
+	{Crane} name=ID (logging=LoggingS)? ':' BEGIN targets+=CraneZoneS+ END;
 
-CranePosition_Short:
-	BEGIN name=ID ':' position=INT (',')?
-;
+CraneZoneS returns ConfigurationValueS:
+	{CraneZone} name=ID ':' zoneValue=INT (',')?;
 
-Disk_Short:
-	BEGIN name=ID '(' nSlots=INT ')' ':' END zones+=DiskZone_Short
-;
+DiskS returns DeviceS:
+	{Disk} name=ID '(' nSlots=INT ')' (logging=LoggingS)? ':' BEGIN targets+=DiskZoneS+ END;
 
-DiskZone_Short:
-	BEGIN name=ID ':' slot=INT (',')?
-;
+DiskZoneS returns ConfigurationValueS:
+	{DiskZone} name=ID ':' slot=INT (',')?;
 
-Camera_Short:
-	BEGIN name=ID ':' END colors+=CameraColor_Short
-;
+CameraS returns DeviceS:
+	{Camera} name=ID (logging=LoggingS)? ':' BEGIN targets+=CameraColorS+ END;
 
-CameraColor_Short:
-	BEGIN name=ID (',')?
-;
+CameraColorS returns ConfigurationValueS:
+	{CameraColor} color=COLOR (',')?;
 
-// ----- DEVICE HANDLING ----- //
-DeviceHandling_Short:
-	'test' name=ID
-;*/
+// ----- LOGGING ----- //
+LoggingS:
+	{Logging} 'logging';
+
+// ----- DISK HANDLING ----- //
+DiskHandlingS:
+	'handle' disk=[Disk] '{' BEGIN statements+=StatementS+ END '}';
+
+StatementS:
+	LoopS | MoveS | CraneActionS | ConditionS | MarkS;
+
+LoopS returns StatementS:
+	{Loop} 'foreach' variable=LocalVariableS
+	comparisonOperator=COMPARISON_OPERATOR_S slotState=DiskSlotStateValue
+	':' BEGIN statements+=StatementS* END;
+
+MoveS returns StatementS:
+	MoveDiskS | MoveAnySlotS | MoveCraneS;
+
+MoveDiskS returns MoveS:
+	{MoveDisk} slot=[LocalVariable] ('->' | '-->') zone=[DiskZone];
+
+MoveAnySlotS returns MoveS:
+	{MoveAnySlot} state=DiskSlotStateValue anySlot=LocalVariableS ('->' | '-->') zone=[DiskZone];
+
+MoveCraneS returns MoveS:
+	{MoveCrane} crane=[Crane] action=CraneActionS ('->' | '-->') zone=[CraneZone];
+
+CraneActionS:
+	{CraneAction} ('pickup' | 'drop');
+
+ConditionS returns StatementS:
+	ConditionVariableS | ConditionDeviceS;
+
+ConditionVariableS returns ConditionS:
+	{ConditionVariable} 'if' 'var' variable=[VariableS]
+	comparisonOperatorVariable=COMPARISON_OPERATOR_S variableValue=VariableValue
+	':' BEGIN statements+=StatementS* END;
+
+ConditionDeviceS returns ConditionS:
+	{ConditionDevice} 'if' 'dev' device=[DeviceS]
+	comparisonOperatorDevice=COMPARISON_OPERATOR_S deviceValue=DeviceValue
+	':' BEGIN statements+=StatementS* END;
+
+MarkS returns StatementS:
+	MarkVariableValueS | MarkCameraValueS;
+	
+MarkVariableValueS returns MarkS:
+	{MarkVariableValue} variable=[VariableS] '(' value=ValueSlot (',' time=INT unit=TIME_UNIT_S)? ')';
+
+MarkCameraValueS returns MarkS:
+	{MarkCameraValue} camera=[Camera] 'scan' variable=LocalVariableS;
+	
+// ----- VALUE TYPES ----- //
+VariableS:
+	LocalVariableS | GlobalVariableS;
+
+LocalVariableS returns VariableS:
+	{LocalVariable} name=ID;
+
+GlobalVariableS returns VariableS:
+	{GlobalVariable} name=ID;
+
+VariableValueS:
+	value=DiskSlotStateValue | value=ColorValue | value=Number | value=DiskStateValue | ref=[VariableS];
+
+DeviceValueS:
+	value=DiskStateValue | value=ColorValue | configurationValue=[ConfigurationValueS];
+
+ValueSlot:
+	value=DiskSlotStateValue | value=ColorValue;
+
 
 
 // -------------------- GROUP DSL - EASY TO READ, HARDER TO WRITE -------------------- //
-Model:
-	configurations+=Configuration+ statements+=Statement+;
-
-/*DSL_Long returns DSLType:
-	{DSLLong} configurations+=Configuration+ statements+=Statement+;*/
+DSLLong returns DSLProgram:
+	{DSLLong} configurations+=Configuration+ statements+=Statement+;
 
 // ----- CONFIGURATION ----- //
 Configuration:
@@ -194,6 +251,9 @@ VariableValue:
 	value=DiskSlotStateValue | value=ColorValue | value=Number | value=DiskStateValue | ref=[Variable];
 
 // ----- VALUE TYPES:ACTUAL VALUES ----- //
+DSLTypeValue:
+	value=DSL_TYPE_ENUM;
+
 DiskStateValue:
 	value=DISK_STATES;
 
@@ -207,6 +267,15 @@ Number:
 	value=INT;
 
 // ----- SHARED ENUMS ----- //
+enum DSL_TYPE_ENUM:
+	LONG='long' | SHORT='short';
+
+enum COMPARISON_OPERATOR_S:
+	EQUAL='=' | LESS_THAN='<' | GREATER_THAN='>' | NOT='!=';
+	
+enum TIME_UNIT_S:
+	SECOND='s' | MINUTE='m' | HOUR='h';
+
 enum COMPARISON_OPERATOR:
 	UNDEFINED='undefined' | LESS_THAN='less than' | GREATER_THAN='greater than' | NOT='not';
 

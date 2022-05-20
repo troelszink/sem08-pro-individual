@@ -33,22 +33,13 @@ public interface ShortDSLFactory extends EFactory
   Model createModel();
 
   /**
-   * Returns a new object of class '<em>DSL Long</em>'.
+   * Returns a new object of class '<em>DSL Program</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>DSL Long</em>'.
+   * @return a new object of class '<em>DSL Program</em>'.
    * @generated
    */
-  DSL_Long createDSL_Long();
-
-  /**
-   * Returns a new object of class '<em>DSL Type</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>DSL Type</em>'.
-   * @generated
-   */
-  DSLType createDSLType();
+  DSLProgram createDSLProgram();
 
   /**
    * Returns a new object of class '<em>Configuration S</em>'.
@@ -76,6 +67,15 @@ public interface ShortDSLFactory extends EFactory
    * @generated
    */
   ConfigurationValueS createConfigurationValueS();
+
+  /**
+   * Returns a new object of class '<em>Logging S</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Logging S</em>'.
+   * @generated
+   */
+  LoggingS createLoggingS();
 
   /**
    * Returns a new object of class '<em>Disk Handling S</em>'.
@@ -141,31 +141,40 @@ public interface ShortDSLFactory extends EFactory
   VariableS createVariableS();
 
   /**
-   * Returns a new object of class '<em>Variable Value</em>'.
+   * Returns a new object of class '<em>Variable Value S</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Variable Value</em>'.
+   * @return a new object of class '<em>Variable Value S</em>'.
    * @generated
    */
-  VariableValue createVariableValue();
+  VariableValueS createVariableValueS();
 
   /**
-   * Returns a new object of class '<em>Device Value</em>'.
+   * Returns a new object of class '<em>Device Value S</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Device Value</em>'.
+   * @return a new object of class '<em>Device Value S</em>'.
    * @generated
    */
-  DeviceValue createDeviceValue();
+  DeviceValueS createDeviceValueS();
 
   /**
-   * Returns a new object of class '<em>Value Slot</em>'.
+   * Returns a new object of class '<em>Value Slot S</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Value Slot</em>'.
+   * @return a new object of class '<em>Value Slot S</em>'.
    * @generated
    */
-  ValueSlot createValueSlot();
+  ValueSlotS createValueSlotS();
+
+  /**
+   * Returns a new object of class '<em>DSL Type Value</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>DSL Type Value</em>'.
+   * @generated
+   */
+  DSLTypeValue createDSLTypeValue();
 
   /**
    * Returns a new object of class '<em>Disk State Value S</em>'.
@@ -202,6 +211,15 @@ public interface ShortDSLFactory extends EFactory
    * @generated
    */
   NumberS createNumberS();
+
+  /**
+   * Returns a new object of class '<em>DSL Long</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>DSL Long</em>'.
+   * @generated
+   */
+  DSLLong createDSLLong();
 
   /**
    * Returns a new object of class '<em>DSL Short</em>'.
@@ -265,6 +283,15 @@ public interface ShortDSLFactory extends EFactory
    * @generated
    */
   CameraColor createCameraColor();
+
+  /**
+   * Returns a new object of class '<em>Logging</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Logging</em>'.
+   * @generated
+   */
+  Logging createLogging();
 
   /**
    * Returns a new object of class '<em>Loop</em>'.

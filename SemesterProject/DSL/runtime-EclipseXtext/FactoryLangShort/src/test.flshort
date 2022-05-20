@@ -2,7 +2,7 @@
 use short dsl
 
 devices {
-    crane1:
+    crane1 logging:
         pickupDisk: 0
         outRed: 30
         outGreen: 60
@@ -11,9 +11,6 @@ devices {
         craneZone: 1
         cameraZone: 3
         intakeZone: 6
-    disk2(4):
-    	zone1: 1
-    	zone2: 2
     camera1:
         blue, green, red
 }
@@ -21,28 +18,25 @@ devices {
 handle disk1 {	
 	foreach slot = complete:
 		slot --> craneZone
+		crane1 pickup --> pickupDisk
 		if var slot = red:
 			crane1 drop --> outRed
 		if var slot = green:
 			crane1 drop --> outGreen
 		if var slot = blue:
 			crane1 drop --> outBlue
-		slot(vacant)
+		slot(free)
      
 	if dev disk1 != full:
-       	vacant slot --> intakeZone
-        slot(in_progress)
-        slot --> cameraZone
-        camera1 scan color
-        if var color = red:
-            slot(complete, 10s)
-        if var color = green:
-            slot(complete, 20m)
-        if var color = blue:
-            slot(complete, 30h)
+		free slot --> intakeZone
+		slot(in_progress)
+		slot --> cameraZone
+		camera1 scan color
+		if var color = red:
+			slot(complete, 10m)
+		if var color = green:
+			slot(complete, 20m)
+		if var color = blue:
+			slot(complete, 30m)
 }
 
-handle disk2 {
-	foreach slot = complete:
-		slot --> zone1
-}

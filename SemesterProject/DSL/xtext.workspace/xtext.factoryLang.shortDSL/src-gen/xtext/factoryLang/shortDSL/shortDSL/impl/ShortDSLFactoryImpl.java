@@ -67,11 +67,11 @@ public class ShortDSLFactoryImpl extends EFactoryImpl implements ShortDSLFactory
     switch (eClass.getClassifierID())
     {
       case ShortDSLPackage.MODEL: return createModel();
-      case ShortDSLPackage.DSL_LONG: return createDSL_Long();
-      case ShortDSLPackage.DSL_TYPE: return createDSLType();
+      case ShortDSLPackage.DSL_PROGRAM: return createDSLProgram();
       case ShortDSLPackage.CONFIGURATION_S: return createConfigurationS();
       case ShortDSLPackage.DEVICE_S: return createDeviceS();
       case ShortDSLPackage.CONFIGURATION_VALUE_S: return createConfigurationValueS();
+      case ShortDSLPackage.LOGGING_S: return createLoggingS();
       case ShortDSLPackage.DISK_HANDLING_S: return createDiskHandlingS();
       case ShortDSLPackage.STATEMENT_S: return createStatementS();
       case ShortDSLPackage.MOVE_S: return createMoveS();
@@ -79,13 +79,15 @@ public class ShortDSLFactoryImpl extends EFactoryImpl implements ShortDSLFactory
       case ShortDSLPackage.CONDITION_S: return createConditionS();
       case ShortDSLPackage.MARK_S: return createMarkS();
       case ShortDSLPackage.VARIABLE_S: return createVariableS();
-      case ShortDSLPackage.VARIABLE_VALUE: return createVariableValue();
-      case ShortDSLPackage.DEVICE_VALUE: return createDeviceValue();
-      case ShortDSLPackage.VALUE_SLOT: return createValueSlot();
+      case ShortDSLPackage.VARIABLE_VALUE_S: return createVariableValueS();
+      case ShortDSLPackage.DEVICE_VALUE_S: return createDeviceValueS();
+      case ShortDSLPackage.VALUE_SLOT_S: return createValueSlotS();
+      case ShortDSLPackage.DSL_TYPE_VALUE: return createDSLTypeValue();
       case ShortDSLPackage.DISK_STATE_VALUE_S: return createDiskStateValueS();
       case ShortDSLPackage.DISK_SLOT_STATE_VALUE_S: return createDiskSlotStateValueS();
       case ShortDSLPackage.COLOR_VALUE_S: return createColorValueS();
       case ShortDSLPackage.NUMBER_S: return createNumberS();
+      case ShortDSLPackage.DSL_LONG: return createDSLLong();
       case ShortDSLPackage.DSL_SHORT: return createDSLShort();
       case ShortDSLPackage.CRANE: return createCrane();
       case ShortDSLPackage.CRANE_ZONE: return createCraneZone();
@@ -93,6 +95,7 @@ public class ShortDSLFactoryImpl extends EFactoryImpl implements ShortDSLFactory
       case ShortDSLPackage.DISK_ZONE: return createDiskZone();
       case ShortDSLPackage.CAMERA: return createCamera();
       case ShortDSLPackage.CAMERA_COLOR: return createCameraColor();
+      case ShortDSLPackage.LOGGING: return createLogging();
       case ShortDSLPackage.LOOP: return createLoop();
       case ShortDSLPackage.MOVE_DISK: return createMoveDisk();
       case ShortDSLPackage.MOVE_ANY_SLOT: return createMoveAnySlot();
@@ -119,6 +122,8 @@ public class ShortDSLFactoryImpl extends EFactoryImpl implements ShortDSLFactory
   {
     switch (eDataType.getClassifierID())
     {
+      case ShortDSLPackage.DSL_TYPE_ENUM:
+        return createDSL_TYPE_ENUMFromString(eDataType, initialValue);
       case ShortDSLPackage.COMPARISON_OPERATOR_S:
         return createCOMPARISON_OPERATOR_SFromString(eDataType, initialValue);
       case ShortDSLPackage.COLOR_S:
@@ -127,8 +132,8 @@ public class ShortDSLFactoryImpl extends EFactoryImpl implements ShortDSLFactory
         return createDISK_SLOT_STATES_SFromString(eDataType, initialValue);
       case ShortDSLPackage.DISK_STATES_S:
         return createDISK_STATES_SFromString(eDataType, initialValue);
-      case ShortDSLPackage.TIME_UNIT:
-        return createTIME_UNITFromString(eDataType, initialValue);
+      case ShortDSLPackage.TIME_UNIT_S:
+        return createTIME_UNIT_SFromString(eDataType, initialValue);
       default:
         throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     }
@@ -144,6 +149,8 @@ public class ShortDSLFactoryImpl extends EFactoryImpl implements ShortDSLFactory
   {
     switch (eDataType.getClassifierID())
     {
+      case ShortDSLPackage.DSL_TYPE_ENUM:
+        return convertDSL_TYPE_ENUMToString(eDataType, instanceValue);
       case ShortDSLPackage.COMPARISON_OPERATOR_S:
         return convertCOMPARISON_OPERATOR_SToString(eDataType, instanceValue);
       case ShortDSLPackage.COLOR_S:
@@ -152,8 +159,8 @@ public class ShortDSLFactoryImpl extends EFactoryImpl implements ShortDSLFactory
         return convertDISK_SLOT_STATES_SToString(eDataType, instanceValue);
       case ShortDSLPackage.DISK_STATES_S:
         return convertDISK_STATES_SToString(eDataType, instanceValue);
-      case ShortDSLPackage.TIME_UNIT:
-        return convertTIME_UNITToString(eDataType, instanceValue);
+      case ShortDSLPackage.TIME_UNIT_S:
+        return convertTIME_UNIT_SToString(eDataType, instanceValue);
       default:
         throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     }
@@ -177,22 +184,10 @@ public class ShortDSLFactoryImpl extends EFactoryImpl implements ShortDSLFactory
    * @generated
    */
   @Override
-  public DSL_Long createDSL_Long()
+  public DSLProgram createDSLProgram()
   {
-    DSL_LongImpl dsL_Long = new DSL_LongImpl();
-    return dsL_Long;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public DSLType createDSLType()
-  {
-    DSLTypeImpl dslType = new DSLTypeImpl();
-    return dslType;
+    DSLProgramImpl dslProgram = new DSLProgramImpl();
+    return dslProgram;
   }
 
   /**
@@ -229,6 +224,18 @@ public class ShortDSLFactoryImpl extends EFactoryImpl implements ShortDSLFactory
   {
     ConfigurationValueSImpl configurationValueS = new ConfigurationValueSImpl();
     return configurationValueS;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public LoggingS createLoggingS()
+  {
+    LoggingSImpl loggingS = new LoggingSImpl();
+    return loggingS;
   }
 
   /**
@@ -321,10 +328,10 @@ public class ShortDSLFactoryImpl extends EFactoryImpl implements ShortDSLFactory
    * @generated
    */
   @Override
-  public VariableValue createVariableValue()
+  public VariableValueS createVariableValueS()
   {
-    VariableValueImpl variableValue = new VariableValueImpl();
-    return variableValue;
+    VariableValueSImpl variableValueS = new VariableValueSImpl();
+    return variableValueS;
   }
 
   /**
@@ -333,10 +340,10 @@ public class ShortDSLFactoryImpl extends EFactoryImpl implements ShortDSLFactory
    * @generated
    */
   @Override
-  public DeviceValue createDeviceValue()
+  public DeviceValueS createDeviceValueS()
   {
-    DeviceValueImpl deviceValue = new DeviceValueImpl();
-    return deviceValue;
+    DeviceValueSImpl deviceValueS = new DeviceValueSImpl();
+    return deviceValueS;
   }
 
   /**
@@ -345,10 +352,22 @@ public class ShortDSLFactoryImpl extends EFactoryImpl implements ShortDSLFactory
    * @generated
    */
   @Override
-  public ValueSlot createValueSlot()
+  public ValueSlotS createValueSlotS()
   {
-    ValueSlotImpl valueSlot = new ValueSlotImpl();
-    return valueSlot;
+    ValueSlotSImpl valueSlotS = new ValueSlotSImpl();
+    return valueSlotS;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public DSLTypeValue createDSLTypeValue()
+  {
+    DSLTypeValueImpl dslTypeValue = new DSLTypeValueImpl();
+    return dslTypeValue;
   }
 
   /**
@@ -397,6 +416,18 @@ public class ShortDSLFactoryImpl extends EFactoryImpl implements ShortDSLFactory
   {
     NumberSImpl numberS = new NumberSImpl();
     return numberS;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public DSLLong createDSLLong()
+  {
+    DSLLongImpl dslLong = new DSLLongImpl();
+    return dslLong;
   }
 
   /**
@@ -481,6 +512,18 @@ public class ShortDSLFactoryImpl extends EFactoryImpl implements ShortDSLFactory
   {
     CameraColorImpl cameraColor = new CameraColorImpl();
     return cameraColor;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Logging createLogging()
+  {
+    LoggingImpl logging = new LoggingImpl();
+    return logging;
   }
 
   /**
@@ -620,6 +663,28 @@ public class ShortDSLFactoryImpl extends EFactoryImpl implements ShortDSLFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  public DSL_TYPE_ENUM createDSL_TYPE_ENUMFromString(EDataType eDataType, String initialValue)
+  {
+    DSL_TYPE_ENUM result = DSL_TYPE_ENUM.get(initialValue);
+    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+    return result;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String convertDSL_TYPE_ENUMToString(EDataType eDataType, Object instanceValue)
+  {
+    return instanceValue == null ? null : instanceValue.toString();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public COMPARISON_OPERATOR_S createCOMPARISON_OPERATOR_SFromString(EDataType eDataType, String initialValue)
   {
     COMPARISON_OPERATOR_S result = COMPARISON_OPERATOR_S.get(initialValue);
@@ -708,9 +773,9 @@ public class ShortDSLFactoryImpl extends EFactoryImpl implements ShortDSLFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public TIME_UNIT createTIME_UNITFromString(EDataType eDataType, String initialValue)
+  public TIME_UNIT_S createTIME_UNIT_SFromString(EDataType eDataType, String initialValue)
   {
-    TIME_UNIT result = TIME_UNIT.get(initialValue);
+    TIME_UNIT_S result = TIME_UNIT_S.get(initialValue);
     if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
     return result;
   }
@@ -720,7 +785,7 @@ public class ShortDSLFactoryImpl extends EFactoryImpl implements ShortDSLFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public String convertTIME_UNITToString(EDataType eDataType, Object instanceValue)
+  public String convertTIME_UNIT_SToString(EDataType eDataType, Object instanceValue)
   {
     return instanceValue == null ? null : instanceValue.toString();
   }

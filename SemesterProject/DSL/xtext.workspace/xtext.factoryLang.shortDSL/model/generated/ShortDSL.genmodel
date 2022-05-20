@@ -6,6 +6,10 @@
     complianceLevel="8.0" copyrightFields="false" runtimeVersion="2.20">
   <genPackages prefix="ShortDSL" basePackage="xtext.factoryLang.shortDSL" disposableProviderFactory="true"
       fileExtensions="flshort" ecorePackage="ShortDSL.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="ShortDSL.ecore#//DSL_TYPE_ENUM">
+      <genEnumLiterals ecoreEnumLiteral="ShortDSL.ecore#//DSL_TYPE_ENUM/LONG"/>
+      <genEnumLiterals ecoreEnumLiteral="ShortDSL.ecore#//DSL_TYPE_ENUM/SHORT"/>
+    </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="ShortDSL.ecore#//COMPARISON_OPERATOR_S">
       <genEnumLiterals ecoreEnumLiteral="ShortDSL.ecore#//COMPARISON_OPERATOR_S/EQUAL"/>
       <genEnumLiterals ecoreEnumLiteral="ShortDSL.ecore#//COMPARISON_OPERATOR_S/LESS_THAN"/>
@@ -26,26 +30,26 @@
       <genEnumLiterals ecoreEnumLiteral="ShortDSL.ecore#//DISK_STATES_S/FULL"/>
       <genEnumLiterals ecoreEnumLiteral="ShortDSL.ecore#//DISK_STATES_S/EMPTY"/>
     </genEnums>
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="ShortDSL.ecore#//TIME_UNIT">
-      <genEnumLiterals ecoreEnumLiteral="ShortDSL.ecore#//TIME_UNIT/SECOND"/>
-      <genEnumLiterals ecoreEnumLiteral="ShortDSL.ecore#//TIME_UNIT/MINUTE"/>
-      <genEnumLiterals ecoreEnumLiteral="ShortDSL.ecore#//TIME_UNIT/HOUR"/>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="ShortDSL.ecore#//TIME_UNIT_S">
+      <genEnumLiterals ecoreEnumLiteral="ShortDSL.ecore#//TIME_UNIT_S/SECOND"/>
+      <genEnumLiterals ecoreEnumLiteral="ShortDSL.ecore#//TIME_UNIT_S/MINUTE"/>
+      <genEnumLiterals ecoreEnumLiteral="ShortDSL.ecore#//TIME_UNIT_S/HOUR"/>
     </genEnums>
     <genClasses ecoreClass="ShortDSL.ecore#//Model">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ShortDSL.ecore#//Model/type"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ShortDSL.ecore#//Model/dslType"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ShortDSL.ecore#//Model/dslProgram"/>
     </genClasses>
-    <genClasses ecoreClass="ShortDSL.ecore#//DSL_Long">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ShortDSL.ecore#//DSL_Long/name"/>
-    </genClasses>
-    <genClasses ecoreClass="ShortDSL.ecore#//DSLType"/>
+    <genClasses ecoreClass="ShortDSL.ecore#//DSLProgram"/>
     <genClasses ecoreClass="ShortDSL.ecore#//ConfigurationS">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ShortDSL.ecore#//ConfigurationS/devices"/>
     </genClasses>
     <genClasses ecoreClass="ShortDSL.ecore#//DeviceS">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ShortDSL.ecore#//DeviceS/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ShortDSL.ecore#//DeviceS/logging"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ShortDSL.ecore#//DeviceS/targets"/>
     </genClasses>
     <genClasses ecoreClass="ShortDSL.ecore#//ConfigurationValueS"/>
+    <genClasses ecoreClass="ShortDSL.ecore#//LoggingS"/>
     <genClasses ecoreClass="ShortDSL.ecore#//DiskHandlingS">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ShortDSL.ecore#//DiskHandlingS/disk"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ShortDSL.ecore#//DiskHandlingS/statements"/>
@@ -60,16 +64,19 @@
     <genClasses ecoreClass="ShortDSL.ecore#//VariableS">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ShortDSL.ecore#//VariableS/name"/>
     </genClasses>
-    <genClasses ecoreClass="ShortDSL.ecore#//VariableValue">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ShortDSL.ecore#//VariableValue/value"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ShortDSL.ecore#//VariableValue/ref"/>
+    <genClasses ecoreClass="ShortDSL.ecore#//VariableValueS">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ShortDSL.ecore#//VariableValueS/value"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ShortDSL.ecore#//VariableValueS/ref"/>
     </genClasses>
-    <genClasses ecoreClass="ShortDSL.ecore#//DeviceValue">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ShortDSL.ecore#//DeviceValue/value"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ShortDSL.ecore#//DeviceValue/configurationValue"/>
+    <genClasses ecoreClass="ShortDSL.ecore#//DeviceValueS">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ShortDSL.ecore#//DeviceValueS/value"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ShortDSL.ecore#//DeviceValueS/configurationValue"/>
     </genClasses>
-    <genClasses ecoreClass="ShortDSL.ecore#//ValueSlot">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ShortDSL.ecore#//ValueSlot/value"/>
+    <genClasses ecoreClass="ShortDSL.ecore#//ValueSlotS">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ShortDSL.ecore#//ValueSlotS/value"/>
+    </genClasses>
+    <genClasses ecoreClass="ShortDSL.ecore#//DSLTypeValue">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ShortDSL.ecore#//DSLTypeValue/value"/>
     </genClasses>
     <genClasses ecoreClass="ShortDSL.ecore#//DiskStateValueS">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ShortDSL.ecore#//DiskStateValueS/value"/>
@@ -82,6 +89,9 @@
     </genClasses>
     <genClasses ecoreClass="ShortDSL.ecore#//NumberS">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ShortDSL.ecore#//NumberS/value"/>
+    </genClasses>
+    <genClasses ecoreClass="ShortDSL.ecore#//DSLLong">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ShortDSL.ecore#//DSLLong/name"/>
     </genClasses>
     <genClasses ecoreClass="ShortDSL.ecore#//DSLShort">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ShortDSL.ecore#//DSLShort/configuration"/>
@@ -103,6 +113,7 @@
     <genClasses ecoreClass="ShortDSL.ecore#//CameraColor">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ShortDSL.ecore#//CameraColor/color"/>
     </genClasses>
+    <genClasses ecoreClass="ShortDSL.ecore#//Logging"/>
     <genClasses ecoreClass="ShortDSL.ecore#//Loop">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ShortDSL.ecore#//Loop/variable"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ShortDSL.ecore#//Loop/comparisonOperator"/>

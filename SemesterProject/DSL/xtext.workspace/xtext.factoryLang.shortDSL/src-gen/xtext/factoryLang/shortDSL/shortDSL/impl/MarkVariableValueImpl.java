@@ -13,8 +13,8 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import xtext.factoryLang.shortDSL.shortDSL.MarkVariableValue;
 import xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage;
-import xtext.factoryLang.shortDSL.shortDSL.TIME_UNIT;
-import xtext.factoryLang.shortDSL.shortDSL.ValueSlot;
+import xtext.factoryLang.shortDSL.shortDSL.TIME_UNIT_S;
+import xtext.factoryLang.shortDSL.shortDSL.ValueSlotS;
 import xtext.factoryLang.shortDSL.shortDSL.VariableS;
 
 /**
@@ -53,7 +53,7 @@ public class MarkVariableValueImpl extends MarkSImpl implements MarkVariableValu
    * @generated
    * @ordered
    */
-  protected ValueSlot value;
+  protected ValueSlotS value;
 
   /**
    * The default value of the '{@link #getTime() <em>Time</em>}' attribute.
@@ -83,7 +83,7 @@ public class MarkVariableValueImpl extends MarkSImpl implements MarkVariableValu
    * @generated
    * @ordered
    */
-  protected static final TIME_UNIT UNIT_EDEFAULT = TIME_UNIT.SECOND;
+  protected static final TIME_UNIT_S UNIT_EDEFAULT = TIME_UNIT_S.SECOND;
 
   /**
    * The cached value of the '{@link #getUnit() <em>Unit</em>}' attribute.
@@ -93,7 +93,7 @@ public class MarkVariableValueImpl extends MarkSImpl implements MarkVariableValu
    * @generated
    * @ordered
    */
-  protected TIME_UNIT unit = UNIT_EDEFAULT;
+  protected TIME_UNIT_S unit = UNIT_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -167,7 +167,7 @@ public class MarkVariableValueImpl extends MarkSImpl implements MarkVariableValu
    * @generated
    */
   @Override
-  public ValueSlot getValue()
+  public ValueSlotS getValue()
   {
     return value;
   }
@@ -177,9 +177,9 @@ public class MarkVariableValueImpl extends MarkSImpl implements MarkVariableValu
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetValue(ValueSlot newValue, NotificationChain msgs)
+  public NotificationChain basicSetValue(ValueSlotS newValue, NotificationChain msgs)
   {
-    ValueSlot oldValue = value;
+    ValueSlotS oldValue = value;
     value = newValue;
     if (eNotificationRequired())
     {
@@ -195,7 +195,7 @@ public class MarkVariableValueImpl extends MarkSImpl implements MarkVariableValu
    * @generated
    */
   @Override
-  public void setValue(ValueSlot newValue)
+  public void setValue(ValueSlotS newValue)
   {
     if (newValue != value)
     {
@@ -242,7 +242,7 @@ public class MarkVariableValueImpl extends MarkSImpl implements MarkVariableValu
    * @generated
    */
   @Override
-  public TIME_UNIT getUnit()
+  public TIME_UNIT_S getUnit()
   {
     return unit;
   }
@@ -253,9 +253,9 @@ public class MarkVariableValueImpl extends MarkSImpl implements MarkVariableValu
    * @generated
    */
   @Override
-  public void setUnit(TIME_UNIT newUnit)
+  public void setUnit(TIME_UNIT_S newUnit)
   {
-    TIME_UNIT oldUnit = unit;
+    TIME_UNIT_S oldUnit = unit;
     unit = newUnit == null ? UNIT_EDEFAULT : newUnit;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, ShortDSLPackage.MARK_VARIABLE_VALUE__UNIT, oldUnit, unit));
@@ -314,13 +314,13 @@ public class MarkVariableValueImpl extends MarkSImpl implements MarkVariableValu
         setVariable((VariableS)newValue);
         return;
       case ShortDSLPackage.MARK_VARIABLE_VALUE__VALUE:
-        setValue((ValueSlot)newValue);
+        setValue((ValueSlotS)newValue);
         return;
       case ShortDSLPackage.MARK_VARIABLE_VALUE__TIME:
         setTime((Integer)newValue);
         return;
       case ShortDSLPackage.MARK_VARIABLE_VALUE__UNIT:
-        setUnit((TIME_UNIT)newValue);
+        setUnit((TIME_UNIT_S)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -340,7 +340,7 @@ public class MarkVariableValueImpl extends MarkSImpl implements MarkVariableValu
         setVariable((VariableS)null);
         return;
       case ShortDSLPackage.MARK_VARIABLE_VALUE__VALUE:
-        setValue((ValueSlot)null);
+        setValue((ValueSlotS)null);
         return;
       case ShortDSLPackage.MARK_VARIABLE_VALUE__TIME:
         setTime(TIME_EDEFAULT);
