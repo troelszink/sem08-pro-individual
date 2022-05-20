@@ -4,15 +4,18 @@
 package xtext.factoryLang.shortDSL.shortDSL.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import xtext.factoryLang.shortDSL.shortDSL.COMPARISON_OPERATOR_S;
 import xtext.factoryLang.shortDSL.shortDSL.ConditionVariable;
 import xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage;
-import xtext.factoryLang.shortDSL.shortDSL.Variable;
+import xtext.factoryLang.shortDSL.shortDSL.VariableS;
+import xtext.factoryLang.shortDSL.shortDSL.VariableValue;
 
 /**
  * <!-- begin-user-doc -->
@@ -23,6 +26,8 @@ import xtext.factoryLang.shortDSL.shortDSL.Variable;
  * </p>
  * <ul>
  *   <li>{@link xtext.factoryLang.shortDSL.shortDSL.impl.ConditionVariableImpl#getVariable <em>Variable</em>}</li>
+ *   <li>{@link xtext.factoryLang.shortDSL.shortDSL.impl.ConditionVariableImpl#getComparisonOperatorVariable <em>Comparison Operator Variable</em>}</li>
+ *   <li>{@link xtext.factoryLang.shortDSL.shortDSL.impl.ConditionVariableImpl#getVariableValue <em>Variable Value</em>}</li>
  * </ul>
  *
  * @generated
@@ -37,7 +42,37 @@ public class ConditionVariableImpl extends ConditionSImpl implements ConditionVa
    * @generated
    * @ordered
    */
-  protected Variable variable;
+  protected VariableS variable;
+
+  /**
+   * The default value of the '{@link #getComparisonOperatorVariable() <em>Comparison Operator Variable</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getComparisonOperatorVariable()
+   * @generated
+   * @ordered
+   */
+  protected static final COMPARISON_OPERATOR_S COMPARISON_OPERATOR_VARIABLE_EDEFAULT = COMPARISON_OPERATOR_S.EQUAL;
+
+  /**
+   * The cached value of the '{@link #getComparisonOperatorVariable() <em>Comparison Operator Variable</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getComparisonOperatorVariable()
+   * @generated
+   * @ordered
+   */
+  protected COMPARISON_OPERATOR_S comparisonOperatorVariable = COMPARISON_OPERATOR_VARIABLE_EDEFAULT;
+
+  /**
+   * The cached value of the '{@link #getVariableValue() <em>Variable Value</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getVariableValue()
+   * @generated
+   * @ordered
+   */
+  protected VariableValue variableValue;
 
   /**
    * <!-- begin-user-doc -->
@@ -66,12 +101,12 @@ public class ConditionVariableImpl extends ConditionSImpl implements ConditionVa
    * @generated
    */
   @Override
-  public Variable getVariable()
+  public VariableS getVariable()
   {
     if (variable != null && variable.eIsProxy())
     {
       InternalEObject oldVariable = (InternalEObject)variable;
-      variable = (Variable)eResolveProxy(oldVariable);
+      variable = (VariableS)eResolveProxy(oldVariable);
       if (variable != oldVariable)
       {
         if (eNotificationRequired())
@@ -86,7 +121,7 @@ public class ConditionVariableImpl extends ConditionSImpl implements ConditionVa
    * <!-- end-user-doc -->
    * @generated
    */
-  public Variable basicGetVariable()
+  public VariableS basicGetVariable()
   {
     return variable;
   }
@@ -97,12 +132,103 @@ public class ConditionVariableImpl extends ConditionSImpl implements ConditionVa
    * @generated
    */
   @Override
-  public void setVariable(Variable newVariable)
+  public void setVariable(VariableS newVariable)
   {
-    Variable oldVariable = variable;
+    VariableS oldVariable = variable;
     variable = newVariable;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, ShortDSLPackage.CONDITION_VARIABLE__VARIABLE, oldVariable, variable));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public COMPARISON_OPERATOR_S getComparisonOperatorVariable()
+  {
+    return comparisonOperatorVariable;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setComparisonOperatorVariable(COMPARISON_OPERATOR_S newComparisonOperatorVariable)
+  {
+    COMPARISON_OPERATOR_S oldComparisonOperatorVariable = comparisonOperatorVariable;
+    comparisonOperatorVariable = newComparisonOperatorVariable == null ? COMPARISON_OPERATOR_VARIABLE_EDEFAULT : newComparisonOperatorVariable;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ShortDSLPackage.CONDITION_VARIABLE__COMPARISON_OPERATOR_VARIABLE, oldComparisonOperatorVariable, comparisonOperatorVariable));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public VariableValue getVariableValue()
+  {
+    return variableValue;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetVariableValue(VariableValue newVariableValue, NotificationChain msgs)
+  {
+    VariableValue oldVariableValue = variableValue;
+    variableValue = newVariableValue;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ShortDSLPackage.CONDITION_VARIABLE__VARIABLE_VALUE, oldVariableValue, newVariableValue);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setVariableValue(VariableValue newVariableValue)
+  {
+    if (newVariableValue != variableValue)
+    {
+      NotificationChain msgs = null;
+      if (variableValue != null)
+        msgs = ((InternalEObject)variableValue).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ShortDSLPackage.CONDITION_VARIABLE__VARIABLE_VALUE, null, msgs);
+      if (newVariableValue != null)
+        msgs = ((InternalEObject)newVariableValue).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ShortDSLPackage.CONDITION_VARIABLE__VARIABLE_VALUE, null, msgs);
+      msgs = basicSetVariableValue(newVariableValue, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ShortDSLPackage.CONDITION_VARIABLE__VARIABLE_VALUE, newVariableValue, newVariableValue));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
+    switch (featureID)
+    {
+      case ShortDSLPackage.CONDITION_VARIABLE__VARIABLE_VALUE:
+        return basicSetVariableValue(null, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**
@@ -118,6 +244,10 @@ public class ConditionVariableImpl extends ConditionSImpl implements ConditionVa
       case ShortDSLPackage.CONDITION_VARIABLE__VARIABLE:
         if (resolve) return getVariable();
         return basicGetVariable();
+      case ShortDSLPackage.CONDITION_VARIABLE__COMPARISON_OPERATOR_VARIABLE:
+        return getComparisonOperatorVariable();
+      case ShortDSLPackage.CONDITION_VARIABLE__VARIABLE_VALUE:
+        return getVariableValue();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -133,7 +263,13 @@ public class ConditionVariableImpl extends ConditionSImpl implements ConditionVa
     switch (featureID)
     {
       case ShortDSLPackage.CONDITION_VARIABLE__VARIABLE:
-        setVariable((Variable)newValue);
+        setVariable((VariableS)newValue);
+        return;
+      case ShortDSLPackage.CONDITION_VARIABLE__COMPARISON_OPERATOR_VARIABLE:
+        setComparisonOperatorVariable((COMPARISON_OPERATOR_S)newValue);
+        return;
+      case ShortDSLPackage.CONDITION_VARIABLE__VARIABLE_VALUE:
+        setVariableValue((VariableValue)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -150,7 +286,13 @@ public class ConditionVariableImpl extends ConditionSImpl implements ConditionVa
     switch (featureID)
     {
       case ShortDSLPackage.CONDITION_VARIABLE__VARIABLE:
-        setVariable((Variable)null);
+        setVariable((VariableS)null);
+        return;
+      case ShortDSLPackage.CONDITION_VARIABLE__COMPARISON_OPERATOR_VARIABLE:
+        setComparisonOperatorVariable(COMPARISON_OPERATOR_VARIABLE_EDEFAULT);
+        return;
+      case ShortDSLPackage.CONDITION_VARIABLE__VARIABLE_VALUE:
+        setVariableValue((VariableValue)null);
         return;
     }
     super.eUnset(featureID);
@@ -168,8 +310,29 @@ public class ConditionVariableImpl extends ConditionSImpl implements ConditionVa
     {
       case ShortDSLPackage.CONDITION_VARIABLE__VARIABLE:
         return variable != null;
+      case ShortDSLPackage.CONDITION_VARIABLE__COMPARISON_OPERATOR_VARIABLE:
+        return comparisonOperatorVariable != COMPARISON_OPERATOR_VARIABLE_EDEFAULT;
+      case ShortDSLPackage.CONDITION_VARIABLE__VARIABLE_VALUE:
+        return variableValue != null;
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
+
+    StringBuilder result = new StringBuilder(super.toString());
+    result.append(" (comparisonOperatorVariable: ");
+    result.append(comparisonOperatorVariable);
+    result.append(')');
+    return result.toString();
   }
 
 } //ConditionVariableImpl

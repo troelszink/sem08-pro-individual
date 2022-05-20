@@ -6,7 +6,7 @@ grammar xtext.factoryLang.FactoryLang with org.eclipse.xtext.common.Terminals
 
 generate factoryLang "http://www.factoryLang.xtext/FactoryLang"
 
-Model:
+/*Model:
 	'use' 'dsl' type=DSLType;
 
 DSLType:
@@ -53,12 +53,15 @@ CameraColor_Short:
 // ----- DEVICE HANDLING ----- //
 DeviceHandling_Short:
 	'test' name=ID
-;
+;*/
 
 
 // -------------------- GROUP DSL - EASY TO READ, HARDER TO WRITE -------------------- //
-DSL_Long returns DSLType:
-	{DSLLong} configurations+=Configuration+ statements+=Statement+;
+Model:
+	configurations+=Configuration+ statements+=Statement+;
+
+/*DSL_Long returns DSLType:
+	{DSLLong} configurations+=Configuration+ statements+=Statement+;*/
 
 // ----- CONFIGURATION ----- //
 Configuration:

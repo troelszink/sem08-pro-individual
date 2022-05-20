@@ -5,24 +5,24 @@ package xtext.factoryLang.shortDSL.shortDSL.impl;
 
 import org.eclipse.emf.ecore.EClass;
 
-import xtext.factoryLang.shortDSL.shortDSL.Action;
+import xtext.factoryLang.shortDSL.shortDSL.CraneActionS;
 import xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Action</b></em>'.
+ * An implementation of the model object '<em><b>Crane Action S</b></em>'.
  * <!-- end-user-doc -->
  *
  * @generated
  */
-public class ActionImpl extends ActionSImpl implements Action
+public class CraneActionSImpl extends StatementSImpl implements CraneActionS
 {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected ActionImpl()
+  protected CraneActionSImpl()
   {
     super();
   }
@@ -35,7 +35,7 @@ public class ActionImpl extends ActionSImpl implements Action
   @Override
   protected EClass eStaticClass()
   {
-    return ShortDSLPackage.Literals.ACTION;
+    return ShortDSLPackage.Literals.CRANE_ACTION_S;
   }
 
-} //ActionImpl
+} //CraneActionSImpl

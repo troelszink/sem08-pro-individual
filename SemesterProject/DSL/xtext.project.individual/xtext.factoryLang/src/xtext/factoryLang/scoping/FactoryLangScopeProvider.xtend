@@ -17,7 +17,6 @@ import xtext.factoryLang.factoryLang.CameraScanOperation
 import xtext.factoryLang.factoryLang.ForEach
 import xtext.factoryLang.factoryLang.DeviceConditional
 import xtext.factoryLang.factoryLang.DeviceValue
-import xtext.factoryLang.factoryLang.DSLLong
 
 /**
  * This class contains custom scoping description.

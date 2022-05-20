@@ -19,11 +19,11 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import xtext.factoryLang.shortDSL.shortDSL.COMPARISON_OPERATOR_S;
-import xtext.factoryLang.shortDSL.shortDSL.DISK_SLOT_STATES_S;
+import xtext.factoryLang.shortDSL.shortDSL.DiskSlotStateValueS;
 import xtext.factoryLang.shortDSL.shortDSL.Loop;
 import xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage;
 import xtext.factoryLang.shortDSL.shortDSL.StatementS;
-import xtext.factoryLang.shortDSL.shortDSL.Variable;
+import xtext.factoryLang.shortDSL.shortDSL.VariableS;
 
 /**
  * <!-- begin-user-doc -->
@@ -51,7 +51,7 @@ public class LoopImpl extends StatementSImpl implements Loop
    * @generated
    * @ordered
    */
-  protected Variable variable;
+  protected VariableS variable;
 
   /**
    * The default value of the '{@link #getComparisonOperator() <em>Comparison Operator</em>}' attribute.
@@ -74,24 +74,14 @@ public class LoopImpl extends StatementSImpl implements Loop
   protected COMPARISON_OPERATOR_S comparisonOperator = COMPARISON_OPERATOR_EDEFAULT;
 
   /**
-   * The default value of the '{@link #getSlotState() <em>Slot State</em>}' attribute.
+   * The cached value of the '{@link #getSlotState() <em>Slot State</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getSlotState()
    * @generated
    * @ordered
    */
-  protected static final DISK_SLOT_STATES_S SLOT_STATE_EDEFAULT = DISK_SLOT_STATES_S.FREE;
-
-  /**
-   * The cached value of the '{@link #getSlotState() <em>Slot State</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getSlotState()
-   * @generated
-   * @ordered
-   */
-  protected DISK_SLOT_STATES_S slotState = SLOT_STATE_EDEFAULT;
+  protected DiskSlotStateValueS slotState;
 
   /**
    * The cached value of the '{@link #getStatements() <em>Statements</em>}' containment reference list.
@@ -130,7 +120,7 @@ public class LoopImpl extends StatementSImpl implements Loop
    * @generated
    */
   @Override
-  public Variable getVariable()
+  public VariableS getVariable()
   {
     return variable;
   }
@@ -140,9 +130,9 @@ public class LoopImpl extends StatementSImpl implements Loop
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetVariable(Variable newVariable, NotificationChain msgs)
+  public NotificationChain basicSetVariable(VariableS newVariable, NotificationChain msgs)
   {
-    Variable oldVariable = variable;
+    VariableS oldVariable = variable;
     variable = newVariable;
     if (eNotificationRequired())
     {
@@ -158,7 +148,7 @@ public class LoopImpl extends StatementSImpl implements Loop
    * @generated
    */
   @Override
-  public void setVariable(Variable newVariable)
+  public void setVariable(VariableS newVariable)
   {
     if (newVariable != variable)
     {
@@ -205,7 +195,7 @@ public class LoopImpl extends StatementSImpl implements Loop
    * @generated
    */
   @Override
-  public DISK_SLOT_STATES_S getSlotState()
+  public DiskSlotStateValueS getSlotState()
   {
     return slotState;
   }
@@ -215,13 +205,38 @@ public class LoopImpl extends StatementSImpl implements Loop
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
-  public void setSlotState(DISK_SLOT_STATES_S newSlotState)
+  public NotificationChain basicSetSlotState(DiskSlotStateValueS newSlotState, NotificationChain msgs)
   {
-    DISK_SLOT_STATES_S oldSlotState = slotState;
-    slotState = newSlotState == null ? SLOT_STATE_EDEFAULT : newSlotState;
+    DiskSlotStateValueS oldSlotState = slotState;
+    slotState = newSlotState;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ShortDSLPackage.LOOP__SLOT_STATE, oldSlotState, slotState));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ShortDSLPackage.LOOP__SLOT_STATE, oldSlotState, newSlotState);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setSlotState(DiskSlotStateValueS newSlotState)
+  {
+    if (newSlotState != slotState)
+    {
+      NotificationChain msgs = null;
+      if (slotState != null)
+        msgs = ((InternalEObject)slotState).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ShortDSLPackage.LOOP__SLOT_STATE, null, msgs);
+      if (newSlotState != null)
+        msgs = ((InternalEObject)newSlotState).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ShortDSLPackage.LOOP__SLOT_STATE, null, msgs);
+      msgs = basicSetSlotState(newSlotState, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ShortDSLPackage.LOOP__SLOT_STATE, newSlotState, newSlotState));
   }
 
   /**
@@ -251,6 +266,8 @@ public class LoopImpl extends StatementSImpl implements Loop
     {
       case ShortDSLPackage.LOOP__VARIABLE:
         return basicSetVariable(null, msgs);
+      case ShortDSLPackage.LOOP__SLOT_STATE:
+        return basicSetSlotState(null, msgs);
       case ShortDSLPackage.LOOP__STATEMENTS:
         return ((InternalEList<?>)getStatements()).basicRemove(otherEnd, msgs);
     }
@@ -291,13 +308,13 @@ public class LoopImpl extends StatementSImpl implements Loop
     switch (featureID)
     {
       case ShortDSLPackage.LOOP__VARIABLE:
-        setVariable((Variable)newValue);
+        setVariable((VariableS)newValue);
         return;
       case ShortDSLPackage.LOOP__COMPARISON_OPERATOR:
         setComparisonOperator((COMPARISON_OPERATOR_S)newValue);
         return;
       case ShortDSLPackage.LOOP__SLOT_STATE:
-        setSlotState((DISK_SLOT_STATES_S)newValue);
+        setSlotState((DiskSlotStateValueS)newValue);
         return;
       case ShortDSLPackage.LOOP__STATEMENTS:
         getStatements().clear();
@@ -318,13 +335,13 @@ public class LoopImpl extends StatementSImpl implements Loop
     switch (featureID)
     {
       case ShortDSLPackage.LOOP__VARIABLE:
-        setVariable((Variable)null);
+        setVariable((VariableS)null);
         return;
       case ShortDSLPackage.LOOP__COMPARISON_OPERATOR:
         setComparisonOperator(COMPARISON_OPERATOR_EDEFAULT);
         return;
       case ShortDSLPackage.LOOP__SLOT_STATE:
-        setSlotState(SLOT_STATE_EDEFAULT);
+        setSlotState((DiskSlotStateValueS)null);
         return;
       case ShortDSLPackage.LOOP__STATEMENTS:
         getStatements().clear();
@@ -348,7 +365,7 @@ public class LoopImpl extends StatementSImpl implements Loop
       case ShortDSLPackage.LOOP__COMPARISON_OPERATOR:
         return comparisonOperator != COMPARISON_OPERATOR_EDEFAULT;
       case ShortDSLPackage.LOOP__SLOT_STATE:
-        return slotState != SLOT_STATE_EDEFAULT;
+        return slotState != null;
       case ShortDSLPackage.LOOP__STATEMENTS:
         return statements != null && !statements.isEmpty();
     }
@@ -368,8 +385,6 @@ public class LoopImpl extends StatementSImpl implements Loop
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (comparisonOperator: ");
     result.append(comparisonOperator);
-    result.append(", slotState: ");
-    result.append(slotState);
     result.append(')');
     return result.toString();
   }

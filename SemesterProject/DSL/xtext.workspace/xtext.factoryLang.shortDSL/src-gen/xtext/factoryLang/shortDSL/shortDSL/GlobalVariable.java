@@ -14,6 +14,6 @@ package xtext.factoryLang.shortDSL.shortDSL;
  * @model
  * @generated
  */
-public interface GlobalVariable extends Variable
+public interface GlobalVariable extends VariableS
 {
 } // GlobalVariable

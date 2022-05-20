@@ -20,83 +20,96 @@ DeviceS:
 	CraneS | DiskS | CameraS;
 
 CraneS returns DeviceS:
-	{Crane} name=ID ':' BEGIN positions+=CraneZoneS+ END;
+	{Crane} name=ID ':' BEGIN targets+=CraneZoneS+ END;
 
 CraneZoneS returns ConfigurationValueS:
 	{CraneZone} name=ID ':' zoneValue=INT (',')?;
 
 DiskS returns DeviceS:
-	{Disk} name=ID '(' nSlots=INT ')' ':' BEGIN zones+=DiskZoneS+ END;
+	{Disk} name=ID '(' nSlots=INT ')' ':' BEGIN targets+=DiskZoneS+ END;
 
 DiskZoneS returns ConfigurationValueS:
 	{DiskZone} name=ID ':' slot=INT (',')?;
 
 CameraS returns DeviceS:
-	{Camera} name=ID ':' BEGIN colors+=CameraColorS+ END;
+	{Camera} name=ID ':' BEGIN targets+=CameraColorS+ END;
 
 CameraColorS returns ConfigurationValueS:
 	{CameraColor} color=COLOR_S (',')?;
 
 // ----- DEVICE HANDLING ----- //
 DiskHandlingS:
-	disk=[Disk] '{' BEGIN statements+=StatementS+ END '}';
+	'handle' disk=[Disk] '{' BEGIN statements+=StatementS+ END '}';
 
 StatementS:
-	LoopS | MoveS | ActionS | ConditionS | MarkS;
+	LoopS | MoveS | CraneActionS | ConditionS | MarkS;
 
 LoopS returns StatementS:
-	{Loop} 'foreach' variable=LocalVariableS comparisonOperator=COMPARISON_OPERATOR_S slotState=DISK_SLOT_STATES_S ':' BEGIN statements+=StatementS* END;
+	{Loop} 'foreach' variable=LocalVariableS
+	comparisonOperator=COMPARISON_OPERATOR_S slotState=DiskSlotStateValueS
+	':' BEGIN statements+=StatementS* END;
 
 MoveS returns StatementS:
-	MoveDiskS | MoveCraneS;
+	MoveDiskS | MoveAnySlotS | MoveCraneS;
 
-MoveDiskS returns StatementS:
-	{MoveDisk} slot=[Variable] ('->' | '-->') zone=[DiskZone];
+MoveDiskS returns MoveS:
+	{MoveDisk} slot=[LocalVariable] ('->' | '-->') zone=[DiskZone];
 
-MoveCraneS returns StatementS:
-	{MoveCrane} crane=[Crane] action=ActionS ('->' | '-->') zone=[CraneZone];
+MoveAnySlotS returns MoveS:
+	{MoveAnySlot} state=DiskSlotStateValueS anySlot=LocalVariableS ('->' | '-->') zone=[DiskZone];
 
-ActionS:
-	{Action} ('pickup' | 'drop');
+MoveCraneS returns MoveS:
+	{MoveCrane} crane=[Crane] action=CraneActionS ('->' | '-->') zone=[CraneZone];
 
-/*ConditionS returns StatementS:
-	ConditionVariableS | ConditionDeviceS;*/
+CraneActionS:
+	{CraneAction} ('pickup' | 'drop');
 
 ConditionS returns StatementS:
-	{Condition} 'if' variable=[Variable] comparisonOperator=COMPARISON_OPERATOR_S value=Value ':' BEGIN statements+=StatementS* END;
+	ConditionVariableS | ConditionDeviceS;
 
-/*ConditionDeviceS returns ConditionS:
-	{ConditionDevice} 'if' device=[DeviceS] comparisonOperator=COMPARISON_OPERATOR_S value=Value ':' BEGIN statements+=StatementS* END;*/
+ConditionVariableS returns ConditionS:
+	{ConditionVariable} 'if' 'var' variable=[VariableS]
+	comparisonOperatorVariable=COMPARISON_OPERATOR_S variableValue=VariableValue
+	':' BEGIN statements+=StatementS* END;
+
+ConditionDeviceS returns ConditionS:
+	{ConditionDevice} 'if' 'dev' device=[DeviceS]
+	comparisonOperatorDevice=COMPARISON_OPERATOR_S deviceValue=DeviceValue
+	':' BEGIN statements+=StatementS* END;
 
 MarkS returns StatementS:
-	MarkVariableS | MarkValueS;
+	MarkVariableValueS | MarkCameraValueS;
+	
+MarkVariableValueS returns MarkS:
+	{MarkVariableValue} variable=[VariableS] '(' value=ValueSlot (',' time=INT unit=TIME_UNIT)? ')';
 
-MarkVariableS returns MarkS:
-	{MarkVariable} device=[DeviceS] '(' variable=GlobalVariableS (',' time=INT)? ')';
-
-MarkValueS returns MarkS:
-	{MarkValue} variable=[LocalVariable] '(' value=Value (',' time=INT)? ')';
+MarkCameraValueS returns MarkS:
+	{MarkCameraValue} camera=[Camera] 'scan' variable=LocalVariableS;
 	
 	
 
 // ----- VALUE TYPES ----- //
-/*DeviceValue:
-	value=DiskStateValue | value=ColorValue | ref=[ConfigurationValueS];*/
+VariableS:
+	LocalVariableS | GlobalVariableS;
 
-/*DiskSlotValue:
-	value=DiskSlotStateValue | value=ColorValue | ref=[Variable];*/
-
-LocalVariableS returns Variable:
+LocalVariableS returns VariableS:
 	{LocalVariable} name=ID;
 
-GlobalVariableS returns Variable:
+GlobalVariableS returns VariableS:
 	{GlobalVariable} name=ID;
 
-Value:
-	valueDiskSlotState=DISK_SLOT_STATES_S | valueDiskState=DISK_STATES_S | valueColor=COLOR_S | valueInt=INT | variable=[Variable]; //| configurationValue=[ConfigurationValueS];
+VariableValue:
+	value=DiskSlotStateValueS | value=ColorValueS | value=NumberS | value=DiskStateValueS | ref=[VariableS];
+
+DeviceValue:
+	value=DiskStateValueS | value=ColorValueS | configurationValue=[ConfigurationValueS];
+
+ValueSlot:
+	value=DiskSlotStateValueS | value=ColorValueS;
+
 
 // ----- VALUE TYPES:ACTUAL VALUES ----- //
-/*DiskStateValueS:
+DiskStateValueS:
 	value=DISK_STATES_S;
 
 DiskSlotStateValueS:
@@ -106,7 +119,7 @@ ColorValueS:
 	value=COLOR_S;
 
 NumberS:
-	value=INT;*/
+	value=INT;
 
 // ----- TERMINALS ----- //
 enum COMPARISON_OPERATOR_S:
@@ -116,10 +129,13 @@ enum COLOR_S:
 	RED='red' | GREEN='green' | BLUE='blue';
 
 enum DISK_SLOT_STATES_S:
-	FREE='free' | IN_PROGRESS='in_progress' | COMPLETE='complete';
+	FREE='vacant' | IN_PROGRESS='in_progress' | COMPLETE='complete';
 
 enum DISK_STATES_S:
 	FULL='full' | EMPTY='empty';
+	
+enum TIME_UNIT:
+	SECOND='s' | MINUTE='m' | HOUR='h';
 
 terminal BEGIN:
 	'synthetic:BEGIN';

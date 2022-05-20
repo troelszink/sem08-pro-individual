@@ -3,6 +3,23 @@
  */
 package xtext.factoryLang.shortDSL.validation;
 
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.xtend2.lib.StringConcatenation;
+import org.eclipse.xtext.EcoreUtil2;
+import org.eclipse.xtext.validation.Check;
+import xtext.factoryLang.shortDSL.shortDSL.Camera;
+import xtext.factoryLang.shortDSL.shortDSL.ColorValueS;
+import xtext.factoryLang.shortDSL.shortDSL.ConditionDevice;
+import xtext.factoryLang.shortDSL.shortDSL.Crane;
+import xtext.factoryLang.shortDSL.shortDSL.CraneZone;
+import xtext.factoryLang.shortDSL.shortDSL.DeviceS;
+import xtext.factoryLang.shortDSL.shortDSL.Disk;
+import xtext.factoryLang.shortDSL.shortDSL.DiskStateValueS;
+import xtext.factoryLang.shortDSL.shortDSL.DiskZone;
+import xtext.factoryLang.shortDSL.shortDSL.MarkVariableValue;
+import xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage;
+import xtext.factoryLang.shortDSL.shortDSL.TIME_UNIT;
+
 /**
  * This class contains custom validation rules.
  * 
@@ -10,4 +27,118 @@ package xtext.factoryLang.shortDSL.validation;
  */
 @SuppressWarnings("all")
 public class ShortDSLValidator extends AbstractShortDSLValidator {
+  public static final String INVALID_VALUE = "invalidValue";
+  
+  @Check
+  public void checkCraneZone(final CraneZone zone) {
+    boolean _not = (!((zone.getZoneValue() >= 0) && (zone.getZoneValue() <= 359)));
+    if (_not) {
+      this.error("Degree value should be between 0 and 359 degrees (inclusive)", 
+        ShortDSLPackage.Literals.CRANE_ZONE__ZONE_VALUE, ShortDSLValidator.INVALID_VALUE);
+    }
+  }
+  
+  @Check
+  public void checkDiskZone(final DiskZone zone) {
+    Disk _containerOfType = EcoreUtil2.<Disk>getContainerOfType(zone, Disk.class);
+    final Disk disk = ((Disk) _containerOfType);
+    final int nSlots = disk.getNSlots();
+    boolean _not = (!((zone.getSlot() > 0) && (zone.getSlot() <= nSlots)));
+    if (_not) {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("Slot must be within available slots (1-");
+      _builder.append(nSlots);
+      _builder.append(")");
+      this.error(_builder.toString(), ShortDSLPackage.Literals.DISK_ZONE__SLOT, 
+        ShortDSLValidator.INVALID_VALUE);
+    }
+  }
+  
+  @Check
+  public void checkDiskMarkSlotOperation(final MarkVariableValue mark) {
+    if (((!mark.eIsSet(ShortDSLPackage.Literals.MARK_VARIABLE_VALUE__TIME)) && 
+      (!mark.eIsSet(ShortDSLPackage.Literals.MARK_VARIABLE_VALUE__UNIT)))) {
+      return;
+    }
+    boolean _eIsSet = mark.eIsSet(ShortDSLPackage.Literals.MARK_VARIABLE_VALUE__UNIT);
+    boolean _not = (!_eIsSet);
+    if (_not) {
+      TIME_UNIT _get = TIME_UNIT.get(0);
+      String _plus = ("Remember to add unit: " + _get);
+      String _plus_1 = (_plus + ", ");
+      TIME_UNIT _get_1 = TIME_UNIT.get(1);
+      String _plus_2 = (_plus_1 + _get_1);
+      String _plus_3 = (_plus_2 + ", ");
+      TIME_UNIT _get_2 = TIME_UNIT.get(2);
+      String _plus_4 = (_plus_3 + _get_2);
+      this.error(_plus_4, ShortDSLPackage.Literals.MARK_VARIABLE_VALUE__TIME, ShortDSLValidator.INVALID_VALUE);
+      return;
+    }
+    final int time = mark.getTime();
+    if ((time < 1)) {
+      this.error("The time to finish should be>= 1", ShortDSLPackage.Literals.MARK_VARIABLE_VALUE__TIME, ShortDSLValidator.INVALID_VALUE);
+      return;
+    }
+  }
+  
+  @Check
+  public void checkDeviceConditionalValues(final ConditionDevice condition) {
+    if (((!condition.eIsSet(ShortDSLPackage.Literals.CONDITION_DEVICE__DEVICE)) || 
+      (!condition.eIsSet(ShortDSLPackage.Literals.CONDITION_DEVICE__DEVICE_VALUE)))) {
+      return;
+    }
+    final DeviceS device = condition.getDevice();
+    final EObject value = condition.getDeviceValue().getValue();
+    boolean _matched = false;
+    if ((device instanceof Crane)) {
+      _matched=true;
+      if ((value instanceof DiskStateValueS)) {
+        String _name = device.getName();
+        String _plus = (_name + " cannot be compared to disk states");
+        this.error(_plus, ShortDSLPackage.Literals.CONDITION_DEVICE__DEVICE_VALUE, 
+          ShortDSLValidator.INVALID_VALUE);
+        return;
+      }
+      if ((value instanceof ColorValueS)) {
+        String _name_1 = device.getName();
+        String _plus_1 = (_name_1 + " cannot be compared to colors");
+        this.error(_plus_1, ShortDSLPackage.Literals.CONDITION_DEVICE__DEVICE_VALUE, 
+          ShortDSLValidator.INVALID_VALUE);
+        return;
+      }
+      return;
+    }
+    if (!_matched) {
+      if ((device instanceof Disk)) {
+        _matched=true;
+        if ((value instanceof ColorValueS)) {
+          String _name_2 = device.getName();
+          String _plus_2 = (_name_2 + " cannot be compared to colors");
+          this.error(_plus_2, ShortDSLPackage.Literals.CONDITION_DEVICE__DEVICE_VALUE, 
+            ShortDSLValidator.INVALID_VALUE);
+          return;
+        }
+      }
+    }
+    if (!_matched) {
+      if ((device instanceof Camera)) {
+        _matched=true;
+        if ((value instanceof DiskStateValueS)) {
+          String _name_3 = device.getName();
+          String _plus_3 = (_name_3 + " cannot be compared to disk states");
+          this.error(_plus_3, ShortDSLPackage.Literals.CONDITION_DEVICE__DEVICE_VALUE, 
+            ShortDSLValidator.INVALID_VALUE);
+          return;
+        }
+        if ((value instanceof ColorValueS)) {
+          String _name_4 = device.getName();
+          String _plus_4 = (_name_4 + " cannot be compared to colors");
+          this.error(_plus_4, ShortDSLPackage.Literals.CONDITION_DEVICE__DEVICE_VALUE, 
+            ShortDSLValidator.INVALID_VALUE);
+          return;
+        }
+        return;
+      }
+    }
+  }
 }

@@ -10,50 +10,51 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
+import xtext.factoryLang.shortDSL.shortDSL.DISK_SLOT_STATES_S;
+import xtext.factoryLang.shortDSL.shortDSL.DiskSlotStateValueS;
 import xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage;
-import xtext.factoryLang.shortDSL.shortDSL.Variable;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Variable</b></em>'.
+ * An implementation of the model object '<em><b>Disk Slot State Value S</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link xtext.factoryLang.shortDSL.shortDSL.impl.VariableImpl#getName <em>Name</em>}</li>
+ *   <li>{@link xtext.factoryLang.shortDSL.shortDSL.impl.DiskSlotStateValueSImpl#getValue <em>Value</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class VariableImpl extends MinimalEObjectImpl.Container implements Variable
+public class DiskSlotStateValueSImpl extends MinimalEObjectImpl.Container implements DiskSlotStateValueS
 {
   /**
-   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+   * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getName()
+   * @see #getValue()
    * @generated
    * @ordered
    */
-  protected static final String NAME_EDEFAULT = null;
+  protected static final DISK_SLOT_STATES_S VALUE_EDEFAULT = DISK_SLOT_STATES_S.FREE;
 
   /**
-   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+   * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getName()
+   * @see #getValue()
    * @generated
    * @ordered
    */
-  protected String name = NAME_EDEFAULT;
+  protected DISK_SLOT_STATES_S value = VALUE_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected VariableImpl()
+  protected DiskSlotStateValueSImpl()
   {
     super();
   }
@@ -66,7 +67,7 @@ public class VariableImpl extends MinimalEObjectImpl.Container implements Variab
   @Override
   protected EClass eStaticClass()
   {
-    return ShortDSLPackage.Literals.VARIABLE;
+    return ShortDSLPackage.Literals.DISK_SLOT_STATE_VALUE_S;
   }
 
   /**
@@ -75,9 +76,9 @@ public class VariableImpl extends MinimalEObjectImpl.Container implements Variab
    * @generated
    */
   @Override
-  public String getName()
+  public DISK_SLOT_STATES_S getValue()
   {
-    return name;
+    return value;
   }
 
   /**
@@ -86,12 +87,12 @@ public class VariableImpl extends MinimalEObjectImpl.Container implements Variab
    * @generated
    */
   @Override
-  public void setName(String newName)
+  public void setValue(DISK_SLOT_STATES_S newValue)
   {
-    String oldName = name;
-    name = newName;
+    DISK_SLOT_STATES_S oldValue = value;
+    value = newValue == null ? VALUE_EDEFAULT : newValue;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ShortDSLPackage.VARIABLE__NAME, oldName, name));
+      eNotify(new ENotificationImpl(this, Notification.SET, ShortDSLPackage.DISK_SLOT_STATE_VALUE_S__VALUE, oldValue, value));
   }
 
   /**
@@ -104,8 +105,8 @@ public class VariableImpl extends MinimalEObjectImpl.Container implements Variab
   {
     switch (featureID)
     {
-      case ShortDSLPackage.VARIABLE__NAME:
-        return getName();
+      case ShortDSLPackage.DISK_SLOT_STATE_VALUE_S__VALUE:
+        return getValue();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -120,8 +121,8 @@ public class VariableImpl extends MinimalEObjectImpl.Container implements Variab
   {
     switch (featureID)
     {
-      case ShortDSLPackage.VARIABLE__NAME:
-        setName((String)newValue);
+      case ShortDSLPackage.DISK_SLOT_STATE_VALUE_S__VALUE:
+        setValue((DISK_SLOT_STATES_S)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -137,8 +138,8 @@ public class VariableImpl extends MinimalEObjectImpl.Container implements Variab
   {
     switch (featureID)
     {
-      case ShortDSLPackage.VARIABLE__NAME:
-        setName(NAME_EDEFAULT);
+      case ShortDSLPackage.DISK_SLOT_STATE_VALUE_S__VALUE:
+        setValue(VALUE_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -154,8 +155,8 @@ public class VariableImpl extends MinimalEObjectImpl.Container implements Variab
   {
     switch (featureID)
     {
-      case ShortDSLPackage.VARIABLE__NAME:
-        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+      case ShortDSLPackage.DISK_SLOT_STATE_VALUE_S__VALUE:
+        return value != VALUE_EDEFAULT;
     }
     return super.eIsSet(featureID);
   }
@@ -171,10 +172,10 @@ public class VariableImpl extends MinimalEObjectImpl.Container implements Variab
     if (eIsProxy()) return super.toString();
 
     StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (name: ");
-    result.append(name);
+    result.append(" (value: ");
+    result.append(value);
     result.append(')');
     return result.toString();
   }
 
-} //VariableImpl
+} //DiskSlotStateValueSImpl

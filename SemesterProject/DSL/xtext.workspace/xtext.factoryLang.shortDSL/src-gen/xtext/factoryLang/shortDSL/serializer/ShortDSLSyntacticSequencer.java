@@ -21,20 +21,22 @@ import xtext.factoryLang.shortDSL.services.ShortDSLGrammarAccess;
 public class ShortDSLSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected ShortDSLGrammarAccess grammarAccess;
-	protected AbstractElementAlias match_ActionS_DropKeyword_1_1_or_PickupKeyword_1_0;
 	protected AbstractElementAlias match_CameraColorS_CommaKeyword_2_q;
+	protected AbstractElementAlias match_CraneActionS_DropKeyword_1_1_or_PickupKeyword_1_0;
 	protected AbstractElementAlias match_CraneZoneS_CommaKeyword_4_q;
 	protected AbstractElementAlias match_DiskZoneS_CommaKeyword_4_q;
+	protected AbstractElementAlias match_MoveAnySlotS_HyphenMinusGreaterThanSignKeyword_3_0_or_HyphenMinusHyphenMinusGreaterThanSignKeyword_3_1;
 	protected AbstractElementAlias match_MoveCraneS_HyphenMinusGreaterThanSignKeyword_3_0_or_HyphenMinusHyphenMinusGreaterThanSignKeyword_3_1;
 	protected AbstractElementAlias match_MoveDiskS_HyphenMinusGreaterThanSignKeyword_2_0_or_HyphenMinusHyphenMinusGreaterThanSignKeyword_2_1;
 	
 	@Inject
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (ShortDSLGrammarAccess) access;
-		match_ActionS_DropKeyword_1_1_or_PickupKeyword_1_0 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getActionSAccess().getDropKeyword_1_1()), new TokenAlias(false, false, grammarAccess.getActionSAccess().getPickupKeyword_1_0()));
 		match_CameraColorS_CommaKeyword_2_q = new TokenAlias(false, true, grammarAccess.getCameraColorSAccess().getCommaKeyword_2());
+		match_CraneActionS_DropKeyword_1_1_or_PickupKeyword_1_0 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getCraneActionSAccess().getDropKeyword_1_1()), new TokenAlias(false, false, grammarAccess.getCraneActionSAccess().getPickupKeyword_1_0()));
 		match_CraneZoneS_CommaKeyword_4_q = new TokenAlias(false, true, grammarAccess.getCraneZoneSAccess().getCommaKeyword_4());
 		match_DiskZoneS_CommaKeyword_4_q = new TokenAlias(false, true, grammarAccess.getDiskZoneSAccess().getCommaKeyword_4());
+		match_MoveAnySlotS_HyphenMinusGreaterThanSignKeyword_3_0_or_HyphenMinusHyphenMinusGreaterThanSignKeyword_3_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getMoveAnySlotSAccess().getHyphenMinusGreaterThanSignKeyword_3_0()), new TokenAlias(false, false, grammarAccess.getMoveAnySlotSAccess().getHyphenMinusHyphenMinusGreaterThanSignKeyword_3_1()));
 		match_MoveCraneS_HyphenMinusGreaterThanSignKeyword_3_0_or_HyphenMinusHyphenMinusGreaterThanSignKeyword_3_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getMoveCraneSAccess().getHyphenMinusGreaterThanSignKeyword_3_0()), new TokenAlias(false, false, grammarAccess.getMoveCraneSAccess().getHyphenMinusHyphenMinusGreaterThanSignKeyword_3_1()));
 		match_MoveDiskS_HyphenMinusGreaterThanSignKeyword_2_0_or_HyphenMinusHyphenMinusGreaterThanSignKeyword_2_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getMoveDiskSAccess().getHyphenMinusGreaterThanSignKeyword_2_0()), new TokenAlias(false, false, grammarAccess.getMoveDiskSAccess().getHyphenMinusHyphenMinusGreaterThanSignKeyword_2_1()));
 	}
@@ -66,14 +68,16 @@ public class ShortDSLSyntacticSequencer extends AbstractSyntacticSequencer {
 		List<INode> transitionNodes = collectNodes(fromNode, toNode);
 		for (AbstractElementAlias syntax : transition.getAmbiguousSyntaxes()) {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
-			if (match_ActionS_DropKeyword_1_1_or_PickupKeyword_1_0.equals(syntax))
-				emit_ActionS_DropKeyword_1_1_or_PickupKeyword_1_0(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_CameraColorS_CommaKeyword_2_q.equals(syntax))
+			if (match_CameraColorS_CommaKeyword_2_q.equals(syntax))
 				emit_CameraColorS_CommaKeyword_2_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_CraneActionS_DropKeyword_1_1_or_PickupKeyword_1_0.equals(syntax))
+				emit_CraneActionS_DropKeyword_1_1_or_PickupKeyword_1_0(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_CraneZoneS_CommaKeyword_4_q.equals(syntax))
 				emit_CraneZoneS_CommaKeyword_4_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_DiskZoneS_CommaKeyword_4_q.equals(syntax))
 				emit_DiskZoneS_CommaKeyword_4_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_MoveAnySlotS_HyphenMinusGreaterThanSignKeyword_3_0_or_HyphenMinusHyphenMinusGreaterThanSignKeyword_3_1.equals(syntax))
+				emit_MoveAnySlotS_HyphenMinusGreaterThanSignKeyword_3_0_or_HyphenMinusHyphenMinusGreaterThanSignKeyword_3_1(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_MoveCraneS_HyphenMinusGreaterThanSignKeyword_3_0_or_HyphenMinusHyphenMinusGreaterThanSignKeyword_3_1.equals(syntax))
 				emit_MoveCraneS_HyphenMinusGreaterThanSignKeyword_3_0_or_HyphenMinusHyphenMinusGreaterThanSignKeyword_3_1(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_MoveDiskS_HyphenMinusGreaterThanSignKeyword_2_0_or_HyphenMinusHyphenMinusGreaterThanSignKeyword_2_1.equals(syntax))
@@ -84,23 +88,23 @@ public class ShortDSLSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	/**
 	 * Ambiguous syntax:
-	 *     'pickup' | 'drop'
-	 *
-	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) (rule start)
-	 */
-	protected void emit_ActionS_DropKeyword_1_1_or_PickupKeyword_1_0(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * Ambiguous syntax:
 	 *     ','?
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     color=COLOR_S (ambiguity) (rule end)
 	 */
 	protected void emit_CameraColorS_CommaKeyword_2_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
+	 *     'pickup' | 'drop'
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     (rule start) (ambiguity) (rule start)
+	 */
+	protected void emit_CraneActionS_DropKeyword_1_1_or_PickupKeyword_1_0(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -131,7 +135,18 @@ public class ShortDSLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     '->' | '-->'
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     action=ActionS (ambiguity) zone=[CraneZone|ID]
+	 *     anySlot=LocalVariableS (ambiguity) zone=[DiskZone|ID]
+	 */
+	protected void emit_MoveAnySlotS_HyphenMinusGreaterThanSignKeyword_3_0_or_HyphenMinusHyphenMinusGreaterThanSignKeyword_3_1(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
+	 *     '->' | '-->'
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     action=CraneActionS (ambiguity) zone=[CraneZone|ID]
 	 */
 	protected void emit_MoveCraneS_HyphenMinusGreaterThanSignKeyword_3_0_or_HyphenMinusHyphenMinusGreaterThanSignKeyword_3_1(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -142,7 +157,7 @@ public class ShortDSLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     '->' | '-->'
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     slot=[Variable|ID] (ambiguity) zone=[DiskZone|ID]
+	 *     slot=[LocalVariable|ID] (ambiguity) zone=[DiskZone|ID]
 	 */
 	protected void emit_MoveDiskS_HyphenMinusGreaterThanSignKeyword_2_0_or_HyphenMinusHyphenMinusGreaterThanSignKeyword_2_1(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);

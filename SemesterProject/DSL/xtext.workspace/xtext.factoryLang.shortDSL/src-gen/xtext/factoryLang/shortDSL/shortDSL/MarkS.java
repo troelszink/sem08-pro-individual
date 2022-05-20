@@ -9,12 +9,6 @@ package xtext.factoryLang.shortDSL.shortDSL;
  * A representation of the model object '<em><b>Mark S</b></em>'.
  * <!-- end-user-doc -->
  *
- * <p>
- * The following features are supported:
- * </p>
- * <ul>
- *   <li>{@link xtext.factoryLang.shortDSL.shortDSL.MarkS#getTime <em>Time</em>}</li>
- * </ul>
  *
  * @see xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage#getMarkS()
  * @model
@@ -22,26 +16,4 @@ package xtext.factoryLang.shortDSL.shortDSL;
  */
 public interface MarkS extends StatementS
 {
-  /**
-   * Returns the value of the '<em><b>Time</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Time</em>' attribute.
-   * @see #setTime(int)
-   * @see xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage#getMarkS_Time()
-   * @model
-   * @generated
-   */
-  int getTime();
-
-  /**
-   * Sets the value of the '{@link xtext.factoryLang.shortDSL.shortDSL.MarkS#getTime <em>Time</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Time</em>' attribute.
-   * @see #getTime()
-   * @generated
-   */
-  void setTime(int value);
-
 } // MarkS

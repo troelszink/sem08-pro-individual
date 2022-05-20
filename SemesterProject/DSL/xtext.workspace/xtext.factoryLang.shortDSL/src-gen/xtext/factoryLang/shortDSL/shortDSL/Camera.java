@@ -3,19 +3,12 @@
  */
 package xtext.factoryLang.shortDSL.shortDSL;
 
-import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Camera</b></em>'.
  * <!-- end-user-doc -->
  *
- * <p>
- * The following features are supported:
- * </p>
- * <ul>
- *   <li>{@link xtext.factoryLang.shortDSL.shortDSL.Camera#getColors <em>Colors</em>}</li>
- * </ul>
  *
  * @see xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage#getCamera()
  * @model
@@ -23,16 +16,4 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface Camera extends DeviceS
 {
-  /**
-   * Returns the value of the '<em><b>Colors</b></em>' containment reference list.
-   * The list contents are of type {@link xtext.factoryLang.shortDSL.shortDSL.ConfigurationValueS}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Colors</em>' containment reference list.
-   * @see xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage#getCamera_Colors()
-   * @model containment="true"
-   * @generated
-   */
-  EList<ConfigurationValueS> getColors();
-
 } // Camera

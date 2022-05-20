@@ -5,24 +5,24 @@ package xtext.factoryLang.shortDSL.shortDSL.impl;
 
 import org.eclipse.emf.ecore.EClass;
 
-import xtext.factoryLang.shortDSL.shortDSL.ActionS;
+import xtext.factoryLang.shortDSL.shortDSL.MoveS;
 import xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Action S</b></em>'.
+ * An implementation of the model object '<em><b>Move S</b></em>'.
  * <!-- end-user-doc -->
  *
  * @generated
  */
-public class ActionSImpl extends StatementSImpl implements ActionS
+public class MoveSImpl extends StatementSImpl implements MoveS
 {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected ActionSImpl()
+  protected MoveSImpl()
   {
     super();
   }
@@ -35,7 +35,7 @@ public class ActionSImpl extends StatementSImpl implements ActionS
   @Override
   protected EClass eStaticClass()
   {
-    return ShortDSLPackage.Literals.ACTION_S;
+    return ShortDSLPackage.Literals.MOVE_S;
   }
 
-} //ActionSImpl
+} //MoveSImpl

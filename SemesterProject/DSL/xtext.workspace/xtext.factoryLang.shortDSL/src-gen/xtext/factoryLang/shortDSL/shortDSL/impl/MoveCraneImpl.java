@@ -11,8 +11,8 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import xtext.factoryLang.shortDSL.shortDSL.ActionS;
 import xtext.factoryLang.shortDSL.shortDSL.Crane;
+import xtext.factoryLang.shortDSL.shortDSL.CraneActionS;
 import xtext.factoryLang.shortDSL.shortDSL.CraneZone;
 import xtext.factoryLang.shortDSL.shortDSL.MoveCrane;
 import xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage;
@@ -32,7 +32,7 @@ import xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage;
  *
  * @generated
  */
-public class MoveCraneImpl extends StatementSImpl implements MoveCrane
+public class MoveCraneImpl extends MoveSImpl implements MoveCrane
 {
   /**
    * The cached value of the '{@link #getCrane() <em>Crane</em>}' reference.
@@ -52,7 +52,7 @@ public class MoveCraneImpl extends StatementSImpl implements MoveCrane
    * @generated
    * @ordered
    */
-  protected ActionS action;
+  protected CraneActionS action;
 
   /**
    * The cached value of the '{@link #getZone() <em>Zone</em>}' reference.
@@ -136,7 +136,7 @@ public class MoveCraneImpl extends StatementSImpl implements MoveCrane
    * @generated
    */
   @Override
-  public ActionS getAction()
+  public CraneActionS getAction()
   {
     return action;
   }
@@ -146,9 +146,9 @@ public class MoveCraneImpl extends StatementSImpl implements MoveCrane
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetAction(ActionS newAction, NotificationChain msgs)
+  public NotificationChain basicSetAction(CraneActionS newAction, NotificationChain msgs)
   {
-    ActionS oldAction = action;
+    CraneActionS oldAction = action;
     action = newAction;
     if (eNotificationRequired())
     {
@@ -164,7 +164,7 @@ public class MoveCraneImpl extends StatementSImpl implements MoveCrane
    * @generated
    */
   @Override
-  public void setAction(ActionS newAction)
+  public void setAction(CraneActionS newAction)
   {
     if (newAction != action)
     {
@@ -277,7 +277,7 @@ public class MoveCraneImpl extends StatementSImpl implements MoveCrane
         setCrane((Crane)newValue);
         return;
       case ShortDSLPackage.MOVE_CRANE__ACTION:
-        setAction((ActionS)newValue);
+        setAction((CraneActionS)newValue);
         return;
       case ShortDSLPackage.MOVE_CRANE__ZONE:
         setZone((CraneZone)newValue);
@@ -300,7 +300,7 @@ public class MoveCraneImpl extends StatementSImpl implements MoveCrane
         setCrane((Crane)null);
         return;
       case ShortDSLPackage.MOVE_CRANE__ACTION:
-        setAction((ActionS)null);
+        setAction((CraneActionS)null);
         return;
       case ShortDSLPackage.MOVE_CRANE__ZONE:
         setZone((CraneZone)null);

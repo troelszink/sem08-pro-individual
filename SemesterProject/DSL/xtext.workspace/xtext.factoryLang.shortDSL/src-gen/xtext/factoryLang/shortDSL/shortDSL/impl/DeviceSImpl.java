@@ -3,13 +3,23 @@
  */
 package xtext.factoryLang.shortDSL.shortDSL.impl;
 
+import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
+
+import xtext.factoryLang.shortDSL.shortDSL.ConfigurationValueS;
 import xtext.factoryLang.shortDSL.shortDSL.DeviceS;
 import xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage;
 
@@ -22,6 +32,7 @@ import xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage;
  * </p>
  * <ul>
  *   <li>{@link xtext.factoryLang.shortDSL.shortDSL.impl.DeviceSImpl#getName <em>Name</em>}</li>
+ *   <li>{@link xtext.factoryLang.shortDSL.shortDSL.impl.DeviceSImpl#getTargets <em>Targets</em>}</li>
  * </ul>
  *
  * @generated
@@ -47,6 +58,16 @@ public class DeviceSImpl extends MinimalEObjectImpl.Container implements DeviceS
    * @ordered
    */
   protected String name = NAME_EDEFAULT;
+
+  /**
+   * The cached value of the '{@link #getTargets() <em>Targets</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getTargets()
+   * @generated
+   * @ordered
+   */
+  protected EList<ConfigurationValueS> targets;
 
   /**
    * <!-- begin-user-doc -->
@@ -100,12 +121,45 @@ public class DeviceSImpl extends MinimalEObjectImpl.Container implements DeviceS
    * @generated
    */
   @Override
+  public EList<ConfigurationValueS> getTargets()
+  {
+    if (targets == null)
+    {
+      targets = new EObjectContainmentEList<ConfigurationValueS>(ConfigurationValueS.class, this, ShortDSLPackage.DEVICE_S__TARGETS);
+    }
+    return targets;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
+    switch (featureID)
+    {
+      case ShortDSLPackage.DEVICE_S__TARGETS:
+        return ((InternalEList<?>)getTargets()).basicRemove(otherEnd, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
     switch (featureID)
     {
       case ShortDSLPackage.DEVICE_S__NAME:
         return getName();
+      case ShortDSLPackage.DEVICE_S__TARGETS:
+        return getTargets();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -115,6 +169,7 @@ public class DeviceSImpl extends MinimalEObjectImpl.Container implements DeviceS
    * <!-- end-user-doc -->
    * @generated
    */
+  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
@@ -122,6 +177,10 @@ public class DeviceSImpl extends MinimalEObjectImpl.Container implements DeviceS
     {
       case ShortDSLPackage.DEVICE_S__NAME:
         setName((String)newValue);
+        return;
+      case ShortDSLPackage.DEVICE_S__TARGETS:
+        getTargets().clear();
+        getTargets().addAll((Collection<? extends ConfigurationValueS>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -140,6 +199,9 @@ public class DeviceSImpl extends MinimalEObjectImpl.Container implements DeviceS
       case ShortDSLPackage.DEVICE_S__NAME:
         setName(NAME_EDEFAULT);
         return;
+      case ShortDSLPackage.DEVICE_S__TARGETS:
+        getTargets().clear();
+        return;
     }
     super.eUnset(featureID);
   }
@@ -156,6 +218,8 @@ public class DeviceSImpl extends MinimalEObjectImpl.Container implements DeviceS
     {
       case ShortDSLPackage.DEVICE_S__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+      case ShortDSLPackage.DEVICE_S__TARGETS:
+        return targets != null && !targets.isEmpty();
     }
     return super.eIsSet(featureID);
   }

@@ -22,7 +22,7 @@ package xtext.factoryLang.shortDSL.shortDSL;
  * @model
  * @generated
  */
-public interface MoveCrane extends StatementS
+public interface MoveCrane extends MoveS
 {
   /**
    * Returns the value of the '<em><b>Crane</b></em>' reference.
@@ -51,12 +51,12 @@ public interface MoveCrane extends StatementS
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Action</em>' containment reference.
-   * @see #setAction(ActionS)
+   * @see #setAction(CraneActionS)
    * @see xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage#getMoveCrane_Action()
    * @model containment="true"
    * @generated
    */
-  ActionS getAction();
+  CraneActionS getAction();
 
   /**
    * Sets the value of the '{@link xtext.factoryLang.shortDSL.shortDSL.MoveCrane#getAction <em>Action</em>}' containment reference.
@@ -66,7 +66,7 @@ public interface MoveCrane extends StatementS
    * @see #getAction()
    * @generated
    */
-  void setAction(ActionS value);
+  void setAction(CraneActionS value);
 
   /**
    * Returns the value of the '<em><b>Zone</b></em>' reference.

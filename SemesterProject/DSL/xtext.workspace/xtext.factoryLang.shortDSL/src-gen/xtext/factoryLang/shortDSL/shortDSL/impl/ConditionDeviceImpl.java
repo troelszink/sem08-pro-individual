@@ -4,14 +4,17 @@
 package xtext.factoryLang.shortDSL.shortDSL.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import xtext.factoryLang.shortDSL.shortDSL.COMPARISON_OPERATOR_S;
 import xtext.factoryLang.shortDSL.shortDSL.ConditionDevice;
 import xtext.factoryLang.shortDSL.shortDSL.DeviceS;
+import xtext.factoryLang.shortDSL.shortDSL.DeviceValue;
 import xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage;
 
 /**
@@ -23,6 +26,8 @@ import xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage;
  * </p>
  * <ul>
  *   <li>{@link xtext.factoryLang.shortDSL.shortDSL.impl.ConditionDeviceImpl#getDevice <em>Device</em>}</li>
+ *   <li>{@link xtext.factoryLang.shortDSL.shortDSL.impl.ConditionDeviceImpl#getComparisonOperatorDevice <em>Comparison Operator Device</em>}</li>
+ *   <li>{@link xtext.factoryLang.shortDSL.shortDSL.impl.ConditionDeviceImpl#getDeviceValue <em>Device Value</em>}</li>
  * </ul>
  *
  * @generated
@@ -38,6 +43,36 @@ public class ConditionDeviceImpl extends ConditionSImpl implements ConditionDevi
    * @ordered
    */
   protected DeviceS device;
+
+  /**
+   * The default value of the '{@link #getComparisonOperatorDevice() <em>Comparison Operator Device</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getComparisonOperatorDevice()
+   * @generated
+   * @ordered
+   */
+  protected static final COMPARISON_OPERATOR_S COMPARISON_OPERATOR_DEVICE_EDEFAULT = COMPARISON_OPERATOR_S.EQUAL;
+
+  /**
+   * The cached value of the '{@link #getComparisonOperatorDevice() <em>Comparison Operator Device</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getComparisonOperatorDevice()
+   * @generated
+   * @ordered
+   */
+  protected COMPARISON_OPERATOR_S comparisonOperatorDevice = COMPARISON_OPERATOR_DEVICE_EDEFAULT;
+
+  /**
+   * The cached value of the '{@link #getDeviceValue() <em>Device Value</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getDeviceValue()
+   * @generated
+   * @ordered
+   */
+  protected DeviceValue deviceValue;
 
   /**
    * <!-- begin-user-doc -->
@@ -111,6 +146,97 @@ public class ConditionDeviceImpl extends ConditionSImpl implements ConditionDevi
    * @generated
    */
   @Override
+  public COMPARISON_OPERATOR_S getComparisonOperatorDevice()
+  {
+    return comparisonOperatorDevice;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setComparisonOperatorDevice(COMPARISON_OPERATOR_S newComparisonOperatorDevice)
+  {
+    COMPARISON_OPERATOR_S oldComparisonOperatorDevice = comparisonOperatorDevice;
+    comparisonOperatorDevice = newComparisonOperatorDevice == null ? COMPARISON_OPERATOR_DEVICE_EDEFAULT : newComparisonOperatorDevice;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ShortDSLPackage.CONDITION_DEVICE__COMPARISON_OPERATOR_DEVICE, oldComparisonOperatorDevice, comparisonOperatorDevice));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public DeviceValue getDeviceValue()
+  {
+    return deviceValue;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetDeviceValue(DeviceValue newDeviceValue, NotificationChain msgs)
+  {
+    DeviceValue oldDeviceValue = deviceValue;
+    deviceValue = newDeviceValue;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ShortDSLPackage.CONDITION_DEVICE__DEVICE_VALUE, oldDeviceValue, newDeviceValue);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setDeviceValue(DeviceValue newDeviceValue)
+  {
+    if (newDeviceValue != deviceValue)
+    {
+      NotificationChain msgs = null;
+      if (deviceValue != null)
+        msgs = ((InternalEObject)deviceValue).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ShortDSLPackage.CONDITION_DEVICE__DEVICE_VALUE, null, msgs);
+      if (newDeviceValue != null)
+        msgs = ((InternalEObject)newDeviceValue).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ShortDSLPackage.CONDITION_DEVICE__DEVICE_VALUE, null, msgs);
+      msgs = basicSetDeviceValue(newDeviceValue, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ShortDSLPackage.CONDITION_DEVICE__DEVICE_VALUE, newDeviceValue, newDeviceValue));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
+    switch (featureID)
+    {
+      case ShortDSLPackage.CONDITION_DEVICE__DEVICE_VALUE:
+        return basicSetDeviceValue(null, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
     switch (featureID)
@@ -118,6 +244,10 @@ public class ConditionDeviceImpl extends ConditionSImpl implements ConditionDevi
       case ShortDSLPackage.CONDITION_DEVICE__DEVICE:
         if (resolve) return getDevice();
         return basicGetDevice();
+      case ShortDSLPackage.CONDITION_DEVICE__COMPARISON_OPERATOR_DEVICE:
+        return getComparisonOperatorDevice();
+      case ShortDSLPackage.CONDITION_DEVICE__DEVICE_VALUE:
+        return getDeviceValue();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -134,6 +264,12 @@ public class ConditionDeviceImpl extends ConditionSImpl implements ConditionDevi
     {
       case ShortDSLPackage.CONDITION_DEVICE__DEVICE:
         setDevice((DeviceS)newValue);
+        return;
+      case ShortDSLPackage.CONDITION_DEVICE__COMPARISON_OPERATOR_DEVICE:
+        setComparisonOperatorDevice((COMPARISON_OPERATOR_S)newValue);
+        return;
+      case ShortDSLPackage.CONDITION_DEVICE__DEVICE_VALUE:
+        setDeviceValue((DeviceValue)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -152,6 +288,12 @@ public class ConditionDeviceImpl extends ConditionSImpl implements ConditionDevi
       case ShortDSLPackage.CONDITION_DEVICE__DEVICE:
         setDevice((DeviceS)null);
         return;
+      case ShortDSLPackage.CONDITION_DEVICE__COMPARISON_OPERATOR_DEVICE:
+        setComparisonOperatorDevice(COMPARISON_OPERATOR_DEVICE_EDEFAULT);
+        return;
+      case ShortDSLPackage.CONDITION_DEVICE__DEVICE_VALUE:
+        setDeviceValue((DeviceValue)null);
+        return;
     }
     super.eUnset(featureID);
   }
@@ -168,8 +310,29 @@ public class ConditionDeviceImpl extends ConditionSImpl implements ConditionDevi
     {
       case ShortDSLPackage.CONDITION_DEVICE__DEVICE:
         return device != null;
+      case ShortDSLPackage.CONDITION_DEVICE__COMPARISON_OPERATOR_DEVICE:
+        return comparisonOperatorDevice != COMPARISON_OPERATOR_DEVICE_EDEFAULT;
+      case ShortDSLPackage.CONDITION_DEVICE__DEVICE_VALUE:
+        return deviceValue != null;
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
+
+    StringBuilder result = new StringBuilder(super.toString());
+    result.append(" (comparisonOperatorDevice: ");
+    result.append(comparisonOperatorDevice);
+    result.append(')');
+    return result.toString();
   }
 
 } //ConditionDeviceImpl

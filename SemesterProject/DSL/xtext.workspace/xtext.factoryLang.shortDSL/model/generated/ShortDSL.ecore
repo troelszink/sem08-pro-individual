@@ -16,6 +16,8 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DeviceS">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="targets" upperBound="-1"
+        eType="#//ConfigurationValueS" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ConfigurationValueS"/>
   <eClassifiers xsi:type="ecore:EClass" name="DiskHandlingS">
@@ -24,26 +26,41 @@
         eType="#//StatementS" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="StatementS"/>
-  <eClassifiers xsi:type="ecore:EClass" name="ActionS" eSuperTypes="#//StatementS"/>
+  <eClassifiers xsi:type="ecore:EClass" name="MoveS" eSuperTypes="#//StatementS"/>
+  <eClassifiers xsi:type="ecore:EClass" name="CraneActionS" eSuperTypes="#//StatementS"/>
   <eClassifiers xsi:type="ecore:EClass" name="ConditionS" eSuperTypes="#//StatementS">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="comparisonOperator" eType="#//COMPARISON_OPERATOR_S"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//Value"
-        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="statements" upperBound="-1"
         eType="#//StatementS" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="MarkS" eSuperTypes="#//StatementS">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="time" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Variable">
+  <eClassifiers xsi:type="ecore:EClass" name="MarkS" eSuperTypes="#//StatementS"/>
+  <eClassifiers xsi:type="ecore:EClass" name="VariableS">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Value">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="valueDiskSlotState" eType="#//DISK_SLOT_STATES_S"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="valueDiskState" eType="#//DISK_STATES_S"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="valueColor" eType="#//COLOR_S"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="valueInt" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="variable" eType="#//Variable"/>
+  <eClassifiers xsi:type="ecore:EClass" name="VariableValue">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ref" eType="#//VariableS"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DeviceValue">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="configurationValue" eType="#//ConfigurationValueS"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ValueSlot">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DiskStateValueS">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="#//DISK_STATES_S"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DiskSlotStateValueS">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="#//DISK_SLOT_STATES_S"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ColorValueS">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="#//COLOR_S"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NumberS">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="COMPARISON_OPERATOR_S">
     <eLiterals name="EQUAL" literal="="/>
@@ -57,7 +74,7 @@
     <eLiterals name="BLUE" value="2" literal="blue"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="DISK_SLOT_STATES_S">
-    <eLiterals name="FREE" literal="free"/>
+    <eLiterals name="FREE" literal="vacant"/>
     <eLiterals name="IN_PROGRESS" value="1" literal="in_progress"/>
     <eLiterals name="COMPLETE" value="2" literal="complete"/>
   </eClassifiers>
@@ -65,71 +82,86 @@
     <eLiterals name="FULL" literal="full"/>
     <eLiterals name="EMPTY" value="1" literal="empty"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="TIME_UNIT">
+    <eLiterals name="SECOND" literal="s"/>
+    <eLiterals name="MINUTE" value="1" literal="m"/>
+    <eLiterals name="HOUR" value="2" literal="h"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DSLShort" eSuperTypes="#//DSLType">
     <eStructuralFeatures xsi:type="ecore:EReference" name="configuration" eType="#//ConfigurationS"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="diskHandlings" upperBound="-1"
         eType="#//DiskHandlingS" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Crane" eSuperTypes="#//DeviceS">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="positions" upperBound="-1"
-        eType="#//ConfigurationValueS" containment="true"/>
-  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Crane" eSuperTypes="#//DeviceS"/>
   <eClassifiers xsi:type="ecore:EClass" name="CraneZone" eSuperTypes="#//ConfigurationValueS">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="zoneValue" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Disk" eSuperTypes="#//DeviceS">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="nSlots" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="zones" upperBound="-1"
-        eType="#//ConfigurationValueS" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DiskZone" eSuperTypes="#//ConfigurationValueS">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="slot" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Camera" eSuperTypes="#//DeviceS">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="colors" upperBound="-1"
-        eType="#//ConfigurationValueS" containment="true"/>
-  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Camera" eSuperTypes="#//DeviceS"/>
   <eClassifiers xsi:type="ecore:EClass" name="CameraColor" eSuperTypes="#//ConfigurationValueS">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="color" eType="#//COLOR_S"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Loop" eSuperTypes="#//StatementS">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="variable" eType="#//Variable"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="variable" eType="#//VariableS"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="comparisonOperator" eType="#//COMPARISON_OPERATOR_S"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="slotState" eType="#//DISK_SLOT_STATES_S"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="slotState" eType="#//DiskSlotStateValueS"
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="statements" upperBound="-1"
         eType="#//StatementS" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="MoveDisk" eSuperTypes="#//StatementS">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="slot" eType="#//Variable"/>
+  <eClassifiers xsi:type="ecore:EClass" name="MoveDisk" eSuperTypes="#//MoveS">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="slot" eType="#//LocalVariable"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="zone" eType="#//DiskZone"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="MoveCrane" eSuperTypes="#//StatementS">
+  <eClassifiers xsi:type="ecore:EClass" name="MoveAnySlot" eSuperTypes="#//MoveS">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="state" eType="#//DiskSlotStateValueS"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="anySlot" eType="#//VariableS"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="zone" eType="#//DiskZone"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MoveCrane" eSuperTypes="#//MoveS">
     <eStructuralFeatures xsi:type="ecore:EReference" name="crane" eType="#//Crane"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="action" eType="#//ActionS"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="action" eType="#//CraneActionS"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="zone" eType="#//CraneZone"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Action" eSuperTypes="#//ActionS"/>
+  <eClassifiers xsi:type="ecore:EClass" name="CraneAction" eSuperTypes="#//CraneActionS"/>
   <eClassifiers xsi:type="ecore:EClass" name="ConditionVariable" eSuperTypes="#//ConditionS">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="variable" eType="#//Variable"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="variable" eType="#//VariableS"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="comparisonOperatorVariable"
+        eType="#//COMPARISON_OPERATOR_S"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="variableValue" eType="#//VariableValue"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ConditionDevice" eSuperTypes="#//ConditionS">
     <eStructuralFeatures xsi:type="ecore:EReference" name="device" eType="#//DeviceS"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="MarkVariable" eSuperTypes="#//MarkS">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="device" eType="#//DeviceS"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="variable" eType="#//Variable"
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="comparisonOperatorDevice"
+        eType="#//COMPARISON_OPERATOR_S"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="deviceValue" eType="#//DeviceValue"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="MarkValue" eSuperTypes="#//MarkS">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="variable" eType="#//LocalVariable"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//Value"
+  <eClassifiers xsi:type="ecore:EClass" name="MarkVariableValue" eSuperTypes="#//MarkS">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="variable" eType="#//VariableS"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//ValueSlot"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="time" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="unit" eType="#//TIME_UNIT"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MarkCameraValue" eSuperTypes="#//MarkS">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="camera" eType="#//Camera"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="variable" eType="#//VariableS"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="LocalVariable" eSuperTypes="#//Variable"/>
-  <eClassifiers xsi:type="ecore:EClass" name="GlobalVariable" eSuperTypes="#//Variable"/>
+  <eClassifiers xsi:type="ecore:EClass" name="LocalVariable" eSuperTypes="#//VariableS"/>
+  <eClassifiers xsi:type="ecore:EClass" name="GlobalVariable" eSuperTypes="#//VariableS"/>
 </ecore:EPackage>

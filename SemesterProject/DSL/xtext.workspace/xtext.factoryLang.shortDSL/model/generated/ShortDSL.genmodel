@@ -26,6 +26,11 @@
       <genEnumLiterals ecoreEnumLiteral="ShortDSL.ecore#//DISK_STATES_S/FULL"/>
       <genEnumLiterals ecoreEnumLiteral="ShortDSL.ecore#//DISK_STATES_S/EMPTY"/>
     </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="ShortDSL.ecore#//TIME_UNIT">
+      <genEnumLiterals ecoreEnumLiteral="ShortDSL.ecore#//TIME_UNIT/SECOND"/>
+      <genEnumLiterals ecoreEnumLiteral="ShortDSL.ecore#//TIME_UNIT/MINUTE"/>
+      <genEnumLiterals ecoreEnumLiteral="ShortDSL.ecore#//TIME_UNIT/HOUR"/>
+    </genEnums>
     <genClasses ecoreClass="ShortDSL.ecore#//Model">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ShortDSL.ecore#//Model/type"/>
     </genClasses>
@@ -38,6 +43,7 @@
     </genClasses>
     <genClasses ecoreClass="ShortDSL.ecore#//DeviceS">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ShortDSL.ecore#//DeviceS/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ShortDSL.ecore#//DeviceS/targets"/>
     </genClasses>
     <genClasses ecoreClass="ShortDSL.ecore#//ConfigurationValueS"/>
     <genClasses ecoreClass="ShortDSL.ecore#//DiskHandlingS">
@@ -45,79 +51,98 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ShortDSL.ecore#//DiskHandlingS/statements"/>
     </genClasses>
     <genClasses ecoreClass="ShortDSL.ecore#//StatementS"/>
-    <genClasses ecoreClass="ShortDSL.ecore#//ActionS"/>
+    <genClasses ecoreClass="ShortDSL.ecore#//MoveS"/>
+    <genClasses ecoreClass="ShortDSL.ecore#//CraneActionS"/>
     <genClasses ecoreClass="ShortDSL.ecore#//ConditionS">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ShortDSL.ecore#//ConditionS/comparisonOperator"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ShortDSL.ecore#//ConditionS/value"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ShortDSL.ecore#//ConditionS/statements"/>
     </genClasses>
-    <genClasses ecoreClass="ShortDSL.ecore#//MarkS">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ShortDSL.ecore#//MarkS/time"/>
+    <genClasses ecoreClass="ShortDSL.ecore#//MarkS"/>
+    <genClasses ecoreClass="ShortDSL.ecore#//VariableS">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ShortDSL.ecore#//VariableS/name"/>
     </genClasses>
-    <genClasses ecoreClass="ShortDSL.ecore#//Variable">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ShortDSL.ecore#//Variable/name"/>
+    <genClasses ecoreClass="ShortDSL.ecore#//VariableValue">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ShortDSL.ecore#//VariableValue/value"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ShortDSL.ecore#//VariableValue/ref"/>
     </genClasses>
-    <genClasses ecoreClass="ShortDSL.ecore#//Value">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ShortDSL.ecore#//Value/valueDiskSlotState"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ShortDSL.ecore#//Value/valueDiskState"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ShortDSL.ecore#//Value/valueColor"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ShortDSL.ecore#//Value/valueInt"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ShortDSL.ecore#//Value/variable"/>
+    <genClasses ecoreClass="ShortDSL.ecore#//DeviceValue">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ShortDSL.ecore#//DeviceValue/value"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ShortDSL.ecore#//DeviceValue/configurationValue"/>
+    </genClasses>
+    <genClasses ecoreClass="ShortDSL.ecore#//ValueSlot">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ShortDSL.ecore#//ValueSlot/value"/>
+    </genClasses>
+    <genClasses ecoreClass="ShortDSL.ecore#//DiskStateValueS">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ShortDSL.ecore#//DiskStateValueS/value"/>
+    </genClasses>
+    <genClasses ecoreClass="ShortDSL.ecore#//DiskSlotStateValueS">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ShortDSL.ecore#//DiskSlotStateValueS/value"/>
+    </genClasses>
+    <genClasses ecoreClass="ShortDSL.ecore#//ColorValueS">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ShortDSL.ecore#//ColorValueS/value"/>
+    </genClasses>
+    <genClasses ecoreClass="ShortDSL.ecore#//NumberS">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ShortDSL.ecore#//NumberS/value"/>
     </genClasses>
     <genClasses ecoreClass="ShortDSL.ecore#//DSLShort">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ShortDSL.ecore#//DSLShort/configuration"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ShortDSL.ecore#//DSLShort/diskHandlings"/>
     </genClasses>
-    <genClasses ecoreClass="ShortDSL.ecore#//Crane">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ShortDSL.ecore#//Crane/positions"/>
-    </genClasses>
+    <genClasses ecoreClass="ShortDSL.ecore#//Crane"/>
     <genClasses ecoreClass="ShortDSL.ecore#//CraneZone">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ShortDSL.ecore#//CraneZone/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ShortDSL.ecore#//CraneZone/zoneValue"/>
     </genClasses>
     <genClasses ecoreClass="ShortDSL.ecore#//Disk">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ShortDSL.ecore#//Disk/nSlots"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ShortDSL.ecore#//Disk/zones"/>
     </genClasses>
     <genClasses ecoreClass="ShortDSL.ecore#//DiskZone">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ShortDSL.ecore#//DiskZone/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ShortDSL.ecore#//DiskZone/slot"/>
     </genClasses>
-    <genClasses ecoreClass="ShortDSL.ecore#//Camera">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ShortDSL.ecore#//Camera/colors"/>
-    </genClasses>
+    <genClasses ecoreClass="ShortDSL.ecore#//Camera"/>
     <genClasses ecoreClass="ShortDSL.ecore#//CameraColor">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ShortDSL.ecore#//CameraColor/color"/>
     </genClasses>
     <genClasses ecoreClass="ShortDSL.ecore#//Loop">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ShortDSL.ecore#//Loop/variable"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ShortDSL.ecore#//Loop/comparisonOperator"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ShortDSL.ecore#//Loop/slotState"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ShortDSL.ecore#//Loop/slotState"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ShortDSL.ecore#//Loop/statements"/>
     </genClasses>
     <genClasses ecoreClass="ShortDSL.ecore#//MoveDisk">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ShortDSL.ecore#//MoveDisk/slot"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ShortDSL.ecore#//MoveDisk/zone"/>
     </genClasses>
+    <genClasses ecoreClass="ShortDSL.ecore#//MoveAnySlot">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ShortDSL.ecore#//MoveAnySlot/state"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ShortDSL.ecore#//MoveAnySlot/anySlot"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ShortDSL.ecore#//MoveAnySlot/zone"/>
+    </genClasses>
     <genClasses ecoreClass="ShortDSL.ecore#//MoveCrane">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ShortDSL.ecore#//MoveCrane/crane"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ShortDSL.ecore#//MoveCrane/action"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ShortDSL.ecore#//MoveCrane/zone"/>
     </genClasses>
-    <genClasses ecoreClass="ShortDSL.ecore#//Action"/>
+    <genClasses ecoreClass="ShortDSL.ecore#//CraneAction"/>
     <genClasses ecoreClass="ShortDSL.ecore#//ConditionVariable">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ShortDSL.ecore#//ConditionVariable/variable"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ShortDSL.ecore#//ConditionVariable/comparisonOperatorVariable"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ShortDSL.ecore#//ConditionVariable/variableValue"/>
     </genClasses>
     <genClasses ecoreClass="ShortDSL.ecore#//ConditionDevice">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ShortDSL.ecore#//ConditionDevice/device"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ShortDSL.ecore#//ConditionDevice/comparisonOperatorDevice"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ShortDSL.ecore#//ConditionDevice/deviceValue"/>
     </genClasses>
-    <genClasses ecoreClass="ShortDSL.ecore#//MarkVariable">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ShortDSL.ecore#//MarkVariable/device"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ShortDSL.ecore#//MarkVariable/variable"/>
+    <genClasses ecoreClass="ShortDSL.ecore#//MarkVariableValue">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ShortDSL.ecore#//MarkVariableValue/variable"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ShortDSL.ecore#//MarkVariableValue/value"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ShortDSL.ecore#//MarkVariableValue/time"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ShortDSL.ecore#//MarkVariableValue/unit"/>
     </genClasses>
-    <genClasses ecoreClass="ShortDSL.ecore#//MarkValue">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ShortDSL.ecore#//MarkValue/variable"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ShortDSL.ecore#//MarkValue/value"/>
+    <genClasses ecoreClass="ShortDSL.ecore#//MarkCameraValue">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ShortDSL.ecore#//MarkCameraValue/camera"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ShortDSL.ecore#//MarkCameraValue/variable"/>
     </genClasses>
     <genClasses ecoreClass="ShortDSL.ecore#//LocalVariable"/>
     <genClasses ecoreClass="ShortDSL.ecore#//GlobalVariable"/>

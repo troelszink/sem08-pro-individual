@@ -3,6 +3,19 @@
  */
 package xtext.factoryLang.shortDSL.validation
 
+import org.eclipse.xtext.validation.Check
+import xtext.factoryLang.shortDSL.shortDSL.CraneZone
+import xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage.Literals
+import xtext.factoryLang.shortDSL.shortDSL.DiskZone
+import org.eclipse.xtext.EcoreUtil2
+import xtext.factoryLang.shortDSL.shortDSL.Disk
+import xtext.factoryLang.shortDSL.shortDSL.MarkVariableValue
+import xtext.factoryLang.shortDSL.shortDSL.ConditionDevice
+import xtext.factoryLang.shortDSL.shortDSL.Crane
+import xtext.factoryLang.shortDSL.shortDSL.Camera
+import xtext.factoryLang.shortDSL.shortDSL.DiskStateValueS
+import xtext.factoryLang.shortDSL.shortDSL.ColorValueS
+import xtext.factoryLang.shortDSL.shortDSL.TIME_UNIT
 
 /**
  * This class contains custom validation rules. 
@@ -11,15 +24,90 @@ package xtext.factoryLang.shortDSL.validation
  */
 class ShortDSLValidator extends AbstractShortDSLValidator {
 	
-//	public static val INVALID_NAME = 'invalidName'
-//
-//	@Check
-//	def checkGreetingStartsWithCapital(Greeting greeting) {
-//		if (!Character.isUpperCase(greeting.name.charAt(0))) {
-//			warning('Name should start with a capital', 
-//					ShortDSLPackage.Literals.GREETING__NAME,
-//					INVALID_NAME)
-//		}
-//	}
+	public static val INVALID_VALUE = 'invalidValue'
 	
+	@Check
+	def checkCraneZone(CraneZone zone) {
+		if (!(zone.zoneValue>= 0 && zone.zoneValue <= 359)) {
+			error('Degree value should be between 0 and 359 degrees (inclusive)',
+				Literals.CRANE_ZONE__ZONE_VALUE, INVALID_VALUE)
+		}
+	}
+
+	@Check
+	def checkDiskZone(DiskZone zone) {
+		val disk = EcoreUtil2.getContainerOfType(zone, Disk) as Disk
+		val nSlots = disk.NSlots
+
+		if (!(zone.slot> 0 && zone.slot <= nSlots)) {
+			error('''Slot must be within available slots (1-«nSlots»)''', Literals.DISK_ZONE__SLOT,
+				INVALID_VALUE)
+		}
+	}
+
+	@Check
+	def checkDiskMarkSlotOperation(MarkVariableValue mark) {
+		if (!mark.eIsSet(Literals.MARK_VARIABLE_VALUE__TIME) &&
+			!mark.eIsSet(Literals.MARK_VARIABLE_VALUE__UNIT)) {
+			return
+		}
+		if (!mark.eIsSet(Literals.MARK_VARIABLE_VALUE__UNIT)) {
+			error('Remember to add unit: ' + TIME_UNIT.get(0) + ', ' + TIME_UNIT.get(1) + ', ' + TIME_UNIT.get(2),
+				(Literals.MARK_VARIABLE_VALUE__TIME), INVALID_VALUE)
+			return
+		}
+
+		val time = mark.time
+		if (time < 1) {
+			error('The time to finish should be>= 1', (Literals.MARK_VARIABLE_VALUE__TIME), INVALID_VALUE)
+			return
+		}
+	}
+
+	@Check
+	def checkDeviceConditionalValues(ConditionDevice condition) {
+		if (!condition.eIsSet(Literals.CONDITION_DEVICE__DEVICE) ||
+			!condition.eIsSet(Literals.CONDITION_DEVICE__DEVICE_VALUE)) {
+			return
+		}
+
+		val device = condition.device
+		val value = condition.deviceValue.value
+
+		switch (device) {
+			case device instanceof Crane: {
+				if (value instanceof DiskStateValueS) {
+					error(device.name + ' cannot be compared to disk states', Literals.CONDITION_DEVICE__DEVICE_VALUE,
+						INVALID_VALUE)
+					return
+				}
+				if (value instanceof ColorValueS) {
+					error(device.name + ' cannot be compared to colors', Literals.CONDITION_DEVICE__DEVICE_VALUE,
+						INVALID_VALUE)
+					return
+				}
+				return
+			}
+			case device instanceof Disk: {
+				if (value instanceof ColorValueS) {
+					error(device.name + ' cannot be compared to colors', Literals.CONDITION_DEVICE__DEVICE_VALUE,
+						INVALID_VALUE)
+					return
+				}
+			}
+			case device instanceof Camera: {
+				if (value instanceof DiskStateValueS) {
+					error(device.name + ' cannot be compared to disk states', Literals.CONDITION_DEVICE__DEVICE_VALUE,
+						INVALID_VALUE)
+					return
+				}
+				if (value instanceof ColorValueS) {
+					error(device.name + ' cannot be compared to colors', Literals.CONDITION_DEVICE__DEVICE_VALUE,
+						INVALID_VALUE)
+					return
+				}
+				return
+			}
+		}
+	}
 }

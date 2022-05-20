@@ -31,12 +31,12 @@ public interface Loop extends StatementS
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Variable</em>' containment reference.
-   * @see #setVariable(Variable)
+   * @see #setVariable(VariableS)
    * @see xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage#getLoop_Variable()
    * @model containment="true"
    * @generated
    */
-  Variable getVariable();
+  VariableS getVariable();
 
   /**
    * Sets the value of the '{@link xtext.factoryLang.shortDSL.shortDSL.Loop#getVariable <em>Variable</em>}' containment reference.
@@ -46,7 +46,7 @@ public interface Loop extends StatementS
    * @see #getVariable()
    * @generated
    */
-  void setVariable(Variable value);
+  void setVariable(VariableS value);
 
   /**
    * Returns the value of the '<em><b>Comparison Operator</b></em>' attribute.
@@ -74,29 +74,26 @@ public interface Loop extends StatementS
   void setComparisonOperator(COMPARISON_OPERATOR_S value);
 
   /**
-   * Returns the value of the '<em><b>Slot State</b></em>' attribute.
-   * The literals are from the enumeration {@link xtext.factoryLang.shortDSL.shortDSL.DISK_SLOT_STATES_S}.
+   * Returns the value of the '<em><b>Slot State</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Slot State</em>' attribute.
-   * @see xtext.factoryLang.shortDSL.shortDSL.DISK_SLOT_STATES_S
-   * @see #setSlotState(DISK_SLOT_STATES_S)
+   * @return the value of the '<em>Slot State</em>' containment reference.
+   * @see #setSlotState(DiskSlotStateValueS)
    * @see xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage#getLoop_SlotState()
-   * @model
+   * @model containment="true"
    * @generated
    */
-  DISK_SLOT_STATES_S getSlotState();
+  DiskSlotStateValueS getSlotState();
 
   /**
-   * Sets the value of the '{@link xtext.factoryLang.shortDSL.shortDSL.Loop#getSlotState <em>Slot State</em>}' attribute.
+   * Sets the value of the '{@link xtext.factoryLang.shortDSL.shortDSL.Loop#getSlotState <em>Slot State</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Slot State</em>' attribute.
-   * @see xtext.factoryLang.shortDSL.shortDSL.DISK_SLOT_STATES_S
+   * @param value the new value of the '<em>Slot State</em>' containment reference.
    * @see #getSlotState()
    * @generated
    */
-  void setSlotState(DISK_SLOT_STATES_S value);
+  void setSlotState(DiskSlotStateValueS value);
 
   /**
    * Returns the value of the '<em><b>Statements</b></em>' containment reference list.

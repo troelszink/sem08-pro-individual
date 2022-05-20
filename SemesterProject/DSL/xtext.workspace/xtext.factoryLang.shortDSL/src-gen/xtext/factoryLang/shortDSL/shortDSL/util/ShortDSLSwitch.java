@@ -129,11 +129,19 @@ public class ShortDSLSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case ShortDSLPackage.ACTION_S:
+      case ShortDSLPackage.MOVE_S:
       {
-        ActionS actionS = (ActionS)theEObject;
-        T result = caseActionS(actionS);
-        if (result == null) result = caseStatementS(actionS);
+        MoveS moveS = (MoveS)theEObject;
+        T result = caseMoveS(moveS);
+        if (result == null) result = caseStatementS(moveS);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ShortDSLPackage.CRANE_ACTION_S:
+      {
+        CraneActionS craneActionS = (CraneActionS)theEObject;
+        T result = caseCraneActionS(craneActionS);
+        if (result == null) result = caseStatementS(craneActionS);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -153,17 +161,59 @@ public class ShortDSLSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case ShortDSLPackage.VARIABLE:
+      case ShortDSLPackage.VARIABLE_S:
       {
-        Variable variable = (Variable)theEObject;
-        T result = caseVariable(variable);
+        VariableS variableS = (VariableS)theEObject;
+        T result = caseVariableS(variableS);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case ShortDSLPackage.VALUE:
+      case ShortDSLPackage.VARIABLE_VALUE:
       {
-        Value value = (Value)theEObject;
-        T result = caseValue(value);
+        VariableValue variableValue = (VariableValue)theEObject;
+        T result = caseVariableValue(variableValue);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ShortDSLPackage.DEVICE_VALUE:
+      {
+        DeviceValue deviceValue = (DeviceValue)theEObject;
+        T result = caseDeviceValue(deviceValue);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ShortDSLPackage.VALUE_SLOT:
+      {
+        ValueSlot valueSlot = (ValueSlot)theEObject;
+        T result = caseValueSlot(valueSlot);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ShortDSLPackage.DISK_STATE_VALUE_S:
+      {
+        DiskStateValueS diskStateValueS = (DiskStateValueS)theEObject;
+        T result = caseDiskStateValueS(diskStateValueS);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ShortDSLPackage.DISK_SLOT_STATE_VALUE_S:
+      {
+        DiskSlotStateValueS diskSlotStateValueS = (DiskSlotStateValueS)theEObject;
+        T result = caseDiskSlotStateValueS(diskSlotStateValueS);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ShortDSLPackage.COLOR_VALUE_S:
+      {
+        ColorValueS colorValueS = (ColorValueS)theEObject;
+        T result = caseColorValueS(colorValueS);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ShortDSLPackage.NUMBER_S:
+      {
+        NumberS numberS = (NumberS)theEObject;
+        T result = caseNumberS(numberS);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -235,7 +285,17 @@ public class ShortDSLSwitch<T> extends Switch<T>
       {
         MoveDisk moveDisk = (MoveDisk)theEObject;
         T result = caseMoveDisk(moveDisk);
+        if (result == null) result = caseMoveS(moveDisk);
         if (result == null) result = caseStatementS(moveDisk);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ShortDSLPackage.MOVE_ANY_SLOT:
+      {
+        MoveAnySlot moveAnySlot = (MoveAnySlot)theEObject;
+        T result = caseMoveAnySlot(moveAnySlot);
+        if (result == null) result = caseMoveS(moveAnySlot);
+        if (result == null) result = caseStatementS(moveAnySlot);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -243,16 +303,17 @@ public class ShortDSLSwitch<T> extends Switch<T>
       {
         MoveCrane moveCrane = (MoveCrane)theEObject;
         T result = caseMoveCrane(moveCrane);
+        if (result == null) result = caseMoveS(moveCrane);
         if (result == null) result = caseStatementS(moveCrane);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case ShortDSLPackage.ACTION:
+      case ShortDSLPackage.CRANE_ACTION:
       {
-        Action action = (Action)theEObject;
-        T result = caseAction(action);
-        if (result == null) result = caseActionS(action);
-        if (result == null) result = caseStatementS(action);
+        CraneAction craneAction = (CraneAction)theEObject;
+        T result = caseCraneAction(craneAction);
+        if (result == null) result = caseCraneActionS(craneAction);
+        if (result == null) result = caseStatementS(craneAction);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -274,21 +335,21 @@ public class ShortDSLSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case ShortDSLPackage.MARK_VARIABLE:
+      case ShortDSLPackage.MARK_VARIABLE_VALUE:
       {
-        MarkVariable markVariable = (MarkVariable)theEObject;
-        T result = caseMarkVariable(markVariable);
-        if (result == null) result = caseMarkS(markVariable);
-        if (result == null) result = caseStatementS(markVariable);
+        MarkVariableValue markVariableValue = (MarkVariableValue)theEObject;
+        T result = caseMarkVariableValue(markVariableValue);
+        if (result == null) result = caseMarkS(markVariableValue);
+        if (result == null) result = caseStatementS(markVariableValue);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case ShortDSLPackage.MARK_VALUE:
+      case ShortDSLPackage.MARK_CAMERA_VALUE:
       {
-        MarkValue markValue = (MarkValue)theEObject;
-        T result = caseMarkValue(markValue);
-        if (result == null) result = caseMarkS(markValue);
-        if (result == null) result = caseStatementS(markValue);
+        MarkCameraValue markCameraValue = (MarkCameraValue)theEObject;
+        T result = caseMarkCameraValue(markCameraValue);
+        if (result == null) result = caseMarkS(markCameraValue);
+        if (result == null) result = caseStatementS(markCameraValue);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -296,7 +357,7 @@ public class ShortDSLSwitch<T> extends Switch<T>
       {
         LocalVariable localVariable = (LocalVariable)theEObject;
         T result = caseLocalVariable(localVariable);
-        if (result == null) result = caseVariable(localVariable);
+        if (result == null) result = caseVariableS(localVariable);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -304,7 +365,7 @@ public class ShortDSLSwitch<T> extends Switch<T>
       {
         GlobalVariable globalVariable = (GlobalVariable)theEObject;
         T result = caseGlobalVariable(globalVariable);
-        if (result == null) result = caseVariable(globalVariable);
+        if (result == null) result = caseVariableS(globalVariable);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -441,17 +502,33 @@ public class ShortDSLSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Action S</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Move S</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Action S</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Move S</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseActionS(ActionS object)
+  public T caseMoveS(MoveS object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Crane Action S</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Crane Action S</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseCraneActionS(CraneActionS object)
   {
     return null;
   }
@@ -489,33 +566,129 @@ public class ShortDSLSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Variable</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Variable S</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Variable</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Variable S</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseVariable(Variable object)
+  public T caseVariableS(VariableS object)
   {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Value</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Variable Value</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Value</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Variable Value</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseValue(Value object)
+  public T caseVariableValue(VariableValue object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Device Value</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Device Value</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseDeviceValue(DeviceValue object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Value Slot</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Value Slot</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseValueSlot(ValueSlot object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Disk State Value S</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Disk State Value S</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseDiskStateValueS(DiskStateValueS object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Disk Slot State Value S</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Disk Slot State Value S</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseDiskSlotStateValueS(DiskSlotStateValueS object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Color Value S</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Color Value S</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseColorValueS(ColorValueS object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Number S</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Number S</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseNumberS(NumberS object)
   {
     return null;
   }
@@ -665,6 +838,22 @@ public class ShortDSLSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Move Any Slot</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Move Any Slot</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseMoveAnySlot(MoveAnySlot object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Move Crane</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -681,17 +870,17 @@ public class ShortDSLSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Action</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Crane Action</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Action</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Crane Action</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseAction(Action object)
+  public T caseCraneAction(CraneAction object)
   {
     return null;
   }
@@ -729,33 +918,33 @@ public class ShortDSLSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Mark Variable</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Mark Variable Value</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Mark Variable</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Mark Variable Value</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseMarkVariable(MarkVariable object)
+  public T caseMarkVariableValue(MarkVariableValue object)
   {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Mark Value</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Mark Camera Value</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Mark Value</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Mark Camera Value</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseMarkValue(MarkValue object)
+  public T caseMarkCameraValue(MarkCameraValue object)
   {
     return null;
   }

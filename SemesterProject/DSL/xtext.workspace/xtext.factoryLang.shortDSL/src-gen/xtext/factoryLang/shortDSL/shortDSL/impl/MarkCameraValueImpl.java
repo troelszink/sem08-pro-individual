@@ -11,36 +11,36 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import xtext.factoryLang.shortDSL.shortDSL.DeviceS;
-import xtext.factoryLang.shortDSL.shortDSL.MarkVariable;
+import xtext.factoryLang.shortDSL.shortDSL.Camera;
+import xtext.factoryLang.shortDSL.shortDSL.MarkCameraValue;
 import xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage;
-import xtext.factoryLang.shortDSL.shortDSL.Variable;
+import xtext.factoryLang.shortDSL.shortDSL.VariableS;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Mark Variable</b></em>'.
+ * An implementation of the model object '<em><b>Mark Camera Value</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link xtext.factoryLang.shortDSL.shortDSL.impl.MarkVariableImpl#getDevice <em>Device</em>}</li>
- *   <li>{@link xtext.factoryLang.shortDSL.shortDSL.impl.MarkVariableImpl#getVariable <em>Variable</em>}</li>
+ *   <li>{@link xtext.factoryLang.shortDSL.shortDSL.impl.MarkCameraValueImpl#getCamera <em>Camera</em>}</li>
+ *   <li>{@link xtext.factoryLang.shortDSL.shortDSL.impl.MarkCameraValueImpl#getVariable <em>Variable</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class MarkVariableImpl extends MarkSImpl implements MarkVariable
+public class MarkCameraValueImpl extends MarkSImpl implements MarkCameraValue
 {
   /**
-   * The cached value of the '{@link #getDevice() <em>Device</em>}' reference.
+   * The cached value of the '{@link #getCamera() <em>Camera</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getDevice()
+   * @see #getCamera()
    * @generated
    * @ordered
    */
-  protected DeviceS device;
+  protected Camera camera;
 
   /**
    * The cached value of the '{@link #getVariable() <em>Variable</em>}' containment reference.
@@ -50,14 +50,14 @@ public class MarkVariableImpl extends MarkSImpl implements MarkVariable
    * @generated
    * @ordered
    */
-  protected Variable variable;
+  protected VariableS variable;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected MarkVariableImpl()
+  protected MarkCameraValueImpl()
   {
     super();
   }
@@ -70,7 +70,7 @@ public class MarkVariableImpl extends MarkSImpl implements MarkVariable
   @Override
   protected EClass eStaticClass()
   {
-    return ShortDSLPackage.Literals.MARK_VARIABLE;
+    return ShortDSLPackage.Literals.MARK_CAMERA_VALUE;
   }
 
   /**
@@ -79,19 +79,19 @@ public class MarkVariableImpl extends MarkSImpl implements MarkVariable
    * @generated
    */
   @Override
-  public DeviceS getDevice()
+  public Camera getCamera()
   {
-    if (device != null && device.eIsProxy())
+    if (camera != null && camera.eIsProxy())
     {
-      InternalEObject oldDevice = (InternalEObject)device;
-      device = (DeviceS)eResolveProxy(oldDevice);
-      if (device != oldDevice)
+      InternalEObject oldCamera = (InternalEObject)camera;
+      camera = (Camera)eResolveProxy(oldCamera);
+      if (camera != oldCamera)
       {
         if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, ShortDSLPackage.MARK_VARIABLE__DEVICE, oldDevice, device));
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, ShortDSLPackage.MARK_CAMERA_VALUE__CAMERA, oldCamera, camera));
       }
     }
-    return device;
+    return camera;
   }
 
   /**
@@ -99,9 +99,9 @@ public class MarkVariableImpl extends MarkSImpl implements MarkVariable
    * <!-- end-user-doc -->
    * @generated
    */
-  public DeviceS basicGetDevice()
+  public Camera basicGetCamera()
   {
-    return device;
+    return camera;
   }
 
   /**
@@ -110,12 +110,12 @@ public class MarkVariableImpl extends MarkSImpl implements MarkVariable
    * @generated
    */
   @Override
-  public void setDevice(DeviceS newDevice)
+  public void setCamera(Camera newCamera)
   {
-    DeviceS oldDevice = device;
-    device = newDevice;
+    Camera oldCamera = camera;
+    camera = newCamera;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ShortDSLPackage.MARK_VARIABLE__DEVICE, oldDevice, device));
+      eNotify(new ENotificationImpl(this, Notification.SET, ShortDSLPackage.MARK_CAMERA_VALUE__CAMERA, oldCamera, camera));
   }
 
   /**
@@ -124,7 +124,7 @@ public class MarkVariableImpl extends MarkSImpl implements MarkVariable
    * @generated
    */
   @Override
-  public Variable getVariable()
+  public VariableS getVariable()
   {
     return variable;
   }
@@ -134,13 +134,13 @@ public class MarkVariableImpl extends MarkSImpl implements MarkVariable
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetVariable(Variable newVariable, NotificationChain msgs)
+  public NotificationChain basicSetVariable(VariableS newVariable, NotificationChain msgs)
   {
-    Variable oldVariable = variable;
+    VariableS oldVariable = variable;
     variable = newVariable;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ShortDSLPackage.MARK_VARIABLE__VARIABLE, oldVariable, newVariable);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ShortDSLPackage.MARK_CAMERA_VALUE__VARIABLE, oldVariable, newVariable);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -152,20 +152,20 @@ public class MarkVariableImpl extends MarkSImpl implements MarkVariable
    * @generated
    */
   @Override
-  public void setVariable(Variable newVariable)
+  public void setVariable(VariableS newVariable)
   {
     if (newVariable != variable)
     {
       NotificationChain msgs = null;
       if (variable != null)
-        msgs = ((InternalEObject)variable).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ShortDSLPackage.MARK_VARIABLE__VARIABLE, null, msgs);
+        msgs = ((InternalEObject)variable).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ShortDSLPackage.MARK_CAMERA_VALUE__VARIABLE, null, msgs);
       if (newVariable != null)
-        msgs = ((InternalEObject)newVariable).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ShortDSLPackage.MARK_VARIABLE__VARIABLE, null, msgs);
+        msgs = ((InternalEObject)newVariable).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ShortDSLPackage.MARK_CAMERA_VALUE__VARIABLE, null, msgs);
       msgs = basicSetVariable(newVariable, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ShortDSLPackage.MARK_VARIABLE__VARIABLE, newVariable, newVariable));
+      eNotify(new ENotificationImpl(this, Notification.SET, ShortDSLPackage.MARK_CAMERA_VALUE__VARIABLE, newVariable, newVariable));
   }
 
   /**
@@ -178,7 +178,7 @@ public class MarkVariableImpl extends MarkSImpl implements MarkVariable
   {
     switch (featureID)
     {
-      case ShortDSLPackage.MARK_VARIABLE__VARIABLE:
+      case ShortDSLPackage.MARK_CAMERA_VALUE__VARIABLE:
         return basicSetVariable(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -194,10 +194,10 @@ public class MarkVariableImpl extends MarkSImpl implements MarkVariable
   {
     switch (featureID)
     {
-      case ShortDSLPackage.MARK_VARIABLE__DEVICE:
-        if (resolve) return getDevice();
-        return basicGetDevice();
-      case ShortDSLPackage.MARK_VARIABLE__VARIABLE:
+      case ShortDSLPackage.MARK_CAMERA_VALUE__CAMERA:
+        if (resolve) return getCamera();
+        return basicGetCamera();
+      case ShortDSLPackage.MARK_CAMERA_VALUE__VARIABLE:
         return getVariable();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -213,11 +213,11 @@ public class MarkVariableImpl extends MarkSImpl implements MarkVariable
   {
     switch (featureID)
     {
-      case ShortDSLPackage.MARK_VARIABLE__DEVICE:
-        setDevice((DeviceS)newValue);
+      case ShortDSLPackage.MARK_CAMERA_VALUE__CAMERA:
+        setCamera((Camera)newValue);
         return;
-      case ShortDSLPackage.MARK_VARIABLE__VARIABLE:
-        setVariable((Variable)newValue);
+      case ShortDSLPackage.MARK_CAMERA_VALUE__VARIABLE:
+        setVariable((VariableS)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -233,11 +233,11 @@ public class MarkVariableImpl extends MarkSImpl implements MarkVariable
   {
     switch (featureID)
     {
-      case ShortDSLPackage.MARK_VARIABLE__DEVICE:
-        setDevice((DeviceS)null);
+      case ShortDSLPackage.MARK_CAMERA_VALUE__CAMERA:
+        setCamera((Camera)null);
         return;
-      case ShortDSLPackage.MARK_VARIABLE__VARIABLE:
-        setVariable((Variable)null);
+      case ShortDSLPackage.MARK_CAMERA_VALUE__VARIABLE:
+        setVariable((VariableS)null);
         return;
     }
     super.eUnset(featureID);
@@ -253,12 +253,12 @@ public class MarkVariableImpl extends MarkSImpl implements MarkVariable
   {
     switch (featureID)
     {
-      case ShortDSLPackage.MARK_VARIABLE__DEVICE:
-        return device != null;
-      case ShortDSLPackage.MARK_VARIABLE__VARIABLE:
+      case ShortDSLPackage.MARK_CAMERA_VALUE__CAMERA:
+        return camera != null;
+      case ShortDSLPackage.MARK_CAMERA_VALUE__VARIABLE:
         return variable != null;
     }
     return super.eIsSet(featureID);
   }
 
-} //MarkVariableImpl
+} //MarkCameraValueImpl

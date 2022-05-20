@@ -96,13 +96,22 @@ public interface ShortDSLFactory extends EFactory
   StatementS createStatementS();
 
   /**
-   * Returns a new object of class '<em>Action S</em>'.
+   * Returns a new object of class '<em>Move S</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Action S</em>'.
+   * @return a new object of class '<em>Move S</em>'.
    * @generated
    */
-  ActionS createActionS();
+  MoveS createMoveS();
+
+  /**
+   * Returns a new object of class '<em>Crane Action S</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Crane Action S</em>'.
+   * @generated
+   */
+  CraneActionS createCraneActionS();
 
   /**
    * Returns a new object of class '<em>Condition S</em>'.
@@ -123,22 +132,76 @@ public interface ShortDSLFactory extends EFactory
   MarkS createMarkS();
 
   /**
-   * Returns a new object of class '<em>Variable</em>'.
+   * Returns a new object of class '<em>Variable S</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Variable</em>'.
+   * @return a new object of class '<em>Variable S</em>'.
    * @generated
    */
-  Variable createVariable();
+  VariableS createVariableS();
 
   /**
-   * Returns a new object of class '<em>Value</em>'.
+   * Returns a new object of class '<em>Variable Value</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Value</em>'.
+   * @return a new object of class '<em>Variable Value</em>'.
    * @generated
    */
-  Value createValue();
+  VariableValue createVariableValue();
+
+  /**
+   * Returns a new object of class '<em>Device Value</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Device Value</em>'.
+   * @generated
+   */
+  DeviceValue createDeviceValue();
+
+  /**
+   * Returns a new object of class '<em>Value Slot</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Value Slot</em>'.
+   * @generated
+   */
+  ValueSlot createValueSlot();
+
+  /**
+   * Returns a new object of class '<em>Disk State Value S</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Disk State Value S</em>'.
+   * @generated
+   */
+  DiskStateValueS createDiskStateValueS();
+
+  /**
+   * Returns a new object of class '<em>Disk Slot State Value S</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Disk Slot State Value S</em>'.
+   * @generated
+   */
+  DiskSlotStateValueS createDiskSlotStateValueS();
+
+  /**
+   * Returns a new object of class '<em>Color Value S</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Color Value S</em>'.
+   * @generated
+   */
+  ColorValueS createColorValueS();
+
+  /**
+   * Returns a new object of class '<em>Number S</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Number S</em>'.
+   * @generated
+   */
+  NumberS createNumberS();
 
   /**
    * Returns a new object of class '<em>DSL Short</em>'.
@@ -222,6 +285,15 @@ public interface ShortDSLFactory extends EFactory
   MoveDisk createMoveDisk();
 
   /**
+   * Returns a new object of class '<em>Move Any Slot</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Move Any Slot</em>'.
+   * @generated
+   */
+  MoveAnySlot createMoveAnySlot();
+
+  /**
    * Returns a new object of class '<em>Move Crane</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -231,13 +303,13 @@ public interface ShortDSLFactory extends EFactory
   MoveCrane createMoveCrane();
 
   /**
-   * Returns a new object of class '<em>Action</em>'.
+   * Returns a new object of class '<em>Crane Action</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Action</em>'.
+   * @return a new object of class '<em>Crane Action</em>'.
    * @generated
    */
-  Action createAction();
+  CraneAction createCraneAction();
 
   /**
    * Returns a new object of class '<em>Condition Variable</em>'.
@@ -258,22 +330,22 @@ public interface ShortDSLFactory extends EFactory
   ConditionDevice createConditionDevice();
 
   /**
-   * Returns a new object of class '<em>Mark Variable</em>'.
+   * Returns a new object of class '<em>Mark Variable Value</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Mark Variable</em>'.
+   * @return a new object of class '<em>Mark Variable Value</em>'.
    * @generated
    */
-  MarkVariable createMarkVariable();
+  MarkVariableValue createMarkVariableValue();
 
   /**
-   * Returns a new object of class '<em>Mark Value</em>'.
+   * Returns a new object of class '<em>Mark Camera Value</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Mark Value</em>'.
+   * @return a new object of class '<em>Mark Camera Value</em>'.
    * @generated
    */
-  MarkValue createMarkValue();
+  MarkCameraValue createMarkCameraValue();
 
   /**
    * Returns a new object of class '<em>Local Variable</em>'.

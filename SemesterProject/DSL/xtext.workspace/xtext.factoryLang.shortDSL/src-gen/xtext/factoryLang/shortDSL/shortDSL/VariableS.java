@@ -7,21 +7,21 @@ import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Variable</b></em>'.
+ * A representation of the model object '<em><b>Variable S</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link xtext.factoryLang.shortDSL.shortDSL.Variable#getName <em>Name</em>}</li>
+ *   <li>{@link xtext.factoryLang.shortDSL.shortDSL.VariableS#getName <em>Name</em>}</li>
  * </ul>
  *
- * @see xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage#getVariable()
+ * @see xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage#getVariableS()
  * @model
  * @generated
  */
-public interface Variable extends EObject
+public interface VariableS extends EObject
 {
   /**
    * Returns the value of the '<em><b>Name</b></em>' attribute.
@@ -29,14 +29,14 @@ public interface Variable extends EObject
    * <!-- end-user-doc -->
    * @return the value of the '<em>Name</em>' attribute.
    * @see #setName(String)
-   * @see xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage#getVariable_Name()
+   * @see xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage#getVariableS_Name()
    * @model
    * @generated
    */
   String getName();
 
   /**
-   * Sets the value of the '{@link xtext.factoryLang.shortDSL.shortDSL.Variable#getName <em>Name</em>}' attribute.
+   * Sets the value of the '{@link xtext.factoryLang.shortDSL.shortDSL.VariableS#getName <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Name</em>' attribute.
@@ -45,4 +45,4 @@ public interface Variable extends EObject
    */
   void setName(String value);
 
-} // Variable
+} // VariableS

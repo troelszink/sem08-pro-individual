@@ -3,6 +3,8 @@
  */
 package xtext.factoryLang.shortDSL.shortDSL;
 
+import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -15,6 +17,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link xtext.factoryLang.shortDSL.shortDSL.DeviceS#getName <em>Name</em>}</li>
+ *   <li>{@link xtext.factoryLang.shortDSL.shortDSL.DeviceS#getTargets <em>Targets</em>}</li>
  * </ul>
  *
  * @see xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage#getDeviceS()
@@ -44,5 +47,17 @@ public interface DeviceS extends EObject
    * @generated
    */
   void setName(String value);
+
+  /**
+   * Returns the value of the '<em><b>Targets</b></em>' containment reference list.
+   * The list contents are of type {@link xtext.factoryLang.shortDSL.shortDSL.ConfigurationValueS}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Targets</em>' containment reference list.
+   * @see xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage#getDeviceS_Targets()
+   * @model containment="true"
+   * @generated
+   */
+  EList<ConfigurationValueS> getTargets();
 
 } // DeviceS

@@ -11,9 +11,9 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import xtext.factoryLang.shortDSL.shortDSL.DiskZone;
+import xtext.factoryLang.shortDSL.shortDSL.LocalVariable;
 import xtext.factoryLang.shortDSL.shortDSL.MoveDisk;
 import xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage;
-import xtext.factoryLang.shortDSL.shortDSL.Variable;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,7 +29,7 @@ import xtext.factoryLang.shortDSL.shortDSL.Variable;
  *
  * @generated
  */
-public class MoveDiskImpl extends StatementSImpl implements MoveDisk
+public class MoveDiskImpl extends MoveSImpl implements MoveDisk
 {
   /**
    * The cached value of the '{@link #getSlot() <em>Slot</em>}' reference.
@@ -39,7 +39,7 @@ public class MoveDiskImpl extends StatementSImpl implements MoveDisk
    * @generated
    * @ordered
    */
-  protected Variable slot;
+  protected LocalVariable slot;
 
   /**
    * The cached value of the '{@link #getZone() <em>Zone</em>}' reference.
@@ -78,12 +78,12 @@ public class MoveDiskImpl extends StatementSImpl implements MoveDisk
    * @generated
    */
   @Override
-  public Variable getSlot()
+  public LocalVariable getSlot()
   {
     if (slot != null && slot.eIsProxy())
     {
       InternalEObject oldSlot = (InternalEObject)slot;
-      slot = (Variable)eResolveProxy(oldSlot);
+      slot = (LocalVariable)eResolveProxy(oldSlot);
       if (slot != oldSlot)
       {
         if (eNotificationRequired())
@@ -98,7 +98,7 @@ public class MoveDiskImpl extends StatementSImpl implements MoveDisk
    * <!-- end-user-doc -->
    * @generated
    */
-  public Variable basicGetSlot()
+  public LocalVariable basicGetSlot()
   {
     return slot;
   }
@@ -109,9 +109,9 @@ public class MoveDiskImpl extends StatementSImpl implements MoveDisk
    * @generated
    */
   @Override
-  public void setSlot(Variable newSlot)
+  public void setSlot(LocalVariable newSlot)
   {
-    Variable oldSlot = slot;
+    LocalVariable oldSlot = slot;
     slot = newSlot;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, ShortDSLPackage.MOVE_DISK__SLOT, oldSlot, slot));
@@ -193,7 +193,7 @@ public class MoveDiskImpl extends StatementSImpl implements MoveDisk
     switch (featureID)
     {
       case ShortDSLPackage.MOVE_DISK__SLOT:
-        setSlot((Variable)newValue);
+        setSlot((LocalVariable)newValue);
         return;
       case ShortDSLPackage.MOVE_DISK__ZONE:
         setZone((DiskZone)newValue);
@@ -213,7 +213,7 @@ public class MoveDiskImpl extends StatementSImpl implements MoveDisk
     switch (featureID)
     {
       case ShortDSLPackage.MOVE_DISK__SLOT:
-        setSlot((Variable)null);
+        setSlot((LocalVariable)null);
         return;
       case ShortDSLPackage.MOVE_DISK__ZONE:
         setZone((DiskZone)null);

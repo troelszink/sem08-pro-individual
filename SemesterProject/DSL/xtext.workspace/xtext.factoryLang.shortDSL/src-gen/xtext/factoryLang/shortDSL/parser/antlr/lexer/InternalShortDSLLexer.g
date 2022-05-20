@@ -19,7 +19,11 @@ Devices : 'devices';
 
 Foreach : 'foreach';
 
+Handle : 'handle';
+
 Pickup : 'pickup';
+
+Vacant : 'vacant';
 
 Empty : 'empty';
 
@@ -31,21 +35,25 @@ Blue : 'blue';
 
 Drop : 'drop';
 
-Free : 'free';
-
 Full : 'full';
 
 Long : 'long';
 
+Scan : 'scan';
+
 Test : 'test';
 
 HyphenMinusHyphenMinusGreaterThanSign : '-->';
+
+Dev : 'dev';
 
 Dsl : 'dsl';
 
 Red : 'red';
 
 Use : 'use';
+
+Var : 'var';
 
 ExclamationMarkEqualsSign : '!=';
 
@@ -66,6 +74,12 @@ LessThanSign : '<';
 EqualsSign : '=';
 
 GreaterThanSign : '>';
+
+H : 'h';
+
+M : 'm';
+
+S : 's';
 
 LeftCurlyBracket : '{';
 

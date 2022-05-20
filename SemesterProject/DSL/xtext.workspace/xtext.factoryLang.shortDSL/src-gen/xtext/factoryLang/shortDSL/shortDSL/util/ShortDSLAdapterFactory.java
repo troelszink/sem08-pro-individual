@@ -116,9 +116,14 @@ public class ShortDSLAdapterFactory extends AdapterFactoryImpl
         return createStatementSAdapter();
       }
       @Override
-      public Adapter caseActionS(ActionS object)
+      public Adapter caseMoveS(MoveS object)
       {
-        return createActionSAdapter();
+        return createMoveSAdapter();
+      }
+      @Override
+      public Adapter caseCraneActionS(CraneActionS object)
+      {
+        return createCraneActionSAdapter();
       }
       @Override
       public Adapter caseConditionS(ConditionS object)
@@ -131,14 +136,44 @@ public class ShortDSLAdapterFactory extends AdapterFactoryImpl
         return createMarkSAdapter();
       }
       @Override
-      public Adapter caseVariable(Variable object)
+      public Adapter caseVariableS(VariableS object)
       {
-        return createVariableAdapter();
+        return createVariableSAdapter();
       }
       @Override
-      public Adapter caseValue(Value object)
+      public Adapter caseVariableValue(VariableValue object)
       {
-        return createValueAdapter();
+        return createVariableValueAdapter();
+      }
+      @Override
+      public Adapter caseDeviceValue(DeviceValue object)
+      {
+        return createDeviceValueAdapter();
+      }
+      @Override
+      public Adapter caseValueSlot(ValueSlot object)
+      {
+        return createValueSlotAdapter();
+      }
+      @Override
+      public Adapter caseDiskStateValueS(DiskStateValueS object)
+      {
+        return createDiskStateValueSAdapter();
+      }
+      @Override
+      public Adapter caseDiskSlotStateValueS(DiskSlotStateValueS object)
+      {
+        return createDiskSlotStateValueSAdapter();
+      }
+      @Override
+      public Adapter caseColorValueS(ColorValueS object)
+      {
+        return createColorValueSAdapter();
+      }
+      @Override
+      public Adapter caseNumberS(NumberS object)
+      {
+        return createNumberSAdapter();
       }
       @Override
       public Adapter caseDSLShort(DSLShort object)
@@ -186,14 +221,19 @@ public class ShortDSLAdapterFactory extends AdapterFactoryImpl
         return createMoveDiskAdapter();
       }
       @Override
+      public Adapter caseMoveAnySlot(MoveAnySlot object)
+      {
+        return createMoveAnySlotAdapter();
+      }
+      @Override
       public Adapter caseMoveCrane(MoveCrane object)
       {
         return createMoveCraneAdapter();
       }
       @Override
-      public Adapter caseAction(Action object)
+      public Adapter caseCraneAction(CraneAction object)
       {
-        return createActionAdapter();
+        return createCraneActionAdapter();
       }
       @Override
       public Adapter caseConditionVariable(ConditionVariable object)
@@ -206,14 +246,14 @@ public class ShortDSLAdapterFactory extends AdapterFactoryImpl
         return createConditionDeviceAdapter();
       }
       @Override
-      public Adapter caseMarkVariable(MarkVariable object)
+      public Adapter caseMarkVariableValue(MarkVariableValue object)
       {
-        return createMarkVariableAdapter();
+        return createMarkVariableValueAdapter();
       }
       @Override
-      public Adapter caseMarkValue(MarkValue object)
+      public Adapter caseMarkCameraValue(MarkCameraValue object)
       {
-        return createMarkValueAdapter();
+        return createMarkCameraValueAdapter();
       }
       @Override
       public Adapter caseLocalVariable(LocalVariable object)
@@ -368,16 +408,31 @@ public class ShortDSLAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link xtext.factoryLang.shortDSL.shortDSL.ActionS <em>Action S</em>}'.
+   * Creates a new adapter for an object of class '{@link xtext.factoryLang.shortDSL.shortDSL.MoveS <em>Move S</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see xtext.factoryLang.shortDSL.shortDSL.ActionS
+   * @see xtext.factoryLang.shortDSL.shortDSL.MoveS
    * @generated
    */
-  public Adapter createActionSAdapter()
+  public Adapter createMoveSAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link xtext.factoryLang.shortDSL.shortDSL.CraneActionS <em>Crane Action S</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see xtext.factoryLang.shortDSL.shortDSL.CraneActionS
+   * @generated
+   */
+  public Adapter createCraneActionSAdapter()
   {
     return null;
   }
@@ -413,31 +468,121 @@ public class ShortDSLAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link xtext.factoryLang.shortDSL.shortDSL.Variable <em>Variable</em>}'.
+   * Creates a new adapter for an object of class '{@link xtext.factoryLang.shortDSL.shortDSL.VariableS <em>Variable S</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see xtext.factoryLang.shortDSL.shortDSL.Variable
+   * @see xtext.factoryLang.shortDSL.shortDSL.VariableS
    * @generated
    */
-  public Adapter createVariableAdapter()
+  public Adapter createVariableSAdapter()
   {
     return null;
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link xtext.factoryLang.shortDSL.shortDSL.Value <em>Value</em>}'.
+   * Creates a new adapter for an object of class '{@link xtext.factoryLang.shortDSL.shortDSL.VariableValue <em>Variable Value</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see xtext.factoryLang.shortDSL.shortDSL.Value
+   * @see xtext.factoryLang.shortDSL.shortDSL.VariableValue
    * @generated
    */
-  public Adapter createValueAdapter()
+  public Adapter createVariableValueAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link xtext.factoryLang.shortDSL.shortDSL.DeviceValue <em>Device Value</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see xtext.factoryLang.shortDSL.shortDSL.DeviceValue
+   * @generated
+   */
+  public Adapter createDeviceValueAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link xtext.factoryLang.shortDSL.shortDSL.ValueSlot <em>Value Slot</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see xtext.factoryLang.shortDSL.shortDSL.ValueSlot
+   * @generated
+   */
+  public Adapter createValueSlotAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link xtext.factoryLang.shortDSL.shortDSL.DiskStateValueS <em>Disk State Value S</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see xtext.factoryLang.shortDSL.shortDSL.DiskStateValueS
+   * @generated
+   */
+  public Adapter createDiskStateValueSAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link xtext.factoryLang.shortDSL.shortDSL.DiskSlotStateValueS <em>Disk Slot State Value S</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see xtext.factoryLang.shortDSL.shortDSL.DiskSlotStateValueS
+   * @generated
+   */
+  public Adapter createDiskSlotStateValueSAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link xtext.factoryLang.shortDSL.shortDSL.ColorValueS <em>Color Value S</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see xtext.factoryLang.shortDSL.shortDSL.ColorValueS
+   * @generated
+   */
+  public Adapter createColorValueSAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link xtext.factoryLang.shortDSL.shortDSL.NumberS <em>Number S</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see xtext.factoryLang.shortDSL.shortDSL.NumberS
+   * @generated
+   */
+  public Adapter createNumberSAdapter()
   {
     return null;
   }
@@ -578,6 +723,21 @@ public class ShortDSLAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link xtext.factoryLang.shortDSL.shortDSL.MoveAnySlot <em>Move Any Slot</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see xtext.factoryLang.shortDSL.shortDSL.MoveAnySlot
+   * @generated
+   */
+  public Adapter createMoveAnySlotAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link xtext.factoryLang.shortDSL.shortDSL.MoveCrane <em>Move Crane</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -593,16 +753,16 @@ public class ShortDSLAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link xtext.factoryLang.shortDSL.shortDSL.Action <em>Action</em>}'.
+   * Creates a new adapter for an object of class '{@link xtext.factoryLang.shortDSL.shortDSL.CraneAction <em>Crane Action</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see xtext.factoryLang.shortDSL.shortDSL.Action
+   * @see xtext.factoryLang.shortDSL.shortDSL.CraneAction
    * @generated
    */
-  public Adapter createActionAdapter()
+  public Adapter createCraneActionAdapter()
   {
     return null;
   }
@@ -638,31 +798,31 @@ public class ShortDSLAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link xtext.factoryLang.shortDSL.shortDSL.MarkVariable <em>Mark Variable</em>}'.
+   * Creates a new adapter for an object of class '{@link xtext.factoryLang.shortDSL.shortDSL.MarkVariableValue <em>Mark Variable Value</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see xtext.factoryLang.shortDSL.shortDSL.MarkVariable
+   * @see xtext.factoryLang.shortDSL.shortDSL.MarkVariableValue
    * @generated
    */
-  public Adapter createMarkVariableAdapter()
+  public Adapter createMarkVariableValueAdapter()
   {
     return null;
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link xtext.factoryLang.shortDSL.shortDSL.MarkValue <em>Mark Value</em>}'.
+   * Creates a new adapter for an object of class '{@link xtext.factoryLang.shortDSL.shortDSL.MarkCameraValue <em>Mark Camera Value</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see xtext.factoryLang.shortDSL.shortDSL.MarkValue
+   * @see xtext.factoryLang.shortDSL.shortDSL.MarkCameraValue
    * @generated
    */
-  public Adapter createMarkValueAdapter()
+  public Adapter createMarkCameraValueAdapter()
   {
     return null;
   }

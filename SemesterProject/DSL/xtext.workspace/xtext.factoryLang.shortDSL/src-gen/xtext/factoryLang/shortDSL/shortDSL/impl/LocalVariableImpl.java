@@ -15,7 +15,7 @@ import xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage;
  *
  * @generated
  */
-public class LocalVariableImpl extends VariableImpl implements LocalVariable
+public class LocalVariableImpl extends VariableSImpl implements LocalVariable
 {
   /**
    * <!-- begin-user-doc -->

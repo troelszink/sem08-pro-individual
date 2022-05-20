@@ -3,7 +3,6 @@
  */
 package xtext.factoryLang.shortDSL.shortDSL;
 
-import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
@@ -15,7 +14,6 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  * <ul>
  *   <li>{@link xtext.factoryLang.shortDSL.shortDSL.Disk#getNSlots <em>NSlots</em>}</li>
- *   <li>{@link xtext.factoryLang.shortDSL.shortDSL.Disk#getZones <em>Zones</em>}</li>
  * </ul>
  *
  * @see xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage#getDisk()
@@ -45,17 +43,5 @@ public interface Disk extends DeviceS
    * @generated
    */
   void setNSlots(int value);
-
-  /**
-   * Returns the value of the '<em><b>Zones</b></em>' containment reference list.
-   * The list contents are of type {@link xtext.factoryLang.shortDSL.shortDSL.ConfigurationValueS}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Zones</em>' containment reference list.
-   * @see xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage#getDisk_Zones()
-   * @model containment="true"
-   * @generated
-   */
-  EList<ConfigurationValueS> getZones();
 
 } // Disk

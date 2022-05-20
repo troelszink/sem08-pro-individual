@@ -3,22 +3,12 @@
  */
 package xtext.factoryLang.shortDSL.shortDSL.impl;
 
-import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
-
-import xtext.factoryLang.shortDSL.shortDSL.ConfigurationValueS;
 import xtext.factoryLang.shortDSL.shortDSL.Disk;
 import xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage;
 
@@ -31,7 +21,6 @@ import xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage;
  * </p>
  * <ul>
  *   <li>{@link xtext.factoryLang.shortDSL.shortDSL.impl.DiskImpl#getNSlots <em>NSlots</em>}</li>
- *   <li>{@link xtext.factoryLang.shortDSL.shortDSL.impl.DiskImpl#getZones <em>Zones</em>}</li>
  * </ul>
  *
  * @generated
@@ -57,16 +46,6 @@ public class DiskImpl extends DeviceSImpl implements Disk
    * @ordered
    */
   protected int nSlots = NSLOTS_EDEFAULT;
-
-  /**
-   * The cached value of the '{@link #getZones() <em>Zones</em>}' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getZones()
-   * @generated
-   * @ordered
-   */
-  protected EList<ConfigurationValueS> zones;
 
   /**
    * <!-- begin-user-doc -->
@@ -120,45 +99,12 @@ public class DiskImpl extends DeviceSImpl implements Disk
    * @generated
    */
   @Override
-  public EList<ConfigurationValueS> getZones()
-  {
-    if (zones == null)
-    {
-      zones = new EObjectContainmentEList<ConfigurationValueS>(ConfigurationValueS.class, this, ShortDSLPackage.DISK__ZONES);
-    }
-    return zones;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-  {
-    switch (featureID)
-    {
-      case ShortDSLPackage.DISK__ZONES:
-        return ((InternalEList<?>)getZones()).basicRemove(otherEnd, msgs);
-    }
-    return super.eInverseRemove(otherEnd, featureID, msgs);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
     switch (featureID)
     {
       case ShortDSLPackage.DISK__NSLOTS:
         return getNSlots();
-      case ShortDSLPackage.DISK__ZONES:
-        return getZones();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -168,7 +114,6 @@ public class DiskImpl extends DeviceSImpl implements Disk
    * <!-- end-user-doc -->
    * @generated
    */
-  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
@@ -176,10 +121,6 @@ public class DiskImpl extends DeviceSImpl implements Disk
     {
       case ShortDSLPackage.DISK__NSLOTS:
         setNSlots((Integer)newValue);
-        return;
-      case ShortDSLPackage.DISK__ZONES:
-        getZones().clear();
-        getZones().addAll((Collection<? extends ConfigurationValueS>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -198,9 +139,6 @@ public class DiskImpl extends DeviceSImpl implements Disk
       case ShortDSLPackage.DISK__NSLOTS:
         setNSlots(NSLOTS_EDEFAULT);
         return;
-      case ShortDSLPackage.DISK__ZONES:
-        getZones().clear();
-        return;
     }
     super.eUnset(featureID);
   }
@@ -217,8 +155,6 @@ public class DiskImpl extends DeviceSImpl implements Disk
     {
       case ShortDSLPackage.DISK__NSLOTS:
         return nSlots != NSLOTS_EDEFAULT;
-      case ShortDSLPackage.DISK__ZONES:
-        return zones != null && !zones.isEmpty();
     }
     return super.eIsSet(featureID);
   }

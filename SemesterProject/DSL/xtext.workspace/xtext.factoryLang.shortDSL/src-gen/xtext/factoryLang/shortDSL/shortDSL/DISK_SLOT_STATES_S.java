@@ -28,7 +28,7 @@ public enum DISK_SLOT_STATES_S implements Enumerator
    * @generated
    * @ordered
    */
-  FREE(0, "FREE", "free"),
+  FREE(0, "FREE", "vacant"),
 
   /**
    * The '<em><b>IN PROGRESS</b></em>' literal object.
@@ -55,7 +55,7 @@ public enum DISK_SLOT_STATES_S implements Enumerator
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #FREE
-   * @model literal="free"
+   * @model literal="vacant"
    * @generated
    * @ordered
    */

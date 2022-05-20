@@ -14,6 +14,8 @@ package xtext.factoryLang.shortDSL.shortDSL;
  * </p>
  * <ul>
  *   <li>{@link xtext.factoryLang.shortDSL.shortDSL.ConditionVariable#getVariable <em>Variable</em>}</li>
+ *   <li>{@link xtext.factoryLang.shortDSL.shortDSL.ConditionVariable#getComparisonOperatorVariable <em>Comparison Operator Variable</em>}</li>
+ *   <li>{@link xtext.factoryLang.shortDSL.shortDSL.ConditionVariable#getVariableValue <em>Variable Value</em>}</li>
  * </ul>
  *
  * @see xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage#getConditionVariable()
@@ -27,12 +29,12 @@ public interface ConditionVariable extends ConditionS
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Variable</em>' reference.
-   * @see #setVariable(Variable)
+   * @see #setVariable(VariableS)
    * @see xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage#getConditionVariable_Variable()
    * @model
    * @generated
    */
-  Variable getVariable();
+  VariableS getVariable();
 
   /**
    * Sets the value of the '{@link xtext.factoryLang.shortDSL.shortDSL.ConditionVariable#getVariable <em>Variable</em>}' reference.
@@ -42,6 +44,53 @@ public interface ConditionVariable extends ConditionS
    * @see #getVariable()
    * @generated
    */
-  void setVariable(Variable value);
+  void setVariable(VariableS value);
+
+  /**
+   * Returns the value of the '<em><b>Comparison Operator Variable</b></em>' attribute.
+   * The literals are from the enumeration {@link xtext.factoryLang.shortDSL.shortDSL.COMPARISON_OPERATOR_S}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Comparison Operator Variable</em>' attribute.
+   * @see xtext.factoryLang.shortDSL.shortDSL.COMPARISON_OPERATOR_S
+   * @see #setComparisonOperatorVariable(COMPARISON_OPERATOR_S)
+   * @see xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage#getConditionVariable_ComparisonOperatorVariable()
+   * @model
+   * @generated
+   */
+  COMPARISON_OPERATOR_S getComparisonOperatorVariable();
+
+  /**
+   * Sets the value of the '{@link xtext.factoryLang.shortDSL.shortDSL.ConditionVariable#getComparisonOperatorVariable <em>Comparison Operator Variable</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Comparison Operator Variable</em>' attribute.
+   * @see xtext.factoryLang.shortDSL.shortDSL.COMPARISON_OPERATOR_S
+   * @see #getComparisonOperatorVariable()
+   * @generated
+   */
+  void setComparisonOperatorVariable(COMPARISON_OPERATOR_S value);
+
+  /**
+   * Returns the value of the '<em><b>Variable Value</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Variable Value</em>' containment reference.
+   * @see #setVariableValue(VariableValue)
+   * @see xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage#getConditionVariable_VariableValue()
+   * @model containment="true"
+   * @generated
+   */
+  VariableValue getVariableValue();
+
+  /**
+   * Sets the value of the '{@link xtext.factoryLang.shortDSL.shortDSL.ConditionVariable#getVariableValue <em>Variable Value</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Variable Value</em>' containment reference.
+   * @see #getVariableValue()
+   * @generated
+   */
+  void setVariableValue(VariableValue value);
 
 } // ConditionVariable
