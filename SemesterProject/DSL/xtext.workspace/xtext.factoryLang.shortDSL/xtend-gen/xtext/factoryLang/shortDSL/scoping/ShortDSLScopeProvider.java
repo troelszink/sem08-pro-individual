@@ -23,6 +23,7 @@ import xtext.factoryLang.shortDSL.shortDSL.Crane;
 import xtext.factoryLang.shortDSL.shortDSL.DSLProgram;
 import xtext.factoryLang.shortDSL.shortDSL.DSLShort;
 import xtext.factoryLang.shortDSL.shortDSL.DeviceS;
+import xtext.factoryLang.shortDSL.shortDSL.DeviceValueS;
 import xtext.factoryLang.shortDSL.shortDSL.Disk;
 import xtext.factoryLang.shortDSL.shortDSL.DiskHandlingS;
 import xtext.factoryLang.shortDSL.shortDSL.Loop;
@@ -30,6 +31,7 @@ import xtext.factoryLang.shortDSL.shortDSL.MarkCameraValue;
 import xtext.factoryLang.shortDSL.shortDSL.Model;
 import xtext.factoryLang.shortDSL.shortDSL.MoveCrane;
 import xtext.factoryLang.shortDSL.shortDSL.MoveS;
+import xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage;
 import xtext.factoryLang.shortDSL.shortDSL.VariableS;
 
 /**
@@ -42,10 +44,31 @@ import xtext.factoryLang.shortDSL.shortDSL.VariableS;
 public class ShortDSLScopeProvider extends AbstractShortDSLScopeProvider {
   @Override
   public IScope getScope(final EObject context, final EReference reference) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nDeviceValue cannot be resolved to a type."
-      + "\nThe method or field DEVICE_VALUE__CONFIGURATION_VALUE is undefined for the type Class<Literals>"
-      + "\nThe method getDeviceValueRefScope(DeviceValue) from the type ShortDSLScopeProvider refers to the missing type DeviceValue");
+    boolean _matched = false;
+    if (Objects.equal(reference, ShortDSLPackage.Literals.MOVE_DISK__ZONE)) {
+      _matched=true;
+    }
+    if (!_matched) {
+      if (Objects.equal(reference, ShortDSLPackage.Literals.MOVE_ANY_SLOT__ZONE)) {
+        _matched=true;
+      }
+    }
+    if (_matched) {
+      return this.getDiskTargetScope(((MoveS) context));
+    }
+    if (!_matched) {
+      if (Objects.equal(reference, ShortDSLPackage.Literals.MOVE_CRANE__ZONE)) {
+        _matched=true;
+        return this.getCraneTargetScope(((MoveS) context));
+      }
+    }
+    if (!_matched) {
+      if (Objects.equal(reference, ShortDSLPackage.Literals.DEVICE_VALUE_S__CONFIGURATION_VALUE)) {
+        _matched=true;
+        return this.getDeviceValueRefScope(((DeviceValueS) context));
+      }
+    }
+    return super.getScope(context, reference);
   }
   
   public IScope getVariableScope(final EObject currentContext, final EObject context) {
@@ -109,7 +132,7 @@ public class ShortDSLScopeProvider extends AbstractShortDSLScopeProvider {
     return Scopes.scopeFor(cameraScanOperations);
   }
   
-  public IScope getDeviceValueRefScope(final /* DeviceValue */Object deviceValue) {
+  public IScope getDeviceValueRefScope(final DeviceValueS deviceValue) {
     final ConditionDevice deviceConditional = EcoreUtil2.<ConditionDevice>getContainerOfType(deviceValue, ConditionDevice.class);
     final DeviceS deviceRef = deviceConditional.getDevice();
     final String deviceName = deviceRef.getName();

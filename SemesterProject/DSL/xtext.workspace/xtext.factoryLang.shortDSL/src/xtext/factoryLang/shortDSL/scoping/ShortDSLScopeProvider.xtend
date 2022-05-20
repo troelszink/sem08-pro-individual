@@ -12,12 +12,12 @@ import org.eclipse.xtext.scoping.Scopes
 import xtext.factoryLang.shortDSL.shortDSL.Loop
 import xtext.factoryLang.shortDSL.shortDSL.Model
 import xtext.factoryLang.shortDSL.shortDSL.MarkCameraValue
-import xtext.factoryLang.shortDSL.shortDSL.DeviceValue
 import xtext.factoryLang.shortDSL.shortDSL.ConditionDevice
 import xtext.factoryLang.shortDSL.shortDSL.DSLShort
 import xtext.factoryLang.shortDSL.shortDSL.MoveS
 import xtext.factoryLang.shortDSL.shortDSL.DiskHandlingS
 import xtext.factoryLang.shortDSL.shortDSL.MoveCrane
+import xtext.factoryLang.shortDSL.shortDSL.DeviceValueS
 
 /**
  * This class contains custom scoping description.
@@ -34,10 +34,8 @@ class ShortDSLScopeProvider extends AbstractShortDSLScopeProvider {
 				return getDiskTargetScope(context as MoveS)
 			case Literals.MOVE_CRANE__ZONE:
 				return getCraneTargetScope(context as MoveS)
-			/*case Literals.MOVE_DISK__ZONE:
-				return getVariableScope(context, context)*/
-			case Literals.DEVICE_VALUE__CONFIGURATION_VALUE:
-				return getDeviceValueRefScope(context as DeviceValue)
+			case Literals.DEVICE_VALUE_S__CONFIGURATION_VALUE:
+				return getDeviceValueRefScope(context as DeviceValueS)
 		}
 		return super.getScope(context, reference)
 	}
@@ -85,7 +83,7 @@ class ShortDSLScopeProvider extends AbstractShortDSLScopeProvider {
 		return Scopes.scopeFor(cameraScanOperations);
 	}
 	
-	def IScope getDeviceValueRefScope(DeviceValue deviceValue) {
+	def IScope getDeviceValueRefScope(DeviceValueS deviceValue) {
 		val deviceConditional = EcoreUtil2.getContainerOfType(deviceValue, ConditionDevice)
 		val deviceRef = deviceConditional.device
 		val deviceName = deviceRef.name

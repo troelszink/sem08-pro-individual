@@ -15,12 +15,12 @@ import xtext.factoryLang.shortDSL.shortDSL.Crane
 import xtext.factoryLang.shortDSL.shortDSL.Camera
 import xtext.factoryLang.shortDSL.shortDSL.DiskStateValueS
 import xtext.factoryLang.shortDSL.shortDSL.ColorValueS
-import xtext.factoryLang.shortDSL.shortDSL.TIME_UNIT
 import xtext.factoryLang.shortDSL.shortDSL.Model
 import xtext.factoryLang.shortDSL.shortDSL.DSL_TYPE_ENUM
 import xtext.factoryLang.shortDSL.shortDSL.DSLLong
 import xtext.factoryLang.shortDSL.shortDSL.DSLShort
 import xtext.factoryLang.shortDSL.shortDSL.DSLProgram
+import xtext.factoryLang.shortDSL.shortDSL.TIME_UNIT_S
 
 /**
  * This class contains custom validation rules. 
@@ -85,7 +85,7 @@ class ShortDSLValidator extends AbstractShortDSLValidator {
 			return
 		}
 		if (!mark.eIsSet(Literals.MARK_VARIABLE_VALUE__UNIT)) {
-			error('Remember to add unit: ' + TIME_UNIT.SECOND + ', ' + TIME_UNIT.MINUTE + ', ' + TIME_UNIT.HOUR,
+			error('Remember to add unit: ' + TIME_UNIT_S.SECOND + ', ' + TIME_UNIT_S.MINUTE + ', ' + TIME_UNIT_S.HOUR,
 				(Literals.MARK_VARIABLE_VALUE__TIME), INVALID_VALUE)
 			return
 		}

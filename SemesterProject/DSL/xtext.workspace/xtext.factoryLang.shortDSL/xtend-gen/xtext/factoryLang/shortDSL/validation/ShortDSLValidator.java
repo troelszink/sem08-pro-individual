@@ -26,6 +26,7 @@ import xtext.factoryLang.shortDSL.shortDSL.DiskZone;
 import xtext.factoryLang.shortDSL.shortDSL.MarkVariableValue;
 import xtext.factoryLang.shortDSL.shortDSL.Model;
 import xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage;
+import xtext.factoryLang.shortDSL.shortDSL.TIME_UNIT_S;
 
 /**
  * This class contains custom validation rules.
@@ -92,13 +93,21 @@ public class ShortDSLValidator extends AbstractShortDSLValidator {
   
   @Check
   public void checkDiskMarkSlotOperation(final MarkVariableValue mark) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field TIME_UNIT is undefined"
-      + "\nThe method or field TIME_UNIT is undefined"
-      + "\nThe method or field TIME_UNIT is undefined"
-      + "\nSECOND cannot be resolved"
-      + "\nMINUTE cannot be resolved"
-      + "\nHOUR cannot be resolved");
+    if (((!mark.eIsSet(ShortDSLPackage.Literals.MARK_VARIABLE_VALUE__TIME)) && 
+      (!mark.eIsSet(ShortDSLPackage.Literals.MARK_VARIABLE_VALUE__UNIT)))) {
+      return;
+    }
+    boolean _eIsSet = mark.eIsSet(ShortDSLPackage.Literals.MARK_VARIABLE_VALUE__UNIT);
+    boolean _not = (!_eIsSet);
+    if (_not) {
+      this.error(((((("Remember to add unit: " + TIME_UNIT_S.SECOND) + ", ") + TIME_UNIT_S.MINUTE) + ", ") + TIME_UNIT_S.HOUR), ShortDSLPackage.Literals.MARK_VARIABLE_VALUE__TIME, ShortDSLValidator.INVALID_VALUE);
+      return;
+    }
+    final int time = mark.getTime();
+    if ((time < 1)) {
+      this.error("The time to finish should be>= 1", ShortDSLPackage.Literals.MARK_VARIABLE_VALUE__TIME, ShortDSLValidator.INVALID_VALUE);
+      return;
+    }
   }
   
   @Check
