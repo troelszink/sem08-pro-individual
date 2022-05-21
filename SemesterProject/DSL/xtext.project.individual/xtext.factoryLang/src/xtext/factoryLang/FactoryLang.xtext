@@ -25,36 +25,44 @@ DeviceS:
 	CraneS | DiskS | CameraS;
 
 CraneS returns DeviceS:
-	{Crane} name=ID (logging=LoggingS)? ':' BEGIN targets+=CraneZoneS+ END;
+	{CraneS} name=ID (logging=LoggingS)? ':' BEGIN targets+=CraneZoneS+ END;
 
 CraneZoneS returns ConfigurationValueS:
-	{CraneZone} name=ID ':' zoneValue=INT (',')?;
+	{CraneZoneS} name=ID ':' zoneValue=INT (',')?;
 
 DiskS returns DeviceS:
-	{Disk} name=ID '(' nSlots=INT ')' (logging=LoggingS)? ':' BEGIN targets+=DiskZoneS+ END;
+	{DiskS} name=ID '(' nSlots=INT ')' (logging=LoggingS)? ':' BEGIN targets+=DiskZoneS+ END;
 
 DiskZoneS returns ConfigurationValueS:
-	{DiskZone} name=ID ':' slot=INT (',')?;
+	{DiskZoneS} name=ID ':' slot=INT (',')?;
 
 CameraS returns DeviceS:
-	{Camera} name=ID (logging=LoggingS)? ':' BEGIN targets+=CameraColorS+ END;
+	{CameraS} name=ID (logging=LoggingS)? ':' BEGIN targets+=CameraColorS+ END;
 
 CameraColorS returns ConfigurationValueS:
-	{CameraColor} color=COLOR (',')?;
+	{CameraColorS} color=COLOR (',')?;
 
 // ----- LOGGING ----- //
 LoggingS:
-	{Logging} 'logging';
+	{LoggingS} 'logging';
 
 // ----- DISK HANDLING ----- //
 DiskHandlingS:
-	'handle' disk=[Disk] '{' BEGIN statements+=StatementS+ END '}';
+	'handle' disk=[DiskS] '{' BEGIN statements+=StatementS+ END '}';
 
 StatementS:
 	LoopS | MoveS | CraneActionS | ConditionS | MarkS;
 
 LoopS returns StatementS:
-	{Loop} 'foreach' variable=LocalVariableS
+	LoopVariableS | LoopSlotS;
+
+LoopVariableS returns StatementS:
+	{LoopVariableS} 'foreach' 'var' ordinaryVariable=OrdinaryVariableS
+	comparisonOperator=COMPARISON_OPERATOR_S slotState=DiskSlotStateValue
+	':' BEGIN statements+=StatementS* END;
+
+LoopSlotS returns StatementS:
+	{LoopSlotS} 'foreach' 'slot' slotVariable=SlotVariableS
 	comparisonOperator=COMPARISON_OPERATOR_S slotState=DiskSlotStateValue
 	':' BEGIN statements+=StatementS* END;
 
@@ -62,48 +70,54 @@ MoveS returns StatementS:
 	MoveDiskS | MoveAnySlotS | MoveCraneS;
 
 MoveDiskS returns MoveS:
-	{MoveDisk} slot=[LocalVariable] ('->' | '-->') zone=[DiskZone];
+	{MoveDiskS} slot=[SlotVariableS] ('->' | '-->') zone=[DiskZoneS];
 
 MoveAnySlotS returns MoveS:
-	{MoveAnySlot} state=DiskSlotStateValue anySlot=LocalVariableS ('->' | '-->') zone=[DiskZone];
+	{MoveAnySlotS} state=DiskSlotStateValue anySlot=SlotVariableS ('->' | '-->') zone=[DiskZoneS];
 
 MoveCraneS returns MoveS:
-	{MoveCrane} crane=[Crane] action=CraneActionS ('->' | '-->') zone=[CraneZone];
+	{MoveCraneS} crane=[CraneS] action=CraneActionS ('->' | '-->') zone=[CraneZoneS];
 
 CraneActionS:
-	{CraneAction} ('pickup' | 'drop');
+	{CraneActionS} ('pickup' | 'drop');
 
 ConditionS returns StatementS:
-	ConditionVariableS | ConditionDeviceS;
+	ConditionVariableS | ConditionDeviceS | ConditionSlotS;
 
 ConditionVariableS returns ConditionS:
-	{ConditionVariable} 'if' 'var' variable=[VariableS]
-	comparisonOperatorVariable=COMPARISON_OPERATOR_S variableValue=VariableValue
+	{ConditionVariableS} 'if' 'var' variable=[OrdinaryVariableS]
+	comparisonOperator=COMPARISON_OPERATOR_S variableValue=VariableValueS
+	':' BEGIN statements+=StatementS* END;
+	
+ConditionSlotS returns ConditionS:
+	{ConditionSlotS} 'if' 'slot' variable=[SlotVariableS]
+	comparisonOperator=COMPARISON_OPERATOR_S slotValue=ValueSlotS
 	':' BEGIN statements+=StatementS* END;
 
 ConditionDeviceS returns ConditionS:
-	{ConditionDevice} 'if' 'dev' device=[DeviceS]
-	comparisonOperatorDevice=COMPARISON_OPERATOR_S deviceValue=DeviceValue
+	{ConditionDeviceS} 'if' 'dev' device=[DeviceS]
+	comparisonOperator=COMPARISON_OPERATOR_S deviceValue=DeviceValueS
 	':' BEGIN statements+=StatementS* END;
 
 MarkS returns StatementS:
 	MarkVariableValueS | MarkCameraValueS;
 	
 MarkVariableValueS returns MarkS:
-	{MarkVariableValue} variable=[VariableS] '(' value=ValueSlot (',' time=INT unit=TIME_UNIT_S)? ')';
+	{MarkVariableValueS} variable=[VariableS] '(' value=ValueSlotS (',' time=INT unit=TIME_UNIT_S)? ')';
 
 MarkCameraValueS returns MarkS:
-	{MarkCameraValue} camera=[Camera] 'scan' variable=LocalVariableS;
+	{MarkCameraValueS} camera=[CameraS] 'scan' variable=OrdinaryVariableS;
 	
+
 // ----- VALUE TYPES ----- //
 VariableS:
-	LocalVariableS | GlobalVariableS;
+	OrdinaryVariableS | SlotVariableS;
 
-LocalVariableS returns VariableS:
-	{LocalVariable} name=ID;
+OrdinaryVariableS returns VariableS:
+	{OrdinaryVariableS} name=ID;
 
-GlobalVariableS returns VariableS:
-	{GlobalVariable} name=ID;
+SlotVariableS returns VariableS:
+	{SlotVariableS} name=ID;
 
 VariableValueS:
 	value=DiskSlotStateValue | value=ColorValue | value=Number | value=DiskStateValue | ref=[VariableS];
@@ -111,7 +125,7 @@ VariableValueS:
 DeviceValueS:
 	value=DiskStateValue | value=ColorValue | configurationValue=[ConfigurationValueS];
 
-ValueSlot:
+ValueSlotS:
 	value=DiskSlotStateValue | value=ColorValue;
 
 

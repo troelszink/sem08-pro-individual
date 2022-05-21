@@ -17,6 +17,7 @@ import xtext.factoryLang.generator.subgenerators.EntityGenerator
 import xtext.factoryLang.factoryLang.Disk
 import xtext.factoryLang.factoryLang.Camera
 import xtext.factoryLang.generator.subgenerators.UppaalGenerator
+import xtext.factoryLang.generator.subgenerators.LoggingGenerator
 
 /**
  * Generates code from your model files on save.
@@ -26,7 +27,7 @@ import xtext.factoryLang.generator.subgenerators.UppaalGenerator
 class FactoryLangGenerator extends AbstractGenerator {
 
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
-		val model = resource.allContents.filter(DSLLong).next
+		/*val model = resource.allContents.filter(DSLLong).next
 		val devices = model.configurations.map[device]
 		val statements = model.statements
 		try { 
@@ -38,12 +39,10 @@ class FactoryLangGenerator extends AbstractGenerator {
 				devices.filter[it instanceof Disk].size> 0, 
 				devices.filter[it instanceof Camera].size> 0
 			)
+			LoggingGenerator.generate(fsa)
 			UppaalGenerator.generate(fsa, resource)
 		} catch (Exception e) {
 			e.printStackTrace()
-		}
-		
-		
-
+		}*/
 	}
 }

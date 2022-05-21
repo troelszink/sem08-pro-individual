@@ -18,6 +18,7 @@ import xtext.factoryLang.factoryLang.DiskZoneParameter
 import xtext.factoryLang.factoryLang.ForEach
 import xtext.factoryLang.factoryLang.Model
 import xtext.factoryLang.factoryLang.Statement
+import xtext.factoryLang.factoryLang.DSLLong
 
 class UppaalGenerator {
 
@@ -26,11 +27,12 @@ class UppaalGenerator {
 
 	def static generate(IFileSystemAccess2 fsa, Resource resource) {
 		val model = resource.allContents.filter(Model).next
-		val discs = model.configurations.map[device].filter[it instanceof Disk].map[x|x as Disk]
-		val cranes = model.configurations.map[device].filter[it instanceof Crane].map[x|x as Crane]
-		val cameras = model.configurations.map[device].filter[it instanceof Camera].map[x|x as Camera]
+		val dsl = model.dslProgram as DSLLong
+		val discs = dsl.configurations.map[device].filter[it instanceof Disk].map[x|x as Disk]
+		val cranes = dsl.configurations.map[device].filter[it instanceof Crane].map[x|x as Crane]
+		val cameras = dsl.configurations.map[device].filter[it instanceof Camera].map[x|x as Camera]
 		val discSlotStateValues = resource.allContents.filter(DiskSlotStateValue).map[value].toSet.map[toString]
-		UppaalGenerator.statementsIndexer = getStatements(model.statements)
+		UppaalGenerator.statementsIndexer = getStatements(dsl.statements)
 		fsa.generateFile(
 			"uppaal/system.xml",
 			'''
@@ -113,11 +115,11 @@ class UppaalGenerator {
 						<location id="id0">
 							<name>Idle</name>
 						</location>
-						«FOR statement : model.statements»
+						«FOR statement : dsl.statements»
 							«UppaalMasterGenerator.generateLocation(statement)»
 						«ENDFOR»
 						<init ref="id0"/>
-						«FOR statement : model.statements»
+						«FOR statement : dsl.statements»
 							«UppaalMasterGenerator.generateTransistion(statement)»	
 						«ENDFOR»
 					</template>

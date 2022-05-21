@@ -1,0 +1,41 @@
+
+use short dsl
+
+devices {
+    crane1 logging:
+        pickupDisk: 0
+        outRed: 30
+        outGreen: 60
+        outBlue: 130
+    disk1(8):
+        craneZone: 4
+        cameraZone: 3 
+        intakeZone: 6 
+    camera1:
+        blue, green, red
+}
+
+handle disk1 {	
+	foreach slot aSlot = complete:
+		aSlot --> craneZone
+		crane1 pickup --> pickupDisk
+		if slot aSlot = red:
+			crane1 drop --> outRed
+		if slot aSlot = green:
+			crane1 drop --> outGreen
+		if slot aSlot = blue:
+			crane1 drop --> outBlue
+		aSlot(free)
+     
+	if dev disk1 != full:
+		free aSlot --> intakeZone
+		aSlot(in_progress)
+		aSlot --> cameraZone
+		camera1 scan aColor
+		if var aColor = red:
+			aSlot(complete, 10m)
+		if var aColor = green:
+			aSlot(complete, 20m)
+		if var aColor = blue:
+			aSlot(complete, 30m)
+}
