@@ -96,17 +96,19 @@ public class ShortDSLFactoryImpl extends EFactoryImpl implements ShortDSLFactory
       case ShortDSLPackage.CAMERA: return createCamera();
       case ShortDSLPackage.CAMERA_COLOR: return createCameraColor();
       case ShortDSLPackage.LOGGING: return createLogging();
-      case ShortDSLPackage.LOOP: return createLoop();
+      case ShortDSLPackage.LOOP_VARIABLE: return createLoopVariable();
+      case ShortDSLPackage.LOOP_SLOT: return createLoopSlot();
       case ShortDSLPackage.MOVE_DISK: return createMoveDisk();
       case ShortDSLPackage.MOVE_ANY_SLOT: return createMoveAnySlot();
       case ShortDSLPackage.MOVE_CRANE: return createMoveCrane();
       case ShortDSLPackage.CRANE_ACTION: return createCraneAction();
       case ShortDSLPackage.CONDITION_VARIABLE: return createConditionVariable();
+      case ShortDSLPackage.CONDITION_SLOT: return createConditionSlot();
       case ShortDSLPackage.CONDITION_DEVICE: return createConditionDevice();
       case ShortDSLPackage.MARK_VARIABLE_VALUE: return createMarkVariableValue();
       case ShortDSLPackage.MARK_CAMERA_VALUE: return createMarkCameraValue();
-      case ShortDSLPackage.LOCAL_VARIABLE: return createLocalVariable();
-      case ShortDSLPackage.GLOBAL_VARIABLE: return createGlobalVariable();
+      case ShortDSLPackage.ORDINARY_VARIABLE: return createOrdinaryVariable();
+      case ShortDSLPackage.SLOT_VARIABLE: return createSlotVariable();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -532,10 +534,22 @@ public class ShortDSLFactoryImpl extends EFactoryImpl implements ShortDSLFactory
    * @generated
    */
   @Override
-  public Loop createLoop()
+  public LoopVariable createLoopVariable()
   {
-    LoopImpl loop = new LoopImpl();
-    return loop;
+    LoopVariableImpl loopVariable = new LoopVariableImpl();
+    return loopVariable;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public LoopSlot createLoopSlot()
+  {
+    LoopSlotImpl loopSlot = new LoopSlotImpl();
+    return loopSlot;
   }
 
   /**
@@ -604,6 +618,18 @@ public class ShortDSLFactoryImpl extends EFactoryImpl implements ShortDSLFactory
    * @generated
    */
   @Override
+  public ConditionSlot createConditionSlot()
+  {
+    ConditionSlotImpl conditionSlot = new ConditionSlotImpl();
+    return conditionSlot;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public ConditionDevice createConditionDevice()
   {
     ConditionDeviceImpl conditionDevice = new ConditionDeviceImpl();
@@ -640,10 +666,10 @@ public class ShortDSLFactoryImpl extends EFactoryImpl implements ShortDSLFactory
    * @generated
    */
   @Override
-  public LocalVariable createLocalVariable()
+  public OrdinaryVariable createOrdinaryVariable()
   {
-    LocalVariableImpl localVariable = new LocalVariableImpl();
-    return localVariable;
+    OrdinaryVariableImpl ordinaryVariable = new OrdinaryVariableImpl();
+    return ordinaryVariable;
   }
 
   /**
@@ -652,10 +678,10 @@ public class ShortDSLFactoryImpl extends EFactoryImpl implements ShortDSLFactory
    * @generated
    */
   @Override
-  public GlobalVariable createGlobalVariable()
+  public SlotVariable createSlotVariable()
   {
-    GlobalVariableImpl globalVariable = new GlobalVariableImpl();
-    return globalVariable;
+    SlotVariableImpl slotVariable = new SlotVariableImpl();
+    return slotVariable;
   }
 
   /**

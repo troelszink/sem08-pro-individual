@@ -57,12 +57,12 @@ class FactoryLangScopeProvider extends AbstractFactoryLangScopeProvider {
 		val root = EcoreUtil2.getRootContainer(operation) as Model
 		var tempDeviceName = ""
 		switch (operation) {
-			case operation instanceof CraneOperation: // xtend is little bitch
+			case operation instanceof CraneOperation:
 				tempDeviceName = (operation as CraneOperation).device.name
 			case operation instanceof DiskOperation:
 				tempDeviceName = (operation as DiskOperation).device.name
 		}
-		val deviceName = tempDeviceName // xtend is more little bitch
+		val deviceName = tempDeviceName
 		val device = root.configurations.filter[device.name == deviceName].map[device].toList
 		val targets = device.get(0).targets
 

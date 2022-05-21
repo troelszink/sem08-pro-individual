@@ -21,6 +21,10 @@ import xtext.factoryLang.shortDSL.shortDSL.DSLLong
 import xtext.factoryLang.shortDSL.shortDSL.DSLShort
 import xtext.factoryLang.shortDSL.shortDSL.DSLProgram
 import xtext.factoryLang.shortDSL.shortDSL.TIME_UNIT_S
+import xtext.factoryLang.shortDSL.shortDSL.DiskSlotStateValueS
+import xtext.factoryLang.shortDSL.shortDSL.ConditionVariable
+import xtext.factoryLang.shortDSL.shortDSL.OrdinaryVariable
+import xtext.factoryLang.shortDSL.shortDSL.SlotVariable
 
 /**
  * This class contains custom validation rules. 
@@ -44,14 +48,12 @@ class ShortDSLValidator extends AbstractShortDSLValidator {
 		val dslProgram = model.dslProgram as DSLProgram
 		
 		if (dslTypeValue == DSL_TYPE_ENUM.LONG) {
-			println("inside long")
 			if (dslProgram instanceof DSLShort) {
 				error('Wrong dsl syntax - use syntax of long dsl or switch to short dsl',
 					Literals.MODEL__DSL_TYPE, INVALID_VALUE)
 			}
 		}
 		else {
-			println("inside short")
 			if (dslProgram instanceof DSLLong) {
 				error('Wrong dsl syntax - use syntax of short dsl or switch to long dsl',
 					Literals.MODEL__DSL_TYPE, INVALID_VALUE)
@@ -79,7 +81,7 @@ class ShortDSLValidator extends AbstractShortDSLValidator {
 	}
 
 	@Check
-	def checkDiskMarkSlotOperation(MarkVariableValue mark) {
+	def checkMarkVariableValue(MarkVariableValue mark) {
 		if (!mark.eIsSet(Literals.MARK_VARIABLE_VALUE__TIME) &&
 			!mark.eIsSet(Literals.MARK_VARIABLE_VALUE__UNIT)) {
 			return
@@ -98,7 +100,7 @@ class ShortDSLValidator extends AbstractShortDSLValidator {
 	}
 
 	@Check
-	def checkDeviceConditionalValues(ConditionDevice condition) {
+	def checkConditionDeviceValues(ConditionDevice condition) {
 		if (!condition.eIsSet(Literals.CONDITION_DEVICE__DEVICE) ||
 			!condition.eIsSet(Literals.CONDITION_DEVICE__DEVICE_VALUE)) {
 			return
@@ -127,6 +129,12 @@ class ShortDSLValidator extends AbstractShortDSLValidator {
 						INVALID_VALUE)
 					return
 				}
+				if (value instanceof DiskSlotStateValueS) {
+					error(device.name + ' cannot be compared to disk slot states', Literals.CONDITION_DEVICE__DEVICE_VALUE,
+						INVALID_VALUE)
+					return
+				}
+				return
 			}
 			case device instanceof Camera: {
 				if (value instanceof DiskStateValueS) {
@@ -136,6 +144,41 @@ class ShortDSLValidator extends AbstractShortDSLValidator {
 				}
 				if (value instanceof ColorValueS) {
 					error(device.name + ' cannot be compared to colors', Literals.CONDITION_DEVICE__DEVICE_VALUE,
+						INVALID_VALUE)
+					return
+				}
+				return
+			}
+		}
+	}
+	
+	@Check
+	def checkConditionVariableValues(ConditionVariable condition) {
+		if (!condition.eIsSet(Literals.CONDITION_VARIABLE__VARIABLE) ||
+			!condition.eIsSet(Literals.CONDITION_VARIABLE__VARIABLE_VALUE)) {
+			return
+		}
+
+		val variable = condition.variable
+		val value = condition.variableValue.value
+
+		switch (variable) {
+			case variable instanceof OrdinaryVariable: {
+				if (value instanceof DiskStateValueS) {
+					error(variable.name + ' cannot be compared to disk states', Literals.CONDITION_VARIABLE__VARIABLE_VALUE,
+						INVALID_VALUE)
+					return
+				}
+				if (value instanceof DiskSlotStateValueS) {
+					error(variable.name + ' cannot be compared to disk slot states', Literals.CONDITION_VARIABLE__VARIABLE_VALUE,
+						INVALID_VALUE)
+					return
+				}
+				return
+			}
+			case variable instanceof SlotVariable: {
+				if (value instanceof DiskStateValueS) {
+					error(variable.name + ' cannot be compared to disk states', Literals.CONDITION_VARIABLE__VARIABLE_VALUE,
 						INVALID_VALUE)
 					return
 				}

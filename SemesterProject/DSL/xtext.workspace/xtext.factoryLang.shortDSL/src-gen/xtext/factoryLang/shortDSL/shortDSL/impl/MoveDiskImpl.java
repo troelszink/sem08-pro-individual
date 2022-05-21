@@ -11,9 +11,9 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import xtext.factoryLang.shortDSL.shortDSL.DiskZone;
-import xtext.factoryLang.shortDSL.shortDSL.LocalVariable;
 import xtext.factoryLang.shortDSL.shortDSL.MoveDisk;
 import xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage;
+import xtext.factoryLang.shortDSL.shortDSL.SlotVariable;
 
 /**
  * <!-- begin-user-doc -->
@@ -39,7 +39,7 @@ public class MoveDiskImpl extends MoveSImpl implements MoveDisk
    * @generated
    * @ordered
    */
-  protected LocalVariable slot;
+  protected SlotVariable slot;
 
   /**
    * The cached value of the '{@link #getZone() <em>Zone</em>}' reference.
@@ -78,12 +78,12 @@ public class MoveDiskImpl extends MoveSImpl implements MoveDisk
    * @generated
    */
   @Override
-  public LocalVariable getSlot()
+  public SlotVariable getSlot()
   {
     if (slot != null && slot.eIsProxy())
     {
       InternalEObject oldSlot = (InternalEObject)slot;
-      slot = (LocalVariable)eResolveProxy(oldSlot);
+      slot = (SlotVariable)eResolveProxy(oldSlot);
       if (slot != oldSlot)
       {
         if (eNotificationRequired())
@@ -98,7 +98,7 @@ public class MoveDiskImpl extends MoveSImpl implements MoveDisk
    * <!-- end-user-doc -->
    * @generated
    */
-  public LocalVariable basicGetSlot()
+  public SlotVariable basicGetSlot()
   {
     return slot;
   }
@@ -109,9 +109,9 @@ public class MoveDiskImpl extends MoveSImpl implements MoveDisk
    * @generated
    */
   @Override
-  public void setSlot(LocalVariable newSlot)
+  public void setSlot(SlotVariable newSlot)
   {
-    LocalVariable oldSlot = slot;
+    SlotVariable oldSlot = slot;
     slot = newSlot;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, ShortDSLPackage.MOVE_DISK__SLOT, oldSlot, slot));
@@ -193,7 +193,7 @@ public class MoveDiskImpl extends MoveSImpl implements MoveDisk
     switch (featureID)
     {
       case ShortDSLPackage.MOVE_DISK__SLOT:
-        setSlot((LocalVariable)newValue);
+        setSlot((SlotVariable)newValue);
         return;
       case ShortDSLPackage.MOVE_DISK__ZONE:
         setZone((DiskZone)newValue);
@@ -213,7 +213,7 @@ public class MoveDiskImpl extends MoveSImpl implements MoveDisk
     switch (featureID)
     {
       case ShortDSLPackage.MOVE_DISK__SLOT:
-        setSlot((LocalVariable)null);
+        setSlot((SlotVariable)null);
         return;
       case ShortDSLPackage.MOVE_DISK__ZONE:
         setZone((DiskZone)null);

@@ -5,24 +5,24 @@ package xtext.factoryLang.shortDSL.shortDSL.impl;
 
 import org.eclipse.emf.ecore.EClass;
 
-import xtext.factoryLang.shortDSL.shortDSL.GlobalVariable;
 import xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage;
+import xtext.factoryLang.shortDSL.shortDSL.SlotVariable;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Global Variable</b></em>'.
+ * An implementation of the model object '<em><b>Slot Variable</b></em>'.
  * <!-- end-user-doc -->
  *
  * @generated
  */
-public class GlobalVariableImpl extends VariableSImpl implements GlobalVariable
+public class SlotVariableImpl extends VariableSImpl implements SlotVariable
 {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected GlobalVariableImpl()
+  protected SlotVariableImpl()
   {
     super();
   }
@@ -35,7 +35,7 @@ public class GlobalVariableImpl extends VariableSImpl implements GlobalVariable
   @Override
   protected EClass eStaticClass()
   {
-    return ShortDSLPackage.Literals.GLOBAL_VARIABLE;
+    return ShortDSLPackage.Literals.SLOT_VARIABLE;
   }
 
-} //GlobalVariableImpl
+} //SlotVariableImpl

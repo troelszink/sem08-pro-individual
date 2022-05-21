@@ -5,6 +5,7 @@ package xtext.factoryLang.shortDSL.shortDSL.impl;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
@@ -12,9 +13,12 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import xtext.factoryLang.shortDSL.shortDSL.COMPARISON_OPERATOR_S;
 import xtext.factoryLang.shortDSL.shortDSL.ConditionS;
 import xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage;
 import xtext.factoryLang.shortDSL.shortDSL.StatementS;
@@ -27,6 +31,7 @@ import xtext.factoryLang.shortDSL.shortDSL.StatementS;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link xtext.factoryLang.shortDSL.shortDSL.impl.ConditionSImpl#getComparisonOperator <em>Comparison Operator</em>}</li>
  *   <li>{@link xtext.factoryLang.shortDSL.shortDSL.impl.ConditionSImpl#getStatements <em>Statements</em>}</li>
  * </ul>
  *
@@ -34,6 +39,26 @@ import xtext.factoryLang.shortDSL.shortDSL.StatementS;
  */
 public class ConditionSImpl extends StatementSImpl implements ConditionS
 {
+  /**
+   * The default value of the '{@link #getComparisonOperator() <em>Comparison Operator</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getComparisonOperator()
+   * @generated
+   * @ordered
+   */
+  protected static final COMPARISON_OPERATOR_S COMPARISON_OPERATOR_EDEFAULT = COMPARISON_OPERATOR_S.EQUAL;
+
+  /**
+   * The cached value of the '{@link #getComparisonOperator() <em>Comparison Operator</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getComparisonOperator()
+   * @generated
+   * @ordered
+   */
+  protected COMPARISON_OPERATOR_S comparisonOperator = COMPARISON_OPERATOR_EDEFAULT;
+
   /**
    * The cached value of the '{@link #getStatements() <em>Statements</em>}' containment reference list.
    * <!-- begin-user-doc -->
@@ -63,6 +88,31 @@ public class ConditionSImpl extends StatementSImpl implements ConditionS
   protected EClass eStaticClass()
   {
     return ShortDSLPackage.Literals.CONDITION_S;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public COMPARISON_OPERATOR_S getComparisonOperator()
+  {
+    return comparisonOperator;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setComparisonOperator(COMPARISON_OPERATOR_S newComparisonOperator)
+  {
+    COMPARISON_OPERATOR_S oldComparisonOperator = comparisonOperator;
+    comparisonOperator = newComparisonOperator == null ? COMPARISON_OPERATOR_EDEFAULT : newComparisonOperator;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ShortDSLPackage.CONDITION_S__COMPARISON_OPERATOR, oldComparisonOperator, comparisonOperator));
   }
 
   /**
@@ -106,6 +156,8 @@ public class ConditionSImpl extends StatementSImpl implements ConditionS
   {
     switch (featureID)
     {
+      case ShortDSLPackage.CONDITION_S__COMPARISON_OPERATOR:
+        return getComparisonOperator();
       case ShortDSLPackage.CONDITION_S__STATEMENTS:
         return getStatements();
     }
@@ -123,6 +175,9 @@ public class ConditionSImpl extends StatementSImpl implements ConditionS
   {
     switch (featureID)
     {
+      case ShortDSLPackage.CONDITION_S__COMPARISON_OPERATOR:
+        setComparisonOperator((COMPARISON_OPERATOR_S)newValue);
+        return;
       case ShortDSLPackage.CONDITION_S__STATEMENTS:
         getStatements().clear();
         getStatements().addAll((Collection<? extends StatementS>)newValue);
@@ -141,6 +196,9 @@ public class ConditionSImpl extends StatementSImpl implements ConditionS
   {
     switch (featureID)
     {
+      case ShortDSLPackage.CONDITION_S__COMPARISON_OPERATOR:
+        setComparisonOperator(COMPARISON_OPERATOR_EDEFAULT);
+        return;
       case ShortDSLPackage.CONDITION_S__STATEMENTS:
         getStatements().clear();
         return;
@@ -158,10 +216,29 @@ public class ConditionSImpl extends StatementSImpl implements ConditionS
   {
     switch (featureID)
     {
+      case ShortDSLPackage.CONDITION_S__COMPARISON_OPERATOR:
+        return comparisonOperator != COMPARISON_OPERATOR_EDEFAULT;
       case ShortDSLPackage.CONDITION_S__STATEMENTS:
         return statements != null && !statements.isEmpty();
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
+
+    StringBuilder result = new StringBuilder(super.toString());
+    result.append(" (comparisonOperator: ");
+    result.append(comparisonOperator);
+    result.append(')');
+    return result.toString();
   }
 
 } //ConditionSImpl

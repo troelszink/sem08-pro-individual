@@ -331,13 +331,22 @@ public interface ShortDSLPackage extends EPackage
   int CONDITION_S = 10;
 
   /**
+   * The feature id for the '<em><b>Comparison Operator</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONDITION_S__COMPARISON_OPERATOR = STATEMENT_S_FEATURE_COUNT + 0;
+
+  /**
    * The feature id for the '<em><b>Statements</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CONDITION_S__STATEMENTS = STATEMENT_S_FEATURE_COUNT + 0;
+  int CONDITION_S__STATEMENTS = STATEMENT_S_FEATURE_COUNT + 1;
 
   /**
    * The number of structural features of the '<em>Condition S</em>' class.
@@ -346,7 +355,7 @@ public interface ShortDSLPackage extends EPackage
    * @generated
    * @ordered
    */
-  int CONDITION_S_FEATURE_COUNT = STATEMENT_S_FEATURE_COUNT + 1;
+  int CONDITION_S_FEATURE_COUNT = STATEMENT_S_FEATURE_COUNT + 2;
 
   /**
    * The meta object id for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.MarkSImpl <em>Mark S</em>}' class.
@@ -971,23 +980,23 @@ public interface ShortDSLPackage extends EPackage
   int LOGGING_FEATURE_COUNT = LOGGING_S_FEATURE_COUNT + 0;
 
   /**
-   * The meta object id for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.LoopImpl <em>Loop</em>}' class.
+   * The meta object id for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.LoopVariableImpl <em>Loop Variable</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see xtext.factoryLang.shortDSL.shortDSL.impl.LoopImpl
-   * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getLoop()
+   * @see xtext.factoryLang.shortDSL.shortDSL.impl.LoopVariableImpl
+   * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getLoopVariable()
    * @generated
    */
-  int LOOP = 30;
+  int LOOP_VARIABLE = 30;
 
   /**
-   * The feature id for the '<em><b>Variable</b></em>' containment reference.
+   * The feature id for the '<em><b>Ordinary Variable</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int LOOP__VARIABLE = STATEMENT_S_FEATURE_COUNT + 0;
+  int LOOP_VARIABLE__ORDINARY_VARIABLE = STATEMENT_S_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Comparison Operator</b></em>' attribute.
@@ -996,7 +1005,7 @@ public interface ShortDSLPackage extends EPackage
    * @generated
    * @ordered
    */
-  int LOOP__COMPARISON_OPERATOR = STATEMENT_S_FEATURE_COUNT + 1;
+  int LOOP_VARIABLE__COMPARISON_OPERATOR = STATEMENT_S_FEATURE_COUNT + 1;
 
   /**
    * The feature id for the '<em><b>Slot State</b></em>' containment reference.
@@ -1005,7 +1014,7 @@ public interface ShortDSLPackage extends EPackage
    * @generated
    * @ordered
    */
-  int LOOP__SLOT_STATE = STATEMENT_S_FEATURE_COUNT + 2;
+  int LOOP_VARIABLE__SLOT_STATE = STATEMENT_S_FEATURE_COUNT + 2;
 
   /**
    * The feature id for the '<em><b>Statements</b></em>' containment reference list.
@@ -1014,16 +1023,71 @@ public interface ShortDSLPackage extends EPackage
    * @generated
    * @ordered
    */
-  int LOOP__STATEMENTS = STATEMENT_S_FEATURE_COUNT + 3;
+  int LOOP_VARIABLE__STATEMENTS = STATEMENT_S_FEATURE_COUNT + 3;
 
   /**
-   * The number of structural features of the '<em>Loop</em>' class.
+   * The number of structural features of the '<em>Loop Variable</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int LOOP_FEATURE_COUNT = STATEMENT_S_FEATURE_COUNT + 4;
+  int LOOP_VARIABLE_FEATURE_COUNT = STATEMENT_S_FEATURE_COUNT + 4;
+
+  /**
+   * The meta object id for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.LoopSlotImpl <em>Loop Slot</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see xtext.factoryLang.shortDSL.shortDSL.impl.LoopSlotImpl
+   * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getLoopSlot()
+   * @generated
+   */
+  int LOOP_SLOT = 31;
+
+  /**
+   * The feature id for the '<em><b>Slot Variable</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LOOP_SLOT__SLOT_VARIABLE = STATEMENT_S_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Comparison Operator</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LOOP_SLOT__COMPARISON_OPERATOR = STATEMENT_S_FEATURE_COUNT + 1;
+
+  /**
+   * The feature id for the '<em><b>Slot State</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LOOP_SLOT__SLOT_STATE = STATEMENT_S_FEATURE_COUNT + 2;
+
+  /**
+   * The feature id for the '<em><b>Statements</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LOOP_SLOT__STATEMENTS = STATEMENT_S_FEATURE_COUNT + 3;
+
+  /**
+   * The number of structural features of the '<em>Loop Slot</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LOOP_SLOT_FEATURE_COUNT = STATEMENT_S_FEATURE_COUNT + 4;
 
   /**
    * The meta object id for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.MoveDiskImpl <em>Move Disk</em>}' class.
@@ -1033,7 +1097,7 @@ public interface ShortDSLPackage extends EPackage
    * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getMoveDisk()
    * @generated
    */
-  int MOVE_DISK = 31;
+  int MOVE_DISK = 32;
 
   /**
    * The feature id for the '<em><b>Slot</b></em>' reference.
@@ -1070,7 +1134,7 @@ public interface ShortDSLPackage extends EPackage
    * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getMoveAnySlot()
    * @generated
    */
-  int MOVE_ANY_SLOT = 32;
+  int MOVE_ANY_SLOT = 33;
 
   /**
    * The feature id for the '<em><b>State</b></em>' containment reference.
@@ -1116,7 +1180,7 @@ public interface ShortDSLPackage extends EPackage
    * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getMoveCrane()
    * @generated
    */
-  int MOVE_CRANE = 33;
+  int MOVE_CRANE = 34;
 
   /**
    * The feature id for the '<em><b>Crane</b></em>' reference.
@@ -1162,7 +1226,7 @@ public interface ShortDSLPackage extends EPackage
    * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getCraneAction()
    * @generated
    */
-  int CRANE_ACTION = 34;
+  int CRANE_ACTION = 35;
 
   /**
    * The number of structural features of the '<em>Crane Action</em>' class.
@@ -1181,7 +1245,16 @@ public interface ShortDSLPackage extends EPackage
    * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getConditionVariable()
    * @generated
    */
-  int CONDITION_VARIABLE = 35;
+  int CONDITION_VARIABLE = 36;
+
+  /**
+   * The feature id for the '<em><b>Comparison Operator</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONDITION_VARIABLE__COMPARISON_OPERATOR = CONDITION_S__COMPARISON_OPERATOR;
 
   /**
    * The feature id for the '<em><b>Statements</b></em>' containment reference list.
@@ -1202,22 +1275,13 @@ public interface ShortDSLPackage extends EPackage
   int CONDITION_VARIABLE__VARIABLE = CONDITION_S_FEATURE_COUNT + 0;
 
   /**
-   * The feature id for the '<em><b>Comparison Operator Variable</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CONDITION_VARIABLE__COMPARISON_OPERATOR_VARIABLE = CONDITION_S_FEATURE_COUNT + 1;
-
-  /**
    * The feature id for the '<em><b>Variable Value</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CONDITION_VARIABLE__VARIABLE_VALUE = CONDITION_S_FEATURE_COUNT + 2;
+  int CONDITION_VARIABLE__VARIABLE_VALUE = CONDITION_S_FEATURE_COUNT + 1;
 
   /**
    * The number of structural features of the '<em>Condition Variable</em>' class.
@@ -1226,7 +1290,62 @@ public interface ShortDSLPackage extends EPackage
    * @generated
    * @ordered
    */
-  int CONDITION_VARIABLE_FEATURE_COUNT = CONDITION_S_FEATURE_COUNT + 3;
+  int CONDITION_VARIABLE_FEATURE_COUNT = CONDITION_S_FEATURE_COUNT + 2;
+
+  /**
+   * The meta object id for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.ConditionSlotImpl <em>Condition Slot</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see xtext.factoryLang.shortDSL.shortDSL.impl.ConditionSlotImpl
+   * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getConditionSlot()
+   * @generated
+   */
+  int CONDITION_SLOT = 37;
+
+  /**
+   * The feature id for the '<em><b>Comparison Operator</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONDITION_SLOT__COMPARISON_OPERATOR = CONDITION_S__COMPARISON_OPERATOR;
+
+  /**
+   * The feature id for the '<em><b>Statements</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONDITION_SLOT__STATEMENTS = CONDITION_S__STATEMENTS;
+
+  /**
+   * The feature id for the '<em><b>Variable</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONDITION_SLOT__VARIABLE = CONDITION_S_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Slot Value</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONDITION_SLOT__SLOT_VALUE = CONDITION_S_FEATURE_COUNT + 1;
+
+  /**
+   * The number of structural features of the '<em>Condition Slot</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONDITION_SLOT_FEATURE_COUNT = CONDITION_S_FEATURE_COUNT + 2;
 
   /**
    * The meta object id for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.ConditionDeviceImpl <em>Condition Device</em>}' class.
@@ -1236,7 +1355,16 @@ public interface ShortDSLPackage extends EPackage
    * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getConditionDevice()
    * @generated
    */
-  int CONDITION_DEVICE = 36;
+  int CONDITION_DEVICE = 38;
+
+  /**
+   * The feature id for the '<em><b>Comparison Operator</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONDITION_DEVICE__COMPARISON_OPERATOR = CONDITION_S__COMPARISON_OPERATOR;
 
   /**
    * The feature id for the '<em><b>Statements</b></em>' containment reference list.
@@ -1257,22 +1385,13 @@ public interface ShortDSLPackage extends EPackage
   int CONDITION_DEVICE__DEVICE = CONDITION_S_FEATURE_COUNT + 0;
 
   /**
-   * The feature id for the '<em><b>Comparison Operator Device</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CONDITION_DEVICE__COMPARISON_OPERATOR_DEVICE = CONDITION_S_FEATURE_COUNT + 1;
-
-  /**
    * The feature id for the '<em><b>Device Value</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CONDITION_DEVICE__DEVICE_VALUE = CONDITION_S_FEATURE_COUNT + 2;
+  int CONDITION_DEVICE__DEVICE_VALUE = CONDITION_S_FEATURE_COUNT + 1;
 
   /**
    * The number of structural features of the '<em>Condition Device</em>' class.
@@ -1281,7 +1400,7 @@ public interface ShortDSLPackage extends EPackage
    * @generated
    * @ordered
    */
-  int CONDITION_DEVICE_FEATURE_COUNT = CONDITION_S_FEATURE_COUNT + 3;
+  int CONDITION_DEVICE_FEATURE_COUNT = CONDITION_S_FEATURE_COUNT + 2;
 
   /**
    * The meta object id for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.MarkVariableValueImpl <em>Mark Variable Value</em>}' class.
@@ -1291,7 +1410,7 @@ public interface ShortDSLPackage extends EPackage
    * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getMarkVariableValue()
    * @generated
    */
-  int MARK_VARIABLE_VALUE = 37;
+  int MARK_VARIABLE_VALUE = 39;
 
   /**
    * The feature id for the '<em><b>Variable</b></em>' reference.
@@ -1346,7 +1465,7 @@ public interface ShortDSLPackage extends EPackage
    * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getMarkCameraValue()
    * @generated
    */
-  int MARK_CAMERA_VALUE = 38;
+  int MARK_CAMERA_VALUE = 40;
 
   /**
    * The feature id for the '<em><b>Camera</b></em>' reference.
@@ -1376,14 +1495,14 @@ public interface ShortDSLPackage extends EPackage
   int MARK_CAMERA_VALUE_FEATURE_COUNT = MARK_S_FEATURE_COUNT + 2;
 
   /**
-   * The meta object id for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.LocalVariableImpl <em>Local Variable</em>}' class.
+   * The meta object id for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.OrdinaryVariableImpl <em>Ordinary Variable</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see xtext.factoryLang.shortDSL.shortDSL.impl.LocalVariableImpl
-   * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getLocalVariable()
+   * @see xtext.factoryLang.shortDSL.shortDSL.impl.OrdinaryVariableImpl
+   * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getOrdinaryVariable()
    * @generated
    */
-  int LOCAL_VARIABLE = 39;
+  int ORDINARY_VARIABLE = 41;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1392,26 +1511,26 @@ public interface ShortDSLPackage extends EPackage
    * @generated
    * @ordered
    */
-  int LOCAL_VARIABLE__NAME = VARIABLE_S__NAME;
+  int ORDINARY_VARIABLE__NAME = VARIABLE_S__NAME;
 
   /**
-   * The number of structural features of the '<em>Local Variable</em>' class.
+   * The number of structural features of the '<em>Ordinary Variable</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int LOCAL_VARIABLE_FEATURE_COUNT = VARIABLE_S_FEATURE_COUNT + 0;
+  int ORDINARY_VARIABLE_FEATURE_COUNT = VARIABLE_S_FEATURE_COUNT + 0;
 
   /**
-   * The meta object id for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.GlobalVariableImpl <em>Global Variable</em>}' class.
+   * The meta object id for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.SlotVariableImpl <em>Slot Variable</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see xtext.factoryLang.shortDSL.shortDSL.impl.GlobalVariableImpl
-   * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getGlobalVariable()
+   * @see xtext.factoryLang.shortDSL.shortDSL.impl.SlotVariableImpl
+   * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getSlotVariable()
    * @generated
    */
-  int GLOBAL_VARIABLE = 40;
+  int SLOT_VARIABLE = 42;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1420,16 +1539,16 @@ public interface ShortDSLPackage extends EPackage
    * @generated
    * @ordered
    */
-  int GLOBAL_VARIABLE__NAME = VARIABLE_S__NAME;
+  int SLOT_VARIABLE__NAME = VARIABLE_S__NAME;
 
   /**
-   * The number of structural features of the '<em>Global Variable</em>' class.
+   * The number of structural features of the '<em>Slot Variable</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int GLOBAL_VARIABLE_FEATURE_COUNT = VARIABLE_S_FEATURE_COUNT + 0;
+  int SLOT_VARIABLE_FEATURE_COUNT = VARIABLE_S_FEATURE_COUNT + 0;
 
   /**
    * The meta object id for the '{@link xtext.factoryLang.shortDSL.shortDSL.DSL_TYPE_ENUM <em>DSL TYPE ENUM</em>}' enum.
@@ -1439,7 +1558,7 @@ public interface ShortDSLPackage extends EPackage
    * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getDSL_TYPE_ENUM()
    * @generated
    */
-  int DSL_TYPE_ENUM = 41;
+  int DSL_TYPE_ENUM = 43;
 
   /**
    * The meta object id for the '{@link xtext.factoryLang.shortDSL.shortDSL.COMPARISON_OPERATOR_S <em>COMPARISON OPERATOR S</em>}' enum.
@@ -1449,7 +1568,7 @@ public interface ShortDSLPackage extends EPackage
    * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getCOMPARISON_OPERATOR_S()
    * @generated
    */
-  int COMPARISON_OPERATOR_S = 42;
+  int COMPARISON_OPERATOR_S = 44;
 
   /**
    * The meta object id for the '{@link xtext.factoryLang.shortDSL.shortDSL.COLOR_S <em>COLOR S</em>}' enum.
@@ -1459,7 +1578,7 @@ public interface ShortDSLPackage extends EPackage
    * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getCOLOR_S()
    * @generated
    */
-  int COLOR_S = 43;
+  int COLOR_S = 45;
 
   /**
    * The meta object id for the '{@link xtext.factoryLang.shortDSL.shortDSL.DISK_SLOT_STATES_S <em>DISK SLOT STATES S</em>}' enum.
@@ -1469,7 +1588,7 @@ public interface ShortDSLPackage extends EPackage
    * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getDISK_SLOT_STATES_S()
    * @generated
    */
-  int DISK_SLOT_STATES_S = 44;
+  int DISK_SLOT_STATES_S = 46;
 
   /**
    * The meta object id for the '{@link xtext.factoryLang.shortDSL.shortDSL.DISK_STATES_S <em>DISK STATES S</em>}' enum.
@@ -1479,7 +1598,7 @@ public interface ShortDSLPackage extends EPackage
    * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getDISK_STATES_S()
    * @generated
    */
-  int DISK_STATES_S = 45;
+  int DISK_STATES_S = 47;
 
   /**
    * The meta object id for the '{@link xtext.factoryLang.shortDSL.shortDSL.TIME_UNIT_S <em>TIME UNIT S</em>}' enum.
@@ -1489,7 +1608,7 @@ public interface ShortDSLPackage extends EPackage
    * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getTIME_UNIT_S()
    * @generated
    */
-  int TIME_UNIT_S = 46;
+  int TIME_UNIT_S = 48;
 
 
   /**
@@ -1689,6 +1808,17 @@ public interface ShortDSLPackage extends EPackage
    * @generated
    */
   EClass getConditionS();
+
+  /**
+   * Returns the meta object for the attribute '{@link xtext.factoryLang.shortDSL.shortDSL.ConditionS#getComparisonOperator <em>Comparison Operator</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Comparison Operator</em>'.
+   * @see xtext.factoryLang.shortDSL.shortDSL.ConditionS#getComparisonOperator()
+   * @see #getConditionS()
+   * @generated
+   */
+  EAttribute getConditionS_ComparisonOperator();
 
   /**
    * Returns the meta object for the containment reference list '{@link xtext.factoryLang.shortDSL.shortDSL.ConditionS#getStatements <em>Statements</em>}'.
@@ -2112,58 +2242,112 @@ public interface ShortDSLPackage extends EPackage
   EClass getLogging();
 
   /**
-   * Returns the meta object for class '{@link xtext.factoryLang.shortDSL.shortDSL.Loop <em>Loop</em>}'.
+   * Returns the meta object for class '{@link xtext.factoryLang.shortDSL.shortDSL.LoopVariable <em>Loop Variable</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Loop</em>'.
-   * @see xtext.factoryLang.shortDSL.shortDSL.Loop
+   * @return the meta object for class '<em>Loop Variable</em>'.
+   * @see xtext.factoryLang.shortDSL.shortDSL.LoopVariable
    * @generated
    */
-  EClass getLoop();
+  EClass getLoopVariable();
 
   /**
-   * Returns the meta object for the containment reference '{@link xtext.factoryLang.shortDSL.shortDSL.Loop#getVariable <em>Variable</em>}'.
+   * Returns the meta object for the containment reference '{@link xtext.factoryLang.shortDSL.shortDSL.LoopVariable#getOrdinaryVariable <em>Ordinary Variable</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Variable</em>'.
-   * @see xtext.factoryLang.shortDSL.shortDSL.Loop#getVariable()
-   * @see #getLoop()
+   * @return the meta object for the containment reference '<em>Ordinary Variable</em>'.
+   * @see xtext.factoryLang.shortDSL.shortDSL.LoopVariable#getOrdinaryVariable()
+   * @see #getLoopVariable()
    * @generated
    */
-  EReference getLoop_Variable();
+  EReference getLoopVariable_OrdinaryVariable();
 
   /**
-   * Returns the meta object for the attribute '{@link xtext.factoryLang.shortDSL.shortDSL.Loop#getComparisonOperator <em>Comparison Operator</em>}'.
+   * Returns the meta object for the attribute '{@link xtext.factoryLang.shortDSL.shortDSL.LoopVariable#getComparisonOperator <em>Comparison Operator</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Comparison Operator</em>'.
-   * @see xtext.factoryLang.shortDSL.shortDSL.Loop#getComparisonOperator()
-   * @see #getLoop()
+   * @see xtext.factoryLang.shortDSL.shortDSL.LoopVariable#getComparisonOperator()
+   * @see #getLoopVariable()
    * @generated
    */
-  EAttribute getLoop_ComparisonOperator();
+  EAttribute getLoopVariable_ComparisonOperator();
 
   /**
-   * Returns the meta object for the containment reference '{@link xtext.factoryLang.shortDSL.shortDSL.Loop#getSlotState <em>Slot State</em>}'.
+   * Returns the meta object for the containment reference '{@link xtext.factoryLang.shortDSL.shortDSL.LoopVariable#getSlotState <em>Slot State</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the containment reference '<em>Slot State</em>'.
-   * @see xtext.factoryLang.shortDSL.shortDSL.Loop#getSlotState()
-   * @see #getLoop()
+   * @see xtext.factoryLang.shortDSL.shortDSL.LoopVariable#getSlotState()
+   * @see #getLoopVariable()
    * @generated
    */
-  EReference getLoop_SlotState();
+  EReference getLoopVariable_SlotState();
 
   /**
-   * Returns the meta object for the containment reference list '{@link xtext.factoryLang.shortDSL.shortDSL.Loop#getStatements <em>Statements</em>}'.
+   * Returns the meta object for the containment reference list '{@link xtext.factoryLang.shortDSL.shortDSL.LoopVariable#getStatements <em>Statements</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the containment reference list '<em>Statements</em>'.
-   * @see xtext.factoryLang.shortDSL.shortDSL.Loop#getStatements()
-   * @see #getLoop()
+   * @see xtext.factoryLang.shortDSL.shortDSL.LoopVariable#getStatements()
+   * @see #getLoopVariable()
    * @generated
    */
-  EReference getLoop_Statements();
+  EReference getLoopVariable_Statements();
+
+  /**
+   * Returns the meta object for class '{@link xtext.factoryLang.shortDSL.shortDSL.LoopSlot <em>Loop Slot</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Loop Slot</em>'.
+   * @see xtext.factoryLang.shortDSL.shortDSL.LoopSlot
+   * @generated
+   */
+  EClass getLoopSlot();
+
+  /**
+   * Returns the meta object for the containment reference '{@link xtext.factoryLang.shortDSL.shortDSL.LoopSlot#getSlotVariable <em>Slot Variable</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Slot Variable</em>'.
+   * @see xtext.factoryLang.shortDSL.shortDSL.LoopSlot#getSlotVariable()
+   * @see #getLoopSlot()
+   * @generated
+   */
+  EReference getLoopSlot_SlotVariable();
+
+  /**
+   * Returns the meta object for the attribute '{@link xtext.factoryLang.shortDSL.shortDSL.LoopSlot#getComparisonOperator <em>Comparison Operator</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Comparison Operator</em>'.
+   * @see xtext.factoryLang.shortDSL.shortDSL.LoopSlot#getComparisonOperator()
+   * @see #getLoopSlot()
+   * @generated
+   */
+  EAttribute getLoopSlot_ComparisonOperator();
+
+  /**
+   * Returns the meta object for the containment reference '{@link xtext.factoryLang.shortDSL.shortDSL.LoopSlot#getSlotState <em>Slot State</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Slot State</em>'.
+   * @see xtext.factoryLang.shortDSL.shortDSL.LoopSlot#getSlotState()
+   * @see #getLoopSlot()
+   * @generated
+   */
+  EReference getLoopSlot_SlotState();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link xtext.factoryLang.shortDSL.shortDSL.LoopSlot#getStatements <em>Statements</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Statements</em>'.
+   * @see xtext.factoryLang.shortDSL.shortDSL.LoopSlot#getStatements()
+   * @see #getLoopSlot()
+   * @generated
+   */
+  EReference getLoopSlot_Statements();
 
   /**
    * Returns the meta object for class '{@link xtext.factoryLang.shortDSL.shortDSL.MoveDisk <em>Move Disk</em>}'.
@@ -2315,17 +2499,6 @@ public interface ShortDSLPackage extends EPackage
   EReference getConditionVariable_Variable();
 
   /**
-   * Returns the meta object for the attribute '{@link xtext.factoryLang.shortDSL.shortDSL.ConditionVariable#getComparisonOperatorVariable <em>Comparison Operator Variable</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Comparison Operator Variable</em>'.
-   * @see xtext.factoryLang.shortDSL.shortDSL.ConditionVariable#getComparisonOperatorVariable()
-   * @see #getConditionVariable()
-   * @generated
-   */
-  EAttribute getConditionVariable_ComparisonOperatorVariable();
-
-  /**
    * Returns the meta object for the containment reference '{@link xtext.factoryLang.shortDSL.shortDSL.ConditionVariable#getVariableValue <em>Variable Value</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2335,6 +2508,38 @@ public interface ShortDSLPackage extends EPackage
    * @generated
    */
   EReference getConditionVariable_VariableValue();
+
+  /**
+   * Returns the meta object for class '{@link xtext.factoryLang.shortDSL.shortDSL.ConditionSlot <em>Condition Slot</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Condition Slot</em>'.
+   * @see xtext.factoryLang.shortDSL.shortDSL.ConditionSlot
+   * @generated
+   */
+  EClass getConditionSlot();
+
+  /**
+   * Returns the meta object for the reference '{@link xtext.factoryLang.shortDSL.shortDSL.ConditionSlot#getVariable <em>Variable</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Variable</em>'.
+   * @see xtext.factoryLang.shortDSL.shortDSL.ConditionSlot#getVariable()
+   * @see #getConditionSlot()
+   * @generated
+   */
+  EReference getConditionSlot_Variable();
+
+  /**
+   * Returns the meta object for the containment reference '{@link xtext.factoryLang.shortDSL.shortDSL.ConditionSlot#getSlotValue <em>Slot Value</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Slot Value</em>'.
+   * @see xtext.factoryLang.shortDSL.shortDSL.ConditionSlot#getSlotValue()
+   * @see #getConditionSlot()
+   * @generated
+   */
+  EReference getConditionSlot_SlotValue();
 
   /**
    * Returns the meta object for class '{@link xtext.factoryLang.shortDSL.shortDSL.ConditionDevice <em>Condition Device</em>}'.
@@ -2356,17 +2561,6 @@ public interface ShortDSLPackage extends EPackage
    * @generated
    */
   EReference getConditionDevice_Device();
-
-  /**
-   * Returns the meta object for the attribute '{@link xtext.factoryLang.shortDSL.shortDSL.ConditionDevice#getComparisonOperatorDevice <em>Comparison Operator Device</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Comparison Operator Device</em>'.
-   * @see xtext.factoryLang.shortDSL.shortDSL.ConditionDevice#getComparisonOperatorDevice()
-   * @see #getConditionDevice()
-   * @generated
-   */
-  EAttribute getConditionDevice_ComparisonOperatorDevice();
 
   /**
    * Returns the meta object for the containment reference '{@link xtext.factoryLang.shortDSL.shortDSL.ConditionDevice#getDeviceValue <em>Device Value</em>}'.
@@ -2466,24 +2660,24 @@ public interface ShortDSLPackage extends EPackage
   EReference getMarkCameraValue_Variable();
 
   /**
-   * Returns the meta object for class '{@link xtext.factoryLang.shortDSL.shortDSL.LocalVariable <em>Local Variable</em>}'.
+   * Returns the meta object for class '{@link xtext.factoryLang.shortDSL.shortDSL.OrdinaryVariable <em>Ordinary Variable</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Local Variable</em>'.
-   * @see xtext.factoryLang.shortDSL.shortDSL.LocalVariable
+   * @return the meta object for class '<em>Ordinary Variable</em>'.
+   * @see xtext.factoryLang.shortDSL.shortDSL.OrdinaryVariable
    * @generated
    */
-  EClass getLocalVariable();
+  EClass getOrdinaryVariable();
 
   /**
-   * Returns the meta object for class '{@link xtext.factoryLang.shortDSL.shortDSL.GlobalVariable <em>Global Variable</em>}'.
+   * Returns the meta object for class '{@link xtext.factoryLang.shortDSL.shortDSL.SlotVariable <em>Slot Variable</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Global Variable</em>'.
-   * @see xtext.factoryLang.shortDSL.shortDSL.GlobalVariable
+   * @return the meta object for class '<em>Slot Variable</em>'.
+   * @see xtext.factoryLang.shortDSL.shortDSL.SlotVariable
    * @generated
    */
-  EClass getGlobalVariable();
+  EClass getSlotVariable();
 
   /**
    * Returns the meta object for enum '{@link xtext.factoryLang.shortDSL.shortDSL.DSL_TYPE_ENUM <em>DSL TYPE ENUM</em>}'.
@@ -2741,6 +2935,14 @@ public interface ShortDSLPackage extends EPackage
      * @generated
      */
     EClass CONDITION_S = eINSTANCE.getConditionS();
+
+    /**
+     * The meta object literal for the '<em><b>Comparison Operator</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute CONDITION_S__COMPARISON_OPERATOR = eINSTANCE.getConditionS_ComparisonOperator();
 
     /**
      * The meta object literal for the '<em><b>Statements</b></em>' containment reference list feature.
@@ -3101,22 +3303,22 @@ public interface ShortDSLPackage extends EPackage
     EClass LOGGING = eINSTANCE.getLogging();
 
     /**
-     * The meta object literal for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.LoopImpl <em>Loop</em>}' class.
+     * The meta object literal for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.LoopVariableImpl <em>Loop Variable</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see xtext.factoryLang.shortDSL.shortDSL.impl.LoopImpl
-     * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getLoop()
+     * @see xtext.factoryLang.shortDSL.shortDSL.impl.LoopVariableImpl
+     * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getLoopVariable()
      * @generated
      */
-    EClass LOOP = eINSTANCE.getLoop();
+    EClass LOOP_VARIABLE = eINSTANCE.getLoopVariable();
 
     /**
-     * The meta object literal for the '<em><b>Variable</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Ordinary Variable</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference LOOP__VARIABLE = eINSTANCE.getLoop_Variable();
+    EReference LOOP_VARIABLE__ORDINARY_VARIABLE = eINSTANCE.getLoopVariable_OrdinaryVariable();
 
     /**
      * The meta object literal for the '<em><b>Comparison Operator</b></em>' attribute feature.
@@ -3124,7 +3326,7 @@ public interface ShortDSLPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute LOOP__COMPARISON_OPERATOR = eINSTANCE.getLoop_ComparisonOperator();
+    EAttribute LOOP_VARIABLE__COMPARISON_OPERATOR = eINSTANCE.getLoopVariable_ComparisonOperator();
 
     /**
      * The meta object literal for the '<em><b>Slot State</b></em>' containment reference feature.
@@ -3132,7 +3334,7 @@ public interface ShortDSLPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference LOOP__SLOT_STATE = eINSTANCE.getLoop_SlotState();
+    EReference LOOP_VARIABLE__SLOT_STATE = eINSTANCE.getLoopVariable_SlotState();
 
     /**
      * The meta object literal for the '<em><b>Statements</b></em>' containment reference list feature.
@@ -3140,7 +3342,49 @@ public interface ShortDSLPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference LOOP__STATEMENTS = eINSTANCE.getLoop_Statements();
+    EReference LOOP_VARIABLE__STATEMENTS = eINSTANCE.getLoopVariable_Statements();
+
+    /**
+     * The meta object literal for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.LoopSlotImpl <em>Loop Slot</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see xtext.factoryLang.shortDSL.shortDSL.impl.LoopSlotImpl
+     * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getLoopSlot()
+     * @generated
+     */
+    EClass LOOP_SLOT = eINSTANCE.getLoopSlot();
+
+    /**
+     * The meta object literal for the '<em><b>Slot Variable</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference LOOP_SLOT__SLOT_VARIABLE = eINSTANCE.getLoopSlot_SlotVariable();
+
+    /**
+     * The meta object literal for the '<em><b>Comparison Operator</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute LOOP_SLOT__COMPARISON_OPERATOR = eINSTANCE.getLoopSlot_ComparisonOperator();
+
+    /**
+     * The meta object literal for the '<em><b>Slot State</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference LOOP_SLOT__SLOT_STATE = eINSTANCE.getLoopSlot_SlotState();
+
+    /**
+     * The meta object literal for the '<em><b>Statements</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference LOOP_SLOT__STATEMENTS = eINSTANCE.getLoopSlot_Statements();
 
     /**
      * The meta object literal for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.MoveDiskImpl <em>Move Disk</em>}' class.
@@ -3265,20 +3509,38 @@ public interface ShortDSLPackage extends EPackage
     EReference CONDITION_VARIABLE__VARIABLE = eINSTANCE.getConditionVariable_Variable();
 
     /**
-     * The meta object literal for the '<em><b>Comparison Operator Variable</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute CONDITION_VARIABLE__COMPARISON_OPERATOR_VARIABLE = eINSTANCE.getConditionVariable_ComparisonOperatorVariable();
-
-    /**
      * The meta object literal for the '<em><b>Variable Value</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     EReference CONDITION_VARIABLE__VARIABLE_VALUE = eINSTANCE.getConditionVariable_VariableValue();
+
+    /**
+     * The meta object literal for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.ConditionSlotImpl <em>Condition Slot</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see xtext.factoryLang.shortDSL.shortDSL.impl.ConditionSlotImpl
+     * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getConditionSlot()
+     * @generated
+     */
+    EClass CONDITION_SLOT = eINSTANCE.getConditionSlot();
+
+    /**
+     * The meta object literal for the '<em><b>Variable</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference CONDITION_SLOT__VARIABLE = eINSTANCE.getConditionSlot_Variable();
+
+    /**
+     * The meta object literal for the '<em><b>Slot Value</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference CONDITION_SLOT__SLOT_VALUE = eINSTANCE.getConditionSlot_SlotValue();
 
     /**
      * The meta object literal for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.ConditionDeviceImpl <em>Condition Device</em>}' class.
@@ -3297,14 +3559,6 @@ public interface ShortDSLPackage extends EPackage
      * @generated
      */
     EReference CONDITION_DEVICE__DEVICE = eINSTANCE.getConditionDevice_Device();
-
-    /**
-     * The meta object literal for the '<em><b>Comparison Operator Device</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute CONDITION_DEVICE__COMPARISON_OPERATOR_DEVICE = eINSTANCE.getConditionDevice_ComparisonOperatorDevice();
 
     /**
      * The meta object literal for the '<em><b>Device Value</b></em>' containment reference feature.
@@ -3383,24 +3637,24 @@ public interface ShortDSLPackage extends EPackage
     EReference MARK_CAMERA_VALUE__VARIABLE = eINSTANCE.getMarkCameraValue_Variable();
 
     /**
-     * The meta object literal for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.LocalVariableImpl <em>Local Variable</em>}' class.
+     * The meta object literal for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.OrdinaryVariableImpl <em>Ordinary Variable</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see xtext.factoryLang.shortDSL.shortDSL.impl.LocalVariableImpl
-     * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getLocalVariable()
+     * @see xtext.factoryLang.shortDSL.shortDSL.impl.OrdinaryVariableImpl
+     * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getOrdinaryVariable()
      * @generated
      */
-    EClass LOCAL_VARIABLE = eINSTANCE.getLocalVariable();
+    EClass ORDINARY_VARIABLE = eINSTANCE.getOrdinaryVariable();
 
     /**
-     * The meta object literal for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.GlobalVariableImpl <em>Global Variable</em>}' class.
+     * The meta object literal for the '{@link xtext.factoryLang.shortDSL.shortDSL.impl.SlotVariableImpl <em>Slot Variable</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see xtext.factoryLang.shortDSL.shortDSL.impl.GlobalVariableImpl
-     * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getGlobalVariable()
+     * @see xtext.factoryLang.shortDSL.shortDSL.impl.SlotVariableImpl
+     * @see xtext.factoryLang.shortDSL.shortDSL.impl.ShortDSLPackageImpl#getSlotVariable()
      * @generated
      */
-    EClass GLOBAL_VARIABLE = eINSTANCE.getGlobalVariable();
+    EClass SLOT_VARIABLE = eINSTANCE.getSlotVariable();
 
     /**
      * The meta object literal for the '{@link xtext.factoryLang.shortDSL.shortDSL.DSL_TYPE_ENUM <em>DSL TYPE ENUM</em>}' enum.

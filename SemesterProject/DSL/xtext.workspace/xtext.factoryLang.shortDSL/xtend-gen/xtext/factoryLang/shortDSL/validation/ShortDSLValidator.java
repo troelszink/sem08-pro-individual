@@ -8,10 +8,10 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.validation.Check;
-import org.eclipse.xtext.xbase.lib.InputOutput;
 import xtext.factoryLang.shortDSL.shortDSL.Camera;
 import xtext.factoryLang.shortDSL.shortDSL.ColorValueS;
 import xtext.factoryLang.shortDSL.shortDSL.ConditionDevice;
+import xtext.factoryLang.shortDSL.shortDSL.ConditionVariable;
 import xtext.factoryLang.shortDSL.shortDSL.Crane;
 import xtext.factoryLang.shortDSL.shortDSL.CraneZone;
 import xtext.factoryLang.shortDSL.shortDSL.DSLLong;
@@ -21,11 +21,14 @@ import xtext.factoryLang.shortDSL.shortDSL.DSLTypeValue;
 import xtext.factoryLang.shortDSL.shortDSL.DSL_TYPE_ENUM;
 import xtext.factoryLang.shortDSL.shortDSL.DeviceS;
 import xtext.factoryLang.shortDSL.shortDSL.Disk;
+import xtext.factoryLang.shortDSL.shortDSL.DiskSlotStateValueS;
 import xtext.factoryLang.shortDSL.shortDSL.DiskStateValueS;
 import xtext.factoryLang.shortDSL.shortDSL.DiskZone;
 import xtext.factoryLang.shortDSL.shortDSL.MarkVariableValue;
 import xtext.factoryLang.shortDSL.shortDSL.Model;
+import xtext.factoryLang.shortDSL.shortDSL.OrdinaryVariable;
 import xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage;
+import xtext.factoryLang.shortDSL.shortDSL.SlotVariable;
 import xtext.factoryLang.shortDSL.shortDSL.TIME_UNIT_S;
 
 /**
@@ -52,13 +55,11 @@ public class ShortDSLValidator extends AbstractShortDSLValidator {
     final DSLProgram dslProgram = ((DSLProgram) _dslProgram);
     boolean _equals = Objects.equal(dslTypeValue, DSL_TYPE_ENUM.LONG);
     if (_equals) {
-      InputOutput.<String>println("inside long");
       if ((dslProgram instanceof DSLShort)) {
         this.error("Wrong dsl syntax - use syntax of long dsl or switch to short dsl", 
           ShortDSLPackage.Literals.MODEL__DSL_TYPE, ShortDSLValidator.INVALID_VALUE);
       }
     } else {
-      InputOutput.<String>println("inside short");
       if ((dslProgram instanceof DSLLong)) {
         this.error("Wrong dsl syntax - use syntax of short dsl or switch to long dsl", 
           ShortDSLPackage.Literals.MODEL__DSL_TYPE, ShortDSLValidator.INVALID_VALUE);
@@ -92,7 +93,7 @@ public class ShortDSLValidator extends AbstractShortDSLValidator {
   }
   
   @Check
-  public void checkDiskMarkSlotOperation(final MarkVariableValue mark) {
+  public void checkMarkVariableValue(final MarkVariableValue mark) {
     if (((!mark.eIsSet(ShortDSLPackage.Literals.MARK_VARIABLE_VALUE__TIME)) && 
       (!mark.eIsSet(ShortDSLPackage.Literals.MARK_VARIABLE_VALUE__UNIT)))) {
       return;
@@ -111,7 +112,7 @@ public class ShortDSLValidator extends AbstractShortDSLValidator {
   }
   
   @Check
-  public void checkDeviceConditionalValues(final ConditionDevice condition) {
+  public void checkConditionDeviceValues(final ConditionDevice condition) {
     if (((!condition.eIsSet(ShortDSLPackage.Literals.CONDITION_DEVICE__DEVICE)) || 
       (!condition.eIsSet(ShortDSLPackage.Literals.CONDITION_DEVICE__DEVICE_VALUE)))) {
       return;
@@ -147,22 +148,72 @@ public class ShortDSLValidator extends AbstractShortDSLValidator {
             ShortDSLValidator.INVALID_VALUE);
           return;
         }
+        if ((value instanceof DiskSlotStateValueS)) {
+          String _name_3 = device.getName();
+          String _plus_3 = (_name_3 + " cannot be compared to disk slot states");
+          this.error(_plus_3, ShortDSLPackage.Literals.CONDITION_DEVICE__DEVICE_VALUE, 
+            ShortDSLValidator.INVALID_VALUE);
+          return;
+        }
+        return;
       }
     }
     if (!_matched) {
       if ((device instanceof Camera)) {
         _matched=true;
         if ((value instanceof DiskStateValueS)) {
-          String _name_3 = device.getName();
-          String _plus_3 = (_name_3 + " cannot be compared to disk states");
-          this.error(_plus_3, ShortDSLPackage.Literals.CONDITION_DEVICE__DEVICE_VALUE, 
+          String _name_4 = device.getName();
+          String _plus_4 = (_name_4 + " cannot be compared to disk states");
+          this.error(_plus_4, ShortDSLPackage.Literals.CONDITION_DEVICE__DEVICE_VALUE, 
             ShortDSLValidator.INVALID_VALUE);
           return;
         }
         if ((value instanceof ColorValueS)) {
-          String _name_4 = device.getName();
-          String _plus_4 = (_name_4 + " cannot be compared to colors");
-          this.error(_plus_4, ShortDSLPackage.Literals.CONDITION_DEVICE__DEVICE_VALUE, 
+          String _name_5 = device.getName();
+          String _plus_5 = (_name_5 + " cannot be compared to colors");
+          this.error(_plus_5, ShortDSLPackage.Literals.CONDITION_DEVICE__DEVICE_VALUE, 
+            ShortDSLValidator.INVALID_VALUE);
+          return;
+        }
+        return;
+      }
+    }
+  }
+  
+  @Check
+  public void checkConditionVariableValues(final ConditionVariable condition) {
+    if (((!condition.eIsSet(ShortDSLPackage.Literals.CONDITION_VARIABLE__VARIABLE)) || 
+      (!condition.eIsSet(ShortDSLPackage.Literals.CONDITION_VARIABLE__VARIABLE_VALUE)))) {
+      return;
+    }
+    final OrdinaryVariable variable = condition.getVariable();
+    final EObject value = condition.getVariableValue().getValue();
+    boolean _matched = false;
+    if ((variable instanceof OrdinaryVariable)) {
+      _matched=true;
+      if ((value instanceof DiskStateValueS)) {
+        String _name = variable.getName();
+        String _plus = (_name + " cannot be compared to disk states");
+        this.error(_plus, ShortDSLPackage.Literals.CONDITION_VARIABLE__VARIABLE_VALUE, 
+          ShortDSLValidator.INVALID_VALUE);
+        return;
+      }
+      if ((value instanceof DiskSlotStateValueS)) {
+        String _name_1 = variable.getName();
+        String _plus_1 = (_name_1 + " cannot be compared to disk slot states");
+        this.error(_plus_1, ShortDSLPackage.Literals.CONDITION_VARIABLE__VARIABLE_VALUE, 
+          ShortDSLValidator.INVALID_VALUE);
+        return;
+      }
+      return;
+    }
+    if (!_matched) {
+      if ((variable instanceof SlotVariable)) {
+        _matched=true;
+        if ((value instanceof DiskStateValueS)) {
+          String _name_2 = variable.getName();
+          String _plus_2 = (_name_2 + " cannot be compared to disk states");
+          this.error(_plus_2, ShortDSLPackage.Literals.CONDITION_VARIABLE__VARIABLE_VALUE, 
             ShortDSLValidator.INVALID_VALUE);
           return;
         }

@@ -581,70 +581,164 @@ public class ShortDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 	}
 	public class LoopSElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "xtext.factoryLang.shortDSL.ShortDSL.LoopS");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Action cLoopAction_0 = (Action)cGroup.eContents().get(0);
-		private final Keyword cForeachKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cVariableAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cVariableLocalVariableSParserRuleCall_2_0 = (RuleCall)cVariableAssignment_2.eContents().get(0);
-		private final Assignment cComparisonOperatorAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cComparisonOperatorCOMPARISON_OPERATOR_SEnumRuleCall_3_0 = (RuleCall)cComparisonOperatorAssignment_3.eContents().get(0);
-		private final Assignment cSlotStateAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cSlotStateDiskSlotStateValueSParserRuleCall_4_0 = (RuleCall)cSlotStateAssignment_4.eContents().get(0);
-		private final Keyword cColonKeyword_5 = (Keyword)cGroup.eContents().get(5);
-		private final RuleCall cBEGINTerminalRuleCall_6 = (RuleCall)cGroup.eContents().get(6);
-		private final Assignment cStatementsAssignment_7 = (Assignment)cGroup.eContents().get(7);
-		private final RuleCall cStatementsStatementSParserRuleCall_7_0 = (RuleCall)cStatementsAssignment_7.eContents().get(0);
-		private final RuleCall cENDTerminalRuleCall_8 = (RuleCall)cGroup.eContents().get(8);
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cLoopVariableSParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cLoopSlotSParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
 		//LoopS returns StatementS:
-		//    {Loop} 'foreach' variable=LocalVariableS
+		//    LoopVariableS | LoopSlotS;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//LoopVariableS | LoopSlotS
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//LoopVariableS
+		public RuleCall getLoopVariableSParserRuleCall_0() { return cLoopVariableSParserRuleCall_0; }
+		
+		//LoopSlotS
+		public RuleCall getLoopSlotSParserRuleCall_1() { return cLoopSlotSParserRuleCall_1; }
+	}
+	public class LoopVariableSElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "xtext.factoryLang.shortDSL.ShortDSL.LoopVariableS");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cLoopVariableAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cForeachKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Keyword cVarKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cOrdinaryVariableAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cOrdinaryVariableOrdinaryVariableSParserRuleCall_3_0 = (RuleCall)cOrdinaryVariableAssignment_3.eContents().get(0);
+		private final Assignment cComparisonOperatorAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cComparisonOperatorCOMPARISON_OPERATOR_SEnumRuleCall_4_0 = (RuleCall)cComparisonOperatorAssignment_4.eContents().get(0);
+		private final Assignment cSlotStateAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final RuleCall cSlotStateDiskSlotStateValueSParserRuleCall_5_0 = (RuleCall)cSlotStateAssignment_5.eContents().get(0);
+		private final Keyword cColonKeyword_6 = (Keyword)cGroup.eContents().get(6);
+		private final RuleCall cBEGINTerminalRuleCall_7 = (RuleCall)cGroup.eContents().get(7);
+		private final Assignment cStatementsAssignment_8 = (Assignment)cGroup.eContents().get(8);
+		private final RuleCall cStatementsStatementSParserRuleCall_8_0 = (RuleCall)cStatementsAssignment_8.eContents().get(0);
+		private final RuleCall cENDTerminalRuleCall_9 = (RuleCall)cGroup.eContents().get(9);
+		
+		//LoopVariableS returns StatementS:
+		//    {LoopVariable} 'foreach' 'var' ordinaryVariable=OrdinaryVariableS
 		//    comparisonOperator=COMPARISON_OPERATOR_S slotState=DiskSlotStateValueS
 		//    ':' BEGIN statements+=StatementS* END;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{Loop} 'foreach' variable=LocalVariableS
+		//{LoopVariable} 'foreach' 'var' ordinaryVariable=OrdinaryVariableS
 		//comparisonOperator=COMPARISON_OPERATOR_S slotState=DiskSlotStateValueS
 		//':' BEGIN statements+=StatementS* END
 		public Group getGroup() { return cGroup; }
 		
-		//{Loop}
-		public Action getLoopAction_0() { return cLoopAction_0; }
+		//{LoopVariable}
+		public Action getLoopVariableAction_0() { return cLoopVariableAction_0; }
 		
 		//'foreach'
 		public Keyword getForeachKeyword_1() { return cForeachKeyword_1; }
 		
-		//variable=LocalVariableS
-		public Assignment getVariableAssignment_2() { return cVariableAssignment_2; }
+		//'var'
+		public Keyword getVarKeyword_2() { return cVarKeyword_2; }
 		
-		//LocalVariableS
-		public RuleCall getVariableLocalVariableSParserRuleCall_2_0() { return cVariableLocalVariableSParserRuleCall_2_0; }
+		//ordinaryVariable=OrdinaryVariableS
+		public Assignment getOrdinaryVariableAssignment_3() { return cOrdinaryVariableAssignment_3; }
+		
+		//OrdinaryVariableS
+		public RuleCall getOrdinaryVariableOrdinaryVariableSParserRuleCall_3_0() { return cOrdinaryVariableOrdinaryVariableSParserRuleCall_3_0; }
 		
 		//comparisonOperator=COMPARISON_OPERATOR_S
-		public Assignment getComparisonOperatorAssignment_3() { return cComparisonOperatorAssignment_3; }
+		public Assignment getComparisonOperatorAssignment_4() { return cComparisonOperatorAssignment_4; }
 		
 		//COMPARISON_OPERATOR_S
-		public RuleCall getComparisonOperatorCOMPARISON_OPERATOR_SEnumRuleCall_3_0() { return cComparisonOperatorCOMPARISON_OPERATOR_SEnumRuleCall_3_0; }
+		public RuleCall getComparisonOperatorCOMPARISON_OPERATOR_SEnumRuleCall_4_0() { return cComparisonOperatorCOMPARISON_OPERATOR_SEnumRuleCall_4_0; }
 		
 		//slotState=DiskSlotStateValueS
-		public Assignment getSlotStateAssignment_4() { return cSlotStateAssignment_4; }
+		public Assignment getSlotStateAssignment_5() { return cSlotStateAssignment_5; }
 		
 		//DiskSlotStateValueS
-		public RuleCall getSlotStateDiskSlotStateValueSParserRuleCall_4_0() { return cSlotStateDiskSlotStateValueSParserRuleCall_4_0; }
+		public RuleCall getSlotStateDiskSlotStateValueSParserRuleCall_5_0() { return cSlotStateDiskSlotStateValueSParserRuleCall_5_0; }
 		
 		//':'
-		public Keyword getColonKeyword_5() { return cColonKeyword_5; }
+		public Keyword getColonKeyword_6() { return cColonKeyword_6; }
 		
 		//BEGIN
-		public RuleCall getBEGINTerminalRuleCall_6() { return cBEGINTerminalRuleCall_6; }
+		public RuleCall getBEGINTerminalRuleCall_7() { return cBEGINTerminalRuleCall_7; }
 		
 		//statements+=StatementS*
-		public Assignment getStatementsAssignment_7() { return cStatementsAssignment_7; }
+		public Assignment getStatementsAssignment_8() { return cStatementsAssignment_8; }
 		
 		//StatementS
-		public RuleCall getStatementsStatementSParserRuleCall_7_0() { return cStatementsStatementSParserRuleCall_7_0; }
+		public RuleCall getStatementsStatementSParserRuleCall_8_0() { return cStatementsStatementSParserRuleCall_8_0; }
 		
 		//END
-		public RuleCall getENDTerminalRuleCall_8() { return cENDTerminalRuleCall_8; }
+		public RuleCall getENDTerminalRuleCall_9() { return cENDTerminalRuleCall_9; }
+	}
+	public class LoopSlotSElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "xtext.factoryLang.shortDSL.ShortDSL.LoopSlotS");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cLoopSlotAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cForeachKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Keyword cSlotKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cSlotVariableAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cSlotVariableSlotVariableSParserRuleCall_3_0 = (RuleCall)cSlotVariableAssignment_3.eContents().get(0);
+		private final Assignment cComparisonOperatorAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cComparisonOperatorCOMPARISON_OPERATOR_SEnumRuleCall_4_0 = (RuleCall)cComparisonOperatorAssignment_4.eContents().get(0);
+		private final Assignment cSlotStateAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final RuleCall cSlotStateDiskSlotStateValueSParserRuleCall_5_0 = (RuleCall)cSlotStateAssignment_5.eContents().get(0);
+		private final Keyword cColonKeyword_6 = (Keyword)cGroup.eContents().get(6);
+		private final RuleCall cBEGINTerminalRuleCall_7 = (RuleCall)cGroup.eContents().get(7);
+		private final Assignment cStatementsAssignment_8 = (Assignment)cGroup.eContents().get(8);
+		private final RuleCall cStatementsStatementSParserRuleCall_8_0 = (RuleCall)cStatementsAssignment_8.eContents().get(0);
+		private final RuleCall cENDTerminalRuleCall_9 = (RuleCall)cGroup.eContents().get(9);
+		
+		//LoopSlotS returns StatementS:
+		//    {LoopSlot} 'foreach' 'slot' slotVariable=SlotVariableS
+		//    comparisonOperator=COMPARISON_OPERATOR_S slotState=DiskSlotStateValueS
+		//    ':' BEGIN statements+=StatementS* END;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//{LoopSlot} 'foreach' 'slot' slotVariable=SlotVariableS
+		//comparisonOperator=COMPARISON_OPERATOR_S slotState=DiskSlotStateValueS
+		//':' BEGIN statements+=StatementS* END
+		public Group getGroup() { return cGroup; }
+		
+		//{LoopSlot}
+		public Action getLoopSlotAction_0() { return cLoopSlotAction_0; }
+		
+		//'foreach'
+		public Keyword getForeachKeyword_1() { return cForeachKeyword_1; }
+		
+		//'slot'
+		public Keyword getSlotKeyword_2() { return cSlotKeyword_2; }
+		
+		//slotVariable=SlotVariableS
+		public Assignment getSlotVariableAssignment_3() { return cSlotVariableAssignment_3; }
+		
+		//SlotVariableS
+		public RuleCall getSlotVariableSlotVariableSParserRuleCall_3_0() { return cSlotVariableSlotVariableSParserRuleCall_3_0; }
+		
+		//comparisonOperator=COMPARISON_OPERATOR_S
+		public Assignment getComparisonOperatorAssignment_4() { return cComparisonOperatorAssignment_4; }
+		
+		//COMPARISON_OPERATOR_S
+		public RuleCall getComparisonOperatorCOMPARISON_OPERATOR_SEnumRuleCall_4_0() { return cComparisonOperatorCOMPARISON_OPERATOR_SEnumRuleCall_4_0; }
+		
+		//slotState=DiskSlotStateValueS
+		public Assignment getSlotStateAssignment_5() { return cSlotStateAssignment_5; }
+		
+		//DiskSlotStateValueS
+		public RuleCall getSlotStateDiskSlotStateValueSParserRuleCall_5_0() { return cSlotStateDiskSlotStateValueSParserRuleCall_5_0; }
+		
+		//':'
+		public Keyword getColonKeyword_6() { return cColonKeyword_6; }
+		
+		//BEGIN
+		public RuleCall getBEGINTerminalRuleCall_7() { return cBEGINTerminalRuleCall_7; }
+		
+		//statements+=StatementS*
+		public Assignment getStatementsAssignment_8() { return cStatementsAssignment_8; }
+		
+		//StatementS
+		public RuleCall getStatementsStatementSParserRuleCall_8_0() { return cStatementsStatementSParserRuleCall_8_0; }
+		
+		//END
+		public RuleCall getENDTerminalRuleCall_9() { return cENDTerminalRuleCall_9; }
 	}
 	public class MoveSElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "xtext.factoryLang.shortDSL.ShortDSL.MoveS");
@@ -674,8 +768,8 @@ public class ShortDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Action cMoveDiskAction_0 = (Action)cGroup.eContents().get(0);
 		private final Assignment cSlotAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final CrossReference cSlotLocalVariableCrossReference_1_0 = (CrossReference)cSlotAssignment_1.eContents().get(0);
-		private final RuleCall cSlotLocalVariableIDTerminalRuleCall_1_0_1 = (RuleCall)cSlotLocalVariableCrossReference_1_0.eContents().get(1);
+		private final CrossReference cSlotSlotVariableCrossReference_1_0 = (CrossReference)cSlotAssignment_1.eContents().get(0);
+		private final RuleCall cSlotSlotVariableIDTerminalRuleCall_1_0_1 = (RuleCall)cSlotSlotVariableCrossReference_1_0.eContents().get(1);
 		private final Alternatives cAlternatives_2 = (Alternatives)cGroup.eContents().get(2);
 		private final Keyword cHyphenMinusGreaterThanSignKeyword_2_0 = (Keyword)cAlternatives_2.eContents().get(0);
 		private final Keyword cHyphenMinusHyphenMinusGreaterThanSignKeyword_2_1 = (Keyword)cAlternatives_2.eContents().get(1);
@@ -684,23 +778,23 @@ public class ShortDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		private final RuleCall cZoneDiskZoneIDTerminalRuleCall_3_0_1 = (RuleCall)cZoneDiskZoneCrossReference_3_0.eContents().get(1);
 		
 		//MoveDiskS returns MoveS:
-		//    {MoveDisk} slot=[LocalVariable] ('->' | '-->') zone=[DiskZone];
+		//    {MoveDisk} slot=[SlotVariable] ('->' | '-->') zone=[DiskZone];
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{MoveDisk} slot=[LocalVariable] ('->' | '-->') zone=[DiskZone]
+		//{MoveDisk} slot=[SlotVariable] ('->' | '-->') zone=[DiskZone]
 		public Group getGroup() { return cGroup; }
 		
 		//{MoveDisk}
 		public Action getMoveDiskAction_0() { return cMoveDiskAction_0; }
 		
-		//slot=[LocalVariable]
+		//slot=[SlotVariable]
 		public Assignment getSlotAssignment_1() { return cSlotAssignment_1; }
 		
-		//[LocalVariable]
-		public CrossReference getSlotLocalVariableCrossReference_1_0() { return cSlotLocalVariableCrossReference_1_0; }
+		//[SlotVariable]
+		public CrossReference getSlotSlotVariableCrossReference_1_0() { return cSlotSlotVariableCrossReference_1_0; }
 		
 		//ID
-		public RuleCall getSlotLocalVariableIDTerminalRuleCall_1_0_1() { return cSlotLocalVariableIDTerminalRuleCall_1_0_1; }
+		public RuleCall getSlotSlotVariableIDTerminalRuleCall_1_0_1() { return cSlotSlotVariableIDTerminalRuleCall_1_0_1; }
 		
 		//('->' | '-->')
 		public Alternatives getAlternatives_2() { return cAlternatives_2; }
@@ -727,7 +821,7 @@ public class ShortDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		private final Assignment cStateAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cStateDiskSlotStateValueSParserRuleCall_1_0 = (RuleCall)cStateAssignment_1.eContents().get(0);
 		private final Assignment cAnySlotAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cAnySlotLocalVariableSParserRuleCall_2_0 = (RuleCall)cAnySlotAssignment_2.eContents().get(0);
+		private final RuleCall cAnySlotSlotVariableSParserRuleCall_2_0 = (RuleCall)cAnySlotAssignment_2.eContents().get(0);
 		private final Alternatives cAlternatives_3 = (Alternatives)cGroup.eContents().get(3);
 		private final Keyword cHyphenMinusGreaterThanSignKeyword_3_0 = (Keyword)cAlternatives_3.eContents().get(0);
 		private final Keyword cHyphenMinusHyphenMinusGreaterThanSignKeyword_3_1 = (Keyword)cAlternatives_3.eContents().get(1);
@@ -736,10 +830,10 @@ public class ShortDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		private final RuleCall cZoneDiskZoneIDTerminalRuleCall_4_0_1 = (RuleCall)cZoneDiskZoneCrossReference_4_0.eContents().get(1);
 		
 		//MoveAnySlotS returns MoveS:
-		//    {MoveAnySlot} state=DiskSlotStateValueS anySlot=LocalVariableS ('->' | '-->') zone=[DiskZone];
+		//    {MoveAnySlot} state=DiskSlotStateValueS anySlot=SlotVariableS ('->' | '-->') zone=[DiskZone];
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{MoveAnySlot} state=DiskSlotStateValueS anySlot=LocalVariableS ('->' | '-->') zone=[DiskZone]
+		//{MoveAnySlot} state=DiskSlotStateValueS anySlot=SlotVariableS ('->' | '-->') zone=[DiskZone]
 		public Group getGroup() { return cGroup; }
 		
 		//{MoveAnySlot}
@@ -751,11 +845,11 @@ public class ShortDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		//DiskSlotStateValueS
 		public RuleCall getStateDiskSlotStateValueSParserRuleCall_1_0() { return cStateDiskSlotStateValueSParserRuleCall_1_0; }
 		
-		//anySlot=LocalVariableS
+		//anySlot=SlotVariableS
 		public Assignment getAnySlotAssignment_2() { return cAnySlotAssignment_2; }
 		
-		//LocalVariableS
-		public RuleCall getAnySlotLocalVariableSParserRuleCall_2_0() { return cAnySlotLocalVariableSParserRuleCall_2_0; }
+		//SlotVariableS
+		public RuleCall getAnySlotSlotVariableSParserRuleCall_2_0() { return cAnySlotSlotVariableSParserRuleCall_2_0; }
 		
 		//('->' | '-->')
 		public Alternatives getAlternatives_3() { return cAlternatives_3; }
@@ -866,12 +960,13 @@ public class ShortDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cConditionVariableSParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cConditionDeviceSParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cConditionSlotSParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		
 		//ConditionS returns StatementS:
-		//    ConditionVariableS | ConditionDeviceS;
+		//    ConditionVariableS | ConditionDeviceS | ConditionSlotS;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//ConditionVariableS | ConditionDeviceS
+		//ConditionVariableS | ConditionDeviceS | ConditionSlotS
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//ConditionVariableS
@@ -879,6 +974,9 @@ public class ShortDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		
 		//ConditionDeviceS
 		public RuleCall getConditionDeviceSParserRuleCall_1() { return cConditionDeviceSParserRuleCall_1; }
+		
+		//ConditionSlotS
+		public RuleCall getConditionSlotSParserRuleCall_2() { return cConditionSlotSParserRuleCall_2; }
 	}
 	public class ConditionVariableSElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "xtext.factoryLang.shortDSL.ShortDSL.ConditionVariableS");
@@ -887,10 +985,10 @@ public class ShortDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		private final Keyword cIfKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Keyword cVarKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Assignment cVariableAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final CrossReference cVariableVariableSCrossReference_3_0 = (CrossReference)cVariableAssignment_3.eContents().get(0);
-		private final RuleCall cVariableVariableSIDTerminalRuleCall_3_0_1 = (RuleCall)cVariableVariableSCrossReference_3_0.eContents().get(1);
-		private final Assignment cComparisonOperatorVariableAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cComparisonOperatorVariableCOMPARISON_OPERATOR_SEnumRuleCall_4_0 = (RuleCall)cComparisonOperatorVariableAssignment_4.eContents().get(0);
+		private final CrossReference cVariableOrdinaryVariableCrossReference_3_0 = (CrossReference)cVariableAssignment_3.eContents().get(0);
+		private final RuleCall cVariableOrdinaryVariableIDTerminalRuleCall_3_0_1 = (RuleCall)cVariableOrdinaryVariableCrossReference_3_0.eContents().get(1);
+		private final Assignment cComparisonOperatorAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cComparisonOperatorCOMPARISON_OPERATOR_SEnumRuleCall_4_0 = (RuleCall)cComparisonOperatorAssignment_4.eContents().get(0);
 		private final Assignment cVariableValueAssignment_5 = (Assignment)cGroup.eContents().get(5);
 		private final RuleCall cVariableValueVariableValueSParserRuleCall_5_0 = (RuleCall)cVariableValueAssignment_5.eContents().get(0);
 		private final Keyword cColonKeyword_6 = (Keyword)cGroup.eContents().get(6);
@@ -900,13 +998,13 @@ public class ShortDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		private final RuleCall cENDTerminalRuleCall_9 = (RuleCall)cGroup.eContents().get(9);
 		
 		//ConditionVariableS returns ConditionS:
-		//    {ConditionVariable} 'if' 'var' variable=[VariableS]
-		//    comparisonOperatorVariable=COMPARISON_OPERATOR_S variableValue=VariableValueS
+		//    {ConditionVariable} 'if' 'var' variable=[OrdinaryVariable]
+		//    comparisonOperator=COMPARISON_OPERATOR_S variableValue=VariableValueS
 		//    ':' BEGIN statements+=StatementS* END;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{ConditionVariable} 'if' 'var' variable=[VariableS]
-		//comparisonOperatorVariable=COMPARISON_OPERATOR_S variableValue=VariableValueS
+		//{ConditionVariable} 'if' 'var' variable=[OrdinaryVariable]
+		//comparisonOperator=COMPARISON_OPERATOR_S variableValue=VariableValueS
 		//':' BEGIN statements+=StatementS* END
 		public Group getGroup() { return cGroup; }
 		
@@ -919,26 +1017,101 @@ public class ShortDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		//'var'
 		public Keyword getVarKeyword_2() { return cVarKeyword_2; }
 		
-		//variable=[VariableS]
+		//variable=[OrdinaryVariable]
 		public Assignment getVariableAssignment_3() { return cVariableAssignment_3; }
 		
-		//[VariableS]
-		public CrossReference getVariableVariableSCrossReference_3_0() { return cVariableVariableSCrossReference_3_0; }
+		//[OrdinaryVariable]
+		public CrossReference getVariableOrdinaryVariableCrossReference_3_0() { return cVariableOrdinaryVariableCrossReference_3_0; }
 		
 		//ID
-		public RuleCall getVariableVariableSIDTerminalRuleCall_3_0_1() { return cVariableVariableSIDTerminalRuleCall_3_0_1; }
+		public RuleCall getVariableOrdinaryVariableIDTerminalRuleCall_3_0_1() { return cVariableOrdinaryVariableIDTerminalRuleCall_3_0_1; }
 		
-		//comparisonOperatorVariable=COMPARISON_OPERATOR_S
-		public Assignment getComparisonOperatorVariableAssignment_4() { return cComparisonOperatorVariableAssignment_4; }
+		//comparisonOperator=COMPARISON_OPERATOR_S
+		public Assignment getComparisonOperatorAssignment_4() { return cComparisonOperatorAssignment_4; }
 		
 		//COMPARISON_OPERATOR_S
-		public RuleCall getComparisonOperatorVariableCOMPARISON_OPERATOR_SEnumRuleCall_4_0() { return cComparisonOperatorVariableCOMPARISON_OPERATOR_SEnumRuleCall_4_0; }
+		public RuleCall getComparisonOperatorCOMPARISON_OPERATOR_SEnumRuleCall_4_0() { return cComparisonOperatorCOMPARISON_OPERATOR_SEnumRuleCall_4_0; }
 		
 		//variableValue=VariableValueS
 		public Assignment getVariableValueAssignment_5() { return cVariableValueAssignment_5; }
 		
 		//VariableValueS
 		public RuleCall getVariableValueVariableValueSParserRuleCall_5_0() { return cVariableValueVariableValueSParserRuleCall_5_0; }
+		
+		//':'
+		public Keyword getColonKeyword_6() { return cColonKeyword_6; }
+		
+		//BEGIN
+		public RuleCall getBEGINTerminalRuleCall_7() { return cBEGINTerminalRuleCall_7; }
+		
+		//statements+=StatementS*
+		public Assignment getStatementsAssignment_8() { return cStatementsAssignment_8; }
+		
+		//StatementS
+		public RuleCall getStatementsStatementSParserRuleCall_8_0() { return cStatementsStatementSParserRuleCall_8_0; }
+		
+		//END
+		public RuleCall getENDTerminalRuleCall_9() { return cENDTerminalRuleCall_9; }
+	}
+	public class ConditionSlotSElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "xtext.factoryLang.shortDSL.ShortDSL.ConditionSlotS");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cConditionSlotAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cIfKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Keyword cSlotKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cVariableAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final CrossReference cVariableSlotVariableCrossReference_3_0 = (CrossReference)cVariableAssignment_3.eContents().get(0);
+		private final RuleCall cVariableSlotVariableIDTerminalRuleCall_3_0_1 = (RuleCall)cVariableSlotVariableCrossReference_3_0.eContents().get(1);
+		private final Assignment cComparisonOperatorAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cComparisonOperatorCOMPARISON_OPERATOR_SEnumRuleCall_4_0 = (RuleCall)cComparisonOperatorAssignment_4.eContents().get(0);
+		private final Assignment cSlotValueAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final RuleCall cSlotValueValueSlotSParserRuleCall_5_0 = (RuleCall)cSlotValueAssignment_5.eContents().get(0);
+		private final Keyword cColonKeyword_6 = (Keyword)cGroup.eContents().get(6);
+		private final RuleCall cBEGINTerminalRuleCall_7 = (RuleCall)cGroup.eContents().get(7);
+		private final Assignment cStatementsAssignment_8 = (Assignment)cGroup.eContents().get(8);
+		private final RuleCall cStatementsStatementSParserRuleCall_8_0 = (RuleCall)cStatementsAssignment_8.eContents().get(0);
+		private final RuleCall cENDTerminalRuleCall_9 = (RuleCall)cGroup.eContents().get(9);
+		
+		//ConditionSlotS returns ConditionS:
+		//    {ConditionSlot} 'if' 'slot' variable=[SlotVariable]
+		//    comparisonOperator=COMPARISON_OPERATOR_S slotValue=ValueSlotS
+		//    ':' BEGIN statements+=StatementS* END;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//{ConditionSlot} 'if' 'slot' variable=[SlotVariable]
+		//comparisonOperator=COMPARISON_OPERATOR_S slotValue=ValueSlotS
+		//':' BEGIN statements+=StatementS* END
+		public Group getGroup() { return cGroup; }
+		
+		//{ConditionSlot}
+		public Action getConditionSlotAction_0() { return cConditionSlotAction_0; }
+		
+		//'if'
+		public Keyword getIfKeyword_1() { return cIfKeyword_1; }
+		
+		//'slot'
+		public Keyword getSlotKeyword_2() { return cSlotKeyword_2; }
+		
+		//variable=[SlotVariable]
+		public Assignment getVariableAssignment_3() { return cVariableAssignment_3; }
+		
+		//[SlotVariable]
+		public CrossReference getVariableSlotVariableCrossReference_3_0() { return cVariableSlotVariableCrossReference_3_0; }
+		
+		//ID
+		public RuleCall getVariableSlotVariableIDTerminalRuleCall_3_0_1() { return cVariableSlotVariableIDTerminalRuleCall_3_0_1; }
+		
+		//comparisonOperator=COMPARISON_OPERATOR_S
+		public Assignment getComparisonOperatorAssignment_4() { return cComparisonOperatorAssignment_4; }
+		
+		//COMPARISON_OPERATOR_S
+		public RuleCall getComparisonOperatorCOMPARISON_OPERATOR_SEnumRuleCall_4_0() { return cComparisonOperatorCOMPARISON_OPERATOR_SEnumRuleCall_4_0; }
+		
+		//slotValue=ValueSlotS
+		public Assignment getSlotValueAssignment_5() { return cSlotValueAssignment_5; }
+		
+		//ValueSlotS
+		public RuleCall getSlotValueValueSlotSParserRuleCall_5_0() { return cSlotValueValueSlotSParserRuleCall_5_0; }
 		
 		//':'
 		public Keyword getColonKeyword_6() { return cColonKeyword_6; }
@@ -964,8 +1137,8 @@ public class ShortDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		private final Assignment cDeviceAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final CrossReference cDeviceDeviceSCrossReference_3_0 = (CrossReference)cDeviceAssignment_3.eContents().get(0);
 		private final RuleCall cDeviceDeviceSIDTerminalRuleCall_3_0_1 = (RuleCall)cDeviceDeviceSCrossReference_3_0.eContents().get(1);
-		private final Assignment cComparisonOperatorDeviceAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cComparisonOperatorDeviceCOMPARISON_OPERATOR_SEnumRuleCall_4_0 = (RuleCall)cComparisonOperatorDeviceAssignment_4.eContents().get(0);
+		private final Assignment cComparisonOperatorAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cComparisonOperatorCOMPARISON_OPERATOR_SEnumRuleCall_4_0 = (RuleCall)cComparisonOperatorAssignment_4.eContents().get(0);
 		private final Assignment cDeviceValueAssignment_5 = (Assignment)cGroup.eContents().get(5);
 		private final RuleCall cDeviceValueDeviceValueSParserRuleCall_5_0 = (RuleCall)cDeviceValueAssignment_5.eContents().get(0);
 		private final Keyword cColonKeyword_6 = (Keyword)cGroup.eContents().get(6);
@@ -976,12 +1149,12 @@ public class ShortDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		
 		//ConditionDeviceS returns ConditionS:
 		//    {ConditionDevice} 'if' 'dev' device=[DeviceS]
-		//    comparisonOperatorDevice=COMPARISON_OPERATOR_S deviceValue=DeviceValueS
+		//    comparisonOperator=COMPARISON_OPERATOR_S deviceValue=DeviceValueS
 		//    ':' BEGIN statements+=StatementS* END;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//{ConditionDevice} 'if' 'dev' device=[DeviceS]
-		//comparisonOperatorDevice=COMPARISON_OPERATOR_S deviceValue=DeviceValueS
+		//comparisonOperator=COMPARISON_OPERATOR_S deviceValue=DeviceValueS
 		//':' BEGIN statements+=StatementS* END
 		public Group getGroup() { return cGroup; }
 		
@@ -1003,11 +1176,11 @@ public class ShortDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		//ID
 		public RuleCall getDeviceDeviceSIDTerminalRuleCall_3_0_1() { return cDeviceDeviceSIDTerminalRuleCall_3_0_1; }
 		
-		//comparisonOperatorDevice=COMPARISON_OPERATOR_S
-		public Assignment getComparisonOperatorDeviceAssignment_4() { return cComparisonOperatorDeviceAssignment_4; }
+		//comparisonOperator=COMPARISON_OPERATOR_S
+		public Assignment getComparisonOperatorAssignment_4() { return cComparisonOperatorAssignment_4; }
 		
 		//COMPARISON_OPERATOR_S
-		public RuleCall getComparisonOperatorDeviceCOMPARISON_OPERATOR_SEnumRuleCall_4_0() { return cComparisonOperatorDeviceCOMPARISON_OPERATOR_SEnumRuleCall_4_0; }
+		public RuleCall getComparisonOperatorCOMPARISON_OPERATOR_SEnumRuleCall_4_0() { return cComparisonOperatorCOMPARISON_OPERATOR_SEnumRuleCall_4_0; }
 		
 		//deviceValue=DeviceValueS
 		public Assignment getDeviceValueAssignment_5() { return cDeviceValueAssignment_5; }
@@ -1125,13 +1298,13 @@ public class ShortDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		private final RuleCall cCameraCameraIDTerminalRuleCall_1_0_1 = (RuleCall)cCameraCameraCrossReference_1_0.eContents().get(1);
 		private final Keyword cScanKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Assignment cVariableAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cVariableLocalVariableSParserRuleCall_3_0 = (RuleCall)cVariableAssignment_3.eContents().get(0);
+		private final RuleCall cVariableOrdinaryVariableSParserRuleCall_3_0 = (RuleCall)cVariableAssignment_3.eContents().get(0);
 		
 		//MarkCameraValueS returns MarkS:
-		//    {MarkCameraValue} camera=[Camera] 'scan' variable=LocalVariableS;
+		//    {MarkCameraValue} camera=[Camera] 'scan' variable=OrdinaryVariableS;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{MarkCameraValue} camera=[Camera] 'scan' variable=LocalVariableS
+		//{MarkCameraValue} camera=[Camera] 'scan' variable=OrdinaryVariableS
 		public Group getGroup() { return cGroup; }
 		
 		//{MarkCameraValue}
@@ -1149,48 +1322,49 @@ public class ShortDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		//'scan'
 		public Keyword getScanKeyword_2() { return cScanKeyword_2; }
 		
-		//variable=LocalVariableS
+		//variable=OrdinaryVariableS
 		public Assignment getVariableAssignment_3() { return cVariableAssignment_3; }
 		
-		//LocalVariableS
-		public RuleCall getVariableLocalVariableSParserRuleCall_3_0() { return cVariableLocalVariableSParserRuleCall_3_0; }
+		//OrdinaryVariableS
+		public RuleCall getVariableOrdinaryVariableSParserRuleCall_3_0() { return cVariableOrdinaryVariableSParserRuleCall_3_0; }
 	}
 	public class VariableSElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "xtext.factoryLang.shortDSL.ShortDSL.VariableS");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cLocalVariableSParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cGlobalVariableSParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cOrdinaryVariableSParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cSlotVariableSParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
 		//// ----- VALUE TYPES ----- //
 		//VariableS:
-		//    LocalVariableS | GlobalVariableS;
+		//    OrdinaryVariableS | SlotVariableS;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//LocalVariableS | GlobalVariableS
+		//OrdinaryVariableS | SlotVariableS
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
-		//LocalVariableS
-		public RuleCall getLocalVariableSParserRuleCall_0() { return cLocalVariableSParserRuleCall_0; }
+		//OrdinaryVariableS
+		public RuleCall getOrdinaryVariableSParserRuleCall_0() { return cOrdinaryVariableSParserRuleCall_0; }
 		
-		//GlobalVariableS
-		public RuleCall getGlobalVariableSParserRuleCall_1() { return cGlobalVariableSParserRuleCall_1; }
+		//SlotVariableS
+		public RuleCall getSlotVariableSParserRuleCall_1() { return cSlotVariableSParserRuleCall_1; }
 	}
-	public class LocalVariableSElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "xtext.factoryLang.shortDSL.ShortDSL.LocalVariableS");
+	public class OrdinaryVariableSElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "xtext.factoryLang.shortDSL.ShortDSL.OrdinaryVariableS");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Action cLocalVariableAction_0 = (Action)cGroup.eContents().get(0);
+		private final Action cOrdinaryVariableAction_0 = (Action)cGroup.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
 		
-		//LocalVariableS returns VariableS:
-		//    {LocalVariable} name=ID;
+		// //| GlobalVariableS;
+		//OrdinaryVariableS returns VariableS:
+		//    {OrdinaryVariable} name=ID;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{LocalVariable} name=ID
+		//{OrdinaryVariable} name=ID
 		public Group getGroup() { return cGroup; }
 		
-		//{LocalVariable}
-		public Action getLocalVariableAction_0() { return cLocalVariableAction_0; }
+		//{OrdinaryVariable}
+		public Action getOrdinaryVariableAction_0() { return cOrdinaryVariableAction_0; }
 		
 		//name=ID
 		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
@@ -1198,22 +1372,22 @@ public class ShortDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		//ID
 		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
 	}
-	public class GlobalVariableSElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "xtext.factoryLang.shortDSL.ShortDSL.GlobalVariableS");
+	public class SlotVariableSElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "xtext.factoryLang.shortDSL.ShortDSL.SlotVariableS");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Action cGlobalVariableAction_0 = (Action)cGroup.eContents().get(0);
+		private final Action cSlotVariableAction_0 = (Action)cGroup.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
 		
-		//GlobalVariableS returns VariableS:
-		//    {GlobalVariable} name=ID;
+		//SlotVariableS returns VariableS:
+		//    {SlotVariable} name=ID;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{GlobalVariable} name=ID
+		//{SlotVariable} name=ID
 		public Group getGroup() { return cGroup; }
 		
-		//{GlobalVariable}
-		public Action getGlobalVariableAction_0() { return cGlobalVariableAction_0; }
+		//{SlotVariable}
+		public Action getSlotVariableAction_0() { return cSlotVariableAction_0; }
 		
 		//name=ID
 		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
@@ -1236,6 +1410,8 @@ public class ShortDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		private final CrossReference cRefVariableSCrossReference_4_0 = (CrossReference)cRefAssignment_4.eContents().get(0);
 		private final RuleCall cRefVariableSIDTerminalRuleCall_4_0_1 = (RuleCall)cRefVariableSCrossReference_4_0.eContents().get(1);
 		
+		///*GlobalVariableS returns VariableS:
+		//    {GlobalVariable} name=ID;*/
 		//VariableValueS:
 		//    value=DiskSlotStateValueS | value=ColorValueS | value=NumberS | value=DiskStateValueS | ref=[VariableS];
 		@Override public ParserRule getRule() { return rule; }
@@ -1639,6 +1815,8 @@ public class ShortDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 	private final DiskHandlingSElements pDiskHandlingS;
 	private final StatementSElements pStatementS;
 	private final LoopSElements pLoopS;
+	private final LoopVariableSElements pLoopVariableS;
+	private final LoopSlotSElements pLoopSlotS;
 	private final MoveSElements pMoveS;
 	private final MoveDiskSElements pMoveDiskS;
 	private final MoveAnySlotSElements pMoveAnySlotS;
@@ -1646,13 +1824,14 @@ public class ShortDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 	private final CraneActionSElements pCraneActionS;
 	private final ConditionSElements pConditionS;
 	private final ConditionVariableSElements pConditionVariableS;
+	private final ConditionSlotSElements pConditionSlotS;
 	private final ConditionDeviceSElements pConditionDeviceS;
 	private final MarkSElements pMarkS;
 	private final MarkVariableValueSElements pMarkVariableValueS;
 	private final MarkCameraValueSElements pMarkCameraValueS;
 	private final VariableSElements pVariableS;
-	private final LocalVariableSElements pLocalVariableS;
-	private final GlobalVariableSElements pGlobalVariableS;
+	private final OrdinaryVariableSElements pOrdinaryVariableS;
+	private final SlotVariableSElements pSlotVariableS;
 	private final VariableValueSElements pVariableValueS;
 	private final DeviceValueSElements pDeviceValueS;
 	private final ValueSlotSElements pValueSlotS;
@@ -1695,6 +1874,8 @@ public class ShortDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		this.pDiskHandlingS = new DiskHandlingSElements();
 		this.pStatementS = new StatementSElements();
 		this.pLoopS = new LoopSElements();
+		this.pLoopVariableS = new LoopVariableSElements();
+		this.pLoopSlotS = new LoopSlotSElements();
 		this.pMoveS = new MoveSElements();
 		this.pMoveDiskS = new MoveDiskSElements();
 		this.pMoveAnySlotS = new MoveAnySlotSElements();
@@ -1702,13 +1883,14 @@ public class ShortDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		this.pCraneActionS = new CraneActionSElements();
 		this.pConditionS = new ConditionSElements();
 		this.pConditionVariableS = new ConditionVariableSElements();
+		this.pConditionSlotS = new ConditionSlotSElements();
 		this.pConditionDeviceS = new ConditionDeviceSElements();
 		this.pMarkS = new MarkSElements();
 		this.pMarkVariableValueS = new MarkVariableValueSElements();
 		this.pMarkCameraValueS = new MarkCameraValueSElements();
 		this.pVariableS = new VariableSElements();
-		this.pLocalVariableS = new LocalVariableSElements();
-		this.pGlobalVariableS = new GlobalVariableSElements();
+		this.pOrdinaryVariableS = new OrdinaryVariableSElements();
+		this.pSlotVariableS = new SlotVariableSElements();
 		this.pVariableValueS = new VariableValueSElements();
 		this.pDeviceValueS = new DeviceValueSElements();
 		this.pValueSlotS = new ValueSlotSElements();
@@ -1909,15 +2091,37 @@ public class ShortDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 	}
 	
 	//LoopS returns StatementS:
-	//    {Loop} 'foreach' variable=LocalVariableS
-	//    comparisonOperator=COMPARISON_OPERATOR_S slotState=DiskSlotStateValueS
-	//    ':' BEGIN statements+=StatementS* END;
+	//    LoopVariableS | LoopSlotS;
 	public LoopSElements getLoopSAccess() {
 		return pLoopS;
 	}
 	
 	public ParserRule getLoopSRule() {
 		return getLoopSAccess().getRule();
+	}
+	
+	//LoopVariableS returns StatementS:
+	//    {LoopVariable} 'foreach' 'var' ordinaryVariable=OrdinaryVariableS
+	//    comparisonOperator=COMPARISON_OPERATOR_S slotState=DiskSlotStateValueS
+	//    ':' BEGIN statements+=StatementS* END;
+	public LoopVariableSElements getLoopVariableSAccess() {
+		return pLoopVariableS;
+	}
+	
+	public ParserRule getLoopVariableSRule() {
+		return getLoopVariableSAccess().getRule();
+	}
+	
+	//LoopSlotS returns StatementS:
+	//    {LoopSlot} 'foreach' 'slot' slotVariable=SlotVariableS
+	//    comparisonOperator=COMPARISON_OPERATOR_S slotState=DiskSlotStateValueS
+	//    ':' BEGIN statements+=StatementS* END;
+	public LoopSlotSElements getLoopSlotSAccess() {
+		return pLoopSlotS;
+	}
+	
+	public ParserRule getLoopSlotSRule() {
+		return getLoopSlotSAccess().getRule();
 	}
 	
 	//MoveS returns StatementS:
@@ -1931,7 +2135,7 @@ public class ShortDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 	}
 	
 	//MoveDiskS returns MoveS:
-	//    {MoveDisk} slot=[LocalVariable] ('->' | '-->') zone=[DiskZone];
+	//    {MoveDisk} slot=[SlotVariable] ('->' | '-->') zone=[DiskZone];
 	public MoveDiskSElements getMoveDiskSAccess() {
 		return pMoveDiskS;
 	}
@@ -1941,7 +2145,7 @@ public class ShortDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 	}
 	
 	//MoveAnySlotS returns MoveS:
-	//    {MoveAnySlot} state=DiskSlotStateValueS anySlot=LocalVariableS ('->' | '-->') zone=[DiskZone];
+	//    {MoveAnySlot} state=DiskSlotStateValueS anySlot=SlotVariableS ('->' | '-->') zone=[DiskZone];
 	public MoveAnySlotSElements getMoveAnySlotSAccess() {
 		return pMoveAnySlotS;
 	}
@@ -1971,7 +2175,7 @@ public class ShortDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 	}
 	
 	//ConditionS returns StatementS:
-	//    ConditionVariableS | ConditionDeviceS;
+	//    ConditionVariableS | ConditionDeviceS | ConditionSlotS;
 	public ConditionSElements getConditionSAccess() {
 		return pConditionS;
 	}
@@ -1981,8 +2185,8 @@ public class ShortDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 	}
 	
 	//ConditionVariableS returns ConditionS:
-	//    {ConditionVariable} 'if' 'var' variable=[VariableS]
-	//    comparisonOperatorVariable=COMPARISON_OPERATOR_S variableValue=VariableValueS
+	//    {ConditionVariable} 'if' 'var' variable=[OrdinaryVariable]
+	//    comparisonOperator=COMPARISON_OPERATOR_S variableValue=VariableValueS
 	//    ':' BEGIN statements+=StatementS* END;
 	public ConditionVariableSElements getConditionVariableSAccess() {
 		return pConditionVariableS;
@@ -1992,9 +2196,21 @@ public class ShortDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		return getConditionVariableSAccess().getRule();
 	}
 	
+	//ConditionSlotS returns ConditionS:
+	//    {ConditionSlot} 'if' 'slot' variable=[SlotVariable]
+	//    comparisonOperator=COMPARISON_OPERATOR_S slotValue=ValueSlotS
+	//    ':' BEGIN statements+=StatementS* END;
+	public ConditionSlotSElements getConditionSlotSAccess() {
+		return pConditionSlotS;
+	}
+	
+	public ParserRule getConditionSlotSRule() {
+		return getConditionSlotSAccess().getRule();
+	}
+	
 	//ConditionDeviceS returns ConditionS:
 	//    {ConditionDevice} 'if' 'dev' device=[DeviceS]
-	//    comparisonOperatorDevice=COMPARISON_OPERATOR_S deviceValue=DeviceValueS
+	//    comparisonOperator=COMPARISON_OPERATOR_S deviceValue=DeviceValueS
 	//    ':' BEGIN statements+=StatementS* END;
 	public ConditionDeviceSElements getConditionDeviceSAccess() {
 		return pConditionDeviceS;
@@ -2025,7 +2241,7 @@ public class ShortDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 	}
 	
 	//MarkCameraValueS returns MarkS:
-	//    {MarkCameraValue} camera=[Camera] 'scan' variable=LocalVariableS;
+	//    {MarkCameraValue} camera=[Camera] 'scan' variable=OrdinaryVariableS;
 	public MarkCameraValueSElements getMarkCameraValueSAccess() {
 		return pMarkCameraValueS;
 	}
@@ -2036,7 +2252,7 @@ public class ShortDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 	
 	//// ----- VALUE TYPES ----- //
 	//VariableS:
-	//    LocalVariableS | GlobalVariableS;
+	//    OrdinaryVariableS | SlotVariableS;
 	public VariableSElements getVariableSAccess() {
 		return pVariableS;
 	}
@@ -2045,26 +2261,29 @@ public class ShortDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		return getVariableSAccess().getRule();
 	}
 	
-	//LocalVariableS returns VariableS:
-	//    {LocalVariable} name=ID;
-	public LocalVariableSElements getLocalVariableSAccess() {
-		return pLocalVariableS;
+	// //| GlobalVariableS;
+	//OrdinaryVariableS returns VariableS:
+	//    {OrdinaryVariable} name=ID;
+	public OrdinaryVariableSElements getOrdinaryVariableSAccess() {
+		return pOrdinaryVariableS;
 	}
 	
-	public ParserRule getLocalVariableSRule() {
-		return getLocalVariableSAccess().getRule();
+	public ParserRule getOrdinaryVariableSRule() {
+		return getOrdinaryVariableSAccess().getRule();
 	}
 	
-	//GlobalVariableS returns VariableS:
-	//    {GlobalVariable} name=ID;
-	public GlobalVariableSElements getGlobalVariableSAccess() {
-		return pGlobalVariableS;
+	//SlotVariableS returns VariableS:
+	//    {SlotVariable} name=ID;
+	public SlotVariableSElements getSlotVariableSAccess() {
+		return pSlotVariableS;
 	}
 	
-	public ParserRule getGlobalVariableSRule() {
-		return getGlobalVariableSAccess().getRule();
+	public ParserRule getSlotVariableSRule() {
+		return getSlotVariableSAccess().getRule();
 	}
 	
+	///*GlobalVariableS returns VariableS:
+	//    {GlobalVariable} name=ID;*/
 	//VariableValueS:
 	//    value=DiskSlotStateValueS | value=ColorValueS | value=NumberS | value=DiskStateValueS | ref=[VariableS];
 	public VariableValueSElements getVariableValueSAccess() {

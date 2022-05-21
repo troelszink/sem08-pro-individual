@@ -296,11 +296,19 @@ public class ShortDSLSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case ShortDSLPackage.LOOP:
+      case ShortDSLPackage.LOOP_VARIABLE:
       {
-        Loop loop = (Loop)theEObject;
-        T result = caseLoop(loop);
-        if (result == null) result = caseStatementS(loop);
+        LoopVariable loopVariable = (LoopVariable)theEObject;
+        T result = caseLoopVariable(loopVariable);
+        if (result == null) result = caseStatementS(loopVariable);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ShortDSLPackage.LOOP_SLOT:
+      {
+        LoopSlot loopSlot = (LoopSlot)theEObject;
+        T result = caseLoopSlot(loopSlot);
+        if (result == null) result = caseStatementS(loopSlot);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -349,6 +357,15 @@ public class ShortDSLSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case ShortDSLPackage.CONDITION_SLOT:
+      {
+        ConditionSlot conditionSlot = (ConditionSlot)theEObject;
+        T result = caseConditionSlot(conditionSlot);
+        if (result == null) result = caseConditionS(conditionSlot);
+        if (result == null) result = caseStatementS(conditionSlot);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case ShortDSLPackage.CONDITION_DEVICE:
       {
         ConditionDevice conditionDevice = (ConditionDevice)theEObject;
@@ -376,19 +393,19 @@ public class ShortDSLSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case ShortDSLPackage.LOCAL_VARIABLE:
+      case ShortDSLPackage.ORDINARY_VARIABLE:
       {
-        LocalVariable localVariable = (LocalVariable)theEObject;
-        T result = caseLocalVariable(localVariable);
-        if (result == null) result = caseVariableS(localVariable);
+        OrdinaryVariable ordinaryVariable = (OrdinaryVariable)theEObject;
+        T result = caseOrdinaryVariable(ordinaryVariable);
+        if (result == null) result = caseVariableS(ordinaryVariable);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case ShortDSLPackage.GLOBAL_VARIABLE:
+      case ShortDSLPackage.SLOT_VARIABLE:
       {
-        GlobalVariable globalVariable = (GlobalVariable)theEObject;
-        T result = caseGlobalVariable(globalVariable);
-        if (result == null) result = caseVariableS(globalVariable);
+        SlotVariable slotVariable = (SlotVariable)theEObject;
+        T result = caseSlotVariable(slotVariable);
+        if (result == null) result = caseVariableS(slotVariable);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -877,17 +894,33 @@ public class ShortDSLSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Loop</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Loop Variable</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Loop</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Loop Variable</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseLoop(Loop object)
+  public T caseLoopVariable(LoopVariable object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Loop Slot</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Loop Slot</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseLoopSlot(LoopSlot object)
   {
     return null;
   }
@@ -973,6 +1006,22 @@ public class ShortDSLSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Condition Slot</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Condition Slot</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseConditionSlot(ConditionSlot object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Condition Device</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -1021,33 +1070,33 @@ public class ShortDSLSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Local Variable</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Ordinary Variable</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Local Variable</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Ordinary Variable</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseLocalVariable(LocalVariable object)
+  public T caseOrdinaryVariable(OrdinaryVariable object)
   {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Global Variable</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Slot Variable</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Global Variable</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Slot Variable</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseGlobalVariable(GlobalVariable object)
+  public T caseSlotVariable(SlotVariable object)
   {
     return null;
   }

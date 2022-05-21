@@ -19,6 +19,7 @@ import xtext.factoryLang.shortDSL.shortDSL.Camera;
 import xtext.factoryLang.shortDSL.shortDSL.CameraColor;
 import xtext.factoryLang.shortDSL.shortDSL.ColorValueS;
 import xtext.factoryLang.shortDSL.shortDSL.ConditionDevice;
+import xtext.factoryLang.shortDSL.shortDSL.ConditionSlot;
 import xtext.factoryLang.shortDSL.shortDSL.ConditionVariable;
 import xtext.factoryLang.shortDSL.shortDSL.ConfigurationS;
 import xtext.factoryLang.shortDSL.shortDSL.Crane;
@@ -33,10 +34,9 @@ import xtext.factoryLang.shortDSL.shortDSL.DiskHandlingS;
 import xtext.factoryLang.shortDSL.shortDSL.DiskSlotStateValueS;
 import xtext.factoryLang.shortDSL.shortDSL.DiskStateValueS;
 import xtext.factoryLang.shortDSL.shortDSL.DiskZone;
-import xtext.factoryLang.shortDSL.shortDSL.GlobalVariable;
-import xtext.factoryLang.shortDSL.shortDSL.LocalVariable;
 import xtext.factoryLang.shortDSL.shortDSL.Logging;
-import xtext.factoryLang.shortDSL.shortDSL.Loop;
+import xtext.factoryLang.shortDSL.shortDSL.LoopSlot;
+import xtext.factoryLang.shortDSL.shortDSL.LoopVariable;
 import xtext.factoryLang.shortDSL.shortDSL.MarkCameraValue;
 import xtext.factoryLang.shortDSL.shortDSL.MarkVariableValue;
 import xtext.factoryLang.shortDSL.shortDSL.Model;
@@ -44,7 +44,9 @@ import xtext.factoryLang.shortDSL.shortDSL.MoveAnySlot;
 import xtext.factoryLang.shortDSL.shortDSL.MoveCrane;
 import xtext.factoryLang.shortDSL.shortDSL.MoveDisk;
 import xtext.factoryLang.shortDSL.shortDSL.NumberS;
+import xtext.factoryLang.shortDSL.shortDSL.OrdinaryVariable;
 import xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage;
+import xtext.factoryLang.shortDSL.shortDSL.SlotVariable;
 import xtext.factoryLang.shortDSL.shortDSL.ValueSlotS;
 import xtext.factoryLang.shortDSL.shortDSL.VariableValueS;
 
@@ -73,6 +75,9 @@ public class ShortDSLSemanticSequencer extends AbstractDelegatingSemanticSequenc
 				return; 
 			case ShortDSLPackage.CONDITION_DEVICE:
 				sequence_ConditionDeviceS(context, (ConditionDevice) semanticObject); 
+				return; 
+			case ShortDSLPackage.CONDITION_SLOT:
+				sequence_ConditionSlotS(context, (ConditionSlot) semanticObject); 
 				return; 
 			case ShortDSLPackage.CONDITION_VARIABLE:
 				sequence_ConditionVariableS(context, (ConditionVariable) semanticObject); 
@@ -116,17 +121,14 @@ public class ShortDSLSemanticSequencer extends AbstractDelegatingSemanticSequenc
 			case ShortDSLPackage.DISK_ZONE:
 				sequence_DiskZoneS(context, (DiskZone) semanticObject); 
 				return; 
-			case ShortDSLPackage.GLOBAL_VARIABLE:
-				sequence_GlobalVariableS(context, (GlobalVariable) semanticObject); 
-				return; 
-			case ShortDSLPackage.LOCAL_VARIABLE:
-				sequence_LocalVariableS(context, (LocalVariable) semanticObject); 
-				return; 
 			case ShortDSLPackage.LOGGING:
 				sequence_LoggingS(context, (Logging) semanticObject); 
 				return; 
-			case ShortDSLPackage.LOOP:
-				sequence_LoopS(context, (Loop) semanticObject); 
+			case ShortDSLPackage.LOOP_SLOT:
+				sequence_LoopSlotS(context, (LoopSlot) semanticObject); 
+				return; 
+			case ShortDSLPackage.LOOP_VARIABLE:
+				sequence_LoopVariableS(context, (LoopVariable) semanticObject); 
 				return; 
 			case ShortDSLPackage.MARK_CAMERA_VALUE:
 				sequence_MarkCameraValueS(context, (MarkCameraValue) semanticObject); 
@@ -148,6 +150,12 @@ public class ShortDSLSemanticSequencer extends AbstractDelegatingSemanticSequenc
 				return; 
 			case ShortDSLPackage.NUMBER_S:
 				sequence_NumberS(context, (NumberS) semanticObject); 
+				return; 
+			case ShortDSLPackage.ORDINARY_VARIABLE:
+				sequence_OrdinaryVariableS(context, (OrdinaryVariable) semanticObject); 
+				return; 
+			case ShortDSLPackage.SLOT_VARIABLE:
+				sequence_SlotVariableS(context, (SlotVariable) semanticObject); 
 				return; 
 			case ShortDSLPackage.VALUE_SLOT_S:
 				sequence_ValueSlotS(context, (ValueSlotS) semanticObject); 
@@ -216,9 +224,23 @@ public class ShortDSLSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 *     ConditionDeviceS returns ConditionDevice
 	 *
 	 * Constraint:
-	 *     (device=[DeviceS|ID] comparisonOperatorDevice=COMPARISON_OPERATOR_S deviceValue=DeviceValueS statements+=StatementS*)
+	 *     (device=[DeviceS|ID] comparisonOperator=COMPARISON_OPERATOR_S deviceValue=DeviceValueS statements+=StatementS*)
 	 */
 	protected void sequence_ConditionDeviceS(ISerializationContext context, ConditionDevice semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     StatementS returns ConditionSlot
+	 *     ConditionS returns ConditionSlot
+	 *     ConditionSlotS returns ConditionSlot
+	 *
+	 * Constraint:
+	 *     (variable=[SlotVariable|ID] comparisonOperator=COMPARISON_OPERATOR_S slotValue=ValueSlotS statements+=StatementS*)
+	 */
+	protected void sequence_ConditionSlotS(ISerializationContext context, ConditionSlot semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -230,7 +252,7 @@ public class ShortDSLSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 *     ConditionVariableS returns ConditionVariable
 	 *
 	 * Constraint:
-	 *     (variable=[VariableS|ID] comparisonOperatorVariable=COMPARISON_OPERATOR_S variableValue=VariableValueS statements+=StatementS*)
+	 *     (variable=[OrdinaryVariable|ID] comparisonOperator=COMPARISON_OPERATOR_S variableValue=VariableValueS statements+=StatementS*)
 	 */
 	protected void sequence_ConditionVariableS(ISerializationContext context, ConditionVariable semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -442,44 +464,6 @@ public class ShortDSLSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	
 	/**
 	 * Contexts:
-	 *     VariableS returns GlobalVariable
-	 *     GlobalVariableS returns GlobalVariable
-	 *
-	 * Constraint:
-	 *     name=ID
-	 */
-	protected void sequence_GlobalVariableS(ISerializationContext context, GlobalVariable semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, ShortDSLPackage.Literals.VARIABLE_S__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ShortDSLPackage.Literals.VARIABLE_S__NAME));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getGlobalVariableSAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
-		feeder.finish();
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     VariableS returns LocalVariable
-	 *     LocalVariableS returns LocalVariable
-	 *
-	 * Constraint:
-	 *     name=ID
-	 */
-	protected void sequence_LocalVariableS(ISerializationContext context, LocalVariable semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, ShortDSLPackage.Literals.VARIABLE_S__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ShortDSLPackage.Literals.VARIABLE_S__NAME));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getLocalVariableSAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
-		feeder.finish();
-	}
-	
-	
-	/**
-	 * Contexts:
 	 *     LoggingS returns Logging
 	 *
 	 * Constraint:
@@ -492,13 +476,28 @@ public class ShortDSLSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	
 	/**
 	 * Contexts:
-	 *     StatementS returns Loop
-	 *     LoopS returns Loop
+	 *     StatementS returns LoopSlot
+	 *     LoopS returns LoopSlot
+	 *     LoopSlotS returns LoopSlot
 	 *
 	 * Constraint:
-	 *     (variable=LocalVariableS comparisonOperator=COMPARISON_OPERATOR_S slotState=DiskSlotStateValueS statements+=StatementS*)
+	 *     (slotVariable=SlotVariableS comparisonOperator=COMPARISON_OPERATOR_S slotState=DiskSlotStateValueS statements+=StatementS*)
 	 */
-	protected void sequence_LoopS(ISerializationContext context, Loop semanticObject) {
+	protected void sequence_LoopSlotS(ISerializationContext context, LoopSlot semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     StatementS returns LoopVariable
+	 *     LoopS returns LoopVariable
+	 *     LoopVariableS returns LoopVariable
+	 *
+	 * Constraint:
+	 *     (ordinaryVariable=OrdinaryVariableS comparisonOperator=COMPARISON_OPERATOR_S slotState=DiskSlotStateValueS statements+=StatementS*)
+	 */
+	protected void sequence_LoopVariableS(ISerializationContext context, LoopVariable semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -510,7 +509,7 @@ public class ShortDSLSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 *     MarkCameraValueS returns MarkCameraValue
 	 *
 	 * Constraint:
-	 *     (camera=[Camera|ID] variable=LocalVariableS)
+	 *     (camera=[Camera|ID] variable=OrdinaryVariableS)
 	 */
 	protected void sequence_MarkCameraValueS(ISerializationContext context, MarkCameraValue semanticObject) {
 		if (errorAcceptor != null) {
@@ -521,7 +520,7 @@ public class ShortDSLSemanticSequencer extends AbstractDelegatingSemanticSequenc
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getMarkCameraValueSAccess().getCameraCameraIDTerminalRuleCall_1_0_1(), semanticObject.eGet(ShortDSLPackage.Literals.MARK_CAMERA_VALUE__CAMERA, false));
-		feeder.accept(grammarAccess.getMarkCameraValueSAccess().getVariableLocalVariableSParserRuleCall_3_0(), semanticObject.getVariable());
+		feeder.accept(grammarAccess.getMarkCameraValueSAccess().getVariableOrdinaryVariableSParserRuleCall_3_0(), semanticObject.getVariable());
 		feeder.finish();
 	}
 	
@@ -568,7 +567,7 @@ public class ShortDSLSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 *     MoveAnySlotS returns MoveAnySlot
 	 *
 	 * Constraint:
-	 *     (state=DiskSlotStateValueS anySlot=LocalVariableS zone=[DiskZone|ID])
+	 *     (state=DiskSlotStateValueS anySlot=SlotVariableS zone=[DiskZone|ID])
 	 */
 	protected void sequence_MoveAnySlotS(ISerializationContext context, MoveAnySlot semanticObject) {
 		if (errorAcceptor != null) {
@@ -581,7 +580,7 @@ public class ShortDSLSemanticSequencer extends AbstractDelegatingSemanticSequenc
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getMoveAnySlotSAccess().getStateDiskSlotStateValueSParserRuleCall_1_0(), semanticObject.getState());
-		feeder.accept(grammarAccess.getMoveAnySlotSAccess().getAnySlotLocalVariableSParserRuleCall_2_0(), semanticObject.getAnySlot());
+		feeder.accept(grammarAccess.getMoveAnySlotSAccess().getAnySlotSlotVariableSParserRuleCall_2_0(), semanticObject.getAnySlot());
 		feeder.accept(grammarAccess.getMoveAnySlotSAccess().getZoneDiskZoneIDTerminalRuleCall_4_0_1(), semanticObject.eGet(ShortDSLPackage.Literals.MOVE_ANY_SLOT__ZONE, false));
 		feeder.finish();
 	}
@@ -620,7 +619,7 @@ public class ShortDSLSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 *     MoveDiskS returns MoveDisk
 	 *
 	 * Constraint:
-	 *     (slot=[LocalVariable|ID] zone=[DiskZone|ID])
+	 *     (slot=[SlotVariable|ID] zone=[DiskZone|ID])
 	 */
 	protected void sequence_MoveDiskS(ISerializationContext context, MoveDisk semanticObject) {
 		if (errorAcceptor != null) {
@@ -630,7 +629,7 @@ public class ShortDSLSemanticSequencer extends AbstractDelegatingSemanticSequenc
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ShortDSLPackage.Literals.MOVE_DISK__ZONE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getMoveDiskSAccess().getSlotLocalVariableIDTerminalRuleCall_1_0_1(), semanticObject.eGet(ShortDSLPackage.Literals.MOVE_DISK__SLOT, false));
+		feeder.accept(grammarAccess.getMoveDiskSAccess().getSlotSlotVariableIDTerminalRuleCall_1_0_1(), semanticObject.eGet(ShortDSLPackage.Literals.MOVE_DISK__SLOT, false));
 		feeder.accept(grammarAccess.getMoveDiskSAccess().getZoneDiskZoneIDTerminalRuleCall_3_0_1(), semanticObject.eGet(ShortDSLPackage.Literals.MOVE_DISK__ZONE, false));
 		feeder.finish();
 	}
@@ -650,6 +649,44 @@ public class ShortDSLSemanticSequencer extends AbstractDelegatingSemanticSequenc
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getNumberSAccess().getValueINTTerminalRuleCall_0(), semanticObject.getValue());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     VariableS returns OrdinaryVariable
+	 *     OrdinaryVariableS returns OrdinaryVariable
+	 *
+	 * Constraint:
+	 *     name=ID
+	 */
+	protected void sequence_OrdinaryVariableS(ISerializationContext context, OrdinaryVariable semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, ShortDSLPackage.Literals.VARIABLE_S__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ShortDSLPackage.Literals.VARIABLE_S__NAME));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getOrdinaryVariableSAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     VariableS returns SlotVariable
+	 *     SlotVariableS returns SlotVariable
+	 *
+	 * Constraint:
+	 *     name=ID
+	 */
+	protected void sequence_SlotVariableS(ISerializationContext context, SlotVariable semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, ShortDSLPackage.Literals.VARIABLE_S__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ShortDSLPackage.Literals.VARIABLE_S__NAME));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getSlotVariableSAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
 		feeder.finish();
 	}
 	

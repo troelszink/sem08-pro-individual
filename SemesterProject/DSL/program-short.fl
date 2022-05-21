@@ -17,7 +17,7 @@ Syntax:
 - ',' is optional
 */
 devices {
-    crane1:
+    crane1 logging:
         pickupDisk: 0
         outRed: 30
         outGreen: 60
@@ -34,24 +34,24 @@ disk1 {
     foreach slot = complete:
         slot --> craneZone
         crane1 pickup --> pickupDisk // moves to pickupDisk and picks up
-        if slot = red:
+        if var slot = red:
             crane1 drop --> outRed
-        if slot = green:
+        if var slot = green:
             crane1 drop --> outGreen
-        if slot = blue:
+        if var slot = blue:
             crane1 drop --> outBlue
         slot(free)
     
-    if disk != full: // or: if disk1 ...
+    if dev disk != full: // or: if disk1 ...
         free slot --> intakeZone
         slot(in_progress)
         slot --> cameraZone
         camera1(color) // also marks slot as color
-        if color = red:
+        if var color = red:
             slot(complete, 10) // standard 0
-        if color = green:
+        if var color = green:
             slot(complete, 20)
-        if color = blue:
+        if var color = blue:
             slot(complete, 30)
 }
 

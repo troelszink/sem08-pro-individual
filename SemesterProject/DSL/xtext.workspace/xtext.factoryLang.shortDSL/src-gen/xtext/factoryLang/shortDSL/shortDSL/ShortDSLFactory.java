@@ -294,13 +294,22 @@ public interface ShortDSLFactory extends EFactory
   Logging createLogging();
 
   /**
-   * Returns a new object of class '<em>Loop</em>'.
+   * Returns a new object of class '<em>Loop Variable</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Loop</em>'.
+   * @return a new object of class '<em>Loop Variable</em>'.
    * @generated
    */
-  Loop createLoop();
+  LoopVariable createLoopVariable();
+
+  /**
+   * Returns a new object of class '<em>Loop Slot</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Loop Slot</em>'.
+   * @generated
+   */
+  LoopSlot createLoopSlot();
 
   /**
    * Returns a new object of class '<em>Move Disk</em>'.
@@ -348,6 +357,15 @@ public interface ShortDSLFactory extends EFactory
   ConditionVariable createConditionVariable();
 
   /**
+   * Returns a new object of class '<em>Condition Slot</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Condition Slot</em>'.
+   * @generated
+   */
+  ConditionSlot createConditionSlot();
+
+  /**
    * Returns a new object of class '<em>Condition Device</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -375,22 +393,22 @@ public interface ShortDSLFactory extends EFactory
   MarkCameraValue createMarkCameraValue();
 
   /**
-   * Returns a new object of class '<em>Local Variable</em>'.
+   * Returns a new object of class '<em>Ordinary Variable</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Local Variable</em>'.
+   * @return a new object of class '<em>Ordinary Variable</em>'.
    * @generated
    */
-  LocalVariable createLocalVariable();
+  OrdinaryVariable createOrdinaryVariable();
 
   /**
-   * Returns a new object of class '<em>Global Variable</em>'.
+   * Returns a new object of class '<em>Slot Variable</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Global Variable</em>'.
+   * @return a new object of class '<em>Slot Variable</em>'.
    * @generated
    */
-  GlobalVariable createGlobalVariable();
+  SlotVariable createSlotVariable();
 
   /**
    * Returns the package supported by this factory.

@@ -266,6 +266,7 @@ ColorValue:
 Number:
 	value=INT;
 
+
 // ----- SHARED ENUMS ----- //
 enum DSL_TYPE_ENUM:
 	LONG='long' | SHORT='short';

@@ -7,46 +7,46 @@ import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Loop</b></em>'.
+ * A representation of the model object '<em><b>Loop Slot</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link xtext.factoryLang.shortDSL.shortDSL.Loop#getVariable <em>Variable</em>}</li>
- *   <li>{@link xtext.factoryLang.shortDSL.shortDSL.Loop#getComparisonOperator <em>Comparison Operator</em>}</li>
- *   <li>{@link xtext.factoryLang.shortDSL.shortDSL.Loop#getSlotState <em>Slot State</em>}</li>
- *   <li>{@link xtext.factoryLang.shortDSL.shortDSL.Loop#getStatements <em>Statements</em>}</li>
+ *   <li>{@link xtext.factoryLang.shortDSL.shortDSL.LoopSlot#getSlotVariable <em>Slot Variable</em>}</li>
+ *   <li>{@link xtext.factoryLang.shortDSL.shortDSL.LoopSlot#getComparisonOperator <em>Comparison Operator</em>}</li>
+ *   <li>{@link xtext.factoryLang.shortDSL.shortDSL.LoopSlot#getSlotState <em>Slot State</em>}</li>
+ *   <li>{@link xtext.factoryLang.shortDSL.shortDSL.LoopSlot#getStatements <em>Statements</em>}</li>
  * </ul>
  *
- * @see xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage#getLoop()
+ * @see xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage#getLoopSlot()
  * @model
  * @generated
  */
-public interface Loop extends StatementS
+public interface LoopSlot extends StatementS
 {
   /**
-   * Returns the value of the '<em><b>Variable</b></em>' containment reference.
+   * Returns the value of the '<em><b>Slot Variable</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Variable</em>' containment reference.
-   * @see #setVariable(VariableS)
-   * @see xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage#getLoop_Variable()
+   * @return the value of the '<em>Slot Variable</em>' containment reference.
+   * @see #setSlotVariable(VariableS)
+   * @see xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage#getLoopSlot_SlotVariable()
    * @model containment="true"
    * @generated
    */
-  VariableS getVariable();
+  VariableS getSlotVariable();
 
   /**
-   * Sets the value of the '{@link xtext.factoryLang.shortDSL.shortDSL.Loop#getVariable <em>Variable</em>}' containment reference.
+   * Sets the value of the '{@link xtext.factoryLang.shortDSL.shortDSL.LoopSlot#getSlotVariable <em>Slot Variable</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Variable</em>' containment reference.
-   * @see #getVariable()
+   * @param value the new value of the '<em>Slot Variable</em>' containment reference.
+   * @see #getSlotVariable()
    * @generated
    */
-  void setVariable(VariableS value);
+  void setSlotVariable(VariableS value);
 
   /**
    * Returns the value of the '<em><b>Comparison Operator</b></em>' attribute.
@@ -56,14 +56,14 @@ public interface Loop extends StatementS
    * @return the value of the '<em>Comparison Operator</em>' attribute.
    * @see xtext.factoryLang.shortDSL.shortDSL.COMPARISON_OPERATOR_S
    * @see #setComparisonOperator(COMPARISON_OPERATOR_S)
-   * @see xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage#getLoop_ComparisonOperator()
+   * @see xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage#getLoopSlot_ComparisonOperator()
    * @model
    * @generated
    */
   COMPARISON_OPERATOR_S getComparisonOperator();
 
   /**
-   * Sets the value of the '{@link xtext.factoryLang.shortDSL.shortDSL.Loop#getComparisonOperator <em>Comparison Operator</em>}' attribute.
+   * Sets the value of the '{@link xtext.factoryLang.shortDSL.shortDSL.LoopSlot#getComparisonOperator <em>Comparison Operator</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Comparison Operator</em>' attribute.
@@ -79,14 +79,14 @@ public interface Loop extends StatementS
    * <!-- end-user-doc -->
    * @return the value of the '<em>Slot State</em>' containment reference.
    * @see #setSlotState(DiskSlotStateValueS)
-   * @see xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage#getLoop_SlotState()
+   * @see xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage#getLoopSlot_SlotState()
    * @model containment="true"
    * @generated
    */
   DiskSlotStateValueS getSlotState();
 
   /**
-   * Sets the value of the '{@link xtext.factoryLang.shortDSL.shortDSL.Loop#getSlotState <em>Slot State</em>}' containment reference.
+   * Sets the value of the '{@link xtext.factoryLang.shortDSL.shortDSL.LoopSlot#getSlotState <em>Slot State</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Slot State</em>' containment reference.
@@ -101,10 +101,10 @@ public interface Loop extends StatementS
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Statements</em>' containment reference list.
-   * @see xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage#getLoop_Statements()
+   * @see xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage#getLoopSlot_Statements()
    * @model containment="true"
    * @generated
    */
   EList<StatementS> getStatements();
 
-} // Loop
+} // LoopSlot

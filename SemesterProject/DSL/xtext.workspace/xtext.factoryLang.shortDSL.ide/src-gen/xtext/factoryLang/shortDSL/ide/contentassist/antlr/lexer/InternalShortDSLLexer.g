@@ -43,6 +43,8 @@ Long : 'long';
 
 Scan : 'scan';
 
+Slot : 'slot';
+
 Test : 'test';
 
 HyphenMinusHyphenMinusGreaterThanSign : '-->';

@@ -52,7 +52,15 @@ StatementS:
 	LoopS | MoveS | CraneActionS | ConditionS | MarkS;
 
 LoopS returns StatementS:
-	{Loop} 'foreach' variable=LocalVariableS
+	LoopVariableS | LoopSlotS;
+
+LoopVariableS returns StatementS:
+	{LoopVariable} 'foreach' 'var' ordinaryVariable=OrdinaryVariableS
+	comparisonOperator=COMPARISON_OPERATOR_S slotState=DiskSlotStateValueS
+	':' BEGIN statements+=StatementS* END;
+
+LoopSlotS returns StatementS:
+	{LoopSlot} 'foreach' 'slot' slotVariable=SlotVariableS
 	comparisonOperator=COMPARISON_OPERATOR_S slotState=DiskSlotStateValueS
 	':' BEGIN statements+=StatementS* END;
 
@@ -60,10 +68,10 @@ MoveS returns StatementS:
 	MoveDiskS | MoveAnySlotS | MoveCraneS;
 
 MoveDiskS returns MoveS:
-	{MoveDisk} slot=[LocalVariable] ('->' | '-->') zone=[DiskZone];
+	{MoveDisk} slot=[SlotVariable] ('->' | '-->') zone=[DiskZone];
 
 MoveAnySlotS returns MoveS:
-	{MoveAnySlot} state=DiskSlotStateValueS anySlot=LocalVariableS ('->' | '-->') zone=[DiskZone];
+	{MoveAnySlot} state=DiskSlotStateValueS anySlot=SlotVariableS ('->' | '-->') zone=[DiskZone];
 
 MoveCraneS returns MoveS:
 	{MoveCrane} crane=[Crane] action=CraneActionS ('->' | '-->') zone=[CraneZone];
@@ -72,16 +80,21 @@ CraneActionS:
 	{CraneAction} ('pickup' | 'drop');
 
 ConditionS returns StatementS:
-	ConditionVariableS | ConditionDeviceS;
+	ConditionVariableS | ConditionDeviceS | ConditionSlotS;
 
 ConditionVariableS returns ConditionS:
-	{ConditionVariable} 'if' 'var' variable=[VariableS]
-	comparisonOperatorVariable=COMPARISON_OPERATOR_S variableValue=VariableValueS
+	{ConditionVariable} 'if' 'var' variable=[OrdinaryVariable]
+	comparisonOperator=COMPARISON_OPERATOR_S variableValue=VariableValueS
+	':' BEGIN statements+=StatementS* END;
+	
+ConditionSlotS returns ConditionS:
+	{ConditionSlot} 'if' 'slot' variable=[SlotVariable]
+	comparisonOperator=COMPARISON_OPERATOR_S slotValue=ValueSlotS
 	':' BEGIN statements+=StatementS* END;
 
 ConditionDeviceS returns ConditionS:
 	{ConditionDevice} 'if' 'dev' device=[DeviceS]
-	comparisonOperatorDevice=COMPARISON_OPERATOR_S deviceValue=DeviceValueS
+	comparisonOperator=COMPARISON_OPERATOR_S deviceValue=DeviceValueS
 	':' BEGIN statements+=StatementS* END;
 
 MarkS returns StatementS:
@@ -91,19 +104,22 @@ MarkVariableValueS returns MarkS:
 	{MarkVariableValue} variable=[VariableS] '(' value=ValueSlotS (',' time=INT unit=TIME_UNIT_S)? ')';
 
 MarkCameraValueS returns MarkS:
-	{MarkCameraValue} camera=[Camera] 'scan' variable=LocalVariableS;
+	{MarkCameraValue} camera=[Camera] 'scan' variable=OrdinaryVariableS;
 	
 	
 
 // ----- VALUE TYPES ----- //
 VariableS:
-	LocalVariableS | GlobalVariableS;
+	OrdinaryVariableS | SlotVariableS; //| GlobalVariableS;
 
-LocalVariableS returns VariableS:
-	{LocalVariable} name=ID;
+OrdinaryVariableS returns VariableS:
+	{OrdinaryVariable} name=ID;
 
-GlobalVariableS returns VariableS:
-	{GlobalVariable} name=ID;
+SlotVariableS returns VariableS:
+	{SlotVariable} name=ID;
+
+/*GlobalVariableS returns VariableS:
+	{GlobalVariable} name=ID;*/
 
 VariableValueS:
 	value=DiskSlotStateValueS | value=ColorValueS | value=NumberS | value=DiskStateValueS | ref=[VariableS];

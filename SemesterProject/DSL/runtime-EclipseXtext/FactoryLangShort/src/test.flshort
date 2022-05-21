@@ -16,27 +16,27 @@ devices {
 }
 
 handle disk1 {	
-	foreach slot = complete:
-		slot --> craneZone
+	foreach slot aSlot = complete:
+		aSlot --> craneZone
 		crane1 pickup --> pickupDisk
-		if var slot = red:
+		if slot aSlot = red:
 			crane1 drop --> outRed
-		if var slot = green:
+		if slot aSlot = green:
 			crane1 drop --> outGreen
-		if var slot = blue:
+		if slot aSlot = blue:
 			crane1 drop --> outBlue
-		slot(free)
+		aSlot(free)
      
 	if dev disk1 != full:
-		free slot --> intakeZone
-		slot(in_progress)
-		slot --> cameraZone
+		free aSlot --> intakeZone
+		aSlot(in_progress)
+		aSlot --> cameraZone
 		camera1 scan color
 		if var color = red:
-			slot(complete, 10m)
+			aSlot(complete, 10m)
 		if var color = green:
-			slot(complete, 20m)
+			aSlot(complete, 20m)
 		if var color = blue:
-			slot(complete, 30m)
+			aSlot(complete, 30m)
 }
 

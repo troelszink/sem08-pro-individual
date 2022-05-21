@@ -11,26 +11,26 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import xtext.factoryLang.shortDSL.shortDSL.ConditionVariable;
-import xtext.factoryLang.shortDSL.shortDSL.OrdinaryVariable;
+import xtext.factoryLang.shortDSL.shortDSL.ConditionSlot;
 import xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage;
-import xtext.factoryLang.shortDSL.shortDSL.VariableValueS;
+import xtext.factoryLang.shortDSL.shortDSL.SlotVariable;
+import xtext.factoryLang.shortDSL.shortDSL.ValueSlotS;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Condition Variable</b></em>'.
+ * An implementation of the model object '<em><b>Condition Slot</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link xtext.factoryLang.shortDSL.shortDSL.impl.ConditionVariableImpl#getVariable <em>Variable</em>}</li>
- *   <li>{@link xtext.factoryLang.shortDSL.shortDSL.impl.ConditionVariableImpl#getVariableValue <em>Variable Value</em>}</li>
+ *   <li>{@link xtext.factoryLang.shortDSL.shortDSL.impl.ConditionSlotImpl#getVariable <em>Variable</em>}</li>
+ *   <li>{@link xtext.factoryLang.shortDSL.shortDSL.impl.ConditionSlotImpl#getSlotValue <em>Slot Value</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class ConditionVariableImpl extends ConditionSImpl implements ConditionVariable
+public class ConditionSlotImpl extends ConditionSImpl implements ConditionSlot
 {
   /**
    * The cached value of the '{@link #getVariable() <em>Variable</em>}' reference.
@@ -40,24 +40,24 @@ public class ConditionVariableImpl extends ConditionSImpl implements ConditionVa
    * @generated
    * @ordered
    */
-  protected OrdinaryVariable variable;
+  protected SlotVariable variable;
 
   /**
-   * The cached value of the '{@link #getVariableValue() <em>Variable Value</em>}' containment reference.
+   * The cached value of the '{@link #getSlotValue() <em>Slot Value</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getVariableValue()
+   * @see #getSlotValue()
    * @generated
    * @ordered
    */
-  protected VariableValueS variableValue;
+  protected ValueSlotS slotValue;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected ConditionVariableImpl()
+  protected ConditionSlotImpl()
   {
     super();
   }
@@ -70,7 +70,7 @@ public class ConditionVariableImpl extends ConditionSImpl implements ConditionVa
   @Override
   protected EClass eStaticClass()
   {
-    return ShortDSLPackage.Literals.CONDITION_VARIABLE;
+    return ShortDSLPackage.Literals.CONDITION_SLOT;
   }
 
   /**
@@ -79,16 +79,16 @@ public class ConditionVariableImpl extends ConditionSImpl implements ConditionVa
    * @generated
    */
   @Override
-  public OrdinaryVariable getVariable()
+  public SlotVariable getVariable()
   {
     if (variable != null && variable.eIsProxy())
     {
       InternalEObject oldVariable = (InternalEObject)variable;
-      variable = (OrdinaryVariable)eResolveProxy(oldVariable);
+      variable = (SlotVariable)eResolveProxy(oldVariable);
       if (variable != oldVariable)
       {
         if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, ShortDSLPackage.CONDITION_VARIABLE__VARIABLE, oldVariable, variable));
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, ShortDSLPackage.CONDITION_SLOT__VARIABLE, oldVariable, variable));
       }
     }
     return variable;
@@ -99,7 +99,7 @@ public class ConditionVariableImpl extends ConditionSImpl implements ConditionVa
    * <!-- end-user-doc -->
    * @generated
    */
-  public OrdinaryVariable basicGetVariable()
+  public SlotVariable basicGetVariable()
   {
     return variable;
   }
@@ -110,12 +110,12 @@ public class ConditionVariableImpl extends ConditionSImpl implements ConditionVa
    * @generated
    */
   @Override
-  public void setVariable(OrdinaryVariable newVariable)
+  public void setVariable(SlotVariable newVariable)
   {
-    OrdinaryVariable oldVariable = variable;
+    SlotVariable oldVariable = variable;
     variable = newVariable;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ShortDSLPackage.CONDITION_VARIABLE__VARIABLE, oldVariable, variable));
+      eNotify(new ENotificationImpl(this, Notification.SET, ShortDSLPackage.CONDITION_SLOT__VARIABLE, oldVariable, variable));
   }
 
   /**
@@ -124,9 +124,9 @@ public class ConditionVariableImpl extends ConditionSImpl implements ConditionVa
    * @generated
    */
   @Override
-  public VariableValueS getVariableValue()
+  public ValueSlotS getSlotValue()
   {
-    return variableValue;
+    return slotValue;
   }
 
   /**
@@ -134,13 +134,13 @@ public class ConditionVariableImpl extends ConditionSImpl implements ConditionVa
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetVariableValue(VariableValueS newVariableValue, NotificationChain msgs)
+  public NotificationChain basicSetSlotValue(ValueSlotS newSlotValue, NotificationChain msgs)
   {
-    VariableValueS oldVariableValue = variableValue;
-    variableValue = newVariableValue;
+    ValueSlotS oldSlotValue = slotValue;
+    slotValue = newSlotValue;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ShortDSLPackage.CONDITION_VARIABLE__VARIABLE_VALUE, oldVariableValue, newVariableValue);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ShortDSLPackage.CONDITION_SLOT__SLOT_VALUE, oldSlotValue, newSlotValue);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -152,20 +152,20 @@ public class ConditionVariableImpl extends ConditionSImpl implements ConditionVa
    * @generated
    */
   @Override
-  public void setVariableValue(VariableValueS newVariableValue)
+  public void setSlotValue(ValueSlotS newSlotValue)
   {
-    if (newVariableValue != variableValue)
+    if (newSlotValue != slotValue)
     {
       NotificationChain msgs = null;
-      if (variableValue != null)
-        msgs = ((InternalEObject)variableValue).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ShortDSLPackage.CONDITION_VARIABLE__VARIABLE_VALUE, null, msgs);
-      if (newVariableValue != null)
-        msgs = ((InternalEObject)newVariableValue).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ShortDSLPackage.CONDITION_VARIABLE__VARIABLE_VALUE, null, msgs);
-      msgs = basicSetVariableValue(newVariableValue, msgs);
+      if (slotValue != null)
+        msgs = ((InternalEObject)slotValue).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ShortDSLPackage.CONDITION_SLOT__SLOT_VALUE, null, msgs);
+      if (newSlotValue != null)
+        msgs = ((InternalEObject)newSlotValue).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ShortDSLPackage.CONDITION_SLOT__SLOT_VALUE, null, msgs);
+      msgs = basicSetSlotValue(newSlotValue, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ShortDSLPackage.CONDITION_VARIABLE__VARIABLE_VALUE, newVariableValue, newVariableValue));
+      eNotify(new ENotificationImpl(this, Notification.SET, ShortDSLPackage.CONDITION_SLOT__SLOT_VALUE, newSlotValue, newSlotValue));
   }
 
   /**
@@ -178,8 +178,8 @@ public class ConditionVariableImpl extends ConditionSImpl implements ConditionVa
   {
     switch (featureID)
     {
-      case ShortDSLPackage.CONDITION_VARIABLE__VARIABLE_VALUE:
-        return basicSetVariableValue(null, msgs);
+      case ShortDSLPackage.CONDITION_SLOT__SLOT_VALUE:
+        return basicSetSlotValue(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -194,11 +194,11 @@ public class ConditionVariableImpl extends ConditionSImpl implements ConditionVa
   {
     switch (featureID)
     {
-      case ShortDSLPackage.CONDITION_VARIABLE__VARIABLE:
+      case ShortDSLPackage.CONDITION_SLOT__VARIABLE:
         if (resolve) return getVariable();
         return basicGetVariable();
-      case ShortDSLPackage.CONDITION_VARIABLE__VARIABLE_VALUE:
-        return getVariableValue();
+      case ShortDSLPackage.CONDITION_SLOT__SLOT_VALUE:
+        return getSlotValue();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -213,11 +213,11 @@ public class ConditionVariableImpl extends ConditionSImpl implements ConditionVa
   {
     switch (featureID)
     {
-      case ShortDSLPackage.CONDITION_VARIABLE__VARIABLE:
-        setVariable((OrdinaryVariable)newValue);
+      case ShortDSLPackage.CONDITION_SLOT__VARIABLE:
+        setVariable((SlotVariable)newValue);
         return;
-      case ShortDSLPackage.CONDITION_VARIABLE__VARIABLE_VALUE:
-        setVariableValue((VariableValueS)newValue);
+      case ShortDSLPackage.CONDITION_SLOT__SLOT_VALUE:
+        setSlotValue((ValueSlotS)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -233,11 +233,11 @@ public class ConditionVariableImpl extends ConditionSImpl implements ConditionVa
   {
     switch (featureID)
     {
-      case ShortDSLPackage.CONDITION_VARIABLE__VARIABLE:
-        setVariable((OrdinaryVariable)null);
+      case ShortDSLPackage.CONDITION_SLOT__VARIABLE:
+        setVariable((SlotVariable)null);
         return;
-      case ShortDSLPackage.CONDITION_VARIABLE__VARIABLE_VALUE:
-        setVariableValue((VariableValueS)null);
+      case ShortDSLPackage.CONDITION_SLOT__SLOT_VALUE:
+        setSlotValue((ValueSlotS)null);
         return;
     }
     super.eUnset(featureID);
@@ -253,12 +253,12 @@ public class ConditionVariableImpl extends ConditionSImpl implements ConditionVa
   {
     switch (featureID)
     {
-      case ShortDSLPackage.CONDITION_VARIABLE__VARIABLE:
+      case ShortDSLPackage.CONDITION_SLOT__VARIABLE:
         return variable != null;
-      case ShortDSLPackage.CONDITION_VARIABLE__VARIABLE_VALUE:
-        return variableValue != null;
+      case ShortDSLPackage.CONDITION_SLOT__SLOT_VALUE:
+        return slotValue != null;
     }
     return super.eIsSet(featureID);
   }
 
-} //ConditionVariableImpl
+} //ConditionSlotImpl

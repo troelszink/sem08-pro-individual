@@ -1053,32 +1053,72 @@ ruleLoopS returns [EObject current=null]
 	leaveRule();
 }:
 	(
+		{
+			newCompositeNode(grammarAccess.getLoopSAccess().getLoopVariableSParserRuleCall_0());
+		}
+		this_LoopVariableS_0=ruleLoopVariableS
+		{
+			$current = $this_LoopVariableS_0.current;
+			afterParserOrEnumRuleCall();
+		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getLoopSAccess().getLoopSlotSParserRuleCall_1());
+		}
+		this_LoopSlotS_1=ruleLoopSlotS
+		{
+			$current = $this_LoopSlotS_1.current;
+			afterParserOrEnumRuleCall();
+		}
+	)
+;
+
+// Entry rule entryRuleLoopVariableS
+entryRuleLoopVariableS returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getLoopVariableSRule()); }
+	iv_ruleLoopVariableS=ruleLoopVariableS
+	{ $current=$iv_ruleLoopVariableS.current; }
+	EOF;
+
+// Rule LoopVariableS
+ruleLoopVariableS returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
 		(
 			{
 				$current = forceCreateModelElement(
-					grammarAccess.getLoopSAccess().getLoopAction_0(),
+					grammarAccess.getLoopVariableSAccess().getLoopVariableAction_0(),
 					$current);
 			}
 		)
 		otherlv_1=Foreach
 		{
-			newLeafNode(otherlv_1, grammarAccess.getLoopSAccess().getForeachKeyword_1());
+			newLeafNode(otherlv_1, grammarAccess.getLoopVariableSAccess().getForeachKeyword_1());
+		}
+		otherlv_2=Var
+		{
+			newLeafNode(otherlv_2, grammarAccess.getLoopVariableSAccess().getVarKeyword_2());
 		}
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getLoopSAccess().getVariableLocalVariableSParserRuleCall_2_0());
+					newCompositeNode(grammarAccess.getLoopVariableSAccess().getOrdinaryVariableOrdinaryVariableSParserRuleCall_3_0());
 				}
-				lv_variable_2_0=ruleLocalVariableS
+				lv_ordinaryVariable_3_0=ruleOrdinaryVariableS
 				{
 					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getLoopSRule());
+						$current = createModelElementForParent(grammarAccess.getLoopVariableSRule());
 					}
 					set(
 						$current,
-						"variable",
-						lv_variable_2_0,
-						"xtext.factoryLang.shortDSL.ShortDSL.LocalVariableS");
+						"ordinaryVariable",
+						lv_ordinaryVariable_3_0,
+						"xtext.factoryLang.shortDSL.ShortDSL.OrdinaryVariableS");
 					afterParserOrEnumRuleCall();
 				}
 			)
@@ -1086,17 +1126,17 @@ ruleLoopS returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getLoopSAccess().getComparisonOperatorCOMPARISON_OPERATOR_SEnumRuleCall_3_0());
+					newCompositeNode(grammarAccess.getLoopVariableSAccess().getComparisonOperatorCOMPARISON_OPERATOR_SEnumRuleCall_4_0());
 				}
-				lv_comparisonOperator_3_0=ruleCOMPARISON_OPERATOR_S
+				lv_comparisonOperator_4_0=ruleCOMPARISON_OPERATOR_S
 				{
 					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getLoopSRule());
+						$current = createModelElementForParent(grammarAccess.getLoopVariableSRule());
 					}
 					set(
 						$current,
 						"comparisonOperator",
-						lv_comparisonOperator_3_0,
+						lv_comparisonOperator_4_0,
 						"xtext.factoryLang.shortDSL.ShortDSL.COMPARISON_OPERATOR_S");
 					afterParserOrEnumRuleCall();
 				}
@@ -1105,52 +1145,174 @@ ruleLoopS returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getLoopSAccess().getSlotStateDiskSlotStateValueSParserRuleCall_4_0());
+					newCompositeNode(grammarAccess.getLoopVariableSAccess().getSlotStateDiskSlotStateValueSParserRuleCall_5_0());
 				}
-				lv_slotState_4_0=ruleDiskSlotStateValueS
+				lv_slotState_5_0=ruleDiskSlotStateValueS
 				{
 					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getLoopSRule());
+						$current = createModelElementForParent(grammarAccess.getLoopVariableSRule());
 					}
 					set(
 						$current,
 						"slotState",
-						lv_slotState_4_0,
+						lv_slotState_5_0,
 						"xtext.factoryLang.shortDSL.ShortDSL.DiskSlotStateValueS");
 					afterParserOrEnumRuleCall();
 				}
 			)
 		)
-		otherlv_5=Colon
+		otherlv_6=Colon
 		{
-			newLeafNode(otherlv_5, grammarAccess.getLoopSAccess().getColonKeyword_5());
+			newLeafNode(otherlv_6, grammarAccess.getLoopVariableSAccess().getColonKeyword_6());
 		}
-		this_BEGIN_6=RULE_BEGIN
+		this_BEGIN_7=RULE_BEGIN
 		{
-			newLeafNode(this_BEGIN_6, grammarAccess.getLoopSAccess().getBEGINTerminalRuleCall_6());
+			newLeafNode(this_BEGIN_7, grammarAccess.getLoopVariableSAccess().getBEGINTerminalRuleCall_7());
 		}
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getLoopSAccess().getStatementsStatementSParserRuleCall_7_0());
+					newCompositeNode(grammarAccess.getLoopVariableSAccess().getStatementsStatementSParserRuleCall_8_0());
 				}
-				lv_statements_7_0=ruleStatementS
+				lv_statements_8_0=ruleStatementS
 				{
 					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getLoopSRule());
+						$current = createModelElementForParent(grammarAccess.getLoopVariableSRule());
 					}
 					add(
 						$current,
 						"statements",
-						lv_statements_7_0,
+						lv_statements_8_0,
 						"xtext.factoryLang.shortDSL.ShortDSL.StatementS");
 					afterParserOrEnumRuleCall();
 				}
 			)
 		)*
-		this_END_8=RULE_END
+		this_END_9=RULE_END
 		{
-			newLeafNode(this_END_8, grammarAccess.getLoopSAccess().getENDTerminalRuleCall_8());
+			newLeafNode(this_END_9, grammarAccess.getLoopVariableSAccess().getENDTerminalRuleCall_9());
+		}
+	)
+;
+
+// Entry rule entryRuleLoopSlotS
+entryRuleLoopSlotS returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getLoopSlotSRule()); }
+	iv_ruleLoopSlotS=ruleLoopSlotS
+	{ $current=$iv_ruleLoopSlotS.current; }
+	EOF;
+
+// Rule LoopSlotS
+ruleLoopSlotS returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			{
+				$current = forceCreateModelElement(
+					grammarAccess.getLoopSlotSAccess().getLoopSlotAction_0(),
+					$current);
+			}
+		)
+		otherlv_1=Foreach
+		{
+			newLeafNode(otherlv_1, grammarAccess.getLoopSlotSAccess().getForeachKeyword_1());
+		}
+		otherlv_2=Slot
+		{
+			newLeafNode(otherlv_2, grammarAccess.getLoopSlotSAccess().getSlotKeyword_2());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getLoopSlotSAccess().getSlotVariableSlotVariableSParserRuleCall_3_0());
+				}
+				lv_slotVariable_3_0=ruleSlotVariableS
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getLoopSlotSRule());
+					}
+					set(
+						$current,
+						"slotVariable",
+						lv_slotVariable_3_0,
+						"xtext.factoryLang.shortDSL.ShortDSL.SlotVariableS");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getLoopSlotSAccess().getComparisonOperatorCOMPARISON_OPERATOR_SEnumRuleCall_4_0());
+				}
+				lv_comparisonOperator_4_0=ruleCOMPARISON_OPERATOR_S
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getLoopSlotSRule());
+					}
+					set(
+						$current,
+						"comparisonOperator",
+						lv_comparisonOperator_4_0,
+						"xtext.factoryLang.shortDSL.ShortDSL.COMPARISON_OPERATOR_S");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getLoopSlotSAccess().getSlotStateDiskSlotStateValueSParserRuleCall_5_0());
+				}
+				lv_slotState_5_0=ruleDiskSlotStateValueS
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getLoopSlotSRule());
+					}
+					set(
+						$current,
+						"slotState",
+						lv_slotState_5_0,
+						"xtext.factoryLang.shortDSL.ShortDSL.DiskSlotStateValueS");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		otherlv_6=Colon
+		{
+			newLeafNode(otherlv_6, grammarAccess.getLoopSlotSAccess().getColonKeyword_6());
+		}
+		this_BEGIN_7=RULE_BEGIN
+		{
+			newLeafNode(this_BEGIN_7, grammarAccess.getLoopSlotSAccess().getBEGINTerminalRuleCall_7());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getLoopSlotSAccess().getStatementsStatementSParserRuleCall_8_0());
+				}
+				lv_statements_8_0=ruleStatementS
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getLoopSlotSRule());
+					}
+					add(
+						$current,
+						"statements",
+						lv_statements_8_0,
+						"xtext.factoryLang.shortDSL.ShortDSL.StatementS");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)*
+		this_END_9=RULE_END
+		{
+			newLeafNode(this_END_9, grammarAccess.getLoopSlotSAccess().getENDTerminalRuleCall_9());
 		}
 	)
 ;
@@ -1232,7 +1394,7 @@ ruleMoveDiskS returns [EObject current=null]
 				}
 				otherlv_1=RULE_ID
 				{
-					newLeafNode(otherlv_1, grammarAccess.getMoveDiskSAccess().getSlotLocalVariableCrossReference_1_0());
+					newLeafNode(otherlv_1, grammarAccess.getMoveDiskSAccess().getSlotSlotVariableCrossReference_1_0());
 				}
 			)
 		)
@@ -1308,9 +1470,9 @@ ruleMoveAnySlotS returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getMoveAnySlotSAccess().getAnySlotLocalVariableSParserRuleCall_2_0());
+					newCompositeNode(grammarAccess.getMoveAnySlotSAccess().getAnySlotSlotVariableSParserRuleCall_2_0());
 				}
-				lv_anySlot_2_0=ruleLocalVariableS
+				lv_anySlot_2_0=ruleSlotVariableS
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getMoveAnySlotSRule());
@@ -1319,7 +1481,7 @@ ruleMoveAnySlotS returns [EObject current=null]
 						$current,
 						"anySlot",
 						lv_anySlot_2_0,
-						"xtext.factoryLang.shortDSL.ShortDSL.LocalVariableS");
+						"xtext.factoryLang.shortDSL.ShortDSL.SlotVariableS");
 					afterParserOrEnumRuleCall();
 				}
 			)
@@ -1503,6 +1665,15 @@ ruleConditionS returns [EObject current=null]
 			$current = $this_ConditionDeviceS_1.current;
 			afterParserOrEnumRuleCall();
 		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getConditionSAccess().getConditionSlotSParserRuleCall_2());
+		}
+		this_ConditionSlotS_2=ruleConditionSlotS
+		{
+			$current = $this_ConditionSlotS_2.current;
+			afterParserOrEnumRuleCall();
+		}
 	)
 ;
 
@@ -1546,24 +1717,24 @@ ruleConditionVariableS returns [EObject current=null]
 				}
 				otherlv_3=RULE_ID
 				{
-					newLeafNode(otherlv_3, grammarAccess.getConditionVariableSAccess().getVariableVariableSCrossReference_3_0());
+					newLeafNode(otherlv_3, grammarAccess.getConditionVariableSAccess().getVariableOrdinaryVariableCrossReference_3_0());
 				}
 			)
 		)
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getConditionVariableSAccess().getComparisonOperatorVariableCOMPARISON_OPERATOR_SEnumRuleCall_4_0());
+					newCompositeNode(grammarAccess.getConditionVariableSAccess().getComparisonOperatorCOMPARISON_OPERATOR_SEnumRuleCall_4_0());
 				}
-				lv_comparisonOperatorVariable_4_0=ruleCOMPARISON_OPERATOR_S
+				lv_comparisonOperator_4_0=ruleCOMPARISON_OPERATOR_S
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getConditionVariableSRule());
 					}
 					set(
 						$current,
-						"comparisonOperatorVariable",
-						lv_comparisonOperatorVariable_4_0,
+						"comparisonOperator",
+						lv_comparisonOperator_4_0,
 						"xtext.factoryLang.shortDSL.ShortDSL.COMPARISON_OPERATOR_S");
 					afterParserOrEnumRuleCall();
 				}
@@ -1622,6 +1793,122 @@ ruleConditionVariableS returns [EObject current=null]
 	)
 ;
 
+// Entry rule entryRuleConditionSlotS
+entryRuleConditionSlotS returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getConditionSlotSRule()); }
+	iv_ruleConditionSlotS=ruleConditionSlotS
+	{ $current=$iv_ruleConditionSlotS.current; }
+	EOF;
+
+// Rule ConditionSlotS
+ruleConditionSlotS returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			{
+				$current = forceCreateModelElement(
+					grammarAccess.getConditionSlotSAccess().getConditionSlotAction_0(),
+					$current);
+			}
+		)
+		otherlv_1=If
+		{
+			newLeafNode(otherlv_1, grammarAccess.getConditionSlotSAccess().getIfKeyword_1());
+		}
+		otherlv_2=Slot
+		{
+			newLeafNode(otherlv_2, grammarAccess.getConditionSlotSAccess().getSlotKeyword_2());
+		}
+		(
+			(
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getConditionSlotSRule());
+					}
+				}
+				otherlv_3=RULE_ID
+				{
+					newLeafNode(otherlv_3, grammarAccess.getConditionSlotSAccess().getVariableSlotVariableCrossReference_3_0());
+				}
+			)
+		)
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getConditionSlotSAccess().getComparisonOperatorCOMPARISON_OPERATOR_SEnumRuleCall_4_0());
+				}
+				lv_comparisonOperator_4_0=ruleCOMPARISON_OPERATOR_S
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getConditionSlotSRule());
+					}
+					set(
+						$current,
+						"comparisonOperator",
+						lv_comparisonOperator_4_0,
+						"xtext.factoryLang.shortDSL.ShortDSL.COMPARISON_OPERATOR_S");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getConditionSlotSAccess().getSlotValueValueSlotSParserRuleCall_5_0());
+				}
+				lv_slotValue_5_0=ruleValueSlotS
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getConditionSlotSRule());
+					}
+					set(
+						$current,
+						"slotValue",
+						lv_slotValue_5_0,
+						"xtext.factoryLang.shortDSL.ShortDSL.ValueSlotS");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		otherlv_6=Colon
+		{
+			newLeafNode(otherlv_6, grammarAccess.getConditionSlotSAccess().getColonKeyword_6());
+		}
+		this_BEGIN_7=RULE_BEGIN
+		{
+			newLeafNode(this_BEGIN_7, grammarAccess.getConditionSlotSAccess().getBEGINTerminalRuleCall_7());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getConditionSlotSAccess().getStatementsStatementSParserRuleCall_8_0());
+				}
+				lv_statements_8_0=ruleStatementS
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getConditionSlotSRule());
+					}
+					add(
+						$current,
+						"statements",
+						lv_statements_8_0,
+						"xtext.factoryLang.shortDSL.ShortDSL.StatementS");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)*
+		this_END_9=RULE_END
+		{
+			newLeafNode(this_END_9, grammarAccess.getConditionSlotSAccess().getENDTerminalRuleCall_9());
+		}
+	)
+;
+
 // Entry rule entryRuleConditionDeviceS
 entryRuleConditionDeviceS returns [EObject current=null]:
 	{ newCompositeNode(grammarAccess.getConditionDeviceSRule()); }
@@ -1669,17 +1956,17 @@ ruleConditionDeviceS returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getConditionDeviceSAccess().getComparisonOperatorDeviceCOMPARISON_OPERATOR_SEnumRuleCall_4_0());
+					newCompositeNode(grammarAccess.getConditionDeviceSAccess().getComparisonOperatorCOMPARISON_OPERATOR_SEnumRuleCall_4_0());
 				}
-				lv_comparisonOperatorDevice_4_0=ruleCOMPARISON_OPERATOR_S
+				lv_comparisonOperator_4_0=ruleCOMPARISON_OPERATOR_S
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getConditionDeviceSRule());
 					}
 					set(
 						$current,
-						"comparisonOperatorDevice",
-						lv_comparisonOperatorDevice_4_0,
+						"comparisonOperator",
+						lv_comparisonOperator_4_0,
 						"xtext.factoryLang.shortDSL.ShortDSL.COMPARISON_OPERATOR_S");
 					afterParserOrEnumRuleCall();
 				}
@@ -1926,9 +2213,9 @@ ruleMarkCameraValueS returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getMarkCameraValueSAccess().getVariableLocalVariableSParserRuleCall_3_0());
+					newCompositeNode(grammarAccess.getMarkCameraValueSAccess().getVariableOrdinaryVariableSParserRuleCall_3_0());
 				}
-				lv_variable_3_0=ruleLocalVariableS
+				lv_variable_3_0=ruleOrdinaryVariableS
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getMarkCameraValueSRule());
@@ -1937,7 +2224,7 @@ ruleMarkCameraValueS returns [EObject current=null]
 						$current,
 						"variable",
 						lv_variable_3_0,
-						"xtext.factoryLang.shortDSL.ShortDSL.LocalVariableS");
+						"xtext.factoryLang.shortDSL.ShortDSL.OrdinaryVariableS");
 					afterParserOrEnumRuleCall();
 				}
 			)
@@ -1945,15 +2232,15 @@ ruleMarkCameraValueS returns [EObject current=null]
 	)
 ;
 
-// Entry rule entryRuleLocalVariableS
-entryRuleLocalVariableS returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getLocalVariableSRule()); }
-	iv_ruleLocalVariableS=ruleLocalVariableS
-	{ $current=$iv_ruleLocalVariableS.current; }
+// Entry rule entryRuleOrdinaryVariableS
+entryRuleOrdinaryVariableS returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getOrdinaryVariableSRule()); }
+	iv_ruleOrdinaryVariableS=ruleOrdinaryVariableS
+	{ $current=$iv_ruleOrdinaryVariableS.current; }
 	EOF;
 
-// Rule LocalVariableS
-ruleLocalVariableS returns [EObject current=null]
+// Rule OrdinaryVariableS
+ruleOrdinaryVariableS returns [EObject current=null]
 @init {
 	enterRule();
 }
@@ -1964,7 +2251,7 @@ ruleLocalVariableS returns [EObject current=null]
 		(
 			{
 				$current = forceCreateModelElement(
-					grammarAccess.getLocalVariableSAccess().getLocalVariableAction_0(),
+					grammarAccess.getOrdinaryVariableSAccess().getOrdinaryVariableAction_0(),
 					$current);
 			}
 		)
@@ -1972,11 +2259,11 @@ ruleLocalVariableS returns [EObject current=null]
 			(
 				lv_name_1_0=RULE_ID
 				{
-					newLeafNode(lv_name_1_0, grammarAccess.getLocalVariableSAccess().getNameIDTerminalRuleCall_1_0());
+					newLeafNode(lv_name_1_0, grammarAccess.getOrdinaryVariableSAccess().getNameIDTerminalRuleCall_1_0());
 				}
 				{
 					if ($current==null) {
-						$current = createModelElement(grammarAccess.getLocalVariableSRule());
+						$current = createModelElement(grammarAccess.getOrdinaryVariableSRule());
 					}
 					setWithLastConsumed(
 						$current,
@@ -1989,15 +2276,15 @@ ruleLocalVariableS returns [EObject current=null]
 	)
 ;
 
-// Entry rule entryRuleGlobalVariableS
-entryRuleGlobalVariableS returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getGlobalVariableSRule()); }
-	iv_ruleGlobalVariableS=ruleGlobalVariableS
-	{ $current=$iv_ruleGlobalVariableS.current; }
+// Entry rule entryRuleSlotVariableS
+entryRuleSlotVariableS returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getSlotVariableSRule()); }
+	iv_ruleSlotVariableS=ruleSlotVariableS
+	{ $current=$iv_ruleSlotVariableS.current; }
 	EOF;
 
-// Rule GlobalVariableS
-ruleGlobalVariableS returns [EObject current=null]
+// Rule SlotVariableS
+ruleSlotVariableS returns [EObject current=null]
 @init {
 	enterRule();
 }
@@ -2008,7 +2295,7 @@ ruleGlobalVariableS returns [EObject current=null]
 		(
 			{
 				$current = forceCreateModelElement(
-					grammarAccess.getGlobalVariableSAccess().getGlobalVariableAction_0(),
+					grammarAccess.getSlotVariableSAccess().getSlotVariableAction_0(),
 					$current);
 			}
 		)
@@ -2016,11 +2303,11 @@ ruleGlobalVariableS returns [EObject current=null]
 			(
 				lv_name_1_0=RULE_ID
 				{
-					newLeafNode(lv_name_1_0, grammarAccess.getGlobalVariableSAccess().getNameIDTerminalRuleCall_1_0());
+					newLeafNode(lv_name_1_0, grammarAccess.getSlotVariableSAccess().getNameIDTerminalRuleCall_1_0());
 				}
 				{
 					if ($current==null) {
-						$current = createModelElement(grammarAccess.getGlobalVariableSRule());
+						$current = createModelElement(grammarAccess.getSlotVariableSRule());
 					}
 					setWithLastConsumed(
 						$current,

@@ -226,9 +226,14 @@ public class ShortDSLAdapterFactory extends AdapterFactoryImpl
         return createLoggingAdapter();
       }
       @Override
-      public Adapter caseLoop(Loop object)
+      public Adapter caseLoopVariable(LoopVariable object)
       {
-        return createLoopAdapter();
+        return createLoopVariableAdapter();
+      }
+      @Override
+      public Adapter caseLoopSlot(LoopSlot object)
+      {
+        return createLoopSlotAdapter();
       }
       @Override
       public Adapter caseMoveDisk(MoveDisk object)
@@ -256,6 +261,11 @@ public class ShortDSLAdapterFactory extends AdapterFactoryImpl
         return createConditionVariableAdapter();
       }
       @Override
+      public Adapter caseConditionSlot(ConditionSlot object)
+      {
+        return createConditionSlotAdapter();
+      }
+      @Override
       public Adapter caseConditionDevice(ConditionDevice object)
       {
         return createConditionDeviceAdapter();
@@ -271,14 +281,14 @@ public class ShortDSLAdapterFactory extends AdapterFactoryImpl
         return createMarkCameraValueAdapter();
       }
       @Override
-      public Adapter caseLocalVariable(LocalVariable object)
+      public Adapter caseOrdinaryVariable(OrdinaryVariable object)
       {
-        return createLocalVariableAdapter();
+        return createOrdinaryVariableAdapter();
       }
       @Override
-      public Adapter caseGlobalVariable(GlobalVariable object)
+      public Adapter caseSlotVariable(SlotVariable object)
       {
-        return createGlobalVariableAdapter();
+        return createSlotVariableAdapter();
       }
       @Override
       public Adapter defaultCase(EObject object)
@@ -753,16 +763,31 @@ public class ShortDSLAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link xtext.factoryLang.shortDSL.shortDSL.Loop <em>Loop</em>}'.
+   * Creates a new adapter for an object of class '{@link xtext.factoryLang.shortDSL.shortDSL.LoopVariable <em>Loop Variable</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see xtext.factoryLang.shortDSL.shortDSL.Loop
+   * @see xtext.factoryLang.shortDSL.shortDSL.LoopVariable
    * @generated
    */
-  public Adapter createLoopAdapter()
+  public Adapter createLoopVariableAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link xtext.factoryLang.shortDSL.shortDSL.LoopSlot <em>Loop Slot</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see xtext.factoryLang.shortDSL.shortDSL.LoopSlot
+   * @generated
+   */
+  public Adapter createLoopSlotAdapter()
   {
     return null;
   }
@@ -843,6 +868,21 @@ public class ShortDSLAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link xtext.factoryLang.shortDSL.shortDSL.ConditionSlot <em>Condition Slot</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see xtext.factoryLang.shortDSL.shortDSL.ConditionSlot
+   * @generated
+   */
+  public Adapter createConditionSlotAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link xtext.factoryLang.shortDSL.shortDSL.ConditionDevice <em>Condition Device</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -888,31 +928,31 @@ public class ShortDSLAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link xtext.factoryLang.shortDSL.shortDSL.LocalVariable <em>Local Variable</em>}'.
+   * Creates a new adapter for an object of class '{@link xtext.factoryLang.shortDSL.shortDSL.OrdinaryVariable <em>Ordinary Variable</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see xtext.factoryLang.shortDSL.shortDSL.LocalVariable
+   * @see xtext.factoryLang.shortDSL.shortDSL.OrdinaryVariable
    * @generated
    */
-  public Adapter createLocalVariableAdapter()
+  public Adapter createOrdinaryVariableAdapter()
   {
     return null;
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link xtext.factoryLang.shortDSL.shortDSL.GlobalVariable <em>Global Variable</em>}'.
+   * Creates a new adapter for an object of class '{@link xtext.factoryLang.shortDSL.shortDSL.SlotVariable <em>Slot Variable</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see xtext.factoryLang.shortDSL.shortDSL.GlobalVariable
+   * @see xtext.factoryLang.shortDSL.shortDSL.SlotVariable
    * @generated
    */
-  public Adapter createGlobalVariableAdapter()
+  public Adapter createSlotVariableAdapter()
   {
     return null;
   }

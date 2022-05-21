@@ -135,7 +135,7 @@ public class ShortDSLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     '->' | '-->'
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     anySlot=LocalVariableS (ambiguity) zone=[DiskZone|ID]
+	 *     anySlot=SlotVariableS (ambiguity) zone=[DiskZone|ID]
 	 */
 	protected void emit_MoveAnySlotS_HyphenMinusGreaterThanSignKeyword_3_0_or_HyphenMinusHyphenMinusGreaterThanSignKeyword_3_1(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -157,7 +157,7 @@ public class ShortDSLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     '->' | '-->'
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     slot=[LocalVariable|ID] (ambiguity) zone=[DiskZone|ID]
+	 *     slot=[SlotVariable|ID] (ambiguity) zone=[DiskZone|ID]
 	 */
 	protected void emit_MoveDiskS_HyphenMinusGreaterThanSignKeyword_2_0_or_HyphenMinusHyphenMinusGreaterThanSignKeyword_2_1(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);

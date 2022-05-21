@@ -5,24 +5,24 @@ package xtext.factoryLang.shortDSL.shortDSL.impl;
 
 import org.eclipse.emf.ecore.EClass;
 
-import xtext.factoryLang.shortDSL.shortDSL.LocalVariable;
+import xtext.factoryLang.shortDSL.shortDSL.OrdinaryVariable;
 import xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Local Variable</b></em>'.
+ * An implementation of the model object '<em><b>Ordinary Variable</b></em>'.
  * <!-- end-user-doc -->
  *
  * @generated
  */
-public class LocalVariableImpl extends VariableSImpl implements LocalVariable
+public class OrdinaryVariableImpl extends VariableSImpl implements OrdinaryVariable
 {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected LocalVariableImpl()
+  protected OrdinaryVariableImpl()
   {
     super();
   }
@@ -35,7 +35,7 @@ public class LocalVariableImpl extends VariableSImpl implements LocalVariable
   @Override
   protected EClass eStaticClass()
   {
-    return ShortDSLPackage.Literals.LOCAL_VARIABLE;
+    return ShortDSLPackage.Literals.ORDINARY_VARIABLE;
   }
 
-} //LocalVariableImpl
+} //OrdinaryVariableImpl

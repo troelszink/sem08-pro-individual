@@ -11,7 +11,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import xtext.factoryLang.shortDSL.shortDSL.COMPARISON_OPERATOR_S;
 import xtext.factoryLang.shortDSL.shortDSL.ConditionDevice;
 import xtext.factoryLang.shortDSL.shortDSL.DeviceS;
 import xtext.factoryLang.shortDSL.shortDSL.DeviceValueS;
@@ -26,7 +25,6 @@ import xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage;
  * </p>
  * <ul>
  *   <li>{@link xtext.factoryLang.shortDSL.shortDSL.impl.ConditionDeviceImpl#getDevice <em>Device</em>}</li>
- *   <li>{@link xtext.factoryLang.shortDSL.shortDSL.impl.ConditionDeviceImpl#getComparisonOperatorDevice <em>Comparison Operator Device</em>}</li>
  *   <li>{@link xtext.factoryLang.shortDSL.shortDSL.impl.ConditionDeviceImpl#getDeviceValue <em>Device Value</em>}</li>
  * </ul>
  *
@@ -43,26 +41,6 @@ public class ConditionDeviceImpl extends ConditionSImpl implements ConditionDevi
    * @ordered
    */
   protected DeviceS device;
-
-  /**
-   * The default value of the '{@link #getComparisonOperatorDevice() <em>Comparison Operator Device</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getComparisonOperatorDevice()
-   * @generated
-   * @ordered
-   */
-  protected static final COMPARISON_OPERATOR_S COMPARISON_OPERATOR_DEVICE_EDEFAULT = COMPARISON_OPERATOR_S.EQUAL;
-
-  /**
-   * The cached value of the '{@link #getComparisonOperatorDevice() <em>Comparison Operator Device</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getComparisonOperatorDevice()
-   * @generated
-   * @ordered
-   */
-  protected COMPARISON_OPERATOR_S comparisonOperatorDevice = COMPARISON_OPERATOR_DEVICE_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getDeviceValue() <em>Device Value</em>}' containment reference.
@@ -146,31 +124,6 @@ public class ConditionDeviceImpl extends ConditionSImpl implements ConditionDevi
    * @generated
    */
   @Override
-  public COMPARISON_OPERATOR_S getComparisonOperatorDevice()
-  {
-    return comparisonOperatorDevice;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void setComparisonOperatorDevice(COMPARISON_OPERATOR_S newComparisonOperatorDevice)
-  {
-    COMPARISON_OPERATOR_S oldComparisonOperatorDevice = comparisonOperatorDevice;
-    comparisonOperatorDevice = newComparisonOperatorDevice == null ? COMPARISON_OPERATOR_DEVICE_EDEFAULT : newComparisonOperatorDevice;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ShortDSLPackage.CONDITION_DEVICE__COMPARISON_OPERATOR_DEVICE, oldComparisonOperatorDevice, comparisonOperatorDevice));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public DeviceValueS getDeviceValue()
   {
     return deviceValue;
@@ -244,8 +197,6 @@ public class ConditionDeviceImpl extends ConditionSImpl implements ConditionDevi
       case ShortDSLPackage.CONDITION_DEVICE__DEVICE:
         if (resolve) return getDevice();
         return basicGetDevice();
-      case ShortDSLPackage.CONDITION_DEVICE__COMPARISON_OPERATOR_DEVICE:
-        return getComparisonOperatorDevice();
       case ShortDSLPackage.CONDITION_DEVICE__DEVICE_VALUE:
         return getDeviceValue();
     }
@@ -264,9 +215,6 @@ public class ConditionDeviceImpl extends ConditionSImpl implements ConditionDevi
     {
       case ShortDSLPackage.CONDITION_DEVICE__DEVICE:
         setDevice((DeviceS)newValue);
-        return;
-      case ShortDSLPackage.CONDITION_DEVICE__COMPARISON_OPERATOR_DEVICE:
-        setComparisonOperatorDevice((COMPARISON_OPERATOR_S)newValue);
         return;
       case ShortDSLPackage.CONDITION_DEVICE__DEVICE_VALUE:
         setDeviceValue((DeviceValueS)newValue);
@@ -288,9 +236,6 @@ public class ConditionDeviceImpl extends ConditionSImpl implements ConditionDevi
       case ShortDSLPackage.CONDITION_DEVICE__DEVICE:
         setDevice((DeviceS)null);
         return;
-      case ShortDSLPackage.CONDITION_DEVICE__COMPARISON_OPERATOR_DEVICE:
-        setComparisonOperatorDevice(COMPARISON_OPERATOR_DEVICE_EDEFAULT);
-        return;
       case ShortDSLPackage.CONDITION_DEVICE__DEVICE_VALUE:
         setDeviceValue((DeviceValueS)null);
         return;
@@ -310,29 +255,10 @@ public class ConditionDeviceImpl extends ConditionSImpl implements ConditionDevi
     {
       case ShortDSLPackage.CONDITION_DEVICE__DEVICE:
         return device != null;
-      case ShortDSLPackage.CONDITION_DEVICE__COMPARISON_OPERATOR_DEVICE:
-        return comparisonOperatorDevice != COMPARISON_OPERATOR_DEVICE_EDEFAULT;
       case ShortDSLPackage.CONDITION_DEVICE__DEVICE_VALUE:
         return deviceValue != null;
     }
     return super.eIsSet(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
-
-    StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (comparisonOperatorDevice: ");
-    result.append(comparisonOperatorDevice);
-    result.append(')');
-    return result.toString();
   }
 
 } //ConditionDeviceImpl

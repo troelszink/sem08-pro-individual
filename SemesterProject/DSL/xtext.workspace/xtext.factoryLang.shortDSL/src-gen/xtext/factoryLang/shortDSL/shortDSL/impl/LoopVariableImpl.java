@@ -20,38 +20,38 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 import xtext.factoryLang.shortDSL.shortDSL.COMPARISON_OPERATOR_S;
 import xtext.factoryLang.shortDSL.shortDSL.DiskSlotStateValueS;
-import xtext.factoryLang.shortDSL.shortDSL.Loop;
+import xtext.factoryLang.shortDSL.shortDSL.LoopVariable;
 import xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage;
 import xtext.factoryLang.shortDSL.shortDSL.StatementS;
 import xtext.factoryLang.shortDSL.shortDSL.VariableS;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Loop</b></em>'.
+ * An implementation of the model object '<em><b>Loop Variable</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link xtext.factoryLang.shortDSL.shortDSL.impl.LoopImpl#getVariable <em>Variable</em>}</li>
- *   <li>{@link xtext.factoryLang.shortDSL.shortDSL.impl.LoopImpl#getComparisonOperator <em>Comparison Operator</em>}</li>
- *   <li>{@link xtext.factoryLang.shortDSL.shortDSL.impl.LoopImpl#getSlotState <em>Slot State</em>}</li>
- *   <li>{@link xtext.factoryLang.shortDSL.shortDSL.impl.LoopImpl#getStatements <em>Statements</em>}</li>
+ *   <li>{@link xtext.factoryLang.shortDSL.shortDSL.impl.LoopVariableImpl#getOrdinaryVariable <em>Ordinary Variable</em>}</li>
+ *   <li>{@link xtext.factoryLang.shortDSL.shortDSL.impl.LoopVariableImpl#getComparisonOperator <em>Comparison Operator</em>}</li>
+ *   <li>{@link xtext.factoryLang.shortDSL.shortDSL.impl.LoopVariableImpl#getSlotState <em>Slot State</em>}</li>
+ *   <li>{@link xtext.factoryLang.shortDSL.shortDSL.impl.LoopVariableImpl#getStatements <em>Statements</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class LoopImpl extends StatementSImpl implements Loop
+public class LoopVariableImpl extends StatementSImpl implements LoopVariable
 {
   /**
-   * The cached value of the '{@link #getVariable() <em>Variable</em>}' containment reference.
+   * The cached value of the '{@link #getOrdinaryVariable() <em>Ordinary Variable</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getVariable()
+   * @see #getOrdinaryVariable()
    * @generated
    * @ordered
    */
-  protected VariableS variable;
+  protected VariableS ordinaryVariable;
 
   /**
    * The default value of the '{@link #getComparisonOperator() <em>Comparison Operator</em>}' attribute.
@@ -98,7 +98,7 @@ public class LoopImpl extends StatementSImpl implements Loop
    * <!-- end-user-doc -->
    * @generated
    */
-  protected LoopImpl()
+  protected LoopVariableImpl()
   {
     super();
   }
@@ -111,7 +111,7 @@ public class LoopImpl extends StatementSImpl implements Loop
   @Override
   protected EClass eStaticClass()
   {
-    return ShortDSLPackage.Literals.LOOP;
+    return ShortDSLPackage.Literals.LOOP_VARIABLE;
   }
 
   /**
@@ -120,9 +120,9 @@ public class LoopImpl extends StatementSImpl implements Loop
    * @generated
    */
   @Override
-  public VariableS getVariable()
+  public VariableS getOrdinaryVariable()
   {
-    return variable;
+    return ordinaryVariable;
   }
 
   /**
@@ -130,13 +130,13 @@ public class LoopImpl extends StatementSImpl implements Loop
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetVariable(VariableS newVariable, NotificationChain msgs)
+  public NotificationChain basicSetOrdinaryVariable(VariableS newOrdinaryVariable, NotificationChain msgs)
   {
-    VariableS oldVariable = variable;
-    variable = newVariable;
+    VariableS oldOrdinaryVariable = ordinaryVariable;
+    ordinaryVariable = newOrdinaryVariable;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ShortDSLPackage.LOOP__VARIABLE, oldVariable, newVariable);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ShortDSLPackage.LOOP_VARIABLE__ORDINARY_VARIABLE, oldOrdinaryVariable, newOrdinaryVariable);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -148,20 +148,20 @@ public class LoopImpl extends StatementSImpl implements Loop
    * @generated
    */
   @Override
-  public void setVariable(VariableS newVariable)
+  public void setOrdinaryVariable(VariableS newOrdinaryVariable)
   {
-    if (newVariable != variable)
+    if (newOrdinaryVariable != ordinaryVariable)
     {
       NotificationChain msgs = null;
-      if (variable != null)
-        msgs = ((InternalEObject)variable).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ShortDSLPackage.LOOP__VARIABLE, null, msgs);
-      if (newVariable != null)
-        msgs = ((InternalEObject)newVariable).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ShortDSLPackage.LOOP__VARIABLE, null, msgs);
-      msgs = basicSetVariable(newVariable, msgs);
+      if (ordinaryVariable != null)
+        msgs = ((InternalEObject)ordinaryVariable).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ShortDSLPackage.LOOP_VARIABLE__ORDINARY_VARIABLE, null, msgs);
+      if (newOrdinaryVariable != null)
+        msgs = ((InternalEObject)newOrdinaryVariable).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ShortDSLPackage.LOOP_VARIABLE__ORDINARY_VARIABLE, null, msgs);
+      msgs = basicSetOrdinaryVariable(newOrdinaryVariable, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ShortDSLPackage.LOOP__VARIABLE, newVariable, newVariable));
+      eNotify(new ENotificationImpl(this, Notification.SET, ShortDSLPackage.LOOP_VARIABLE__ORDINARY_VARIABLE, newOrdinaryVariable, newOrdinaryVariable));
   }
 
   /**
@@ -186,7 +186,7 @@ public class LoopImpl extends StatementSImpl implements Loop
     COMPARISON_OPERATOR_S oldComparisonOperator = comparisonOperator;
     comparisonOperator = newComparisonOperator == null ? COMPARISON_OPERATOR_EDEFAULT : newComparisonOperator;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ShortDSLPackage.LOOP__COMPARISON_OPERATOR, oldComparisonOperator, comparisonOperator));
+      eNotify(new ENotificationImpl(this, Notification.SET, ShortDSLPackage.LOOP_VARIABLE__COMPARISON_OPERATOR, oldComparisonOperator, comparisonOperator));
   }
 
   /**
@@ -211,7 +211,7 @@ public class LoopImpl extends StatementSImpl implements Loop
     slotState = newSlotState;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ShortDSLPackage.LOOP__SLOT_STATE, oldSlotState, newSlotState);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ShortDSLPackage.LOOP_VARIABLE__SLOT_STATE, oldSlotState, newSlotState);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -229,14 +229,14 @@ public class LoopImpl extends StatementSImpl implements Loop
     {
       NotificationChain msgs = null;
       if (slotState != null)
-        msgs = ((InternalEObject)slotState).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ShortDSLPackage.LOOP__SLOT_STATE, null, msgs);
+        msgs = ((InternalEObject)slotState).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ShortDSLPackage.LOOP_VARIABLE__SLOT_STATE, null, msgs);
       if (newSlotState != null)
-        msgs = ((InternalEObject)newSlotState).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ShortDSLPackage.LOOP__SLOT_STATE, null, msgs);
+        msgs = ((InternalEObject)newSlotState).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ShortDSLPackage.LOOP_VARIABLE__SLOT_STATE, null, msgs);
       msgs = basicSetSlotState(newSlotState, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ShortDSLPackage.LOOP__SLOT_STATE, newSlotState, newSlotState));
+      eNotify(new ENotificationImpl(this, Notification.SET, ShortDSLPackage.LOOP_VARIABLE__SLOT_STATE, newSlotState, newSlotState));
   }
 
   /**
@@ -249,7 +249,7 @@ public class LoopImpl extends StatementSImpl implements Loop
   {
     if (statements == null)
     {
-      statements = new EObjectContainmentEList<StatementS>(StatementS.class, this, ShortDSLPackage.LOOP__STATEMENTS);
+      statements = new EObjectContainmentEList<StatementS>(StatementS.class, this, ShortDSLPackage.LOOP_VARIABLE__STATEMENTS);
     }
     return statements;
   }
@@ -264,11 +264,11 @@ public class LoopImpl extends StatementSImpl implements Loop
   {
     switch (featureID)
     {
-      case ShortDSLPackage.LOOP__VARIABLE:
-        return basicSetVariable(null, msgs);
-      case ShortDSLPackage.LOOP__SLOT_STATE:
+      case ShortDSLPackage.LOOP_VARIABLE__ORDINARY_VARIABLE:
+        return basicSetOrdinaryVariable(null, msgs);
+      case ShortDSLPackage.LOOP_VARIABLE__SLOT_STATE:
         return basicSetSlotState(null, msgs);
-      case ShortDSLPackage.LOOP__STATEMENTS:
+      case ShortDSLPackage.LOOP_VARIABLE__STATEMENTS:
         return ((InternalEList<?>)getStatements()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -284,13 +284,13 @@ public class LoopImpl extends StatementSImpl implements Loop
   {
     switch (featureID)
     {
-      case ShortDSLPackage.LOOP__VARIABLE:
-        return getVariable();
-      case ShortDSLPackage.LOOP__COMPARISON_OPERATOR:
+      case ShortDSLPackage.LOOP_VARIABLE__ORDINARY_VARIABLE:
+        return getOrdinaryVariable();
+      case ShortDSLPackage.LOOP_VARIABLE__COMPARISON_OPERATOR:
         return getComparisonOperator();
-      case ShortDSLPackage.LOOP__SLOT_STATE:
+      case ShortDSLPackage.LOOP_VARIABLE__SLOT_STATE:
         return getSlotState();
-      case ShortDSLPackage.LOOP__STATEMENTS:
+      case ShortDSLPackage.LOOP_VARIABLE__STATEMENTS:
         return getStatements();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -307,16 +307,16 @@ public class LoopImpl extends StatementSImpl implements Loop
   {
     switch (featureID)
     {
-      case ShortDSLPackage.LOOP__VARIABLE:
-        setVariable((VariableS)newValue);
+      case ShortDSLPackage.LOOP_VARIABLE__ORDINARY_VARIABLE:
+        setOrdinaryVariable((VariableS)newValue);
         return;
-      case ShortDSLPackage.LOOP__COMPARISON_OPERATOR:
+      case ShortDSLPackage.LOOP_VARIABLE__COMPARISON_OPERATOR:
         setComparisonOperator((COMPARISON_OPERATOR_S)newValue);
         return;
-      case ShortDSLPackage.LOOP__SLOT_STATE:
+      case ShortDSLPackage.LOOP_VARIABLE__SLOT_STATE:
         setSlotState((DiskSlotStateValueS)newValue);
         return;
-      case ShortDSLPackage.LOOP__STATEMENTS:
+      case ShortDSLPackage.LOOP_VARIABLE__STATEMENTS:
         getStatements().clear();
         getStatements().addAll((Collection<? extends StatementS>)newValue);
         return;
@@ -334,16 +334,16 @@ public class LoopImpl extends StatementSImpl implements Loop
   {
     switch (featureID)
     {
-      case ShortDSLPackage.LOOP__VARIABLE:
-        setVariable((VariableS)null);
+      case ShortDSLPackage.LOOP_VARIABLE__ORDINARY_VARIABLE:
+        setOrdinaryVariable((VariableS)null);
         return;
-      case ShortDSLPackage.LOOP__COMPARISON_OPERATOR:
+      case ShortDSLPackage.LOOP_VARIABLE__COMPARISON_OPERATOR:
         setComparisonOperator(COMPARISON_OPERATOR_EDEFAULT);
         return;
-      case ShortDSLPackage.LOOP__SLOT_STATE:
+      case ShortDSLPackage.LOOP_VARIABLE__SLOT_STATE:
         setSlotState((DiskSlotStateValueS)null);
         return;
-      case ShortDSLPackage.LOOP__STATEMENTS:
+      case ShortDSLPackage.LOOP_VARIABLE__STATEMENTS:
         getStatements().clear();
         return;
     }
@@ -360,13 +360,13 @@ public class LoopImpl extends StatementSImpl implements Loop
   {
     switch (featureID)
     {
-      case ShortDSLPackage.LOOP__VARIABLE:
-        return variable != null;
-      case ShortDSLPackage.LOOP__COMPARISON_OPERATOR:
+      case ShortDSLPackage.LOOP_VARIABLE__ORDINARY_VARIABLE:
+        return ordinaryVariable != null;
+      case ShortDSLPackage.LOOP_VARIABLE__COMPARISON_OPERATOR:
         return comparisonOperator != COMPARISON_OPERATOR_EDEFAULT;
-      case ShortDSLPackage.LOOP__SLOT_STATE:
+      case ShortDSLPackage.LOOP_VARIABLE__SLOT_STATE:
         return slotState != null;
-      case ShortDSLPackage.LOOP__STATEMENTS:
+      case ShortDSLPackage.LOOP_VARIABLE__STATEMENTS:
         return statements != null && !statements.isEmpty();
     }
     return super.eIsSet(featureID);
@@ -389,4 +389,4 @@ public class LoopImpl extends StatementSImpl implements Loop
     return result.toString();
   }
 
-} //LoopImpl
+} //LoopVariableImpl

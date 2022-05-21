@@ -26,7 +26,7 @@ import xtext.factoryLang.shortDSL.shortDSL.DeviceS;
 import xtext.factoryLang.shortDSL.shortDSL.DeviceValueS;
 import xtext.factoryLang.shortDSL.shortDSL.Disk;
 import xtext.factoryLang.shortDSL.shortDSL.DiskHandlingS;
-import xtext.factoryLang.shortDSL.shortDSL.Loop;
+import xtext.factoryLang.shortDSL.shortDSL.LoopVariable;
 import xtext.factoryLang.shortDSL.shortDSL.MarkCameraValue;
 import xtext.factoryLang.shortDSL.shortDSL.Model;
 import xtext.factoryLang.shortDSL.shortDSL.MoveCrane;
@@ -68,15 +68,21 @@ public class ShortDSLScopeProvider extends AbstractShortDSLScopeProvider {
         return this.getDeviceValueRefScope(((DeviceValueS) context));
       }
     }
+    if (!_matched) {
+      if (Objects.equal(reference, ShortDSLPackage.Literals.CONDITION_VARIABLE__VARIABLE)) {
+        _matched=true;
+        return this.getVariableScope(context, context);
+      }
+    }
     return super.getScope(context, reference);
   }
   
   public IScope getVariableScope(final EObject currentContext, final EObject context) {
     final EObject parent = currentContext.eContainer();
-    final Loop nextForEach = EcoreUtil2.<Loop>getContainerOfType(parent, Loop.class);
+    final LoopVariable nextForEach = EcoreUtil2.<LoopVariable>getContainerOfType(parent, LoopVariable.class);
     if ((nextForEach != null)) {
-      VariableS _variable = nextForEach.getVariable();
-      return Scopes.scopeFor(Collections.<EObject>unmodifiableList(CollectionLiterals.<EObject>newArrayList(_variable)), this.getVariableScope(nextForEach, context));
+      VariableS _ordinaryVariable = nextForEach.getOrdinaryVariable();
+      return Scopes.scopeFor(Collections.<EObject>unmodifiableList(CollectionLiterals.<EObject>newArrayList(_ordinaryVariable)), this.getVariableScope(nextForEach, context));
     }
     return this.getGlobalRefValueScope(context);
   }

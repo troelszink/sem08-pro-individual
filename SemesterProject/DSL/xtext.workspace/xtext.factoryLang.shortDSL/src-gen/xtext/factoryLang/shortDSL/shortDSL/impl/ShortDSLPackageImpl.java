@@ -16,6 +16,7 @@ import xtext.factoryLang.shortDSL.shortDSL.CameraColor;
 import xtext.factoryLang.shortDSL.shortDSL.ColorValueS;
 import xtext.factoryLang.shortDSL.shortDSL.ConditionDevice;
 import xtext.factoryLang.shortDSL.shortDSL.ConditionS;
+import xtext.factoryLang.shortDSL.shortDSL.ConditionSlot;
 import xtext.factoryLang.shortDSL.shortDSL.ConditionVariable;
 import xtext.factoryLang.shortDSL.shortDSL.ConfigurationS;
 import xtext.factoryLang.shortDSL.shortDSL.ConfigurationValueS;
@@ -34,11 +35,10 @@ import xtext.factoryLang.shortDSL.shortDSL.DiskHandlingS;
 import xtext.factoryLang.shortDSL.shortDSL.DiskSlotStateValueS;
 import xtext.factoryLang.shortDSL.shortDSL.DiskStateValueS;
 import xtext.factoryLang.shortDSL.shortDSL.DiskZone;
-import xtext.factoryLang.shortDSL.shortDSL.GlobalVariable;
-import xtext.factoryLang.shortDSL.shortDSL.LocalVariable;
 import xtext.factoryLang.shortDSL.shortDSL.Logging;
 import xtext.factoryLang.shortDSL.shortDSL.LoggingS;
-import xtext.factoryLang.shortDSL.shortDSL.Loop;
+import xtext.factoryLang.shortDSL.shortDSL.LoopSlot;
+import xtext.factoryLang.shortDSL.shortDSL.LoopVariable;
 import xtext.factoryLang.shortDSL.shortDSL.MarkCameraValue;
 import xtext.factoryLang.shortDSL.shortDSL.MarkS;
 import xtext.factoryLang.shortDSL.shortDSL.MarkVariableValue;
@@ -48,8 +48,10 @@ import xtext.factoryLang.shortDSL.shortDSL.MoveCrane;
 import xtext.factoryLang.shortDSL.shortDSL.MoveDisk;
 import xtext.factoryLang.shortDSL.shortDSL.MoveS;
 import xtext.factoryLang.shortDSL.shortDSL.NumberS;
+import xtext.factoryLang.shortDSL.shortDSL.OrdinaryVariable;
 import xtext.factoryLang.shortDSL.shortDSL.ShortDSLFactory;
 import xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage;
+import xtext.factoryLang.shortDSL.shortDSL.SlotVariable;
 import xtext.factoryLang.shortDSL.shortDSL.StatementS;
 import xtext.factoryLang.shortDSL.shortDSL.ValueSlotS;
 import xtext.factoryLang.shortDSL.shortDSL.VariableS;
@@ -278,7 +280,14 @@ public class ShortDSLPackageImpl extends EPackageImpl implements ShortDSLPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass loopEClass = null;
+  private EClass loopVariableEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass loopSlotEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -320,6 +329,13 @@ public class ShortDSLPackageImpl extends EPackageImpl implements ShortDSLPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass conditionSlotEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EClass conditionDeviceEClass = null;
 
   /**
@@ -341,14 +357,14 @@ public class ShortDSLPackageImpl extends EPackageImpl implements ShortDSLPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass localVariableEClass = null;
+  private EClass ordinaryVariableEClass = null;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass globalVariableEClass = null;
+  private EClass slotVariableEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -670,9 +686,20 @@ public class ShortDSLPackageImpl extends EPackageImpl implements ShortDSLPackage
    * @generated
    */
   @Override
+  public EAttribute getConditionS_ComparisonOperator()
+  {
+    return (EAttribute)conditionSEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EReference getConditionS_Statements()
   {
-    return (EReference)conditionSEClass.getEStructuralFeatures().get(0);
+    return (EReference)conditionSEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -1110,9 +1137,9 @@ public class ShortDSLPackageImpl extends EPackageImpl implements ShortDSLPackage
    * @generated
    */
   @Override
-  public EClass getLoop()
+  public EClass getLoopVariable()
   {
-    return loopEClass;
+    return loopVariableEClass;
   }
 
   /**
@@ -1121,9 +1148,9 @@ public class ShortDSLPackageImpl extends EPackageImpl implements ShortDSLPackage
    * @generated
    */
   @Override
-  public EReference getLoop_Variable()
+  public EReference getLoopVariable_OrdinaryVariable()
   {
-    return (EReference)loopEClass.getEStructuralFeatures().get(0);
+    return (EReference)loopVariableEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1132,9 +1159,9 @@ public class ShortDSLPackageImpl extends EPackageImpl implements ShortDSLPackage
    * @generated
    */
   @Override
-  public EAttribute getLoop_ComparisonOperator()
+  public EAttribute getLoopVariable_ComparisonOperator()
   {
-    return (EAttribute)loopEClass.getEStructuralFeatures().get(1);
+    return (EAttribute)loopVariableEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -1143,9 +1170,9 @@ public class ShortDSLPackageImpl extends EPackageImpl implements ShortDSLPackage
    * @generated
    */
   @Override
-  public EReference getLoop_SlotState()
+  public EReference getLoopVariable_SlotState()
   {
-    return (EReference)loopEClass.getEStructuralFeatures().get(2);
+    return (EReference)loopVariableEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -1154,9 +1181,64 @@ public class ShortDSLPackageImpl extends EPackageImpl implements ShortDSLPackage
    * @generated
    */
   @Override
-  public EReference getLoop_Statements()
+  public EReference getLoopVariable_Statements()
   {
-    return (EReference)loopEClass.getEStructuralFeatures().get(3);
+    return (EReference)loopVariableEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getLoopSlot()
+  {
+    return loopSlotEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getLoopSlot_SlotVariable()
+  {
+    return (EReference)loopSlotEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getLoopSlot_ComparisonOperator()
+  {
+    return (EAttribute)loopSlotEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getLoopSlot_SlotState()
+  {
+    return (EReference)loopSlotEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getLoopSlot_Statements()
+  {
+    return (EReference)loopSlotEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -1319,9 +1401,9 @@ public class ShortDSLPackageImpl extends EPackageImpl implements ShortDSLPackage
    * @generated
    */
   @Override
-  public EAttribute getConditionVariable_ComparisonOperatorVariable()
+  public EReference getConditionVariable_VariableValue()
   {
-    return (EAttribute)conditionVariableEClass.getEStructuralFeatures().get(1);
+    return (EReference)conditionVariableEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -1330,9 +1412,31 @@ public class ShortDSLPackageImpl extends EPackageImpl implements ShortDSLPackage
    * @generated
    */
   @Override
-  public EReference getConditionVariable_VariableValue()
+  public EClass getConditionSlot()
   {
-    return (EReference)conditionVariableEClass.getEStructuralFeatures().get(2);
+    return conditionSlotEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getConditionSlot_Variable()
+  {
+    return (EReference)conditionSlotEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getConditionSlot_SlotValue()
+  {
+    return (EReference)conditionSlotEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -1363,20 +1467,9 @@ public class ShortDSLPackageImpl extends EPackageImpl implements ShortDSLPackage
    * @generated
    */
   @Override
-  public EAttribute getConditionDevice_ComparisonOperatorDevice()
-  {
-    return (EAttribute)conditionDeviceEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public EReference getConditionDevice_DeviceValue()
   {
-    return (EReference)conditionDeviceEClass.getEStructuralFeatures().get(2);
+    return (EReference)conditionDeviceEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -1473,9 +1566,9 @@ public class ShortDSLPackageImpl extends EPackageImpl implements ShortDSLPackage
    * @generated
    */
   @Override
-  public EClass getLocalVariable()
+  public EClass getOrdinaryVariable()
   {
-    return localVariableEClass;
+    return ordinaryVariableEClass;
   }
 
   /**
@@ -1484,9 +1577,9 @@ public class ShortDSLPackageImpl extends EPackageImpl implements ShortDSLPackage
    * @generated
    */
   @Override
-  public EClass getGlobalVariable()
+  public EClass getSlotVariable()
   {
-    return globalVariableEClass;
+    return slotVariableEClass;
   }
 
   /**
@@ -1615,6 +1708,7 @@ public class ShortDSLPackageImpl extends EPackageImpl implements ShortDSLPackage
     craneActionSEClass = createEClass(CRANE_ACTION_S);
 
     conditionSEClass = createEClass(CONDITION_S);
+    createEAttribute(conditionSEClass, CONDITION_S__COMPARISON_OPERATOR);
     createEReference(conditionSEClass, CONDITION_S__STATEMENTS);
 
     markSEClass = createEClass(MARK_S);
@@ -1675,11 +1769,17 @@ public class ShortDSLPackageImpl extends EPackageImpl implements ShortDSLPackage
 
     loggingEClass = createEClass(LOGGING);
 
-    loopEClass = createEClass(LOOP);
-    createEReference(loopEClass, LOOP__VARIABLE);
-    createEAttribute(loopEClass, LOOP__COMPARISON_OPERATOR);
-    createEReference(loopEClass, LOOP__SLOT_STATE);
-    createEReference(loopEClass, LOOP__STATEMENTS);
+    loopVariableEClass = createEClass(LOOP_VARIABLE);
+    createEReference(loopVariableEClass, LOOP_VARIABLE__ORDINARY_VARIABLE);
+    createEAttribute(loopVariableEClass, LOOP_VARIABLE__COMPARISON_OPERATOR);
+    createEReference(loopVariableEClass, LOOP_VARIABLE__SLOT_STATE);
+    createEReference(loopVariableEClass, LOOP_VARIABLE__STATEMENTS);
+
+    loopSlotEClass = createEClass(LOOP_SLOT);
+    createEReference(loopSlotEClass, LOOP_SLOT__SLOT_VARIABLE);
+    createEAttribute(loopSlotEClass, LOOP_SLOT__COMPARISON_OPERATOR);
+    createEReference(loopSlotEClass, LOOP_SLOT__SLOT_STATE);
+    createEReference(loopSlotEClass, LOOP_SLOT__STATEMENTS);
 
     moveDiskEClass = createEClass(MOVE_DISK);
     createEReference(moveDiskEClass, MOVE_DISK__SLOT);
@@ -1699,12 +1799,14 @@ public class ShortDSLPackageImpl extends EPackageImpl implements ShortDSLPackage
 
     conditionVariableEClass = createEClass(CONDITION_VARIABLE);
     createEReference(conditionVariableEClass, CONDITION_VARIABLE__VARIABLE);
-    createEAttribute(conditionVariableEClass, CONDITION_VARIABLE__COMPARISON_OPERATOR_VARIABLE);
     createEReference(conditionVariableEClass, CONDITION_VARIABLE__VARIABLE_VALUE);
+
+    conditionSlotEClass = createEClass(CONDITION_SLOT);
+    createEReference(conditionSlotEClass, CONDITION_SLOT__VARIABLE);
+    createEReference(conditionSlotEClass, CONDITION_SLOT__SLOT_VALUE);
 
     conditionDeviceEClass = createEClass(CONDITION_DEVICE);
     createEReference(conditionDeviceEClass, CONDITION_DEVICE__DEVICE);
-    createEAttribute(conditionDeviceEClass, CONDITION_DEVICE__COMPARISON_OPERATOR_DEVICE);
     createEReference(conditionDeviceEClass, CONDITION_DEVICE__DEVICE_VALUE);
 
     markVariableValueEClass = createEClass(MARK_VARIABLE_VALUE);
@@ -1717,9 +1819,9 @@ public class ShortDSLPackageImpl extends EPackageImpl implements ShortDSLPackage
     createEReference(markCameraValueEClass, MARK_CAMERA_VALUE__CAMERA);
     createEReference(markCameraValueEClass, MARK_CAMERA_VALUE__VARIABLE);
 
-    localVariableEClass = createEClass(LOCAL_VARIABLE);
+    ordinaryVariableEClass = createEClass(ORDINARY_VARIABLE);
 
-    globalVariableEClass = createEClass(GLOBAL_VARIABLE);
+    slotVariableEClass = createEClass(SLOT_VARIABLE);
 
     // Create enums
     dsL_TYPE_ENUMEEnum = createEEnum(DSL_TYPE_ENUM);
@@ -1772,17 +1874,19 @@ public class ShortDSLPackageImpl extends EPackageImpl implements ShortDSLPackage
     cameraEClass.getESuperTypes().add(this.getDeviceS());
     cameraColorEClass.getESuperTypes().add(this.getConfigurationValueS());
     loggingEClass.getESuperTypes().add(this.getLoggingS());
-    loopEClass.getESuperTypes().add(this.getStatementS());
+    loopVariableEClass.getESuperTypes().add(this.getStatementS());
+    loopSlotEClass.getESuperTypes().add(this.getStatementS());
     moveDiskEClass.getESuperTypes().add(this.getMoveS());
     moveAnySlotEClass.getESuperTypes().add(this.getMoveS());
     moveCraneEClass.getESuperTypes().add(this.getMoveS());
     craneActionEClass.getESuperTypes().add(this.getCraneActionS());
     conditionVariableEClass.getESuperTypes().add(this.getConditionS());
+    conditionSlotEClass.getESuperTypes().add(this.getConditionS());
     conditionDeviceEClass.getESuperTypes().add(this.getConditionS());
     markVariableValueEClass.getESuperTypes().add(this.getMarkS());
     markCameraValueEClass.getESuperTypes().add(this.getMarkS());
-    localVariableEClass.getESuperTypes().add(this.getVariableS());
-    globalVariableEClass.getESuperTypes().add(this.getVariableS());
+    ordinaryVariableEClass.getESuperTypes().add(this.getVariableS());
+    slotVariableEClass.getESuperTypes().add(this.getVariableS());
 
     // Initialize classes and features; add operations and parameters
     initEClass(modelEClass, Model.class, "Model", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1814,6 +1918,7 @@ public class ShortDSLPackageImpl extends EPackageImpl implements ShortDSLPackage
     initEClass(craneActionSEClass, CraneActionS.class, "CraneActionS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(conditionSEClass, ConditionS.class, "ConditionS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getConditionS_ComparisonOperator(), this.getCOMPARISON_OPERATOR_S(), "comparisonOperator", null, 0, 1, ConditionS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getConditionS_Statements(), this.getStatementS(), null, "statements", null, 0, -1, ConditionS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(markSEClass, MarkS.class, "MarkS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1874,14 +1979,20 @@ public class ShortDSLPackageImpl extends EPackageImpl implements ShortDSLPackage
 
     initEClass(loggingEClass, Logging.class, "Logging", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-    initEClass(loopEClass, Loop.class, "Loop", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getLoop_Variable(), this.getVariableS(), null, "variable", null, 0, 1, Loop.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getLoop_ComparisonOperator(), this.getCOMPARISON_OPERATOR_S(), "comparisonOperator", null, 0, 1, Loop.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getLoop_SlotState(), this.getDiskSlotStateValueS(), null, "slotState", null, 0, 1, Loop.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getLoop_Statements(), this.getStatementS(), null, "statements", null, 0, -1, Loop.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(loopVariableEClass, LoopVariable.class, "LoopVariable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getLoopVariable_OrdinaryVariable(), this.getVariableS(), null, "ordinaryVariable", null, 0, 1, LoopVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getLoopVariable_ComparisonOperator(), this.getCOMPARISON_OPERATOR_S(), "comparisonOperator", null, 0, 1, LoopVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getLoopVariable_SlotState(), this.getDiskSlotStateValueS(), null, "slotState", null, 0, 1, LoopVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getLoopVariable_Statements(), this.getStatementS(), null, "statements", null, 0, -1, LoopVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(loopSlotEClass, LoopSlot.class, "LoopSlot", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getLoopSlot_SlotVariable(), this.getVariableS(), null, "slotVariable", null, 0, 1, LoopSlot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getLoopSlot_ComparisonOperator(), this.getCOMPARISON_OPERATOR_S(), "comparisonOperator", null, 0, 1, LoopSlot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getLoopSlot_SlotState(), this.getDiskSlotStateValueS(), null, "slotState", null, 0, 1, LoopSlot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getLoopSlot_Statements(), this.getStatementS(), null, "statements", null, 0, -1, LoopSlot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(moveDiskEClass, MoveDisk.class, "MoveDisk", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getMoveDisk_Slot(), this.getLocalVariable(), null, "slot", null, 0, 1, MoveDisk.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getMoveDisk_Slot(), this.getSlotVariable(), null, "slot", null, 0, 1, MoveDisk.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getMoveDisk_Zone(), this.getDiskZone(), null, "zone", null, 0, 1, MoveDisk.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(moveAnySlotEClass, MoveAnySlot.class, "MoveAnySlot", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1897,13 +2008,15 @@ public class ShortDSLPackageImpl extends EPackageImpl implements ShortDSLPackage
     initEClass(craneActionEClass, CraneAction.class, "CraneAction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(conditionVariableEClass, ConditionVariable.class, "ConditionVariable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getConditionVariable_Variable(), this.getVariableS(), null, "variable", null, 0, 1, ConditionVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getConditionVariable_ComparisonOperatorVariable(), this.getCOMPARISON_OPERATOR_S(), "comparisonOperatorVariable", null, 0, 1, ConditionVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getConditionVariable_Variable(), this.getOrdinaryVariable(), null, "variable", null, 0, 1, ConditionVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getConditionVariable_VariableValue(), this.getVariableValueS(), null, "variableValue", null, 0, 1, ConditionVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(conditionSlotEClass, ConditionSlot.class, "ConditionSlot", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getConditionSlot_Variable(), this.getSlotVariable(), null, "variable", null, 0, 1, ConditionSlot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getConditionSlot_SlotValue(), this.getValueSlotS(), null, "slotValue", null, 0, 1, ConditionSlot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(conditionDeviceEClass, ConditionDevice.class, "ConditionDevice", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getConditionDevice_Device(), this.getDeviceS(), null, "device", null, 0, 1, ConditionDevice.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getConditionDevice_ComparisonOperatorDevice(), this.getCOMPARISON_OPERATOR_S(), "comparisonOperatorDevice", null, 0, 1, ConditionDevice.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getConditionDevice_DeviceValue(), this.getDeviceValueS(), null, "deviceValue", null, 0, 1, ConditionDevice.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(markVariableValueEClass, MarkVariableValue.class, "MarkVariableValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1916,9 +2029,9 @@ public class ShortDSLPackageImpl extends EPackageImpl implements ShortDSLPackage
     initEReference(getMarkCameraValue_Camera(), this.getCamera(), null, "camera", null, 0, 1, MarkCameraValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getMarkCameraValue_Variable(), this.getVariableS(), null, "variable", null, 0, 1, MarkCameraValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(localVariableEClass, LocalVariable.class, "LocalVariable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEClass(ordinaryVariableEClass, OrdinaryVariable.class, "OrdinaryVariable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-    initEClass(globalVariableEClass, GlobalVariable.class, "GlobalVariable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEClass(slotVariableEClass, SlotVariable.class, "SlotVariable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     // Initialize enums and add enum literals
     initEEnum(dsL_TYPE_ENUMEEnum, xtext.factoryLang.shortDSL.shortDSL.DSL_TYPE_ENUM.class, "DSL_TYPE_ENUM");

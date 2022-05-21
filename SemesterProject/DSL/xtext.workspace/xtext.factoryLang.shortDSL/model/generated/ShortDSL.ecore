@@ -31,6 +31,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="MoveS" eSuperTypes="#//StatementS"/>
   <eClassifiers xsi:type="ecore:EClass" name="CraneActionS" eSuperTypes="#//StatementS"/>
   <eClassifiers xsi:type="ecore:EClass" name="ConditionS" eSuperTypes="#//StatementS">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="comparisonOperator" eType="#//COMPARISON_OPERATOR_S"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="statements" upperBound="-1"
         eType="#//StatementS" containment="true"/>
   </eClassifiers>
@@ -122,8 +123,17 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="color" eType="#//COLOR_S"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Logging" eSuperTypes="#//LoggingS"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Loop" eSuperTypes="#//StatementS">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="variable" eType="#//VariableS"
+  <eClassifiers xsi:type="ecore:EClass" name="LoopVariable" eSuperTypes="#//StatementS">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ordinaryVariable" eType="#//VariableS"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="comparisonOperator" eType="#//COMPARISON_OPERATOR_S"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="slotState" eType="#//DiskSlotStateValueS"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="statements" upperBound="-1"
+        eType="#//StatementS" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LoopSlot" eSuperTypes="#//StatementS">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="slotVariable" eType="#//VariableS"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="comparisonOperator" eType="#//COMPARISON_OPERATOR_S"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="slotState" eType="#//DiskSlotStateValueS"
@@ -132,7 +142,7 @@
         eType="#//StatementS" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MoveDisk" eSuperTypes="#//MoveS">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="slot" eType="#//LocalVariable"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="slot" eType="#//SlotVariable"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="zone" eType="#//DiskZone"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MoveAnySlot" eSuperTypes="#//MoveS">
@@ -150,16 +160,17 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CraneAction" eSuperTypes="#//CraneActionS"/>
   <eClassifiers xsi:type="ecore:EClass" name="ConditionVariable" eSuperTypes="#//ConditionS">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="variable" eType="#//VariableS"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="comparisonOperatorVariable"
-        eType="#//COMPARISON_OPERATOR_S"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="variable" eType="#//OrdinaryVariable"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="variableValue" eType="#//VariableValueS"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ConditionSlot" eSuperTypes="#//ConditionS">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="variable" eType="#//SlotVariable"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="slotValue" eType="#//ValueSlotS"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ConditionDevice" eSuperTypes="#//ConditionS">
     <eStructuralFeatures xsi:type="ecore:EReference" name="device" eType="#//DeviceS"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="comparisonOperatorDevice"
-        eType="#//COMPARISON_OPERATOR_S"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="deviceValue" eType="#//DeviceValueS"
         containment="true"/>
   </eClassifiers>
@@ -175,6 +186,6 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="variable" eType="#//VariableS"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="LocalVariable" eSuperTypes="#//VariableS"/>
-  <eClassifiers xsi:type="ecore:EClass" name="GlobalVariable" eSuperTypes="#//VariableS"/>
+  <eClassifiers xsi:type="ecore:EClass" name="OrdinaryVariable" eSuperTypes="#//VariableS"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SlotVariable" eSuperTypes="#//VariableS"/>
 </ecore:EPackage>

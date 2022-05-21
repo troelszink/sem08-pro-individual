@@ -9,7 +9,6 @@ import org.eclipse.emf.ecore.EReference
 import xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage.Literals
 import org.eclipse.xtext.EcoreUtil2
 import org.eclipse.xtext.scoping.Scopes
-import xtext.factoryLang.shortDSL.shortDSL.Loop
 import xtext.factoryLang.shortDSL.shortDSL.Model
 import xtext.factoryLang.shortDSL.shortDSL.MarkCameraValue
 import xtext.factoryLang.shortDSL.shortDSL.ConditionDevice
@@ -18,6 +17,8 @@ import xtext.factoryLang.shortDSL.shortDSL.MoveS
 import xtext.factoryLang.shortDSL.shortDSL.DiskHandlingS
 import xtext.factoryLang.shortDSL.shortDSL.MoveCrane
 import xtext.factoryLang.shortDSL.shortDSL.DeviceValueS
+import xtext.factoryLang.shortDSL.shortDSL.LoopVariable
+import xtext.factoryLang.shortDSL.shortDSL.LoopSlot
 
 /**
  * This class contains custom scoping description.
@@ -36,17 +37,18 @@ class ShortDSLScopeProvider extends AbstractShortDSLScopeProvider {
 				return getCraneTargetScope(context as MoveS)
 			case Literals.DEVICE_VALUE_S__CONFIGURATION_VALUE:
 				return getDeviceValueRefScope(context as DeviceValueS)
+			case Literals.CONDITION_VARIABLE__VARIABLE:
+				return getVariableScope(context, context)
 		}
 		return super.getScope(context, reference)
 	}
 	
-	// get scope for variable
 	def IScope getVariableScope(EObject currentContext, EObject context) {
 		val parent = currentContext.eContainer
-		val nextForEach = EcoreUtil2.getContainerOfType(parent, Loop);
+		val nextForEach = EcoreUtil2.getContainerOfType(parent, LoopVariable);
 
 		if (nextForEach !== null)
-			return Scopes.scopeFor(#[nextForEach.variable], getVariableScope(nextForEach, context));
+			return Scopes.scopeFor(#[nextForEach.ordinaryVariable], getVariableScope(nextForEach, context));
 		return getGlobalRefValueScope(context)
 	}
 	

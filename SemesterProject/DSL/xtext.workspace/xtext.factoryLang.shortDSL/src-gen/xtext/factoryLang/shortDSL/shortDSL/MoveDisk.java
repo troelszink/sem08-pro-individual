@@ -28,12 +28,12 @@ public interface MoveDisk extends MoveS
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Slot</em>' reference.
-   * @see #setSlot(LocalVariable)
+   * @see #setSlot(SlotVariable)
    * @see xtext.factoryLang.shortDSL.shortDSL.ShortDSLPackage#getMoveDisk_Slot()
    * @model
    * @generated
    */
-  LocalVariable getSlot();
+  SlotVariable getSlot();
 
   /**
    * Sets the value of the '{@link xtext.factoryLang.shortDSL.shortDSL.MoveDisk#getSlot <em>Slot</em>}' reference.
@@ -43,7 +43,7 @@ public interface MoveDisk extends MoveS
    * @see #getSlot()
    * @generated
    */
-  void setSlot(LocalVariable value);
+  void setSlot(SlotVariable value);
 
   /**
    * Returns the value of the '<em><b>Zone</b></em>' reference.
