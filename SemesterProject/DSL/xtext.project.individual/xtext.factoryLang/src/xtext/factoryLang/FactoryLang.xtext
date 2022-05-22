@@ -51,47 +51,44 @@ DiskHandlingS:
 	'handle' disk=[DiskS] '{' BEGIN statements+=StatementS+ END '}';
 
 StatementS:
-	LoopS | MoveS | CraneActionS | ConditionS | MarkS;
+	LoopS | MoveS | ConditionS | MarkS | WaitS;
 
 LoopS returns StatementS:
 	LoopVariableS | LoopSlotS;
 
-LoopVariableS returns StatementS:
+LoopVariableS returns LoopS:
 	{LoopVariableS} 'foreach' 'var' ordinaryVariable=OrdinaryVariableS
-	comparisonOperator=COMPARISON_OPERATOR_S slotState=DiskSlotStateValue
+	comparisonOperator=COMPARISON_OPERATOR_S variableValue=VariableValueS
 	':' BEGIN statements+=StatementS* END;
 
-LoopSlotS returns StatementS:
+LoopSlotS returns LoopS:
 	{LoopSlotS} 'foreach' 'slot' slotVariable=SlotVariableS
-	comparisonOperator=COMPARISON_OPERATOR_S slotState=DiskSlotStateValue
+	comparisonOperator=COMPARISON_OPERATOR_S slotValue=DiskSlotValueS
 	':' BEGIN statements+=StatementS* END;
 
 MoveS returns StatementS:
 	MoveDiskS | MoveAnySlotS | MoveCraneS;
 
 MoveDiskS returns MoveS:
-	{MoveDiskS} slot=[SlotVariableS] ('->' | '-->') zone=[DiskZoneS];
+	{MoveDiskS} slot=[SlotVariableS] ('->' | '-->') diskZone=[DiskZoneS];
 
 MoveAnySlotS returns MoveS:
-	{MoveAnySlotS} state=DiskSlotStateValue anySlot=SlotVariableS ('->' | '-->') zone=[DiskZoneS];
+	{MoveAnySlotS} state=DiskSlotStateValue anySlot=SlotVariableS ('->' | '-->') diskZone=[DiskZoneS];
 
 MoveCraneS returns MoveS:
-	{MoveCraneS} crane=[CraneS] action=CraneActionS ('->' | '-->') zone=[CraneZoneS];
-
-CraneActionS:
-	{CraneActionS} ('pickup' | 'drop');
+	{MoveCraneS} crane=[CraneS] craneAction=CraneActionValueS ('->' | '-->') craneZone=[CraneZoneS];
 
 ConditionS returns StatementS:
 	ConditionVariableS | ConditionDeviceS | ConditionSlotS;
 
 ConditionVariableS returns ConditionS:
-	{ConditionVariableS} 'if' 'var' variable=[OrdinaryVariableS]
+	{ConditionVariableS} 'if' 'var' ordinaryVariable=[OrdinaryVariableS]
 	comparisonOperator=COMPARISON_OPERATOR_S variableValue=VariableValueS
 	':' BEGIN statements+=StatementS* END;
 	
 ConditionSlotS returns ConditionS:
-	{ConditionSlotS} 'if' 'slot' variable=[SlotVariableS]
-	comparisonOperator=COMPARISON_OPERATOR_S slotValue=ValueSlotS
+	{ConditionSlotS} 'if' 'slot' slotVariable=[SlotVariableS]
+	comparisonOperator=COMPARISON_OPERATOR_S slotValue=DiskSlotValueS
 	':' BEGIN statements+=StatementS* END;
 
 ConditionDeviceS returns ConditionS:
@@ -103,11 +100,14 @@ MarkS returns StatementS:
 	MarkVariableValueS | MarkCameraValueS;
 	
 MarkVariableValueS returns MarkS:
-	{MarkVariableValueS} variable=[VariableS] '(' value=ValueSlotS (',' time=INT unit=TIME_UNIT_S)? ')';
+	{MarkVariableValueS} variable=[VariableS] '(' slotValue=DiskSlotValueS (',' time=INT unit=TIME_UNIT_S)? ')';
 
 MarkCameraValueS returns MarkS:
-	{MarkCameraValueS} camera=[CameraS] 'scan' variable=OrdinaryVariableS;
+	{MarkCameraValueS} camera=[CameraS] 'scan' ordinaryVariable=OrdinaryVariableS;
 	
+WaitS returns StatementS:
+	{WaitS} 'wait';
+
 
 // ----- VALUE TYPES ----- //
 VariableS:
@@ -125,9 +125,12 @@ VariableValueS:
 DeviceValueS:
 	value=DiskStateValue | value=ColorValue | configurationValue=[ConfigurationValueS];
 
-ValueSlotS:
-	value=DiskSlotStateValue | value=ColorValue;
-
+DiskSlotValueS:
+	value=DiskSlotStateValue | value=ColorValue | ref=[VariableS];
+	
+CraneActionValueS:
+	value=CRANE_ACTION_S
+;
 
 
 // -------------------- GROUP DSL - EASY TO READ, HARDER TO WRITE -------------------- //
@@ -290,6 +293,9 @@ enum COMPARISON_OPERATOR_S:
 	
 enum TIME_UNIT_S:
 	SECOND='s' | MINUTE='m' | HOUR='h';
+	
+enum CRANE_ACTION_S:
+	PICKUP='pickup' | DROP='drop';
 
 enum COMPARISON_OPERATOR:
 	UNDEFINED='undefined' | LESS_THAN='less than' | GREATER_THAN='greater than' | NOT='not';

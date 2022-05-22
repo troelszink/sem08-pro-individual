@@ -29,6 +29,7 @@ handle disk1 {
      
 	if dev disk1 != full:
 		free aSlot --> intakeZone
+		wait
 		aSlot(in_progress)
 		aSlot --> cameraZone
 		camera1 scan aColor

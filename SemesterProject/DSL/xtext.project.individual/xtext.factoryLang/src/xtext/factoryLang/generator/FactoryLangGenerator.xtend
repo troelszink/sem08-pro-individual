@@ -18,6 +18,9 @@ import xtext.factoryLang.factoryLang.Disk
 import xtext.factoryLang.factoryLang.Camera
 import xtext.factoryLang.generator.subgenerators.UppaalGenerator
 import xtext.factoryLang.generator.subgenerators.LoggingGenerator
+import xtext.factoryLang.factoryLang.Model
+import xtext.factoryLang.factoryLang.DSLProgram
+import xtext.factoryLang.factoryLang.DSL_TYPE_ENUM
 
 /**
  * Generates code from your model files on save.
@@ -27,22 +30,53 @@ import xtext.factoryLang.generator.subgenerators.LoggingGenerator
 class FactoryLangGenerator extends AbstractGenerator {
 
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
-		/*val model = resource.allContents.filter(DSLLong).next
-		val devices = model.configurations.map[device]
-		val statements = model.statements
-		try { 
-			ProgramGenerator.generate(fsa, devices, statements)
-			CsprojGenerator.generate(fsa)
-			MqttGenerator.generate(fsa)
-			EntityGenerator.generate(fsa, 
-				devices.filter[it instanceof Crane].size> 0, 
-				devices.filter[it instanceof Disk].size> 0, 
-				devices.filter[it instanceof Camera].size> 0
-			)
-			LoggingGenerator.generate(fsa)
-			UppaalGenerator.generate(fsa, resource)
-		} catch (Exception e) {
-			e.printStackTrace()
-		}*/
+		val model = resource.allContents.filter(Model).next
+		
+		val dslType = model.dslType
+		val dslTypeValue = dslType.value
+		val dslProgram = model.dslProgram as DSLProgram		
+		
+		if (dslTypeValue == DSL_TYPE_ENUM.SHORT) {
+			val dslShort = model.dslProgram as DSLShort
+			val devicesShort = dslShort.configuration.devices.toList
+			val diskHandlings = dslShort.diskHandlings	
+			val rootFolderShort = "OrchestratorServiceShort"
+			
+			try {
+				ProgramGenerator.generateShort(fsa, rootFolderShort, devicesShort, diskHandlings)
+				//CsprojGenerator.generate(fsa)
+				//MqttGenerator.generate(fsa)
+				/*EntityGenerator.generate(fsa, 
+					devices.filter[it instanceof Crane].size> 0, 
+					devices.filter[it instanceof Disk].size> 0, 
+					devices.filter[it instanceof Camera].size> 0
+				)*/
+				//LoggingGenerator.generate(fsa)
+				//UppaalGenerator.generate(fsa, resource)
+			} catch (Exception e) {
+				e.printStackTrace()
+			}
+		}
+		else {
+			val dslLong = model.dslProgram as DSLLong
+			val devicesLong = dslLong.configurations.map[device]
+			val statements = dslLong.statements		
+			val rootFolderLong = "OrchestratorServiceLong"
+			
+			try {
+				ProgramGenerator.generateLong(fsa, rootFolderLong, devicesLong, statements)
+				//CsprojGenerator.generate(fsa)
+				//MqttGenerator.generate(fsa)
+				/*EntityGenerator.generate(fsa, 
+					devices.filter[it instanceof Crane].size> 0, 
+					devices.filter[it instanceof Disk].size> 0, 
+					devices.filter[it instanceof Camera].size> 0
+				)*/
+				//LoggingGenerator.generate(fsa)
+				//UppaalGenerator.generate(fsa, resource)
+			} catch (Exception e) {
+				e.printStackTrace()
+			}
+		}
 	}
 }

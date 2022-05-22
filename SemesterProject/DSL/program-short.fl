@@ -44,6 +44,7 @@ disk1 {
     
     if dev disk != full: // or: if disk1 ...
         free slot --> intakeZone
+        wait
         slot(in_progress)
         slot --> cameraZone
         camera1(color) // also marks slot as color

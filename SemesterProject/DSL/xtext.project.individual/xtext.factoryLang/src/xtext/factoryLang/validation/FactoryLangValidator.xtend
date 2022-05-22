@@ -169,12 +169,12 @@ class FactoryLangValidator extends AbstractFactoryLangValidator {
 	
 	@Check
 	def checkConditionVariableValues(ConditionVariableS condition) {
-		if (!condition.eIsSet(Literals.CONDITION_VARIABLE_S__VARIABLE) ||
+		if (!condition.eIsSet(Literals.CONDITION_VARIABLE_S__ORDINARY_VARIABLE) ||
 			!condition.eIsSet(Literals.CONDITION_VARIABLE_S__VARIABLE_VALUE)) {
 			return
 		}
 
-		val variable = condition.variable
+		val variable = condition.ordinaryVariable
 		val value = condition.variableValue.value
 
 		switch (variable) {

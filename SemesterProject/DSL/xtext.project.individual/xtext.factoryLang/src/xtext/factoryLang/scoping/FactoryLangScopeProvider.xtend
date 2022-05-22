@@ -17,14 +17,14 @@ class FactoryLangScopeProvider extends AbstractFactoryLangScopeProvider {
 	override IScope getScope(EObject context, EReference reference) {
 		switch (reference) {
 			// short dsl
-			case Literals.MOVE_DISK_S__ZONE,
-			case Literals.MOVE_ANY_SLOT_S__ZONE:
+			case Literals.MOVE_DISK_S__DISK_ZONE,
+			case Literals.MOVE_ANY_SLOT_S__DISK_ZONE:
 				return FactoryLangShortScopeProvider.getDiskTargetScope(context as MoveS)
-			case Literals.MOVE_CRANE_S__ZONE:
+			case Literals.MOVE_CRANE_S__CRANE_ZONE:
 				return FactoryLangShortScopeProvider.getCraneTargetScope(context as MoveS)
 			case Literals.DEVICE_VALUE_S__CONFIGURATION_VALUE:
 				return FactoryLangShortScopeProvider.getDeviceValueRefScope(context as DeviceValueS)
-			case Literals.CONDITION_VARIABLE_S__VARIABLE:
+			case Literals.CONDITION_VARIABLE_S__ORDINARY_VARIABLE:
 				return FactoryLangShortScopeProvider.getVariableScope(context, context)
 			
 			// long dsl

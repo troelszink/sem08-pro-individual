@@ -8,6 +8,7 @@ import xtext.factoryLang.factoryLang.impl.ForEachImpl
 import xtext.factoryLang.factoryLang.impl.DiskMarkSlotOperationImpl
 import xtext.factoryLang.factoryLang.impl.LocalVariableImpl
 import xtext.factoryLang.factoryLang.impl.GlobalVariableImpl
+import xtext.factoryLang.factoryLang.COMPARISON_OPERATOR_S
 
 class EnumParser {
 	def static CharSequence parseDiskSlotState(DISK_SLOT_STATES diskSlotState, Class<?> originClass) {
@@ -55,7 +56,16 @@ class EnumParser {
 		}
 	}
 
-	def static CharSequence parseComparisonOperator(COMPARISON_OPERATOR operator) {
+	def static CharSequence parseComparisonOperatorShort(COMPARISON_OPERATOR_S operator) {
+		switch operator {
+			case COMPARISON_OPERATOR.GREATER_THAN: ">"
+			case COMPARISON_OPERATOR.LESS_THAN: "<"
+			case COMPARISON_OPERATOR.NOT: "!="
+			default: "=="
+		}
+	}
+	
+	def static CharSequence parseComparisonOperatorLong(COMPARISON_OPERATOR operator) {
 		switch operator {
 			case COMPARISON_OPERATOR.GREATER_THAN: ">"
 			case COMPARISON_OPERATOR.LESS_THAN: "<"

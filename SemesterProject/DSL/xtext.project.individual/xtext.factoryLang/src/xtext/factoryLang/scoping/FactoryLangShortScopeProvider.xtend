@@ -69,7 +69,7 @@ class FactoryLangShortScopeProvider {
 	def static IScope getGlobalRefValueScope(EObject context) {
 		val root = EcoreUtil2.getRootContainer(context) as Model
 		val dsl = root.dslProgram
-		val cameraScanOperations = EcoreUtil2.getAllContentsOfType(dsl, MarkCameraValueS).map[variable].toList
+		val cameraScanOperations = EcoreUtil2.getAllContentsOfType(dsl, MarkCameraValueS).map[ordinaryVariable].toList
 		return Scopes.scopeFor(cameraScanOperations);
 	}
 	
