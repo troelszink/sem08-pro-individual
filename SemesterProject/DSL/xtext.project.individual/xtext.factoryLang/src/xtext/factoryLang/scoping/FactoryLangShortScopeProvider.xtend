@@ -13,6 +13,7 @@ import xtext.factoryLang.factoryLang.LoopVariableS
 import xtext.factoryLang.factoryLang.MoveCraneS
 import xtext.factoryLang.factoryLang.MarkCameraValueS
 import xtext.factoryLang.factoryLang.ConditionDeviceS
+import xtext.factoryLang.factoryLang.MarkS
 
 class FactoryLangShortScopeProvider {
 	
@@ -44,6 +45,19 @@ class FactoryLangShortScopeProvider {
 		val root = EcoreUtil2.getRootContainer(move) as Model
 		val dsl = root.dslProgram as DSLShort
 		val diskHandling = EcoreUtil2.getContainerOfType(move, DiskHandlingS)
+		val diskRef = diskHandling.disk
+		val diskName = diskRef.name
+
+		val device = dsl.configuration.devices.filter[name == diskName].map[diskRef].toList
+		val targets = device.get(0).targets
+
+		return Scopes.scopeFor(targets)
+	}
+	
+	def static IScope getDiskTargetScope(MarkS mark) {
+		val root = EcoreUtil2.getRootContainer(mark) as Model
+		val dsl = root.dslProgram as DSLShort
+		val diskHandling = EcoreUtil2.getContainerOfType(mark, DiskHandlingS)
 		val diskRef = diskHandling.disk
 		val diskName = diskRef.name
 

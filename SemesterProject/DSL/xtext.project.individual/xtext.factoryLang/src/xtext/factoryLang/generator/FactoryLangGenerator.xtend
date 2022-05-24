@@ -21,6 +21,9 @@ import xtext.factoryLang.generator.subgenerators.LoggingGenerator
 import xtext.factoryLang.factoryLang.Model
 import xtext.factoryLang.factoryLang.DSLProgram
 import xtext.factoryLang.factoryLang.DSL_TYPE_ENUM
+import xtext.factoryLang.factoryLang.DeviceS
+import xtext.factoryLang.factoryLang.FactoryLangPackage.Literals
+import java.util.List
 
 /**
  * Generates code from your model files on save.
@@ -42,17 +45,26 @@ class FactoryLangGenerator extends AbstractGenerator {
 			val diskHandlings = dslShort.diskHandlings	
 			val rootFolderShort = "OrchestratorServiceShort"
 			
+			val List<DeviceS> devicesWithLogging = newArrayList
+			for (DeviceS device : devicesShort) {
+				if (device.eIsSet(Literals.DEVICE_S__LOGGING)) {
+					devicesWithLogging.add(device)
+				}
+			}
+			
 			try {
-				ProgramGenerator.generateShort(fsa, rootFolderShort, devicesShort, diskHandlings)
+				ProgramGenerator.generateShort(fsa, rootFolderShort, devicesShort, devicesWithLogging, diskHandlings)
 				//CsprojGenerator.generate(fsa)
 				//MqttGenerator.generate(fsa)
-				/*EntityGenerator.generate(fsa, 
-					devices.filter[it instanceof Crane].size> 0, 
-					devices.filter[it instanceof Disk].size> 0, 
-					devices.filter[it instanceof Camera].size> 0
-				)*/
-				//LoggingGenerator.generate(fsa)
-				//UppaalGenerator.generate(fsa, resource)
+				EntityGenerator.generate(fsa, rootFolderShort,
+					devicesShort.filter[it instanceof Crane].size> 0, 
+					devicesShort.filter[it instanceof Disk].size> 0, 
+					devicesShort.filter[it instanceof Camera].size> 0
+				)
+				if (devicesWithLogging.size > 0) {
+					LoggingGenerator.generate(fsa, rootFolderShort)
+				}
+				UppaalGenerator.generateShort(fsa, resource)
 			} catch (Exception e) {
 				e.printStackTrace()
 			}
@@ -63,20 +75,19 @@ class FactoryLangGenerator extends AbstractGenerator {
 			val statements = dslLong.statements		
 			val rootFolderLong = "OrchestratorServiceLong"
 			
-			try {
+			//try {
 				ProgramGenerator.generateLong(fsa, rootFolderLong, devicesLong, statements)
-				//CsprojGenerator.generate(fsa)
-				//MqttGenerator.generate(fsa)
-				/*EntityGenerator.generate(fsa, 
-					devices.filter[it instanceof Crane].size> 0, 
-					devices.filter[it instanceof Disk].size> 0, 
-					devices.filter[it instanceof Camera].size> 0
-				)*/
-				//LoggingGenerator.generate(fsa)
-				//UppaalGenerator.generate(fsa, resource)
-			} catch (Exception e) {
+				CsprojGenerator.generate(fsa)
+				MqttGenerator.generate(fsa)
+				EntityGenerator.generate(fsa, rootFolderLong,
+					devicesLong.filter[it instanceof Crane].size> 0, 
+					devicesLong.filter[it instanceof Disk].size> 0, 
+					devicesLong.filter[it instanceof Camera].size> 0
+				)
+				UppaalGenerator.generateLong(fsa, resource)
+			/*} catch (Exception e) {
 				e.printStackTrace()
-			}
+			}*/
 		}
 	}
 }

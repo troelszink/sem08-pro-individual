@@ -4,24 +4,24 @@ import org.eclipse.xtext.generator.IFileSystemAccess2
 
 class EntityGenerator {
 
-	def static generate(IFileSystemAccess2 fsa, boolean shouldGenerateCranes, boolean shouldGenerateDisks,
+	def static generate(IFileSystemAccess2 fsa, String rootFolder, boolean shouldGenerateCranes, boolean shouldGenerateDisks,
 		boolean shouldGenerateCameras) {
 		if (shouldGenerateCranes) {
-			generateCraneEntity(fsa)
+			generateCraneEntity(fsa, rootFolder)
 		}
 		if (shouldGenerateDisks) {
-			generateDiskEntity(fsa)
-			generateSlotEntity(fsa)
-			generateSlotStateEnum(fsa)
+			generateDiskEntity(fsa, rootFolder)
+			generateSlotEntity(fsa, rootFolder)
+			generateSlotStateEnum(fsa, rootFolder)
 		}
 		if (shouldGenerateCameras) {
-			generateCameraEntity(fsa)
+			generateCameraEntity(fsa, rootFolder)
 		}
 	}
 
-	def static generateCraneEntity(IFileSystemAccess2 fsa) {
+	def static generateCraneEntity(IFileSystemAccess2 fsa, String rootFolder) {
 		fsa.generateFile(
-			'OrchestratorService/Entities/Crane.cs',
+			rootFolder + '/Entities/Crane.cs',
 			'''
 				using Mqtt;
 				
@@ -105,9 +105,9 @@ class EntityGenerator {
 		)
 	}
 
-	protected def static void generateDiskEntity(IFileSystemAccess2 fsa) {
+	protected def static void generateDiskEntity(IFileSystemAccess2 fsa, String rootFolder) {
 		fsa.generateFile(
-			'OrchestratorService/Entities/Disk.cs',
+			rootFolder + '/Entities/Disk.cs',
 			'''
 				using System;
 				using Mqtt;
@@ -313,9 +313,9 @@ class EntityGenerator {
 		)
 	}
 
-	def static generateCameraEntity(IFileSystemAccess2 fsa) {
+	def static generateCameraEntity(IFileSystemAccess2 fsa, String rootFolder) {
 		fsa.generateFile(
-			'OrchestratorService/Entities/Camera.cs',
+			rootFolder + '/Entities/Camera.cs',
 			'''
 				using Mqtt;
 				
@@ -362,9 +362,9 @@ class EntityGenerator {
 		)
 	}
 
-	def static generateSlotEntity(IFileSystemAccess2 fsa) {
+	def static generateSlotEntity(IFileSystemAccess2 fsa, String rootFolder) {
 		fsa.generateFile(
-			'OrchestratorService/Entities/Slot.cs',
+			rootFolder + '/Entities/Slot.cs',
 			'''
 				namespace Entities;
 				
@@ -418,9 +418,9 @@ class EntityGenerator {
 		)
 	}
 
-	def static generateSlotStateEnum(IFileSystemAccess2 fsa) {
+	def static generateSlotStateEnum(IFileSystemAccess2 fsa, String rootFolder) {
 		fsa.generateFile(
-			'OrchestratorService/Entities/SlotState.cs',
+			rootFolder + '/Entities/SlotState.cs',
 			'''
 				namespace Entities;
 				

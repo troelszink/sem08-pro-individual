@@ -33,10 +33,8 @@ import xtext.factoryLang.factoryLang.CraneZoneS
 import xtext.factoryLang.factoryLang.DiskHandlingS
 import xtext.factoryLang.factoryLang.DiskZoneS
 import xtext.factoryLang.factoryLang.CameraColorS
-import xtext.factoryLang.factoryLang.LoopS
 import xtext.factoryLang.factoryLang.StatementS
 import xtext.factoryLang.factoryLang.COMPARISON_OPERATOR_S
-import xtext.factoryLang.factoryLang.ConditionS
 import xtext.factoryLang.factoryLang.ConditionDeviceS
 import xtext.factoryLang.factoryLang.ConditionVariableS
 import xtext.factoryLang.factoryLang.ConditionSlotS
@@ -49,16 +47,19 @@ import xtext.factoryLang.factoryLang.MarkCameraValueS
 import xtext.factoryLang.factoryLang.WaitS
 import xtext.factoryLang.factoryLang.LoopVariableS
 import xtext.factoryLang.factoryLang.LoopSlotS
+import xtext.factoryLang.factoryLang.impl.SlotVariableSImpl
+import xtext.factoryLang.factoryLang.LOGGING_TYPE_ENUM_S
 
 class ProgramGenerator {
 
-	def static generateShort(IFileSystemAccess2 fsa, String rootFolder, List<DeviceS> devices, List<DiskHandlingS> diskHandlings) {
+	def static generateShort(IFileSystemAccess2 fsa, String rootFolder, List<DeviceS> devices, List<DeviceS> devicesWithLogging, List<DiskHandlingS> diskHandlings) {
 		fsa.generateFile(
-			rootFolder + '/Program.cs',
+			rootFolder + '/ProgramShort.cs',
 			'''
 				using System;
 				using Entities;
 				using Mqtt;
+				using Logging;
 				
 				«generateVariables»
 				
@@ -66,14 +67,14 @@ class ProgramGenerator {
 				
 				«generateSetupMethodShort(devices)»
 				
-				«generateRunMethodShort(devices, diskHandlings)»
+				«generateRunMethodShort(devices, devicesWithLogging, diskHandlings)»
 			'''
 		)
 	}
 	
 	def static generateLong(IFileSystemAccess2 fsa, String rootFolder, List<Device> devices, List<Statement> statements) {
 		fsa.generateFile(
-			rootFolder + '/Program.cs',
+			rootFolder + '/ProgramLong.cs',
 			'''
 				using System;
 				using Entities;
@@ -195,7 +196,7 @@ class ProgramGenerator {
 			«ENDFOR»
 		«ENDIF»
 	'''
-	protected def static CharSequence generateRunMethodShort(List<DeviceS> devices, List<DiskHandlingS> diskHandlings) {
+	protected def static CharSequence generateRunMethodShort(List<DeviceS> devices, List<DeviceS> devicesWithLogging, List<DiskHandlingS> diskHandlings) {
 		'''
 			async Task Run()	
 			{
@@ -207,6 +208,40 @@ class ProgramGenerator {
 				«ENDFOR»
 				«FOR camera : devices.filter[it instanceof CameraS].map[it as CameraS].toList»
 					var «camera.name» = cameras["«camera.name»"];
+				«ENDFOR»
+			
+				«FOR crane : devicesWithLogging.filter[it instanceof CraneS].map[it as CraneS].toList»
+					«IF crane.logging.loggingType.value == LOGGING_TYPE_ENUM_S.INFO»
+						LogCraneInfo(«crane.name», mqtt);
+					«ELSEIF crane.logging.loggingType.value == LOGGING_TYPE_ENUM_S.WARNING»
+						LogCraneWarnings(«crane.name», mqtt);
+					«ELSEIF crane.logging.loggingType.value == LOGGING_TYPE_ENUM_S.ERROR»
+						LogCraneErrors(«crane.name», mqtt);
+					«ELSE»
+						LogCraneAll(«crane.name», mqtt);
+					«ENDIF»
+				«ENDFOR»
+				«FOR disk : devicesWithLogging.filter[it instanceof DiskS].map[it as DiskS].toList»
+					«IF disk.logging.loggingType.value == LOGGING_TYPE_ENUM_S.INFO»
+						LogCraneInfo(«disk.name», mqtt);
+					«ELSEIF disk.logging.loggingType.value == LOGGING_TYPE_ENUM_S.WARNING»
+						LogCraneWarnings(«disk.name», mqtt);
+					«ELSEIF disk.logging.loggingType.value == LOGGING_TYPE_ENUM_S.ERROR»
+						LogCraneErrors(«disk.name», mqtt);
+					«ELSE»
+						LogCraneAll(«disk.name», mqtt);
+					«ENDIF»
+				«ENDFOR»
+				«FOR camera : devicesWithLogging.filter[it instanceof CameraS].map[it as CameraS].toList»
+					«IF camera.logging.loggingType.value == LOGGING_TYPE_ENUM_S.INFO»
+						LogCraneInfo(«camera.name», mqtt);
+					«ELSEIF camera.logging.loggingType.value == LOGGING_TYPE_ENUM_S.WARNING»
+						LogCraneWarnings(«camera.name», mqtt);
+					«ELSEIF camera.logging.loggingType.value == LOGGING_TYPE_ENUM_S.ERROR»
+						LogCraneErrors(«camera.name», mqtt);
+					«ELSE»
+						LogCraneAll(«camera.name», mqtt);
+					«ENDIF»
 				«ENDFOR»
 			
 				while (running)
@@ -311,9 +346,9 @@ class ProgramGenerator {
 			ConditionSlotS: {
 				val variableName = statement.slotVariable.name
 				val variableType = statement.slotVariable.getClass()
-				val dotOrComparisonOperator = variableType == GlobalVariableImpl ? " " +
+				val dotOrComparisonOperator = variableType == SlotVariableSImpl ? " " +
 						EnumParser.parseComparisonOperatorShort(statement.comparisonOperator) + " " : "."
-				val conditionalQuotationMark = variableType == GlobalVariableImpl ? '"' : ''
+				val conditionalQuotationMark = variableType == SlotVariableSImpl ? '"' : ''
 				val variableValue = ValueParser.parseDiskSlotValueShort(statement.slotValue, variableType)
 				'''
 					if («variableName»«dotOrComparisonOperator»«conditionalQuotationMark»«variableValue»«conditionalQuotationMark»)
@@ -344,7 +379,7 @@ class ProgramGenerator {
 			}
 			MarkVariableValueS: {
 				val diskName = diskHandling.disk.name
-				val diskZone = (statement as MoveDiskS).diskZone
+				val diskZone = statement.diskZone
 				//val targetName = statement.target.name
 				val diskSlotValue = ValueParser.parseDiskSlotValueShort(statement.slotValue, statement.getClass())
 				val time = statement.time

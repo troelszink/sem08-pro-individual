@@ -12,7 +12,7 @@ class MqttGenerator {
 
 	protected def static void generateMqttService(IFileSystemAccess2 fsa) {
 		fsa.generateFile(
-			'OrchestratorService/Mqtt/MqttService.cs',
+			'OrchestratorServiceLong/Mqtt/MqttService.cs',
 			'''
 				using System.Text;
 				using MQTTnet;

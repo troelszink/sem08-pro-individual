@@ -1,7 +1,7 @@
 
 use long dsl
 
-create crane named crane1  
+create crane named crane1
 	with position at 0 named pickupDisk 
 	with position at 30 named outRed 
 	with position at 60 named outGreen 
@@ -9,9 +9,9 @@ create crane named crane1
 
 create disk named disk1
 	with 8 slots
-	with zone named craneZone  at slot 1 
+	with zone named craneZone  at slot 1
 	with zone named cameraZone at slot 3 
-	with zone named intakeZone at slot 6 
+	with zone named intakeZone at slot 6
 
 create camera named camera1  
 	with scannable color blue 

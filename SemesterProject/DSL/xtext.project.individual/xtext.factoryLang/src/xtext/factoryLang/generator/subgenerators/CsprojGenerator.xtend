@@ -5,7 +5,7 @@ import org.eclipse.xtext.generator.IFileSystemAccess2
 class CsprojGenerator {
 	
 	def static generate(IFileSystemAccess2 fsa) {
-			fsa.generateFile('OrchestratorService/OrchestratorService.csproj', 
+			fsa.generateFile('OrchestratorServiceLong/OrchestratorService.csproj', 
 			'''
 			<Project Sdk="Microsoft.NET.Sdk">
 			

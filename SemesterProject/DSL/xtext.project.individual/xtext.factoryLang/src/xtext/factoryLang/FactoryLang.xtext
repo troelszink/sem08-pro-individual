@@ -44,7 +44,7 @@ CameraColorS returns ConfigurationValueS:
 
 // ----- LOGGING ----- //
 LoggingS:
-	{LoggingS} 'logging';
+	{LoggingS} 'logging' loggingType=LoggingTypeS;
 
 // ----- DISK HANDLING ----- //
 DiskHandlingS:
@@ -97,10 +97,10 @@ ConditionDeviceS returns ConditionS:
 	':' BEGIN statements+=StatementS* END;
 
 MarkS returns StatementS:
-	MarkVariableValueS | MarkCameraValueS;
+	MarkSlotValueS | MarkCameraValueS;
 	
-MarkVariableValueS returns MarkS:
-	{MarkVariableValueS} variable=[VariableS] '(' slotValue=DiskSlotValueS (',' time=INT unit=TIME_UNIT_S)? ')';
+MarkSlotValueS returns MarkS:
+	{MarkVariableValueS} diskZone=[DiskZoneS] slotVariable=[SlotVariableS] '(' slotValue=DiskSlotValueS (',' time=INT unit=TIME_UNIT_S)? ')';
 
 MarkCameraValueS returns MarkS:
 	{MarkCameraValueS} camera=[CameraS] 'scan' ordinaryVariable=OrdinaryVariableS;
@@ -129,8 +129,10 @@ DiskSlotValueS:
 	value=DiskSlotStateValue | value=ColorValue | ref=[VariableS];
 	
 CraneActionValueS:
-	value=CRANE_ACTION_S
-;
+	value=CRANE_ACTION_S;
+
+LoggingTypeS:
+	value=LOGGING_TYPE_ENUM_S;
 
 
 // -------------------- GROUP DSL - EASY TO READ, HARDER TO WRITE -------------------- //
@@ -296,6 +298,9 @@ enum TIME_UNIT_S:
 	
 enum CRANE_ACTION_S:
 	PICKUP='pickup' | DROP='drop';
+	
+enum LOGGING_TYPE_ENUM_S:
+	INFO='info' | WARNING='warning' | ERROR='error' | ALL='all';
 
 enum COMPARISON_OPERATOR:
 	UNDEFINED='undefined' | LESS_THAN='less than' | GREATER_THAN='greater than' | NOT='not';

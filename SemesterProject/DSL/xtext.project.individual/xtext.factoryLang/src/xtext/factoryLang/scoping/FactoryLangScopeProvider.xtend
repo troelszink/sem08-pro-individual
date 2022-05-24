@@ -11,6 +11,7 @@ import xtext.factoryLang.factoryLang.MoveS
 import xtext.factoryLang.factoryLang.DeviceValueS
 import xtext.factoryLang.factoryLang.Operation
 import xtext.factoryLang.factoryLang.DeviceValue
+import xtext.factoryLang.factoryLang.MarkS
 
 class FactoryLangScopeProvider extends AbstractFactoryLangScopeProvider {
 	
@@ -20,6 +21,8 @@ class FactoryLangScopeProvider extends AbstractFactoryLangScopeProvider {
 			case Literals.MOVE_DISK_S__DISK_ZONE,
 			case Literals.MOVE_ANY_SLOT_S__DISK_ZONE:
 				return FactoryLangShortScopeProvider.getDiskTargetScope(context as MoveS)
+			case Literals.MARK_VARIABLE_VALUE_S__DISK_ZONE:
+				return FactoryLangShortScopeProvider.getDiskTargetScope(context as MarkS)
 			case Literals.MOVE_CRANE_S__CRANE_ZONE:
 				return FactoryLangShortScopeProvider.getCraneTargetScope(context as MoveS)
 			case Literals.DEVICE_VALUE_S__CONFIGURATION_VALUE:
