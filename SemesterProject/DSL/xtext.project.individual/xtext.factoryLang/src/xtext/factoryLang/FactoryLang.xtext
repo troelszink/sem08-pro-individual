@@ -100,7 +100,7 @@ MarkS returns StatementS:
 	MarkSlotValueS | MarkCameraValueS;
 	
 MarkSlotValueS returns MarkS:
-	{MarkVariableValueS} diskZone=[DiskZoneS] slotVariable=[SlotVariableS] '(' slotValue=DiskSlotValueS (',' time=INT unit=TIME_UNIT_S)? ')';
+	{MarkSlotValueS} diskZone=[DiskZoneS] slotVariable=[SlotVariableS] '(' slotValue=DiskSlotValueS (',' time=INT unit=TIME_UNIT_S)? ')';
 
 MarkCameraValueS returns MarkS:
 	{MarkCameraValueS} camera=[CameraS] 'scan' ordinaryVariable=OrdinaryVariableS;

@@ -125,20 +125,49 @@ class UppaalGenerator {
 				*/
 				int error;
 				</declaration>
+				<template>
+					<name>MasterController</name>
+					<declaration>
+						clock timer;
+					</declaration>
+					<location id="id0">
+						<name>Idle</name>
+					</location>
+					«FOR diskHandling : dsl.diskHandlings»
+						«FOR statement : diskHandling.statements»
+							«UppaalMasterGenerator.generateLocation(statement)»
+						«ENDFOR»
+					«ENDFOR»
+					<init ref="id0"/>
+					«FOR diskHandling : dsl.diskHandlings»
+						«FOR statement : diskHandling.statements»
+							«UppaalMasterGenerator.generateTransistion(statement)»	
+						«ENDFOR»
+					«ENDFOR»
+				</template>
 					«FOR disc : discs»
 						«DiscGenerator.generateShort(disc)»
+						«DiscSlotGenerator.generateShort(disc)»
+						«DiscGetVariableGenerator.generateShort(disc, DISK_STATES.EMPTY.toString)»
+						«FOR value : discSlotStateValues»
+							«DiscGetVariableGenerator.generateShort(disc, value)»
+							«DiscVariableGenerator.generateShort(disc, value)»
+						«ENDFOR»
 					«ENDFOR»
 					
 					«FOR crane : cranes»
+						«UppaalCraneMagnetGenerator.generateUppaalCraneMagnetTemplateShort(crane)»
 						«UppaalCraneGenerator.generateUppaalCraneTemplateShort(crane)»
 					«ENDFOR»
 					
 					«FOR camera : cameras»
 						«CameraGenerator.generateShort(camera)»
 					«ENDFOR»
+					«UppaalEmergencyButtonGenerator.generateUppaalEmergencyButtonTemplate()»
 				<system>
 					system «FOR disc : discs»«disc.name»,«ENDFOR» «FOR crane : cranes»«crane.name»,«ENDFOR» «FOR camera : cameras»«camera.name»«ENDFOR»;
 				</system>
+				«UppaalQueryGenerator.generateUpaalQueryShort(cranes.toList(), discs.toList(), cameras.toList())»
 			'''
 		)
 	}
@@ -243,16 +272,16 @@ class UppaalGenerator {
 					</template>
 					«FOR disc : discs»
 						«DiscGenerator.generateLong(disc)»
-						«DiscSlotGenerator.generate(disc)»
-						«DiscGetVariableGenerator.generate(disc, DISK_STATES.EMPTY.toString)»
+						«DiscSlotGenerator.generateLong(disc)»
+						«DiscGetVariableGenerator.generateLong(disc, DISK_STATES.EMPTY.toString)»
 						«FOR value : discSlotStateValues»
-							«DiscGetVariableGenerator.generate(disc, value)»
-							«DiscVariableGenerator.generate(disc, value)»
+							«DiscGetVariableGenerator.generateLong(disc, value)»
+							«DiscVariableGenerator.generateLong(disc, value)»
 						«ENDFOR»
 					«ENDFOR»
 					
 					«FOR crane : cranes»
-						«UppaalCraneMagnetGenerator.generateUppaalCraneMagnetTemplate(crane)»
+						«UppaalCraneMagnetGenerator.generateUppaalCraneMagnetTemplateLong(crane)»
 						«UppaalCraneGenerator.generateUppaalCraneTemplateLong(crane)»
 					«ENDFOR»
 					
@@ -263,7 +292,7 @@ class UppaalGenerator {
 				<system>
 					system MasterController, «FOR disc : discs»«disc.name», «disc.name»_DiscSlot, «disc.name»_GetemptySlot, «FOR value: discSlotStateValues»«disc.name»_SlotVariable_«value», «disc.name»_Get«value»Slot,«ENDFOR»«ENDFOR» «FOR crane : cranes»«crane.name»,«crane.name»_CraneMagnet,«ENDFOR» «FOR camera : cameras»«camera.name»,«ENDFOR» EmergencyButton;
 				</system>
-				«UppaalQueryGenerator.generateUpaalQuery(cranes.toList(), discs.toList(), cameras.toList())»
+				«UppaalQueryGenerator.generateUpaalQueryLong(cranes.toList(), discs.toList(), cameras.toList())»
 			'''
 		)
 	}
