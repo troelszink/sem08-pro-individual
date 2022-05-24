@@ -30,6 +30,8 @@ import xtext.factoryLang.factoryLang.LoopVariableS
 import xtext.factoryLang.factoryLang.LoopSlotS
 import xtext.factoryLang.factoryLang.DiskZoneS
 import xtext.factoryLang.factoryLang.CraneZoneS
+import xtext.factoryLang.factoryLang.DeviceS
+import xtext.factoryLang.factoryLang.FactoryLangPackage.Literals
 
 class UppaalGenerator {
 	public static List<StatementS> statementsIndexerShort;
@@ -39,6 +41,13 @@ class UppaalGenerator {
 	def static generateShort(IFileSystemAccess2 fsa, Resource resource) {
 		val model = resource.allContents.filter(Model).next
 		val dsl = model.dslProgram as DSLShort
+		val devices = dsl.configuration.devices.toList
+		val List<DeviceS> devicesWithLogging = newArrayList
+		for (DeviceS device : devices) {
+			if (device.eIsSet(Literals.DEVICE_S__LOGGING)) {
+				devicesWithLogging.add(device)
+			}
+		}
 		val discs = dsl.configuration.devices.filter[it instanceof DiskS].map[it as DiskS]
 		val cranes = dsl.configuration.devices.filter[it instanceof CraneS].map[it as CraneS]
 		val cameras = dsl.configuration.devices.filter[it instanceof CameraS].map[it as CameraS]
@@ -164,6 +173,15 @@ class UppaalGenerator {
 						«CameraGenerator.generateShort(camera)»
 					«ENDFOR»
 					«UppaalEmergencyButtonGenerator.generateUppaalEmergencyButtonTemplate()»
+					«FOR deviceWithLogging : devicesWithLogging»
+						«IF deviceWithLogging instanceof CraneS»
+							«UppaalLoggingGenerator.generate(devicesWithLogging as CraneS)»
+						«ELSEIF deviceWithLogging instanceof DiskS»
+							«UppaalLoggingGenerator.generate(devicesWithLogging as DiskS)»
+						«ELSE»
+							«UppaalLoggingGenerator.generate(devicesWithLogging as CameraS)»
+						«ENDIF»
+					«ENDFOR»
 				<system>
 					system «FOR disc : discs»«disc.name»,«ENDFOR» «FOR crane : cranes»«crane.name»,«ENDFOR» «FOR camera : cameras»«camera.name»«ENDFOR»;
 				</system>

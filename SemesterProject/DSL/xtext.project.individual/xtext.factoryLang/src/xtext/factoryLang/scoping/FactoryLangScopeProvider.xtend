@@ -21,7 +21,7 @@ class FactoryLangScopeProvider extends AbstractFactoryLangScopeProvider {
 			case Literals.MOVE_DISK_S__DISK_ZONE,
 			case Literals.MOVE_ANY_SLOT_S__DISK_ZONE:
 				return FactoryLangShortScopeProvider.getDiskTargetScope(context as MoveS)
-			case Literals.MARK_VARIABLE_VALUE_S__DISK_ZONE:
+			case Literals.MARK_SLOT_VALUE_S__DISK_ZONE:
 				return FactoryLangShortScopeProvider.getDiskTargetScope(context as MarkS)
 			case Literals.MOVE_CRANE_S__CRANE_ZONE:
 				return FactoryLangShortScopeProvider.getCraneTargetScope(context as MoveS)

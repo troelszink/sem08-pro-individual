@@ -40,7 +40,6 @@ import xtext.factoryLang.factoryLang.ConditionVariableS
 import xtext.factoryLang.factoryLang.ConditionSlotS
 import xtext.factoryLang.factoryLang.MoveCraneS
 import xtext.factoryLang.factoryLang.CRANE_ACTION_S
-import xtext.factoryLang.factoryLang.MarkVariableValueS
 import xtext.factoryLang.factoryLang.MoveDiskS
 import xtext.factoryLang.factoryLang.MoveAnySlotS
 import xtext.factoryLang.factoryLang.MarkCameraValueS
@@ -49,6 +48,7 @@ import xtext.factoryLang.factoryLang.LoopVariableS
 import xtext.factoryLang.factoryLang.LoopSlotS
 import xtext.factoryLang.factoryLang.impl.SlotVariableSImpl
 import xtext.factoryLang.factoryLang.LOGGING_TYPE_ENUM_S
+import xtext.factoryLang.factoryLang.MarkSlotValueS
 
 class ProgramGenerator {
 
@@ -377,7 +377,7 @@ class ProgramGenerator {
 					'''
 				}
 			}
-			MarkVariableValueS: {
+			MarkSlotValueS: {
 				val diskName = diskHandling.disk.name
 				val diskZone = statement.diskZone
 				//val targetName = statement.target.name

@@ -14,11 +14,11 @@ class UppaalQueryGenerator {
 				</query>
 				«FOR position: crane.targets»
 				<query>
-					<formula>A[] («crane.name».«crane.name»_«(position as CranePositionParameter).name» and «crane.name»_CraneMagnet.«crane.name»_MagnetOff) imply !(«crane.name».«crane.name»_«(position as CranePositionParameter).name» and «crane.name»_CraneMagnet.«crane.name»_MagnetOn)</formula>
+					<formula>A[] («crane.name».«crane.name»_«(position as CraneZoneS).name» and «crane.name»_CraneMagnet.«crane.name»_MagnetOff) imply !(«crane.name».«crane.name»_«(position as CraneZoneS).name» and «crane.name»_CraneMagnet.«crane.name»_MagnetOn)</formula>
 					<comment></comment>
 				</query>
 				<query>
-					<formula>A[] («crane.name».«crane.name»_«(position as CranePositionParameter).name» and «crane.name»_CraneMagnet.«crane.name»_MagnetOn) imply !(«crane.name».«crane.name»_«(position as CranePositionParameter).name» and «crane.name»_CraneMagnet.«crane.name»_MagnetOff)</formula>
+					<formula>A[] («crane.name».«crane.name»_«(position as CraneZoneS).name» and «crane.name»_CraneMagnet.«crane.name»_MagnetOn) imply !(«crane.name».«crane.name»_«(position as CraneZoneS).name» and «crane.name»_CraneMagnet.«crane.name»_MagnetOff)</formula>
 					<comment></comment>
 				</query>
 				«ENDFOR»

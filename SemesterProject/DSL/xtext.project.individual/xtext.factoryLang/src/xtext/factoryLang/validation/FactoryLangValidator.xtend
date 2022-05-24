@@ -17,7 +17,6 @@ import xtext.factoryLang.factoryLang.CraneZoneS
 import xtext.factoryLang.factoryLang.DiskZoneS
 import org.eclipse.xtext.EcoreUtil2
 import xtext.factoryLang.factoryLang.DiskS
-import xtext.factoryLang.factoryLang.MarkVariableValueS
 import xtext.factoryLang.factoryLang.TIME_UNIT_S
 import xtext.factoryLang.factoryLang.ConditionDeviceS
 import xtext.factoryLang.factoryLang.CraneS
@@ -37,6 +36,7 @@ import xtext.factoryLang.factoryLang.TIME
 import xtext.factoryLang.factoryLang.DeviceConditional
 import xtext.factoryLang.factoryLang.Crane
 import xtext.factoryLang.factoryLang.Camera
+import xtext.factoryLang.factoryLang.MarkSlotValueS
 
 /**
  * This class contains custom validation rules. 
@@ -96,20 +96,20 @@ class FactoryLangValidator extends AbstractFactoryLangValidator {
 	}
 
 	@Check
-	def checkMarkVariableValue(MarkVariableValueS mark) {
-		if (!mark.eIsSet(Literals.MARK_VARIABLE_VALUE_S__TIME) &&
-			!mark.eIsSet(Literals.MARK_VARIABLE_VALUE_S__UNIT)) {
+	def checkMarkVariableValue(MarkSlotValueS mark) {
+		if (!mark.eIsSet(Literals.MARK_SLOT_VALUE_S__TIME) &&
+			!mark.eIsSet(Literals.MARK_SLOT_VALUE_S__TIME)) {
 			return
 		}
-		if (!mark.eIsSet(Literals.MARK_VARIABLE_VALUE_S__UNIT)) {
+		if (!mark.eIsSet(Literals.MARK_SLOT_VALUE_S__TIME)) {
 			error('Remember to add unit: ' + TIME_UNIT_S.SECOND + ', ' + TIME_UNIT_S.MINUTE + ', ' + TIME_UNIT_S.HOUR,
-				(Literals.MARK_VARIABLE_VALUE_S__TIME), INVALID_VALUE)
+				(Literals.MARK_SLOT_VALUE_S__TIME), INVALID_VALUE)
 			return
 		}
 
 		val time = mark.time
 		if (time < 1) {
-			error('The time to finish should be>= 1', (Literals.MARK_VARIABLE_VALUE_S__TIME), INVALID_VALUE)
+			error('The time to finish should be>= 1', (Literals.MARK_SLOT_VALUE_S__TIME), INVALID_VALUE)
 			return
 		}
 	}

@@ -37,6 +37,11 @@ import org.eclipse.xtext.EcoreUtil2
 import xtext.factoryLang.factoryLang.DiskHandlingS
 import xtext.factoryLang.factoryLang.MoveAnySlotS
 import xtext.factoryLang.factoryLang.MarkSlotValueS
+import xtext.factoryLang.factoryLang.MarkCameraValueS
+import xtext.factoryLang.factoryLang.LoopS
+import xtext.factoryLang.factoryLang.LoopVariableS
+import xtext.factoryLang.factoryLang.LoopSlotS
+import xtext.factoryLang.factoryLang.ConditionSlotS
 
 class UppaalMasterGenerator {
 	static String lastTransistionState = "id0";
@@ -200,6 +205,67 @@ class UppaalMasterGenerator {
 		}
 	}
 	
+	def static dispatch String generateLocation(ConditionSlotS statement) {
+		'''
+		<location id="«getIdOfLocation('''«statement.slotVariable.name»_get«(statement.slotValue.value as ColorValue).value»_«statementsIndexerShort.indexOf(statement)»''')»">
+			<name>«statement.slotVariable.name»_get«(statement.slotValue.value as ColorValue).value»_«statementsIndexerShort.indexOf(statement)»</name>
+			<label kind="invariant">GlobalTimer &lt; 10</label>
+		</location>
+		<location id="«getIdOfLocation('''«statement.slotVariable.name»_Is«(statement.slotValue.value as ColorValue).value»_«statementsIndexerShort.indexOf(statement)»''')»">
+			<name>«statement.slotVariable.name»_Is«(statement.slotValue.value as ColorValue).value»_«statementsIndexerShort.indexOf(statement)»</name>
+		</location>
+		<location id="«getIdOfLocation('''«statement.slotVariable.name»_EndIf«(statement.slotValue.value as ColorValue).value»_«statementsIndexerShort.indexOf(statement)»''')»">
+			<name>«statement.slotVariable.name»_EndIf«(statement.slotValue.value as ColorValue).value»_«statementsIndexerShort.indexOf(statement)»</name>
+		</location>
+		«FOR s : statement.statements»
+		«generateLocation(s)»
+		«ENDFOR»
+		'''
+		/*
+		<location id="«getIdOfLocation('''EndIf_«statementsIndexerShort.indexOf(statement)»''')»">
+			<name>EndIf_«statementsIndexerShort.indexOf(statement)»</name>
+		</location>*/
+	}
+	
+	def static dispatch String generateTransistion(ConditionSlotS statement){
+		val returnTransistion = getIdOfLocation('''«statement.slotVariable.name»_EndIf«(statement.slotValue.value as ColorValue).value»_«statementsIndexerShort.indexOf(statement)»''')
+		switch(statement.slotValue.value){
+			ColorValue:{
+				val trans = '''
+				<transition>
+					<source ref="«lastTransistionState»"/>
+					<target ref="«getIdOfLocation('''«statement.slotVariable.name»_get«(statement.slotValue.value as ColorValue).value»_«statementsIndexerShort.indexOf(statement)»''')»"/>
+					<label kind="synchronisation">«currentDisc»_getColourSlot[currentSlot]!</label>
+					<label kind="assignment">GlobalTimer = 0</label>
+				</transition>
+				<transition>
+					<source ref="«getIdOfLocation('''«statement.slotVariable.name»_get«(statement.slotValue.value as ColorValue).value»_«statementsIndexerShort.indexOf(statement)»''')»"/>
+					<target ref="«getIdOfLocation('''«statement.slotVariable.name»_Is«(statement.slotValue.value as ColorValue).value»_«statementsIndexerShort.indexOf(statement)»''')»"/>
+					<label kind="guard">currentSlot_colour == «EnumParser.ColourToInt((statement.slotValue.value as ColorValue).value)»</label>
+					<label kind="synchronisation">«currentDisc»_gottenColourSlot?</label>
+				</transition>
+				«updateLastTrans('''«getIdOfLocation('''«statement.slotVariable.name»_Is«(statement.slotValue.value as ColorValue).value»_«statementsIndexerShort.indexOf(statement)»''')»''')»
+				«FOR s : statement.statements»
+				«generateTransistion(s)»
+				«ENDFOR»
+				<transition>
+					<source ref="«lastTransistionState»"/>
+					<target ref="«returnTransistion»"/>
+				</transition>
+				<transition>
+					<source ref="«getIdOfLocation('''«statement.slotVariable.name»_get«(statement.slotValue.value as ColorValue).value»_«statementsIndexerShort.indexOf(statement)»''')»"/>
+					<target ref="«returnTransistion»"/>
+					<label kind="guard">currentSlot_colour != «EnumParser.ColourToInt((statement.slotValue.value as ColorValue).value)»</label>
+					<label kind="synchronisation">«currentDisc»_gottenColourSlot?</label>
+				</transition>
+				''';
+				lastTransistionState = returnTransistion
+				return trans
+				}
+			default: throw new UnsupportedOperationException("This conditional value is not implemented yet")
+		}
+	}
+	
 	def static dispatch String generateLocation(MoveCraneS statement) {
 		'''
 		<location id="«getIdOfLocation('''«statement.crane.name»_goto_«(statement.craneZone as CraneZoneS).name»_«statementsIndexerShort.indexOf(statement)»''')»">
@@ -303,7 +369,7 @@ class UppaalMasterGenerator {
 		<transition>
 			<source ref="«lastTransistionState»"/>
 			<target ref="«getIdOfLocation('''«diskHandling.disk.name»_goto_«statement.diskZone.name»_statement«statementsIndexerShort.indexOf(statement)»''')»"/>
-			<label kind="synchronisation">«diskHandling.disk.name»_goto[(«statement.diskZone.name»_zones_«statement.target.name» + currentSlot) % «statement.device.name»_numberOfSlots]!</label>
+			<label kind="synchronisation">«diskHandling.disk.name»_goto[(«statement.diskZone.name»_zones_«statement.diskZone.name» + currentSlot) % «diskHandling.disk.name»_numberOfSlots]!</label>
 		</transition>
 		'''
 		lastTransistionState = getIdOfLocation('''«diskHandling.disk.name»_goto_«statement.diskZone.name»_statement«statementsIndexerShort.indexOf(statement)»''')
@@ -409,23 +475,23 @@ class UppaalMasterGenerator {
 	
 	def static dispatch String generateTransistion(MarkSlotValueS statement) {
 		var value = ""
-		switch(statement.diskSlotValue.value){
-			DiskSlotStateValue: value = (statement.diskSlotValue.value as DiskSlotStateValue).value.toString
-			ColorValue: value = (statement.diskSlotValue.value as ColorValue).value.toString
+		switch(statement.slotValue.value){
+			DiskSlotStateValue: value = (statement.slotValue.value as DiskSlotStateValue).value.toString
+			ColorValue: value = (statement.slotValue.value as ColorValue).value.toString
 			default: value = "Colour"
 		}
 		val diskHandling = EcoreUtil2.getContainerOfType(statement, DiskHandlingS)
 		val trans = '''
-		«IF statement.quantity > 0»
+		«IF statement.time > 0»
 		<transition>
 			<source ref="«lastTransistionState»"/>
-			<target ref="«getIdOfLocation('''«diskHandling.disk.name»_markSlot«value»In«statement.quantity»«statement.measure»_«statementsIndexerShort.indexOf(statement)»''')»"/>
+			<target ref="«getIdOfLocation('''«diskHandling.disk.name»_markSlot«value»In«statement.time»«statement.unit»_«statementsIndexerShort.indexOf(statement)»''')»"/>
 			<label kind="assignment">timer = 0</label>
 		</transition>
 		<transition>
-			<source ref="«getIdOfLocation('''«diskHandling.disk.name»_markSlot«value»In«statement.quantity»«statement.measure»_«statementsIndexerShort.indexOf(statement)»''')»"/>
+			<source ref="«getIdOfLocation('''«diskHandling.disk.name»_markSlot«value»In«statement.time»«statement.unit»_«statementsIndexerShort.indexOf(statement)»''')»"/>
 			<target ref="«getIdOfLocation('''«diskHandling.disk.name»_markSlot«value»_statement«statementsIndexerShort.indexOf(statement)»''')»"/>
-			<label kind="guard">timer &gt;= «statement.quantity»</label>
+			<label kind="guard">timer &gt;= «statement.time»</label>
 			«IF value === "Colour"»
 			<label kind="synchronisation">«diskHandling.disk.name»_set«value»[currentSlot][colour]!</label>
 			«ELSE»
@@ -472,81 +538,135 @@ class UppaalMasterGenerator {
 		return trans
 	}
 	
-	def static dispatch String generateLocation(CameraScanOperation statement) {
+	def static dispatch String generateLocation(MarkCameraValueS statement) {
+		val diskHandling = EcoreUtil2.getContainerOfType(statement, DiskHandlingS)
 		'''
-		<location id="«getIdOfLocation('''«statement.device.name»_scanItem_«statementsIndexerShort.indexOf(statement)»''')»">
-			<name>«statement.device.name»_scanItem_«statementsIndexerShort.indexOf(statement)»</name>
+		<location id="«getIdOfLocation('''«diskHandling.disk.name»_scanItem_«statementsIndexerShort.indexOf(statement)»''')»">
+			<name>«diskHandling.disk.name»_scanItem_«statementsIndexerShort.indexOf(statement)»</name>
 			<committed/>
 		</location>
-		<location id="«getIdOfLocation('''«statement.device.name»_itemColour_«statementsIndexerShort.indexOf(statement)»''')»">
-			<name>«statement.device.name»_itemColour_«statementsIndexerShort.indexOf(statement)»</name>
+		<location id="«getIdOfLocation('''«diskHandling.disk.name»_itemColour_«statementsIndexerShort.indexOf(statement)»''')»">
+			<name>«diskHandling.disk.name»_itemColour_«statementsIndexerShort.indexOf(statement)»</name>
 		</location>
 		'''
 	}
 	
-	def static dispatch String generateTransistion(CameraScanOperation statement) {
+	def static dispatch String generateTransistion(MarkCameraValueS statement) {
+		val diskHandling = EcoreUtil2.getContainerOfType(statement, DiskHandlingS)
 		val trans = '''
 		<transition>
 			<source ref="«lastTransistionState»"/>
-			<target ref="«getIdOfLocation('''«statement.device.name»_scanItem_«statementsIndexerShort.indexOf(statement)»''')»"/>
-			<label kind="synchronisation">«statement.device.name»_getColour!</label>
+			<target ref="«getIdOfLocation('''«diskHandling.disk.name»_scanItem_«statementsIndexerShort.indexOf(statement)»''')»"/>
+			<label kind="synchronisation">«diskHandling.disk.name»_getColour!</label>
 		</transition>
 		<transition>
-			<source ref="«getIdOfLocation('''«statement.device.name»_scanItem_«statementsIndexerShort.indexOf(statement)»''')»"/>
-			<target ref="«getIdOfLocation('''«statement.device.name»_itemColour_«statementsIndexerShort.indexOf(statement)»''')»"/>
-			<label kind="synchronisation">«statement.device.name»_gottenColour?</label>
+			<source ref="«getIdOfLocation('''«diskHandling.disk.name»_scanItem_«statementsIndexerShort.indexOf(statement)»''')»"/>
+			<target ref="«getIdOfLocation('''«diskHandling.disk.name»_itemColour_«statementsIndexerShort.indexOf(statement)»''')»"/>
+			<label kind="synchronisation">«diskHandling.disk.name»_gottenColour?</label>
 		</transition>
 		'''
-		lastTransistionState = getIdOfLocation('''«statement.device.name»_itemColour_«statementsIndexerShort.indexOf(statement)»''')
+		lastTransistionState = getIdOfLocation('''«diskHandling.disk.name»_itemColour_«statementsIndexerShort.indexOf(statement)»''')
 		return trans
 	}
 	
-	def static dispatch String generateLocation(ForEach statement) {
-		'''
-		<location id="«getIdOfLocation('''«statement.device.name»_get«(statement.variableValue.value as DiskSlotStateValue).value»Slot_«statementsIndexerShort.indexOf(statement)»''')»">
-			<name>«statement.device.name»_get«(statement.variableValue.value as DiskSlotStateValue).value»Slot_«statementsIndexerShort.indexOf(statement)»</name>
-			<committed/>
-		</location>
-		<location id="«getIdOfLocation('''«statement.device.name»_gottenSlot«(statement.variableValue.value as DiskSlotStateValue).value»_«statementsIndexerShort.indexOf(statement)»''')»">
-			<name>«statement.device.name»_gottenSlot«(statement.variableValue.value as DiskSlotStateValue).value»_«statementsIndexerShort.indexOf(statement)»</name>
-		</location>
-		«FOR s : statement.statements»
-		«generateLocation(s)»
-		«ENDFOR»
-		'''
+	def static dispatch String generateLocation(LoopS statement) {
+		val diskHandling = EcoreUtil2.getContainerOfType(statement, DiskHandlingS)
+		if (statement instanceof LoopVariableS) {
+			'''
+			<location id="«getIdOfLocation('''«diskHandling.disk.name»_get«(statement.variableValue.value as DiskSlotStateValue).value»Slot_«statementsIndexerShort.indexOf(statement)»''')»">
+				<name>«diskHandling.disk.name»_get«(statement.variableValue.value as DiskSlotStateValue).value»Slot_«statementsIndexerShort.indexOf(statement)»</name>
+				<committed/>
+			</location>
+			<location id="«getIdOfLocation('''«diskHandling.disk.name»_gottenSlot«(statement.variableValue.value as DiskSlotStateValue).value»_«statementsIndexerShort.indexOf(statement)»''')»">
+				<name>«diskHandling.disk.name»_gottenSlot«(statement.variableValue.value as DiskSlotStateValue).value»_«statementsIndexerShort.indexOf(statement)»</name>
+			</location>
+			«FOR s : statement.statements»
+			«generateLocation(s)»
+			«ENDFOR»
+			'''
+		}
+		else if (statement instanceof LoopSlotS) {
+			'''
+			<location id="«getIdOfLocation('''«diskHandling.disk.name»_get«(statement.slotValue.value as DiskSlotStateValue).value»Slot_«statementsIndexerShort.indexOf(statement)»''')»">
+				<name>«diskHandling.disk.name»_get«(statement.slotValue.value as DiskSlotStateValue).value»Slot_«statementsIndexerShort.indexOf(statement)»</name>
+				<committed/>
+			</location>
+			<location id="«getIdOfLocation('''«diskHandling.disk.name»_gottenSlot«(statement.slotValue.value as DiskSlotStateValue).value»_«statementsIndexerShort.indexOf(statement)»''')»">
+				<name>«diskHandling.disk.name»_gottenSlot«(statement.slotValue.value as DiskSlotStateValue).value»_«statementsIndexerShort.indexOf(statement)»</name>
+			</location>
+			«FOR s : statement.statements»
+			«generateLocation(s)»
+			«ENDFOR»
+			'''
+		}
 	}
 	
-	def static dispatch String generateTransistion(ForEach statement) {
-		val returnTransistion = lastTransistionState
-		currentDisc = statement.device.name
-		val trans = '''
-		<transition>
-			<source ref="«lastTransistionState»"/>
-			<target ref="«getIdOfLocation('''«statement.device.name»_get«(statement.variableValue.value as DiskSlotStateValue).value»Slot_«statementsIndexerShort.indexOf(statement)»''')»"/>
-			<label kind="synchronisation">«statement.device.name»_get«(statement.variableValue.value as DiskSlotStateValue).value»Slot!</label>
-			<label kind="assignment">GlobalTimer = 0</label>
-		</transition>
-		<transition>
-			<source ref="«getIdOfLocation('''«statement.device.name»_get«(statement.variableValue.value as DiskSlotStateValue).value»Slot_«statementsIndexerShort.indexOf(statement)»''')»"/>
-			<target ref="«getIdOfLocation('''«statement.device.name»_gottenSlot«(statement.variableValue.value as DiskSlotStateValue).value»_«statementsIndexerShort.indexOf(statement)»''')»"/>
-			<label kind="synchronisation">«statement.device.name»_found«(statement.variableValue.value as DiskSlotStateValue).value»Slot?</label>
-		</transition>
-		«updateLastTrans('''«getIdOfLocation('''«statement.device.name»_gottenSlot«(statement.variableValue.value as DiskSlotStateValue).value»_«statementsIndexerShort.indexOf(statement)»''')»''')»
-		«FOR s : statement.statements»
-		«generateTransistion(s)»
-		«ENDFOR»
-		<transition>
-			<source ref="«lastTransistionState»"/>
-			<target ref="«returnTransistion»"/>
-		</transition>
-		<transition>
-			<source ref="«getIdOfLocation('''«statement.device.name»_get«(statement.variableValue.value as DiskSlotStateValue).value»Slot_«statementsIndexerShort.indexOf(statement)»''')»"/>
-			<target ref="«returnTransistion»"/>
-			<label kind="guard">GlobalTimer &gt; 2</label>
-		</transition>
-		'''
-		lastTransistionState = returnTransistion
-		return trans
+	def static dispatch String generateTransistion(LoopS statement) {
+		val diskHandling = EcoreUtil2.getContainerOfType(statement, DiskHandlingS)
+		if (statement instanceof LoopVariableS) {
+			val returnTransistion = lastTransistionState
+			currentDisc = diskHandling.disk.name
+			val trans = '''
+			<transition>
+				<source ref="«lastTransistionState»"/>
+				<target ref="«getIdOfLocation('''«diskHandling.disk.name»_get«(statement.variableValue.value as DiskSlotStateValue).value»Slot_«statementsIndexerShort.indexOf(statement)»''')»"/>
+				<label kind="synchronisation">«diskHandling.disk.name»_get«(statement.variableValue.value as DiskSlotStateValue).value»Slot!</label>
+				<label kind="assignment">GlobalTimer = 0</label>
+			</transition>
+			<transition>
+				<source ref="«getIdOfLocation('''«diskHandling.disk.name»_get«(statement.variableValue.value as DiskSlotStateValue).value»Slot_«statementsIndexerShort.indexOf(statement)»''')»"/>
+				<target ref="«getIdOfLocation('''«diskHandling.disk.name»_gottenSlot«(statement.variableValue.value as DiskSlotStateValue).value»_«statementsIndexerShort.indexOf(statement)»''')»"/>
+				<label kind="synchronisation">«diskHandling.disk.name»_found«(statement.variableValue.value as DiskSlotStateValue).value»Slot?</label>
+			</transition>
+			«updateLastTrans('''«getIdOfLocation('''«diskHandling.disk.name»_gottenSlot«(statement.variableValue.value as DiskSlotStateValue).value»_«statementsIndexerShort.indexOf(statement)»''')»''')»
+			«FOR s : statement.statements»
+			«generateTransistion(s)»
+			«ENDFOR»
+			<transition>
+				<source ref="«lastTransistionState»"/>
+				<target ref="«returnTransistion»"/>
+			</transition>
+			<transition>
+				<source ref="«getIdOfLocation('''«diskHandling.disk.name»_get«(statement.variableValue.value as DiskSlotStateValue).value»Slot_«statementsIndexerShort.indexOf(statement)»''')»"/>
+				<target ref="«returnTransistion»"/>
+				<label kind="guard">GlobalTimer &gt; 2</label>
+			</transition>
+			'''
+			lastTransistionState = returnTransistion
+			return trans
+		}
+		else if (statement instanceof LoopSlotS) {
+			val returnTransistion = lastTransistionState
+			currentDisc = diskHandling.disk.name
+			val trans = '''
+			<transition>
+				<source ref="«lastTransistionState»"/>
+				<target ref="«getIdOfLocation('''«diskHandling.disk.name»_get«(statement.slotValue.value as DiskSlotStateValue).value»Slot_«statementsIndexerShort.indexOf(statement)»''')»"/>
+				<label kind="synchronisation">«diskHandling.disk.name»_get«(statement.slotValue.value as DiskSlotStateValue).value»Slot!</label>
+				<label kind="assignment">GlobalTimer = 0</label>
+			</transition>
+			<transition>
+				<source ref="«getIdOfLocation('''«diskHandling.disk.name»_get«(statement.slotValue.value as DiskSlotStateValue).value»Slot_«statementsIndexerShort.indexOf(statement)»''')»"/>
+				<target ref="«getIdOfLocation('''«diskHandling.disk.name»_gottenSlot«(statement.slotValue.value as DiskSlotStateValue).value»_«statementsIndexerShort.indexOf(statement)»''')»"/>
+				<label kind="synchronisation">«diskHandling.disk.name»_found«(statement.slotValue.value as DiskSlotStateValue).value»Slot?</label>
+			</transition>
+			«updateLastTrans('''«getIdOfLocation('''«diskHandling.disk.name»_gottenSlot«(statement.slotValue.value as DiskSlotStateValue).value»_«statementsIndexerShort.indexOf(statement)»''')»''')»
+			«FOR s : statement.statements»
+			«generateTransistion(s)»
+			«ENDFOR»
+			<transition>
+				<source ref="«lastTransistionState»"/>
+				<target ref="«returnTransistion»"/>
+			</transition>
+			<transition>
+				<source ref="«getIdOfLocation('''«diskHandling.disk.name»_get«(statement.slotValue.value as DiskSlotStateValue).value»Slot_«statementsIndexerShort.indexOf(statement)»''')»"/>
+				<target ref="«returnTransistion»"/>
+				<label kind="guard">GlobalTimer &gt; 2</label>
+			</transition>
+			'''
+			lastTransistionState = returnTransistion
+			return trans
+		}
 	}
 	
 	// LONG
