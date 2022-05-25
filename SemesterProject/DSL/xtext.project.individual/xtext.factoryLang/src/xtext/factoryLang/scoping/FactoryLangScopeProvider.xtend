@@ -19,6 +19,8 @@ class FactoryLangScopeProvider extends AbstractFactoryLangScopeProvider {
 		switch (reference) {
 			// short dsl
 			case Literals.MOVE_DISK_S__DISK_ZONE,
+			case Literals.MOVE_DISK_FROM_ZONE_S__SOURCE_DISK_ZONE,
+			case Literals.MOVE_DISK_FROM_ZONE_S__TARGET_DISK_ZONE,
 			case Literals.MOVE_ANY_SLOT_S__DISK_ZONE:
 				return FactoryLangShortScopeProvider.getDiskTargetScope(context as MoveS)
 			case Literals.MARK_SLOT_VALUE_S__DISK_ZONE:

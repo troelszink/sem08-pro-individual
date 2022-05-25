@@ -2335,99 +2335,108 @@ int error;
 	</template>
 	<template>
 		<name>camera1</name>
-		<location id="id148" x="170" y="357">
-			<name x="160" y="327">camera1_Idle</name>
+		<location id="id148" x="170" y="153">
+			<name x="110" y="110">camera1_Idle</name>
 		</location>
-		<location id="id149" x="-76" y="170">
-			<name x="-86" y="140">camera1_Red</name>
+		<location id="id149" x="-102" y="153">
+			<name x="-212" y="136">camera1_Red</name>
 			<committed/>
 		</location>
-		<location id="id150" x="170" y="178">
-			<name x="637" y="85">camera1_Green</name>
+		<location id="id150" x="170" y="331">
+			<name x="119" y="348">camera1_Green</name>
 			<committed/>
 		</location>
-		<location id="id151" x="442" y="170">
-			<name x="432" y="140">camera1_Blue</name>
+		<location id="id151" x="416" y="153">
+			<name x="442" y="144">camera1_Blue</name>
 			<committed/>
 		</location>
-		<location id="id152" x="170" y="-42">
-			<name x="160" y="-72">camera1_LoggingInfo</name>
+		<location id="id152" x="170" y="-51">
+			<name x="110" y="-85">camera1_LoggingInfo</name>
 			<committed/>
 		</location>
 		<init ref="id148"/>
 		<transition>
 			<source ref="id151"/>
 			<target ref="id148"/>
-			<label kind="synchronisation" x="-20" y="140">camera1_gottenColour!</label>
+			<label kind="synchronisation" x="229" y="195">camera1_gottenColour!</label>
+			<nail x="297" y="195"/>
 		</transition>
 		<transition>
 			<source ref="id148"/>
 			<target ref="id151"/>
-			<label kind="synchronisation" x="-20" y="140">camera1_getColour?</label>
-			<label kind="assignment" x="-20" y="155">colour = 3</label>
+			<label kind="synchronisation" x="229" y="119">camera1_getColour?</label>
+			<label kind="assignment" x="229" y="136">colour = 3</label>
 		</transition>
 		<transition>
 			<source ref="id150"/>
 			<target ref="id148"/>
-			<label kind="synchronisation" x="55" y="140">camera1_gottenColour!</label>
+			<label kind="synchronisation" x="178" y="246">camera1_gottenColour!</label>
 		</transition>
 		<transition>
 			<source ref="id148"/>
 			<target ref="id150"/>
-			<label kind="synchronisation" x="55" y="140">camera1_getColour?</label>
-			<label kind="assignment" x="55" y="155">colour=2</label>
+			<label kind="synchronisation" x="25" y="238">camera1_getColour?</label>
+			<label kind="assignment" x="25" y="255">colour=2</label>
+			<nail x="110" y="255"/>
 		</transition>
 		<transition>
 			<source ref="id149"/>
 			<target ref="id148"/>
-			<label kind="synchronisation" x="544" y="-42">camera1_gottenColour!</label>
+			<label kind="synchronisation" x="-102" y="204">camera1_gottenColour!</label>
+			<nail x="34" y="204"/>
 		</transition>
 		<transition>
 			<source ref="id148"/>
 			<target ref="id149"/>
-			<label kind="synchronisation" x="510" y="-51">camera1_getColour?</label>
-			<label kind="assignment" x="55" y="80">colour = 1</label>
+			<label kind="synchronisation" x="-34" y="119">camera1_getColour?</label>
+			<label kind="assignment" x="-34" y="136">colour = 1</label>
 		</transition>
 		<transition>
 			<source ref="id148"/>
 			<target ref="id152"/>
-			<label kind="synchronisation" x="586" y="-34">camera1_Log?</label>
+			<label kind="synchronisation" x="68" y="59">camera1_Log?</label>
 		</transition>
 		<transition>
 			<source ref="id152"/>
 			<target ref="id148"/>
-			<label kind="synchronisation" x="510" y="17">camera1_NoLog?</label>
+			<label kind="synchronisation" x="204" y="76">camera1_NoLog?</label>
+			<nail x="204" y="68"/>
 		</transition>
 		<transition>
 			<source ref="id149"/>
 			<target ref="id152"/>
-			<label kind="synchronisation" x="663" y="0">camera1_Log?</label>
+			<label kind="synchronisation" x="-136" y="8">camera1_Log?</label>
+			<nail x="-68" y="42"/>
 		</transition>
 		<transition>
 			<source ref="id152"/>
 			<target ref="id149"/>
-			<label kind="synchronisation" x="595" y="8">camera1_NoLog?</label>
+			<label kind="synchronisation" x="8" y="17">camera1_NoLog?</label>
 		</transition>
 		<transition>
 			<source ref="id150"/>
 			<target ref="id152"/>
-			<label kind="synchronisation" x="629" y="59">camera1_Log?</label>
+			<label kind="synchronisation" x="-127" y="-51">camera1_Log?</label>
+			<nail x="-280" y="221"/>
+			<nail x="-144" y="-8"/>
 		</transition>
 		<transition>
 			<source ref="id152"/>
 			<target ref="id150"/>
-			<label kind="synchronisation" x="654" y="51">camera1_NoLog?</label>
+			<label kind="synchronisation" x="374" y="-51">camera1_NoLog?</label>
+			<nail x="493" y="-8"/>
+			<nail x="612" y="204"/>
 		</transition>
 		<transition>
 			<source ref="id151"/>
 			<target ref="id152"/>
-			<label kind="synchronisation" x="130" y="140">camera1_Log?</label>
+			<label kind="synchronisation" x="238" y="25">camera1_Log?</label>
 		</transition>
 		<transition>
 			<source ref="id152"/>
 			<target ref="id151"/>
-			<label kind="synchronisation" x="130" y="140">camera1_NoLog?</label>
-			<nail x="255" y="110"/>
+			<label kind="synchronisation" x="323" y="-8">camera1_NoLog?</label>
+			<nail x="391" y="42"/>
 		</transition>
 	</template>
 	<template>

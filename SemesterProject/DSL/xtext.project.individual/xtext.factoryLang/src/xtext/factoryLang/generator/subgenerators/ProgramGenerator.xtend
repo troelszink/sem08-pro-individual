@@ -49,6 +49,8 @@ import xtext.factoryLang.factoryLang.LoopSlotS
 import xtext.factoryLang.factoryLang.impl.SlotVariableSImpl
 import xtext.factoryLang.factoryLang.LOGGING_TYPE_ENUM_S
 import xtext.factoryLang.factoryLang.MarkSlotValueS
+import xtext.factoryLang.factoryLang.impl.OrdinaryVariableSImpl
+import xtext.factoryLang.factoryLang.MoveDiskFromZoneS
 
 class ProgramGenerator {
 
@@ -330,12 +332,11 @@ class ProgramGenerator {
 			ConditionVariableS: {
 				val variableName = statement.ordinaryVariable.name
 				val variableType = statement.ordinaryVariable.getClass()
-				val dotOrComparisonOperator = variableType == GlobalVariableImpl ? " " +
-						EnumParser.parseComparisonOperatorShort(statement.comparisonOperator) + " " : "."
-				val conditionalQuotationMark = variableType == GlobalVariableImpl ? '"' : ''
+				val comparisonOperator = EnumParser.parseComparisonOperatorShort(statement.comparisonOperator)
+				val conditionalQuotationMark = variableType == OrdinaryVariableSImpl ? '"' : ''
 				val variableValue = ValueParser.parseVariableValueShort(statement.variableValue, variableType)
 				'''
-					if («variableName»«dotOrComparisonOperator»«conditionalQuotationMark»«variableValue»«conditionalQuotationMark»)
+					if («variableName» «comparisonOperator» «conditionalQuotationMark»«variableValue»«conditionalQuotationMark»)
 					{
 						«FOR nestedStatement : statement.statements»
 							«generateStatementShort(diskHandling, nestedStatement)»
@@ -346,12 +347,9 @@ class ProgramGenerator {
 			ConditionSlotS: {
 				val variableName = statement.slotVariable.name
 				val variableType = statement.slotVariable.getClass()
-				val dotOrComparisonOperator = variableType == SlotVariableSImpl ? " " +
-						EnumParser.parseComparisonOperatorShort(statement.comparisonOperator) + " " : "."
-				val conditionalQuotationMark = variableType == SlotVariableSImpl ? '"' : ''
-				val variableValue = ValueParser.parseDiskSlotValueShort(statement.slotValue, variableType)
+				val slotValue = ValueParser.parseDiskSlotValueShort(statement.slotValue, variableType)
 				'''
-					if («variableName»«dotOrComparisonOperator»«conditionalQuotationMark»«variableValue»«conditionalQuotationMark»)
+					if («variableName».«slotValue»)
 					{
 						«FOR nestedStatement : statement.statements»
 							«generateStatementShort(diskHandling, nestedStatement)»
@@ -379,8 +377,7 @@ class ProgramGenerator {
 			}
 			MarkSlotValueS: {
 				val diskName = diskHandling.disk.name
-				val diskZone = statement.diskZone
-				//val targetName = statement.target.name
+				val zoneName = statement.diskZone.name
 				val diskSlotValue = ValueParser.parseDiskSlotValueShort(statement.slotValue, statement.getClass())
 				val time = statement.time
 				
@@ -389,10 +386,10 @@ class ProgramGenerator {
 						Task.Run(async () =>
 						{
 							await Task.Delay(«time * 1000»);
-							«diskName».MarkSlot("«diskZone»", «diskSlotValue»);
+							«diskName».MarkSlot("«zoneName»", «diskSlotValue»);
 						});
 					«ELSE»
-						«diskName».MarkSlot("«diskZone»", «diskSlotValue»);
+						«diskName».MarkSlot("«zoneName»", «diskSlotValue»);
 					«ENDIF»	
 				'''
 			}
@@ -400,27 +397,29 @@ class ProgramGenerator {
 				val diskName = diskHandling.disk.name
 				val slotName = statement.slot.name
 				val zoneName = statement.diskZone.name
+				setCurrentDiskZoneName(zoneName)
 				'''
 					await «diskName».MoveSlot(«slotName».Number, "«zoneName»");
+				'''
+			}
+			MoveDiskFromZoneS: {
+				val diskName = diskHandling.disk.name
+				val sourceZoneName = statement.sourceDiskZone.name
+				val targetZoneName = statement.targetDiskZone.name
+				setCurrentDiskZoneName(targetZoneName)
+				'''
+					await «diskName».MoveSlot("«sourceZoneName»", "«targetZoneName»");
 				'''
 			}
 			MoveAnySlotS: {
 				val diskName = diskHandling.disk.name
 				val zoneName = statement.diskZone.name
+				setCurrentDiskZoneName(zoneName)
 				// maybe add for full slot?
 				'''
 					await «diskName».MoveSlot(«diskName».GetEmptySlotNumber(), "«zoneName»");
 				'''
 			}
-			// maybe add to MoveDiskS
-			/*DiskMoveSlotOperation: {
-				val deviceName = statement.device.name
-				val sourceName = statement.source.name
-				val targetName = statement.target.name
-				'''
-					await «deviceName».MoveSlot("«sourceName»", "«targetName»");
-				'''
-			}*/
 			WaitS: {
 				val diskName = diskHandling.disk.name
 				'''
@@ -428,13 +427,24 @@ class ProgramGenerator {
 				'''
 			}
 			MarkCameraValueS: {
+				val diskName = diskHandling.disk.name
 				val cameraName = statement.camera.name
 				val variableName = statement.ordinaryVariable.name
 				'''
 					var «variableName» = await «cameraName».Scan();
+					«diskName».MarkSlot("«getCurrentDiskZoneName()»", «variableName»);
 				'''
 			}
 		}
+	}
+	
+	var static currentDiskZoneName = ""
+	protected def static setCurrentDiskZoneName(String diskZoneName) {
+		currentDiskZoneName = diskZoneName
+	}
+	
+	protected def static String getCurrentDiskZoneName() {
+		currentDiskZoneName
 	}
 	
 	protected def static CharSequence generateStatementLong(Statement statement) {

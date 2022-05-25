@@ -267,10 +267,10 @@ int error;
 		</location>
 		<init ref="id0"/>
 		<transition>
-			<source ref="id0"/>
+			<source ref="id33"/>
 			<target ref="id1"/>
-			<label kind="synchronisation" x="55" y="65">disk1_getcompleteSlot!</label>
-			<label kind="assignment" x="55" y="80">GlobalTimer = 0</label>
+			<label kind="synchronisation" x="205" y="440">disk1_getcompleteSlot!</label>
+			<label kind="assignment" x="205" y="455">GlobalTimer = 0</label>
 		</transition>
 		<transition>
 			<source ref="id1"/>
@@ -440,18 +440,18 @@ int error;
 		</transition>
 		<transition>
 			<source ref="id29"/>
-			<target ref="id0"/>
+			<target ref="id33"/>
 		</transition>
 		<transition>
 			<source ref="id1"/>
-			<target ref="id0"/>
-			<label kind="guard" x="55" y="50">GlobalTimer &gt; 2</label>
+			<target ref="id33"/>
+			<label kind="guard" x="205" y="425">GlobalTimer &gt; 2</label>
 		</transition>
 		<transition>
-			<source ref="id0"/>
+			<source ref="id33"/>
 			<target ref="id31"/>
-			<label kind="synchronisation" x="280" y="440">disk1_getemptySlot!</label>
-			<label kind="assignment" x="280" y="455">GlobalTimer = 0</label>
+			<label kind="synchronisation" x="430" y="815">disk1_getemptySlot!</label>
+			<label kind="assignment" x="430" y="830">GlobalTimer = 0</label>
 		</transition>
 		<transition>
 			<source ref="id31"/>
@@ -2052,306 +2052,326 @@ int error;
 		<name>crane1</name>
 		<declaration>
 		</declaration>
-		<location id="id138" x="40" y="80">
-			<name x="30" y="50">crane1_pickupDisk</name>
+		<location id="id138" x="25" y="-110">
+			<name x="-119" y="-119">crane1_pickupDisk</name>
 		</location>
-		<location id="id139" x="190" y="80">
-			<name x="180" y="50">crane1_LoweredAtpickupDisk</name>
+		<location id="id139" x="-187" y="501">
+			<name x="-314" y="527">crane1_LoweredAtpickupDisk</name>
 		</location>
-		<location id="id140" x="190" y="230">
-			<name x="180" y="200">crane1_outRed</name>
+		<location id="id140" x="544" y="195">
+			<name x="561" y="187">crane1_outRed</name>
 		</location>
-		<location id="id141" x="40" y="230">
-			<name x="30" y="200">crane1_LoweredAtoutRed</name>
+		<location id="id141" x="586" y="365">
+			<name x="595" y="374">crane1_LoweredAtoutRed</name>
 		</location>
-		<location id="id142" x="340" y="80">
-			<name x="330" y="50">crane1_outGreen</name>
+		<location id="id142" x="459" y="-110">
+			<name x="493" y="-119">crane1_outGreen</name>
 		</location>
-		<location id="id143" x="340" y="230">
-			<name x="330" y="200">crane1_LoweredAtoutGreen</name>
+		<location id="id143" x="731" y="527">
+			<name x="688" y="552">crane1_LoweredAtoutGreen</name>
 		</location>
-		<location id="id144" x="340" y="380">
-			<name x="330" y="350">crane1_outBlue</name>
+		<location id="id144" x="-17" y="187">
+			<name x="-136" y="178">crane1_outBlue</name>
 		</location>
-		<location id="id145" x="190" y="380">
-			<name x="180" y="350">crane1_LoweredAtoutBlue</name>
+		<location id="id145" x="-102" y="348">
+			<name x="-255" y="365">crane1_LoweredAtoutBlue</name>
 		</location>
-		<location id="id146" x="40" y="380">
-			<name x="30" y="350">crane1_Stopped</name>
+		<location id="id146" x="255" y="459">
+			<name x="212" y="408">crane1_Stopped</name>
 		</location>
-		<location id="id147" x="490" y="80">
-			<name x="480" y="50">crane1_LoggingError</name>
+		<location id="id147" x="263" y="603">
+			<name x="212" y="620">crane1_LoggingError</name>
 			<committed/>
 		</location>
 		<init ref="id138"/>
 		<transition>
 			<source ref="id138"/>
 			<target ref="id138"/>
-			<label kind="synchronisation" x="-20" y="65">crane1_goto_pickupDisk?</label>
-			<nail x="10" y="50"/>
-			<nail x="70" y="50"/>
+			<label kind="synchronisation" x="892" y="-25">crane1_goto_pickupDisk?</label>
+			<nail x="-5" y="-140"/>
+			<nail x="55" y="-140"/>
 		</transition>
 		<transition>
 			<source ref="id138"/>
 			<target ref="id146"/>
-			<label kind="synchronisation" x="-20" y="215">emergencyStop?</label>
+			<label kind="synchronisation" x="892" y="127">emergencyStop?</label>
 		</transition>
 		<transition>
 			<source ref="id139"/>
 			<target ref="id146"/>
-			<label kind="synchronisation" x="55" y="215">emergencyStop?</label>
+			<label kind="synchronisation" x="892" y="365">emergencyStop?</label>
 		</transition>
 		<transition>
 			<source ref="id138"/>
 			<target ref="id139"/>
-			<label kind="synchronisation" x="55" y="65">crane1_lowerMagnet?</label>
+			<label kind="synchronisation" x="892" y="-59">crane1_lowerMagnet?</label>
+			<nail x="-178" y="170"/>
 		</transition>
 		<transition>
 			<source ref="id139"/>
 			<target ref="id138"/>
-			<label kind="synchronisation" x="55" y="65">crane1_raiseMagnet?</label>
+			<label kind="synchronisation" x="892" y="59">crane1_raiseMagnet?</label>
+			<nail x="-297" y="136"/>
 		</transition>
 		<transition>
 			<source ref="id138"/>
 			<target ref="id140"/>
-			<label kind="synchronisation" x="55" y="140">crane1_goto_outRed?</label>
+			<label kind="synchronisation" x="892" y="-110">crane1_goto_outRed?</label>
+			<nail x="272" y="-17"/>
 		</transition>
 		<transition>
 			<source ref="id138"/>
 			<target ref="id142"/>
-			<label kind="synchronisation" x="130" y="65">crane1_goto_outGreen?</label>
+			<label kind="synchronisation" x="892" y="-8">crane1_goto_outGreen?</label>
+			<nail x="246" y="-144"/>
 		</transition>
 		<transition>
 			<source ref="id138"/>
 			<target ref="id144"/>
-			<label kind="synchronisation" x="130" y="215">crane1_goto_outBlue?</label>
+			<label kind="synchronisation" x="892" y="263">crane1_goto_outBlue?</label>
+			<nail x="-51" y="76"/>
 		</transition>
 		<transition>
 			<source ref="id140"/>
 			<target ref="id140"/>
-			<label kind="synchronisation" x="130" y="215">crane1_goto_outRed?</label>
-			<nail x="160" y="200"/>
-			<nail x="220" y="200"/>
+			<label kind="synchronisation" x="892" y="348">crane1_goto_outRed?</label>
+			<nail x="514" y="165"/>
+			<nail x="574" y="165"/>
 		</transition>
 		<transition>
 			<source ref="id140"/>
 			<target ref="id146"/>
-			<label kind="synchronisation" x="55" y="290">emergencyStop?</label>
+			<label kind="synchronisation" x="892" y="-127">emergencyStop?</label>
 		</transition>
 		<transition>
 			<source ref="id141"/>
 			<target ref="id146"/>
-			<label kind="synchronisation" x="-20" y="290">emergencyStop?</label>
+			<label kind="synchronisation" x="892" y="246">emergencyStop?</label>
 		</transition>
 		<transition>
 			<source ref="id140"/>
 			<target ref="id141"/>
-			<label kind="synchronisation" x="55" y="215">crane1_lowerMagnet?</label>
+			<label kind="synchronisation" x="892" y="76">crane1_lowerMagnet?</label>
+			<nail x="612" y="272"/>
 		</transition>
 		<transition>
 			<source ref="id141"/>
 			<target ref="id140"/>
-			<label kind="synchronisation" x="55" y="215">crane1_raiseMagnet?</label>
+			<label kind="synchronisation" x="892" y="93">crane1_raiseMagnet?</label>
 		</transition>
 		<transition>
 			<source ref="id140"/>
 			<target ref="id138"/>
-			<label kind="synchronisation" x="55" y="140">crane1_goto_pickupDisk?</label>
+			<label kind="synchronisation" x="892" y="229">crane1_goto_pickupDisk?</label>
 		</transition>
 		<transition>
 			<source ref="id140"/>
 			<target ref="id142"/>
-			<label kind="synchronisation" x="205" y="140">crane1_goto_outGreen?</label>
+			<label kind="synchronisation" x="892" y="-93">crane1_goto_outGreen?</label>
 		</transition>
 		<transition>
 			<source ref="id140"/>
 			<target ref="id144"/>
-			<label kind="synchronisation" x="205" y="290">crane1_goto_outBlue?</label>
+			<label kind="synchronisation" x="892" y="212">crane1_goto_outBlue?</label>
 		</transition>
 		<transition>
 			<source ref="id142"/>
 			<target ref="id142"/>
-			<label kind="synchronisation" x="280" y="65">crane1_goto_outGreen?</label>
-			<nail x="310" y="50"/>
-			<nail x="370" y="50"/>
+			<label kind="synchronisation" x="892" y="-42">crane1_goto_outGreen?</label>
+			<nail x="429" y="-140"/>
+			<nail x="489" y="-140"/>
 		</transition>
 		<transition>
 			<source ref="id142"/>
 			<target ref="id146"/>
-			<label kind="synchronisation" x="130" y="215">emergencyStop?</label>
+			<label kind="synchronisation" x="892" y="297">emergencyStop?</label>
 		</transition>
 		<transition>
 			<source ref="id143"/>
 			<target ref="id146"/>
-			<label kind="synchronisation" x="130" y="290">emergencyStop?</label>
+			<label kind="synchronisation" x="892" y="280">emergencyStop?</label>
 		</transition>
 		<transition>
 			<source ref="id142"/>
 			<target ref="id143"/>
-			<label kind="synchronisation" x="280" y="140">crane1_lowerMagnet?</label>
+			<label kind="synchronisation" x="892" y="178">crane1_lowerMagnet?</label>
+			<nail x="731" y="170"/>
 		</transition>
 		<transition>
 			<source ref="id143"/>
 			<target ref="id142"/>
-			<label kind="synchronisation" x="280" y="140">crane1_raiseMagnet?</label>
+			<label kind="synchronisation" x="892" y="42">crane1_raiseMagnet?</label>
+			<nail x="850" y="119"/>
 		</transition>
 		<transition>
 			<source ref="id142"/>
 			<target ref="id138"/>
-			<label kind="synchronisation" x="130" y="65">crane1_goto_pickupDisk?</label>
+			<label kind="synchronisation" x="892" y="-76">crane1_goto_pickupDisk?</label>
 		</transition>
 		<transition>
 			<source ref="id142"/>
 			<target ref="id140"/>
-			<label kind="synchronisation" x="205" y="140">crane1_goto_outRed?</label>
+			<label kind="synchronisation" x="892" y="110">crane1_goto_outRed?</label>
+			<nail x="569" y="93"/>
 		</transition>
 		<transition>
 			<source ref="id142"/>
 			<target ref="id144"/>
-			<label kind="synchronisation" x="280" y="215">crane1_goto_outBlue?</label>
+			<label kind="synchronisation" x="892" y="144">crane1_goto_outBlue?</label>
+			<nail x="212" y="-25"/>
 		</transition>
 		<transition>
 			<source ref="id144"/>
 			<target ref="id144"/>
-			<label kind="synchronisation" x="280" y="365">crane1_goto_outBlue?</label>
-			<nail x="310" y="350"/>
-			<nail x="370" y="350"/>
+			<label kind="synchronisation" x="892" y="195">crane1_goto_outBlue?</label>
+			<nail x="-47" y="157"/>
+			<nail x="13" y="157"/>
 		</transition>
 		<transition>
 			<source ref="id144"/>
 			<target ref="id146"/>
-			<label kind="synchronisation" x="130" y="365">emergencyStop?</label>
+			<label kind="synchronisation" x="892" y="331">emergencyStop?</label>
 		</transition>
 		<transition>
 			<source ref="id145"/>
 			<target ref="id146"/>
-			<label kind="synchronisation" x="55" y="365">emergencyStop?</label>
+			<label kind="synchronisation" x="892" y="314">emergencyStop?</label>
 		</transition>
 		<transition>
 			<source ref="id144"/>
 			<target ref="id145"/>
-			<label kind="synchronisation" x="205" y="365">crane1_lowerMagnet?</label>
+			<label kind="synchronisation" x="892" y="399">crane1_lowerMagnet?</label>
+			<nail x="-102" y="238"/>
 		</transition>
 		<transition>
 			<source ref="id145"/>
 			<target ref="id144"/>
-			<label kind="synchronisation" x="205" y="365">crane1_raiseMagnet?</label>
+			<label kind="synchronisation" x="892" y="382">crane1_raiseMagnet?</label>
 		</transition>
 		<transition>
 			<source ref="id144"/>
 			<target ref="id138"/>
-			<label kind="synchronisation" x="130" y="215">crane1_goto_pickupDisk?</label>
+			<label kind="synchronisation" x="892" y="8">crane1_goto_pickupDisk?</label>
 		</transition>
 		<transition>
 			<source ref="id144"/>
 			<target ref="id140"/>
-			<label kind="synchronisation" x="205" y="290">crane1_goto_outRed?</label>
+			<label kind="synchronisation" x="892" y="161">crane1_goto_outRed?</label>
+			<nail x="255" y="153"/>
 		</transition>
 		<transition>
 			<source ref="id144"/>
 			<target ref="id142"/>
-			<label kind="synchronisation" x="280" y="215">crane1_goto_outGreen?</label>
+			<label kind="synchronisation" x="892" y="25">crane1_goto_outGreen?</label>
 		</transition>
 		<transition>
 			<source ref="id138"/>
 			<target ref="id147"/>
-			<label kind="synchronisation" x="205" y="65">crane1_Log?</label>
+			<label kind="synchronisation" x="85" y="255">crane1_Log?</label>
 		</transition>
 		<transition>
 			<source ref="id147"/>
 			<target ref="id138"/>
-			<label kind="synchronisation" x="205" y="65">crane1_NoLog?</label>
+			<label kind="synchronisation" x="8" y="0">crane1_NoLog?</label>
+			<nail x="127" y="425"/>
 		</transition>
 		<transition>
 			<source ref="id139"/>
 			<target ref="id147"/>
-			<label kind="synchronisation" x="280" y="65">crane1_Log?</label>
+			<label kind="synchronisation" x="-8" y="561">crane1_Log?</label>
 		</transition>
 		<transition>
 			<source ref="id147"/>
 			<target ref="id139"/>
-			<label kind="synchronisation" x="280" y="65">crane1_NoLog?</label>
+			<label kind="synchronisation" x="-68" y="603">crane1_NoLog?</label>
+			<nail x="-8" y="603"/>
 		</transition>
 		<transition>
 			<source ref="id140"/>
 			<target ref="id147"/>
-			<label kind="synchronisation" x="280" y="140">crane1_Log?</label>
+			<label kind="synchronisation" x="374" y="374">crane1_Log?</label>
 		</transition>
 		<transition>
 			<source ref="id147"/>
 			<target ref="id140"/>
-			<label kind="synchronisation" x="280" y="140">crane1_NoLog?</label>
+			<label kind="synchronisation" x="467" y="306">crane1_NoLog?</label>
+			<nail x="442" y="450"/>
 		</transition>
 		<transition>
 			<source ref="id141"/>
 			<target ref="id147"/>
-			<label kind="synchronisation" x="205" y="140">crane1_Log?</label>
+			<label kind="synchronisation" x="442" y="510">crane1_Log?</label>
+			<nail x="493" y="535"/>
 		</transition>
 		<transition>
 			<source ref="id147"/>
 			<target ref="id141"/>
-			<label kind="synchronisation" x="205" y="140">crane1_NoLog?</label>
+			<label kind="synchronisation" x="450" y="425">crane1_NoLog?</label>
 		</transition>
 		<transition>
 			<source ref="id142"/>
 			<target ref="id147"/>
-			<label kind="synchronisation" x="355" y="65">crane1_Log?</label>
+			<label kind="synchronisation" x="374" y="246">crane1_Log?</label>
+			<nail x="357" y="450"/>
 		</transition>
 		<transition>
 			<source ref="id147"/>
 			<target ref="id142"/>
-			<label kind="synchronisation" x="355" y="65">crane1_NoLog?</label>
+			<label kind="synchronisation" x="374" y="-8">crane1_NoLog?</label>
 		</transition>
 		<transition>
 			<source ref="id143"/>
 			<target ref="id147"/>
-			<label kind="synchronisation" x="355" y="140">crane1_Log?</label>
+			<label kind="synchronisation" x="467" y="612">crane1_Log?</label>
+			<nail x="544" y="612"/>
 		</transition>
 		<transition>
 			<source ref="id147"/>
 			<target ref="id143"/>
-			<label kind="synchronisation" x="355" y="140">crane1_NoLog?</label>
+			<label kind="synchronisation" x="476" y="561">crane1_NoLog?</label>
 		</transition>
 		<transition>
 			<source ref="id144"/>
 			<target ref="id147"/>
-			<label kind="synchronisation" x="355" y="215">crane1_Log?</label>
+			<label kind="synchronisation" x="93" y="391">crane1_Log?</label>
 		</transition>
 		<transition>
 			<source ref="id147"/>
 			<target ref="id144"/>
-			<label kind="synchronisation" x="355" y="215">crane1_NoLog?</label>
+			<label kind="synchronisation" x="-34" y="306">crane1_NoLog?</label>
+			<nail x="76" y="433"/>
 		</transition>
 		<transition>
 			<source ref="id145"/>
 			<target ref="id147"/>
-			<label kind="synchronisation" x="280" y="215">crane1_Log?</label>
+			<label kind="synchronisation" x="42" y="527">crane1_Log?</label>
+			<nail x="8" y="510"/>
 		</transition>
 		<transition>
 			<source ref="id147"/>
 			<target ref="id145"/>
-			<label kind="synchronisation" x="280" y="215">crane1_NoLog?</label>
+			<label kind="synchronisation" x="-34" y="416">crane1_NoLog?</label>
 		</transition>
 	</template>
 	<template>
 		<name>camera1</name>
-		<location id="id148" x="170" y="357">
-			<name x="160" y="327">camera1_Idle</name>
+		<location id="id148" x="187" y="178">
+			<name x="177" y="148">camera1_Idle</name>
 		</location>
-		<location id="id149" x="-76" y="170">
-			<name x="-86" y="140">camera1_Red</name>
+		<location id="id149" x="-59" y="289">
+			<name x="-161" y="289">camera1_Red</name>
 			<committed/>
 		</location>
-		<location id="id150" x="170" y="178">
-			<name x="637" y="85">camera1_Green</name>
+		<location id="id150" x="187" y="365">
+			<name x="144" y="391">camera1_Green</name>
 			<committed/>
 		</location>
-		<location id="id151" x="442" y="170">
-			<name x="432" y="140">camera1_Blue</name>
+		<location id="id151" x="459" y="280">
+			<name x="476" y="289">camera1_Blue</name>
 			<committed/>
 		</location>
-		<location id="id152" x="170" y="-42">
-			<name x="160" y="-72">camera1_LoggingInfo</name>
+		<location id="id152" x="187" y="0">
+			<name x="136" y="-42">camera1_LoggingInfo</name>
 			<committed/>
 		</location>
 		<init ref="id148"/>
@@ -2365,69 +2385,72 @@ int error;
 			<target ref="id151"/>
 			<label kind="synchronisation" x="-20" y="140">camera1_getColour?</label>
 			<label kind="assignment" x="-20" y="155">colour = 3</label>
+			<nail x="297" y="280"/>
 		</transition>
 		<transition>
 			<source ref="id150"/>
 			<target ref="id148"/>
-			<label kind="synchronisation" x="55" y="140">camera1_gottenColour!</label>
+			<label kind="synchronisation" x="654" y="127">camera1_gottenColour!</label>
+			<nail x="144" y="280"/>
 		</transition>
 		<transition>
 			<source ref="id148"/>
 			<target ref="id150"/>
-			<label kind="synchronisation" x="55" y="140">camera1_getColour?</label>
-			<label kind="assignment" x="55" y="155">colour=2</label>
+			<label kind="synchronisation" x="510" y="119">camera1_getColour?</label>
+			<label kind="assignment" x="204" y="263">colour=2</label>
 		</transition>
 		<transition>
 			<source ref="id149"/>
 			<target ref="id148"/>
-			<label kind="synchronisation" x="544" y="-42">camera1_gottenColour!</label>
+			<label kind="synchronisation" x="484" y="85">camera1_gottenColour!</label>
 		</transition>
 		<transition>
 			<source ref="id148"/>
 			<target ref="id149"/>
-			<label kind="synchronisation" x="510" y="-51">camera1_getColour?</label>
+			<label kind="synchronisation" x="586" y="93">camera1_getColour?</label>
 			<label kind="assignment" x="55" y="80">colour = 1</label>
+			<nail x="93" y="280"/>
 		</transition>
 		<transition>
 			<source ref="id148"/>
 			<target ref="id152"/>
-			<label kind="synchronisation" x="586" y="-34">camera1_Log?</label>
+			<label kind="synchronisation" x="612" y="93">camera1_Log?</label>
+			<nail x="153" y="102"/>
 		</transition>
 		<transition>
 			<source ref="id152"/>
 			<target ref="id148"/>
-			<label kind="synchronisation" x="510" y="17">camera1_NoLog?</label>
+			<label kind="synchronisation" x="314" y="136">camera1_NoLog?</label>
 		</transition>
 		<transition>
 			<source ref="id149"/>
 			<target ref="id152"/>
-			<label kind="synchronisation" x="663" y="0">camera1_Log?</label>
+			<label kind="synchronisation" x="637" y="119">camera1_Log?</label>
+			<nail x="-8" y="110"/>
 		</transition>
 		<transition>
 			<source ref="id152"/>
 			<target ref="id149"/>
-			<label kind="synchronisation" x="595" y="8">camera1_NoLog?</label>
+			<label kind="synchronisation" x="595" y="110">camera1_NoLog?</label>
 		</transition>
 		<transition>
 			<source ref="id150"/>
 			<target ref="id152"/>
-			<label kind="synchronisation" x="629" y="59">camera1_Log?</label>
+			<label kind="synchronisation" x="-68" y="0">camera1_Log?</label>
+			<nail x="-229" y="357"/>
+			<nail x="-127" y="68"/>
 		</transition>
 		<transition>
 			<source ref="id152"/>
 			<target ref="id150"/>
-			<label kind="synchronisation" x="654" y="51">camera1_NoLog?</label>
+			<label kind="synchronisation" x="399" y="17">camera1_NoLog?</label>
+			<nail x="527" y="93"/>
+			<nail x="637" y="365"/>
 		</transition>
 		<transition>
 			<source ref="id151"/>
 			<target ref="id152"/>
-			<label kind="synchronisation" x="130" y="140">camera1_Log?</label>
-		</transition>
-		<transition>
-			<source ref="id152"/>
-			<target ref="id151"/>
-			<label kind="synchronisation" x="130" y="140">camera1_NoLog?</label>
-			<nail x="255" y="110"/>
+			<label kind="synchronisation" x="527" y="161">camera1_Log?</label>
 		</transition>
 	</template>
 	<template>
@@ -2450,34 +2473,36 @@ int error;
 		<declaration>
 	</declaration>
 		<location id="id155" x="40" y="80">
-			<name x="30" y="50">NoLogging</name>
+			<name x="8" y="42">NoLogging</name>
 		</location>
-		<location id="id156" x="190" y="80">
-			<name x="180" y="50">crane1_Logging</name>
+		<location id="id156" x="229" y="76">
+			<name x="219" y="46">crane1_Logging</name>
 		</location>
-		<location id="id157" x="190" y="230">
-			<name x="180" y="200">camera1_Logging</name>
+		<location id="id157" x="-144" y="85">
+			<name x="-246" y="51">camera1_Logging</name>
 		</location>
 		<init ref="id155"/>
 		<transition>
 			<source ref="id155"/>
 			<target ref="id156"/>
-			<label kind="synchronisation" x="55" y="65">crane1_Log!</label>
+			<label kind="synchronisation" x="93" y="51">crane1_Log!</label>
 		</transition>
 		<transition>
 			<source ref="id156"/>
 			<target ref="id155"/>
-			<label kind="synchronisation" x="55" y="65">crane1_NoLog!</label>
+			<label kind="synchronisation" x="85" y="110">crane1_NoLog!</label>
+			<nail x="127" y="110"/>
 		</transition>
 		<transition>
 			<source ref="id155"/>
 			<target ref="id157"/>
-			<label kind="synchronisation" x="55" y="140">camera1_Log!</label>
+			<label kind="synchronisation" x="-85" y="119">camera1_Log!</label>
+			<nail x="-42" y="119"/>
 		</transition>
 		<transition>
 			<source ref="id157"/>
 			<target ref="id155"/>
-			<label kind="synchronisation" x="55" y="140">camera1_NoLog!</label>
+			<label kind="synchronisation" x="-110" y="59">camera1_NoLog!</label>
 		</transition>
 	</template>
 	<system>

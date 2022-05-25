@@ -73,6 +73,7 @@ async Task Run()
 		if (!disk1.IsFull())
 		{
 			await disk1.MoveSlot(disk1.GetEmptySlotNumber(), "intakeZone");
+			await disk1.WaitForIntake();
 			disk1.MarkSlot("intakeZone", SlotState.InProgress);
 			await disk1.MoveSlot("intakeZone", "cameraZone");
 			var currentItemColor = await camera1.Scan();

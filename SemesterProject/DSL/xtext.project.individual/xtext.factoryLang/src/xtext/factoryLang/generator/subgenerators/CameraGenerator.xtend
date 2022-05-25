@@ -142,8 +142,8 @@ class CameraGenerator {
 			<label kind="synchronisation">«camera.name»_Log?</label>
 		</transition>
 		<transition>
-			<source ref="«UppaalGenerator.getIdOfLocation(camera.name + "_Blue" + loggingTypeName)»"/>
-			<target ref="«UppaalGenerator.getIdOfLocation(camera.name+"_Idle")»"/>
+			<source ref="«UppaalGenerator.getIdOfLocation(camera.name + "_Logging" + loggingTypeName)»"/>
+			<target ref="«UppaalGenerator.getIdOfLocation(camera.name+"_Blue")»"/>
 			<label kind="synchronisation">«camera.name»_NoLog?</label>
 		</transition>
 		'''

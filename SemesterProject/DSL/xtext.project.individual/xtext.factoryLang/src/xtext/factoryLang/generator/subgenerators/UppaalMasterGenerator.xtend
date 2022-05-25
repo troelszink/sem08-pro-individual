@@ -42,6 +42,7 @@ import xtext.factoryLang.factoryLang.LoopS
 import xtext.factoryLang.factoryLang.LoopVariableS
 import xtext.factoryLang.factoryLang.LoopSlotS
 import xtext.factoryLang.factoryLang.ConditionSlotS
+import xtext.factoryLang.factoryLang.MoveDiskFromZoneS
 
 class UppaalMasterGenerator {
 	static String lastTransistionState = "id0";
@@ -373,6 +374,28 @@ class UppaalMasterGenerator {
 		</transition>
 		'''
 		lastTransistionState = getIdOfLocation('''«diskHandling.disk.name»_goto_«statement.diskZone.name»_statement«statementsIndexerShort.indexOf(statement)»''')
+		return trans
+	}
+	
+	def static dispatch String generateLocation(MoveDiskFromZoneS statement) {
+		val diskHandling = EcoreUtil2.getContainerOfType(statement, DiskHandlingS)
+		'''
+		<location id="«getIdOfLocation('''«diskHandling.disk.name»_goto_«statement.targetDiskZone.name»_statement«statementsIndexerShort.indexOf(statement)»''')»">
+			<name>«diskHandling.disk.name»_goto_«statement.targetDiskZone.name»_statement«statementsIndexerShort.indexOf(statement)»</name>
+		</location>
+		'''
+	}
+	
+	def static dispatch String generateTransistion(MoveDiskFromZoneS statement){
+		val diskHandling = EcoreUtil2.getContainerOfType(statement, DiskHandlingS)
+		val trans = '''
+		<transition>
+			<source ref="«lastTransistionState»"/>
+			<target ref="«getIdOfLocation('''«diskHandling.disk.name»_goto_«statement.targetDiskZone.name»_statement«statementsIndexerShort.indexOf(statement)»''')»"/>
+			<label kind="synchronisation">«diskHandling.disk.name»_goto[(«diskHandling.disk.name»_zones_«statement.targetDiskZone.name» + currentSlot) % «diskHandling.disk.name»_numberOfSlots]!</label>
+		</transition>
+		'''
+		lastTransistionState = getIdOfLocation('''«diskHandling.disk.name»_goto_«statement.targetDiskZone.name»_statement«statementsIndexerShort.indexOf(statement)»''')
 		return trans
 	}
 	

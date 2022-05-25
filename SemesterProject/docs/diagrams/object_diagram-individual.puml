@@ -1,0 +1,65 @@
+@startuml
+object Model
+
+object DSLProgram
+object DSLShort
+object DSLLong
+
+Model --> DSLProgram
+DSLProgram --> DSLShort
+DSLProgram --> DSLLong
+
+' Short DSL
+object ConfigurationS
+object DeviceS
+object CraneS
+object DiskS
+object CameraS
+
+object DiskHandlingS
+object StatementS
+object LoopS
+object MoveS
+object ConditionS
+object MarkS
+object WaitS
+
+DSLShort --> DiskHandlingS
+DSLShort --> ConfigurationS
+
+ConfigurationS --> DeviceS
+DeviceS <|-- CraneS
+DeviceS <|-- DiskS
+DeviceS <|-- CameraS
+
+DiskHandlingS --> StatementS
+StatementS <|-- LoopS
+StatementS <|-- MoveS
+StatementS <|-- ConditionS
+StatementS <|-- MarkS
+StatementS <|-- WaitS
+
+' Long DSL
+object Configuration
+object Device
+object Crane
+object Disk
+object Camera
+
+object Statement
+object Conditional
+object Loop
+object Operation
+
+DSLLong --> Configuration
+DSLLong --> Statement
+
+Configuration --> Device
+Device <|-- Crane
+Device <|-- Disk
+Device <|-- Camera
+
+Statement <|-- Conditional
+Statement <|-- Loop
+Statement <|-- Operation
+@enduml

@@ -67,10 +67,13 @@ LoopSlotS returns LoopS:
 	':' BEGIN statements+=StatementS* END;
 
 MoveS returns StatementS:
-	MoveDiskS | MoveAnySlotS | MoveCraneS;
+	MoveDiskS | MoveDiskFromZoneS | MoveAnySlotS | MoveCraneS;
 
 MoveDiskS returns MoveS:
 	{MoveDiskS} slot=[SlotVariableS] ('->' | '-->') diskZone=[DiskZoneS];
+
+MoveDiskFromZoneS returns MoveS:
+	{MoveDiskFromZoneS} sourceDiskZone=[DiskZoneS] slot=[SlotVariableS] ('->' | '-->') targetDiskZone=[DiskZoneS];
 
 MoveAnySlotS returns MoveS:
 	{MoveAnySlotS} state=DiskSlotStateValue anySlot=SlotVariableS ('->' | '-->') diskZone=[DiskZoneS];
@@ -134,6 +137,21 @@ CraneActionValueS:
 LoggingTypeS:
 	value=LOGGING_TYPE_ENUM_S;
 
+// ----- ENUMS ----- //
+enum DSL_TYPE_ENUM:
+	LONG='long' | SHORT='short';
+
+enum COMPARISON_OPERATOR_S:
+	EQUAL='=' | LESS_THAN='<' | GREATER_THAN='>' | NOT='!=';
+	
+enum TIME_UNIT_S:
+	SECOND='s' | MINUTE='m' | HOUR='h';
+	
+enum CRANE_ACTION_S:
+	PICKUP='pickup' | DROP='drop';
+	
+enum LOGGING_TYPE_ENUM_S:
+	INFO='info' | WARNING='warning' | ERROR='error' | ALL='all';
 
 // -------------------- GROUP DSL - EASY TO READ, HARDER TO WRITE -------------------- //
 DSLLong returns DSLProgram:
@@ -287,21 +305,6 @@ Number:
 
 
 // ----- SHARED ENUMS ----- //
-enum DSL_TYPE_ENUM:
-	LONG='long' | SHORT='short';
-
-enum COMPARISON_OPERATOR_S:
-	EQUAL='=' | LESS_THAN='<' | GREATER_THAN='>' | NOT='!=';
-	
-enum TIME_UNIT_S:
-	SECOND='s' | MINUTE='m' | HOUR='h';
-	
-enum CRANE_ACTION_S:
-	PICKUP='pickup' | DROP='drop';
-	
-enum LOGGING_TYPE_ENUM_S:
-	INFO='info' | WARNING='warning' | ERROR='error' | ALL='all';
-
 enum COMPARISON_OPERATOR:
 	UNDEFINED='undefined' | LESS_THAN='less than' | GREATER_THAN='greater than' | NOT='not';
 

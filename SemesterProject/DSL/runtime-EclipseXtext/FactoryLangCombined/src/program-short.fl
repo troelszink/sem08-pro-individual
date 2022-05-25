@@ -2,19 +2,16 @@
 use short dsl
 
 devices {
-    crane1 logging info:
+    crane1 logging error:
         pickupDisk: 0
         outRed: 30
         outGreen: 60
         outBlue: 130
-    disk1(8) logging warning:
+    disk1(8):
         craneZone: 4
         cameraZone: 3
         intakeZone: 6
-    disk2(4) logging all:
-    	zone1: 1
-    	zone2: 4
-    camera1:
+    camera1 logging info:
         blue, green, red
 }
 
@@ -34,7 +31,7 @@ handle disk1 {
 		free aSlot --> intakeZone
 		wait
 		intakeZone aSlot(in_progress)
-		aSlot --> cameraZone
+		intakeZone aSlot --> cameraZone
 		camera1 scan aColor
 		if var aColor = red:
 			cameraZone aSlot(complete, 10m)

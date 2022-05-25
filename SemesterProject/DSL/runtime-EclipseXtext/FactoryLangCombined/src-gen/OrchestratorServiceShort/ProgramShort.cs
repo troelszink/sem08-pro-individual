@@ -33,11 +33,6 @@ void Setup()
 		{"cameraZone", 3},
 		{"intakeZone", 6}
 	}, mqtt));
-	disks.Add("disk2", new Disk("disk2", 4, new Dictionary<string, int>()
-	{
-		{"zone1", 1},
-		{"zone2", 4}
-	}, mqtt));
 	cameras.Add("camera1", new Camera("camera1", new List<string>()
 	{
 		"blue",
@@ -50,66 +45,65 @@ async Task Run()
 {
 	var crane1 = cranes["crane1"];
 	var disk1 = disks["disk1"];
-	var disk2 = disks["disk2"];
 	var camera1 = cameras["camera1"];
 
-	LogCraneInfo(crane1, mqtt);
-	LogCraneWarnings(disk1, mqtt);
-	LogCraneAll(disk2, mqtt);
+	LogCraneErrors(crane1, mqtt);
+	LogCraneInfo(camera1, mqtt);
 
 	while (running)
 	{
-		foreach (var aSlot in disk1.null)
+		foreach (var aSlot in disk1.GetSlotsWithMark(SlotState.Complete))
 		{
 			await disk1.MoveSlot(aSlot.Number, "craneZone");
 			await crane1.GoTo("pickupDisk");
 			await crane1.PickupItem();
-			if (aSlot == "")
+			if (aSlot.HasMark("RED"))
 			{
 				await crane1.GoTo("outRed");
 				await crane1.DropItem();
 			}
-			if (aSlot == "")
+			if (aSlot.HasMark("GREEN"))
 			{
 				await crane1.GoTo("outGreen");
 				await crane1.DropItem();
 			}
-			if (aSlot == "")
+			if (aSlot.HasMark("BLUE"))
 			{
 				await crane1.GoTo("outBlue");
 				await crane1.DropItem();
 			}
-			disk1.MarkSlot("xtext.factoryLang.factoryLang.impl.DiskZoneSImpl@540cff10 (name: craneZone, slot: 4)", );
+			disk1.MarkSlot("craneZone", SlotState.Empty);
 		}
 		if (!disk1.IsFull())
 		{
 			await disk1.MoveSlot(disk1.GetEmptySlotNumber(), "intakeZone");
 			await disk1.WaitForIntake();
-			disk1.MarkSlot("xtext.factoryLang.factoryLang.impl.DiskZoneSImpl@3170cba5 (name: intakeZone, slot: 6)", );
-			await disk1.MoveSlot(aSlot.Number, "cameraZone");
+			disk1.MarkSlot("intakeZone", SlotState.InProgress);
+			await disk1.MoveSlot("intakeZone", "cameraZone");
 			var aColor = await camera1.Scan();
-			if (aColor.)
+			disk1.MarkSlot("cameraZone", aColor);
+			if (aColor == "RED")
 			{
 				Task.Run(async () =>
 				{
 					await Task.Delay(10000);
-					disk1.MarkSlot("xtext.factoryLang.factoryLang.impl.DiskZoneSImpl@36177c78 (name: cameraZone, slot: 3)", );
+					disk1.MarkSlot("cameraZone", SlotState.Complete);
 				});
 			}
-			if (aColor.)
+			if (aColor == "GREEN")
 			{
 				Task.Run(async () =>
 				{
 					await Task.Delay(20000);
-					disk1.MarkSlot("xtext.factoryLang.factoryLang.impl.DiskZoneSImpl@36177c78 (name: cameraZone, slot: 3)", );
+					disk1.MarkSlot("cameraZone", SlotState.Complete);
 				});
 			}
-			if (aColor.)
+			if (aColor == "BLUE")
 			{
 				Task.Run(async () =>
 				{
 					await Task.Delay(30000);
-					disk1.MarkSlot("xtext.factoryLang.factoryLang.impl.DiskZoneSImpl@36177c78 (name: cameraZone, slot: 3)", );
+					disk1.MarkSlot("cameraZone", SlotState.Complete);
 				});
 			}
 		}
