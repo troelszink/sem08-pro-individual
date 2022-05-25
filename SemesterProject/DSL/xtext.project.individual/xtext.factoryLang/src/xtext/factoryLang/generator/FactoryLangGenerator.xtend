@@ -24,6 +24,9 @@ import xtext.factoryLang.factoryLang.DSL_TYPE_ENUM
 import xtext.factoryLang.factoryLang.DeviceS
 import xtext.factoryLang.factoryLang.FactoryLangPackage.Literals
 import java.util.List
+import xtext.factoryLang.factoryLang.CraneS
+import xtext.factoryLang.factoryLang.DiskS
+import xtext.factoryLang.factoryLang.CameraS
 
 /**
  * Generates code from your model files on save.
@@ -52,14 +55,14 @@ class FactoryLangGenerator extends AbstractGenerator {
 				}
 			}
 			
-			try {
+				try {
 				ProgramGenerator.generateShort(fsa, rootFolderShort, devicesShort, devicesWithLogging, diskHandlings)
 				//CsprojGenerator.generate(fsa)
 				//MqttGenerator.generate(fsa)
 				EntityGenerator.generate(fsa, rootFolderShort,
-					devicesShort.filter[it instanceof Crane].size> 0, 
-					devicesShort.filter[it instanceof Disk].size> 0, 
-					devicesShort.filter[it instanceof Camera].size> 0
+					devicesShort.filter[it instanceof CraneS].size> 0, 
+					devicesShort.filter[it instanceof DiskS].size> 0, 
+					devicesShort.filter[it instanceof CameraS].size> 0
 				)
 				if (devicesWithLogging.size > 0) {
 					LoggingGenerator.generate(fsa, rootFolderShort)
@@ -75,7 +78,7 @@ class FactoryLangGenerator extends AbstractGenerator {
 			val statements = dslLong.statements		
 			val rootFolderLong = "OrchestratorServiceLong"
 			
-			//try {
+			try {
 				ProgramGenerator.generateLong(fsa, rootFolderLong, devicesLong, statements)
 				CsprojGenerator.generate(fsa)
 				MqttGenerator.generate(fsa)
@@ -85,9 +88,9 @@ class FactoryLangGenerator extends AbstractGenerator {
 					devicesLong.filter[it instanceof Camera].size> 0
 				)
 				UppaalGenerator.generateLong(fsa, resource)
-			/*} catch (Exception e) {
+			} catch (Exception e) {
 				e.printStackTrace()
-			}*/
+			}
 		}
 	}
 }

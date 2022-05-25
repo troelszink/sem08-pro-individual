@@ -369,7 +369,7 @@ class UppaalMasterGenerator {
 		<transition>
 			<source ref="«lastTransistionState»"/>
 			<target ref="«getIdOfLocation('''«diskHandling.disk.name»_goto_«statement.diskZone.name»_statement«statementsIndexerShort.indexOf(statement)»''')»"/>
-			<label kind="synchronisation">«diskHandling.disk.name»_goto[(«statement.diskZone.name»_zones_«statement.diskZone.name» + currentSlot) % «diskHandling.disk.name»_numberOfSlots]!</label>
+			<label kind="synchronisation">«diskHandling.disk.name»_goto[(«diskHandling.disk.name»_zones_«statement.diskZone.name» + currentSlot) % «diskHandling.disk.name»_numberOfSlots]!</label>
 		</transition>
 		'''
 		lastTransistionState = getIdOfLocation('''«diskHandling.disk.name»_goto_«statement.diskZone.name»_statement«statementsIndexerShort.indexOf(statement)»''')
@@ -429,7 +429,7 @@ class UppaalMasterGenerator {
 		<transition>
 			<source ref="«getIdOfLocation('''«diskHandling.disk.name»_gottenemptySlot_statement«statementsIndexerShort.indexOf(statement)»''')»"/>
 			<target ref="«getIdOfLocation('''«diskHandling.disk.name»_goto_«statement.diskZone.name»_statement«statementsIndexerShort.indexOf(statement)»''')»"/>
-			<label kind="synchronisation">«diskHandling.disk.name»_goto[(«statement.diskZone.name»_zones_«statement.diskZone.name» + currentSlot) % «diskHandling.disk.name»_numberOfSlots]!</label>
+			<label kind="synchronisation">«diskHandling.disk.name»_goto[(«diskHandling.disk.name»_zones_«statement.diskZone.name» + currentSlot) % «diskHandling.disk.name»_numberOfSlots]!</label>
 		</transition>
 		'''
 		lastTransistionState = getIdOfLocation('''«diskHandling.disk.name»_goto_«statement.diskZone.name»_statement«statementsIndexerShort.indexOf(statement)»''')

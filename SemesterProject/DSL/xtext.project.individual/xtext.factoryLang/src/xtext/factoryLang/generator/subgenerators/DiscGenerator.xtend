@@ -4,6 +4,8 @@ import xtext.factoryLang.factoryLang.Disk
 import xtext.factoryLang.factoryLang.DiskSlotParameter
 import static xtext.factoryLang.generator.subgenerators.UppaalGenerator.getIdOfLocation
 import xtext.factoryLang.factoryLang.DiskS
+import xtext.factoryLang.factoryLang.LOGGING_TYPE_ENUM_S
+import xtext.factoryLang.factoryLang.FactoryLangPackage.Literals
 
 class DiscGenerator {
 	def static String generateShort(DiskS disc){
@@ -26,6 +28,9 @@ class DiscGenerator {
 			<location id="«getIdOfLocation('''«disc.name»_Stopped''')»">
 				<name>Stopped</name>
 			</location>
+			«IF disc.eIsSet(Literals.DEVICE_S__LOGGING)»
+		 		«generateLoggingLocation(disc, disc.logging.loggingType.value)»
+		 	«ENDIF»
 			<init ref="«getIdOfLocation('''Position1''')»"/>
 			«FOR i : 1 ..disc.NSlots»
 			<transition>
@@ -61,9 +66,62 @@ class DiscGenerator {
 			</transition>
 			«ENDFOR»
 			«ENDFOR»
+			
+			«IF disc.eIsSet(Literals.DEVICE_S__LOGGING)»
+		 		«generateLoggingTransition(disc, disc.logging.loggingType.value)»
+		 	«ENDIF»
+			
 		</template>
 		'''
 		//<label kind="assignment">currentSlot = «i-1»</label>
+	}
+	
+	def static String generateLoggingLocation(DiskS disc, LOGGING_TYPE_ENUM_S loggingType) {
+		var loggingTypeName = ""
+		switch loggingType {
+			case LOGGING_TYPE_ENUM_S.INFO:
+				loggingTypeName = "Info"
+			case LOGGING_TYPE_ENUM_S.WARNING:
+				loggingTypeName = "Warning"
+			case LOGGING_TYPE_ENUM_S.ERROR:
+				loggingTypeName = "Error"
+			default:
+				loggingTypeName = "All"
+		}
+		'''
+		<location id="«UppaalGenerator.getIdOfLocation(disc.name + "_Logging" + loggingTypeName)»">
+			<name>«disc.name»_Logging«loggingTypeName»</name>
+			<committed/>
+		</location>
+		'''
+	}
+	
+	def static String generateLoggingTransition(DiskS disc, LOGGING_TYPE_ENUM_S loggingType) {
+		var loggingTypeName = ""
+		switch loggingType {
+			case LOGGING_TYPE_ENUM_S.INFO:
+				loggingTypeName = "Info"
+			case LOGGING_TYPE_ENUM_S.WARNING:
+				loggingTypeName = "Warning"
+			case LOGGING_TYPE_ENUM_S.ERROR:
+				loggingTypeName = "Error"
+			default:
+				loggingTypeName = "All"
+		}
+		'''
+		«FOR i : 1 ..disc.NSlots»
+		<transition>
+			<source ref="«UppaalGenerator.getIdOfLocation('''Position«i»''')»"/>
+			<target ref="«UppaalGenerator.getIdOfLocation(disc.name + "_Logging" + loggingTypeName)»"/>
+			<label kind="synchronisation">«disc.name»_Log?</label>
+		</transition>
+		<transition>
+			<source ref="«UppaalGenerator.getIdOfLocation(disc.name + "_Logging" + loggingTypeName)»"/>
+			<target ref="«UppaalGenerator.getIdOfLocation('''Position«i»''')»"/>
+			<label kind="synchronisation">«disc.name»_NoLog?</label>
+		</transition>
+		«ENDFOR»
+		'''
 	}
 	
 	def static String generateLong(Disk disc){

@@ -9,7 +9,7 @@ devices {
         outBlue: 130
     disk1(8) logging warning:
         craneZone: 4
-        cameraZone: 3 
+        cameraZone: 3
         intakeZone: 6
     disk2(4) logging all:
     	zone1: 1

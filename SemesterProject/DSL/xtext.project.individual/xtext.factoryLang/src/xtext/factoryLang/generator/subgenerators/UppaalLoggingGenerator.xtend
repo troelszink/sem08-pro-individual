@@ -3,7 +3,6 @@ package xtext.factoryLang.generator.subgenerators
 import xtext.factoryLang.factoryLang.CraneS
 import xtext.factoryLang.factoryLang.DiskS
 import xtext.factoryLang.factoryLang.CameraS
-import xtext.factoryLang.factoryLang.LOGGING_TYPE_ENUM_S
 import java.util.List
 import xtext.factoryLang.factoryLang.DeviceS
 
@@ -19,60 +18,41 @@ class UppaalLoggingGenerator {
 		<location id="«UppaalGenerator.getIdOfLocation(initState)»">
 			<name>NoLogging</name>
 		</location>
+		«FOR device : devices»
+			«IF device instanceof CraneS»
+				«UppaalLoggingGenerator.generateLocation(initState, device as CraneS)»
+			«ELSEIF device instanceof DiskS»
+				«UppaalLoggingGenerator.generateLocation(initState, device as DiskS)»
+			«ELSE»
+				«UppaalLoggingGenerator.generateLocation(initState, device as CameraS)»
+			«ENDIF»
+		«ENDFOR»
 		<init ref="«UppaalGenerator.getIdOfLocation(initState)»"/>
 		«FOR device : devices»
 			«IF device instanceof CraneS»
-				«UppaalLoggingGenerator.generate(initState, device as CraneS)»
+				«UppaalLoggingGenerator.generateTransition(initState, device as CraneS)»
 			«ELSEIF device instanceof DiskS»
-				«UppaalLoggingGenerator.generate(initState, device as DiskS)»
+				«UppaalLoggingGenerator.generateTransition(initState, device as DiskS)»
 			«ELSE»
-				«UppaalLoggingGenerator.generate(initState, device as CameraS)»
+				«UppaalLoggingGenerator.generateTransition(initState, device as CameraS)»
 			«ENDIF»
 		«ENDFOR»
 		</template>
 		'''
 	}
 	
-	def static dispatch String generate(String initState, CraneS crane) {
-		val loggingType = crane.logging.loggingType.value
-		var result = ''''''
-		/*switch loggingType {
-			case LOGGING_TYPE_ENUM_S.INFO: {
-				result =
-				'''
-				<template>
-				<name>«crane.name»_LoggingInfo</name>
-				<location id="«UppaalGenerator.getIdOfLocation(crane.name+"_MagnetOff")»">
-					<name>«crane.name»_MagnetOff</name>
-				</location>
-				</template>
-				'''
-			}
-			case LOGGING_TYPE_ENUM_S.WARNING: {
-				result =
-				'''
-				<template>
-				<name>«crane.name»_</name>
-				</template>
-				'''
-			}
-			case LOGGING_TYPE_ENUM_S.ERROR: {
-				result =
-				'''
-				<template>
-				<name>«crane.name»_</name>
-				</template>
-				'''
-			}
-			default: result = ''''''
-			
-		}*/
-		
+	def static dispatch String generateLocation(String initState, CraneS crane) {
 		return
 		'''
 		<location id="«UppaalGenerator.getIdOfLocation(crane.name + "_Logging")»">
 			<name>«crane.name»_Logging</name>
 		</location>
+		'''	
+	}
+	
+	def static dispatch String generateTransition(String initState, CraneS crane) {
+		return
+		'''
 		<transition>
 			<source ref="«UppaalGenerator.getIdOfLocation(initState)»"/>
 			<target ref="«UppaalGenerator.getIdOfLocation(crane.name + "_Logging")»"/>
@@ -86,12 +66,18 @@ class UppaalLoggingGenerator {
 		'''	
 	}
 	
-	def static dispatch String generate(String initState, DiskS disk) {
+	def static dispatch String generateLocation(String initState, DiskS disk) {
 		return
 		'''
 		<location id="«UppaalGenerator.getIdOfLocation(disk.name + "_Logging")»">
 			<name>«disk.name»_Logging</name>
 		</location>
+		'''
+	}
+	
+	def static dispatch String generateTransition(String initState, DiskS disk) {
+		return
+		'''
 		<transition>
 			<source ref="«UppaalGenerator.getIdOfLocation(initState)»"/>
 			<target ref="«UppaalGenerator.getIdOfLocation(disk.name + "_Logging")»"/>
@@ -105,12 +91,18 @@ class UppaalLoggingGenerator {
 		'''
 	}
 	
-	def static dispatch String generate(String initState, CameraS camera) {
+	def static dispatch String generateLocation(String initState, CameraS camera) {
 		return
 		'''
 		<location id="«UppaalGenerator.getIdOfLocation(camera.name + "_Logging")»">
 			<name>«camera.name»_Logging</name>
 		</location>
+		'''
+	}
+	
+	def static dispatch String generateTransition(String initState, CameraS camera) {
+		return
+		'''
 		<transition>
 			<source ref="«UppaalGenerator.getIdOfLocation(initState)»"/>
 			<target ref="«UppaalGenerator.getIdOfLocation(camera.name + "_Logging")»"/>

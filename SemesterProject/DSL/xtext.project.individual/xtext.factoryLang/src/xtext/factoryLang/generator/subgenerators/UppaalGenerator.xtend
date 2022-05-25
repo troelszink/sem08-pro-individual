@@ -111,6 +111,13 @@ class UppaalGenerator {
 						chan «crane.name»_goto_«position.name»;
 					«ENDFOR»
 				«ENDFOR»
+				
+				«IF !devicesWithLogging.isNullOrEmpty»
+					«FOR deviceWithLogging : devicesWithLogging»
+						chan «deviceWithLogging.name»_Log;
+						chan «deviceWithLogging.name»_NoLog;
+					«ENDFOR»
+				«ENDIF»
 				//-----------------current slot-----------------------------
 				int currentSlot = -1;
 				
@@ -174,10 +181,12 @@ class UppaalGenerator {
 					«ENDFOR»
 					«UppaalEmergencyButtonGenerator.generateUppaalEmergencyButtonTemplate()»
 					
-					«UppaalLoggingGenerator.generate(devicesWithLogging)»
+					«IF !devicesWithLogging.isNullOrEmpty»
+						«UppaalLoggingGenerator.generate(devicesWithLogging)»
+					«ENDIF»
 					
 				<system>
-					system «FOR disc : discs»«disc.name»,«ENDFOR» «FOR crane : cranes»«crane.name»,«ENDFOR» «FOR camera : cameras»«camera.name»«ENDFOR»;
+					system MasterController, «IF !devicesWithLogging.isNullOrEmpty»Logging«ENDIF», «FOR disc : discs»«disc.name», «disc.name»_DiscSlot, «disc.name»_GetemptySlot, «FOR value: discSlotStateValues»«disc.name»_SlotVariable_«value», «disc.name»_Get«value»Slot,«ENDFOR»«ENDFOR» «FOR crane : cranes»«crane.name»,«crane.name»_CraneMagnet,«ENDFOR» «FOR camera : cameras»«camera.name»,«ENDFOR» EmergencyButton;
 				</system>
 				«UppaalQueryGenerator.generateUpaalQueryShort(cranes.toList(), discs.toList(), cameras.toList())»
 			'''

@@ -79,13 +79,13 @@ async Task Run()
 				await crane1.GoTo("outBlue");
 				await crane1.DropItem();
 			}
-			disk1.MarkSlot("xtext.factoryLang.factoryLang.impl.DiskZoneSImpl@17082e05 (name: craneZone, slot: 4)", );
+			disk1.MarkSlot("xtext.factoryLang.factoryLang.impl.DiskZoneSImpl@540cff10 (name: craneZone, slot: 4)", );
 		}
 		if (!disk1.IsFull())
 		{
 			await disk1.MoveSlot(disk1.GetEmptySlotNumber(), "intakeZone");
 			await disk1.WaitForIntake();
-			disk1.MarkSlot("xtext.factoryLang.factoryLang.impl.DiskZoneSImpl@33dd9b8d (name: intakeZone, slot: 6)", );
+			disk1.MarkSlot("xtext.factoryLang.factoryLang.impl.DiskZoneSImpl@3170cba5 (name: intakeZone, slot: 6)", );
 			await disk1.MoveSlot(aSlot.Number, "cameraZone");
 			var aColor = await camera1.Scan();
 			if (aColor.)
@@ -93,7 +93,7 @@ async Task Run()
 				Task.Run(async () =>
 				{
 					await Task.Delay(10000);
-					disk1.MarkSlot("xtext.factoryLang.factoryLang.impl.DiskZoneSImpl@28c1300d (name: cameraZone, slot: 3)", );
+					disk1.MarkSlot("xtext.factoryLang.factoryLang.impl.DiskZoneSImpl@36177c78 (name: cameraZone, slot: 3)", );
 				});
 			}
 			if (aColor.)
@@ -101,7 +101,7 @@ async Task Run()
 				Task.Run(async () =>
 				{
 					await Task.Delay(20000);
-					disk1.MarkSlot("xtext.factoryLang.factoryLang.impl.DiskZoneSImpl@28c1300d (name: cameraZone, slot: 3)", );
+					disk1.MarkSlot("xtext.factoryLang.factoryLang.impl.DiskZoneSImpl@36177c78 (name: cameraZone, slot: 3)", );
 				});
 			}
 			if (aColor.)
@@ -109,7 +109,7 @@ async Task Run()
 				Task.Run(async () =>
 				{
 					await Task.Delay(30000);
-					disk1.MarkSlot("xtext.factoryLang.factoryLang.impl.DiskZoneSImpl@28c1300d (name: cameraZone, slot: 3)", );
+					disk1.MarkSlot("xtext.factoryLang.factoryLang.impl.DiskZoneSImpl@36177c78 (name: cameraZone, slot: 3)", );
 				});
 			}
 		}
