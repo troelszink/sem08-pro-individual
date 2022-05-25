@@ -173,15 +173,9 @@ class UppaalGenerator {
 						«CameraGenerator.generateShort(camera)»
 					«ENDFOR»
 					«UppaalEmergencyButtonGenerator.generateUppaalEmergencyButtonTemplate()»
-					«FOR deviceWithLogging : devicesWithLogging»
-						«IF deviceWithLogging instanceof CraneS»
-							«UppaalLoggingGenerator.generate(devicesWithLogging as CraneS)»
-						«ELSEIF deviceWithLogging instanceof DiskS»
-							«UppaalLoggingGenerator.generate(devicesWithLogging as DiskS)»
-						«ELSE»
-							«UppaalLoggingGenerator.generate(devicesWithLogging as CameraS)»
-						«ENDIF»
-					«ENDFOR»
+					
+					«UppaalLoggingGenerator.generate(devicesWithLogging)»
+					
 				<system>
 					system «FOR disc : discs»«disc.name»,«ENDFOR» «FOR crane : cranes»«crane.name»,«ENDFOR» «FOR camera : cameras»«camera.name»«ENDFOR»;
 				</system>

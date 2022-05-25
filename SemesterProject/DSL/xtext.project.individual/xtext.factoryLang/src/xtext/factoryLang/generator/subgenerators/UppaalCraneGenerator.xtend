@@ -4,9 +4,11 @@ import xtext.factoryLang.factoryLang.Crane
 import xtext.factoryLang.factoryLang.CraneZoneS
 import xtext.factoryLang.factoryLang.CraneS
 import xtext.factoryLang.factoryLang.CranePositionParameter
+import xtext.factoryLang.factoryLang.LOGGING_TYPE_ENUM_S
 
 class UppaalCraneGenerator {
 	def static String generateUppaalCraneTemplateShort(CraneS crane){
+		var loggingType = crane.logging.loggingType.value
 		return 
 		'''
 		<template>
@@ -61,7 +63,32 @@ class UppaalCraneGenerator {
 			«ENDIF»
 			«ENDFOR»
 			«ENDFOR»
+			
+			«IF loggingType !== null»
+			«generateLogging(loggingType)»
+			«ENDIF»
 		</template>
+		'''
+	}
+	
+	def static String generateLogging(LOGGING_TYPE_ENUM_S loggingType) {
+		return
+		'''
+		«IF loggingType === LOGGING_TYPE_ENUM_S.INFO»
+		<location id="«UppaalGenerator.getIdOfLocation(crane.name + "_Logging")»">
+			<name>«crane.name»_Logging</name>
+		</location>
+		<transition>
+			<source ref="«UppaalGenerator.getIdOfLocation(initState)»"/>
+			<target ref="«UppaalGenerator.getIdOfLocation(crane.name + "_Logging")»"/>
+			<label kind="synchronisation">«crane.name»_Log!</label>
+		</transition>
+		<transition>
+			<source ref="«UppaalGenerator.getIdOfLocation(crane.name + "_Logging")»"/>
+			<target ref="«UppaalGenerator.getIdOfLocation(initState)»"/>
+			<label kind="synchronisation">«crane.name»_NoLog!</label>
+		</transition>
+		«ENDIF»
 		'''
 	}
 	
