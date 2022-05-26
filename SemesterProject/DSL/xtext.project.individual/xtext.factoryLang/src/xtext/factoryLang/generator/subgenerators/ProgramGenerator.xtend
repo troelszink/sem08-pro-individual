@@ -96,6 +96,8 @@ class ProgramGenerator {
 	protected def static CharSequence generateVariables() '''
 		#region Variables
 		IMqttService mqtt = new MqttService();
+		Logging
+		
 		
 		Dictionary<string, Crane> cranes = new();
 		Dictionary<string, Disk> disks = new();
@@ -214,35 +216,35 @@ class ProgramGenerator {
 			
 				«FOR crane : devicesWithLogging.filter[it instanceof CraneS].map[it as CraneS].toList»
 					«IF crane.logging.loggingType.value == LOGGING_TYPE_ENUM_S.INFO»
-						LogCraneInfo(«crane.name», mqtt);
+						LoggingService.LogCraneInfo(«crane.name», mqtt);
 					«ELSEIF crane.logging.loggingType.value == LOGGING_TYPE_ENUM_S.WARNING»
-						LogCraneWarnings(«crane.name», mqtt);
+						LoggingService.LogCraneWarnings(«crane.name», mqtt);
 					«ELSEIF crane.logging.loggingType.value == LOGGING_TYPE_ENUM_S.ERROR»
-						LogCraneErrors(«crane.name», mqtt);
+						LoggingService.LogCraneErrors(«crane.name», mqtt);
 					«ELSE»
-						LogCraneAll(«crane.name», mqtt);
+						LoggingService.LogCraneAll(«crane.name», mqtt);
 					«ENDIF»
 				«ENDFOR»
 				«FOR disk : devicesWithLogging.filter[it instanceof DiskS].map[it as DiskS].toList»
 					«IF disk.logging.loggingType.value == LOGGING_TYPE_ENUM_S.INFO»
-						LogCraneInfo(«disk.name», mqtt);
+						LoggingService.LogCraneInfo(«disk.name», mqtt);
 					«ELSEIF disk.logging.loggingType.value == LOGGING_TYPE_ENUM_S.WARNING»
-						LogCraneWarnings(«disk.name», mqtt);
+						LoggingService.LogCraneWarnings(«disk.name», mqtt);
 					«ELSEIF disk.logging.loggingType.value == LOGGING_TYPE_ENUM_S.ERROR»
-						LogCraneErrors(«disk.name», mqtt);
+						LoggingService.LogCraneErrors(«disk.name», mqtt);
 					«ELSE»
-						LogCraneAll(«disk.name», mqtt);
+						LoggingService.LogCraneAll(«disk.name», mqtt);
 					«ENDIF»
 				«ENDFOR»
 				«FOR camera : devicesWithLogging.filter[it instanceof CameraS].map[it as CameraS].toList»
 					«IF camera.logging.loggingType.value == LOGGING_TYPE_ENUM_S.INFO»
-						LogCraneInfo(«camera.name», mqtt);
+						LoggingService.LogCraneInfo(«camera.name», mqtt);
 					«ELSEIF camera.logging.loggingType.value == LOGGING_TYPE_ENUM_S.WARNING»
-						LogCraneWarnings(«camera.name», mqtt);
+						LoggingService.LogCraneWarnings(«camera.name», mqtt);
 					«ELSEIF camera.logging.loggingType.value == LOGGING_TYPE_ENUM_S.ERROR»
-						LogCraneErrors(«camera.name», mqtt);
+						LoggingService.LogCraneErrors(«camera.name», mqtt);
 					«ELSE»
-						LogCraneAll(«camera.name», mqtt);
+						LoggingService.LogCraneAll(«camera.name», mqtt);
 					«ENDIF»
 				«ENDFOR»
 			

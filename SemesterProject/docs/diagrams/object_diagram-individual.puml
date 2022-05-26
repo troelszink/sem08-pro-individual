@@ -15,6 +15,7 @@ object DeviceS
 object CraneS
 object DiskS
 object CameraS
+object LoggingS
 
 object DiskHandlingS
 object StatementS
@@ -31,6 +32,9 @@ ConfigurationS --> DeviceS
 DeviceS <|-- CraneS
 DeviceS <|-- DiskS
 DeviceS <|-- CameraS
+CraneS --> LoggingS
+DiskS --> LoggingS
+CameraS --> LoggingS
 
 DiskHandlingS --> StatementS
 StatementS <|-- LoopS

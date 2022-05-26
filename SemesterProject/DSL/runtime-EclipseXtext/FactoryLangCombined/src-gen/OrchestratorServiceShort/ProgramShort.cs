@@ -5,6 +5,8 @@ using Logging;
 
 #region Variables
 IMqttService mqtt = new MqttService();
+Logging
+
 
 Dictionary<string, Crane> cranes = new();
 Dictionary<string, Disk> disks = new();
@@ -25,11 +27,11 @@ void Setup()
 		{"pickupDisk", 0},
 		{"outRed", 30},
 		{"outGreen", 60},
-		{"outBlue", 130}
+		{"outBlue", 90}
 	}, mqtt));
 	disks.Add("disk1", new Disk("disk1", 8, new Dictionary<string, int>()
 	{
-		{"craneZone", 4},
+		{"craneZone", 1},
 		{"cameraZone", 3},
 		{"intakeZone", 6}
 	}, mqtt));
@@ -47,8 +49,8 @@ async Task Run()
 	var disk1 = disks["disk1"];
 	var camera1 = cameras["camera1"];
 
-	LogCraneErrors(crane1, mqtt);
-	LogCraneInfo(camera1, mqtt);
+	LoggingService.LogCraneErrors(crane1, mqtt);
+	LoggingService.LogCraneInfo(camera1, mqtt);
 
 	while (running)
 	{

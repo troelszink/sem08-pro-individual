@@ -36,7 +36,7 @@ chan disk1_foundin_progressSlot;
 bool disk1_notin_progressSlots[disk1_numberOfSlots] = {1, 1, 1, 1, 1, 1, 1, 1};
 
 //Zones: 
-int disk1_zones_craneZone = 4;
+int disk1_zones_craneZone = 1;
 int disk1_zones_cameraZone = 3;
 int disk1_zones_intakeZone = 6;
 
