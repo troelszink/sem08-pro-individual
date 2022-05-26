@@ -562,33 +562,31 @@ class UppaalMasterGenerator {
 	}
 	
 	def static dispatch String generateLocation(MarkCameraValueS statement) {
-		val diskHandling = EcoreUtil2.getContainerOfType(statement, DiskHandlingS)
 		'''
-		<location id="«getIdOfLocation('''«diskHandling.disk.name»_scanItem_«statementsIndexerShort.indexOf(statement)»''')»">
-			<name>«diskHandling.disk.name»_scanItem_«statementsIndexerShort.indexOf(statement)»</name>
+		<location id="«getIdOfLocation('''«statement.camera.name»_scanItem_«statementsIndexerShort.indexOf(statement)»''')»">
+			<name>«statement.camera.name»_scanItem_«statementsIndexerShort.indexOf(statement)»</name>
 			<committed/>
 		</location>
-		<location id="«getIdOfLocation('''«diskHandling.disk.name»_itemColour_«statementsIndexerShort.indexOf(statement)»''')»">
-			<name>«diskHandling.disk.name»_itemColour_«statementsIndexerShort.indexOf(statement)»</name>
+		<location id="«getIdOfLocation('''«statement.camera.name»_itemColour_«statementsIndexerShort.indexOf(statement)»''')»">
+			<name>«statement.camera.name»_itemColour_«statementsIndexerShort.indexOf(statement)»</name>
 		</location>
 		'''
 	}
 	
 	def static dispatch String generateTransistion(MarkCameraValueS statement) {
-		val diskHandling = EcoreUtil2.getContainerOfType(statement, DiskHandlingS)
 		val trans = '''
 		<transition>
 			<source ref="«lastTransistionState»"/>
-			<target ref="«getIdOfLocation('''«diskHandling.disk.name»_scanItem_«statementsIndexerShort.indexOf(statement)»''')»"/>
-			<label kind="synchronisation">«diskHandling.disk.name»_getColour!</label>
+			<target ref="«getIdOfLocation('''«statement.camera.name»_scanItem_«statementsIndexerShort.indexOf(statement)»''')»"/>
+			<label kind="synchronisation">«statement.camera.name»_getColour!</label>
 		</transition>
 		<transition>
-			<source ref="«getIdOfLocation('''«diskHandling.disk.name»_scanItem_«statementsIndexerShort.indexOf(statement)»''')»"/>
-			<target ref="«getIdOfLocation('''«diskHandling.disk.name»_itemColour_«statementsIndexerShort.indexOf(statement)»''')»"/>
-			<label kind="synchronisation">«diskHandling.disk.name»_gottenColour?</label>
+			<source ref="«getIdOfLocation('''«statement.camera.name»_scanItem_«statementsIndexerShort.indexOf(statement)»''')»"/>
+			<target ref="«getIdOfLocation('''«statement.camera.name»_itemColour_«statementsIndexerShort.indexOf(statement)»''')»"/>
+			<label kind="synchronisation">«statement.camera.name»_gottenColour?</label>
 		</transition>
 		'''
-		lastTransistionState = getIdOfLocation('''«diskHandling.disk.name»_itemColour_«statementsIndexerShort.indexOf(statement)»''')
+		lastTransistionState = getIdOfLocation('''«statement.camera.name»_itemColour_«statementsIndexerShort.indexOf(statement)»''')
 		return trans
 	}
 	
